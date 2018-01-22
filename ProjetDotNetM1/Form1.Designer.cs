@@ -19,7 +19,7 @@
             }
             base.Dispose(disposing);
         }
-
+        
         #region Code généré par le Concepteur Windows Form
 
         /// <summary>
@@ -28,12 +28,225 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.menuStrip_barreAccueil = new System.Windows.Forms.MenuStrip();
+            this.fichierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ouvrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dossierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fichierToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.paramètresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modifierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.miseÀJourToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textBox_recherche = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.treeView_tag = new System.Windows.Forms.TreeView();
+            this.dataGridView_listeImage = new System.Windows.Forms.DataGridView();
+            this.richTextBox_infoImage = new System.Windows.Forms.RichTextBox();
+            this.modeDiaporamaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip_barreAccueil.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_listeImage)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // menuStrip_barreAccueil
+            // 
+            this.menuStrip_barreAccueil.BackColor = System.Drawing.Color.LightGray;
+            this.menuStrip_barreAccueil.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fichierToolStripMenuItem,
+            this.editionToolStripMenuItem,
+            this.tagToolStripMenuItem,
+            this.miseÀJourToolStripMenuItem});
+            this.menuStrip_barreAccueil.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip_barreAccueil.Name = "menuStrip_barreAccueil";
+            this.menuStrip_barreAccueil.Size = new System.Drawing.Size(1165, 24);
+            this.menuStrip_barreAccueil.TabIndex = 1;
+            this.menuStrip_barreAccueil.Text = "menuStrip1";
+            // 
+            // fichierToolStripMenuItem
+            // 
+            this.fichierToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ouvrirToolStripMenuItem,
+            this.paramètresToolStripMenuItem});
+            this.fichierToolStripMenuItem.Name = "fichierToolStripMenuItem";
+            this.fichierToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.fichierToolStripMenuItem.Text = "Fichier";
+            // 
+            // ouvrirToolStripMenuItem
+            // 
+            this.ouvrirToolStripMenuItem.BackColor = System.Drawing.Color.LightGray;
+            this.ouvrirToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dossierToolStripMenuItem,
+            this.fichierToolStripMenuItem1});
+            this.ouvrirToolStripMenuItem.Name = "ouvrirToolStripMenuItem";
+            this.ouvrirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ouvrirToolStripMenuItem.Text = "Importer";
+            // 
+            // dossierToolStripMenuItem
+            // 
+            this.dossierToolStripMenuItem.Name = "dossierToolStripMenuItem";
+            this.dossierToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.dossierToolStripMenuItem.Text = "Dossier";
+            // 
+            // fichierToolStripMenuItem1
+            // 
+            this.fichierToolStripMenuItem1.Name = "fichierToolStripMenuItem1";
+            this.fichierToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.fichierToolStripMenuItem1.Text = "Fichier";
+            // 
+            // paramètresToolStripMenuItem
+            // 
+            this.paramètresToolStripMenuItem.Name = "paramètresToolStripMenuItem";
+            this.paramètresToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.paramètresToolStripMenuItem.Text = "Paramètres";
+            // 
+            // editionToolStripMenuItem
+            // 
+            this.editionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.modeDiaporamaToolStripMenuItem});
+            this.editionToolStripMenuItem.Name = "editionToolStripMenuItem";
+            this.editionToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
+            this.editionToolStripMenuItem.Text = "Edition";
+            // 
+            // tagToolStripMenuItem
+            // 
+            this.tagToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.modifierToolStripMenuItem});
+            this.tagToolStripMenuItem.Name = "tagToolStripMenuItem";
+            this.tagToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.tagToolStripMenuItem.Text = "Tag";
+            // 
+            // modifierToolStripMenuItem
+            // 
+            this.modifierToolStripMenuItem.Name = "modifierToolStripMenuItem";
+            this.modifierToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.modifierToolStripMenuItem.Text = "Modifier";
+            // 
+            // miseÀJourToolStripMenuItem
+            // 
+            this.miseÀJourToolStripMenuItem.Name = "miseÀJourToolStripMenuItem";
+            this.miseÀJourToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
+            this.miseÀJourToolStripMenuItem.Text = "Mise à jour";
+            this.miseÀJourToolStripMenuItem.Click += new System.EventHandler(this.miseÀJourToolStripMenuItem_Click);
+            // 
+            // textBox_recherche
+            // 
+            this.textBox_recherche.BackColor = System.Drawing.Color.LightGray;
+            this.textBox_recherche.Location = new System.Drawing.Point(953, 3);
+            this.textBox_recherche.Name = "textBox_recherche";
+            this.textBox_recherche.Size = new System.Drawing.Size(212, 20);
+            this.textBox_recherche.TabIndex = 2;
+            this.textBox_recherche.Text = "Rechercher photo, tag, ...";
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 994F));
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.treeView_tag, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1165, 515);
+            this.tableLayoutPanel1.TabIndex = 3;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.dataGridView_listeImage, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.richTextBox_infoImage, 0, 1);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(174, 3);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 149F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(988, 509);
+            this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // treeView_tag
+            // 
+            this.treeView_tag.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView_tag.Location = new System.Drawing.Point(3, 3);
+            this.treeView_tag.Name = "treeView_tag";
+            this.treeView_tag.Size = new System.Drawing.Size(165, 509);
+            this.treeView_tag.TabIndex = 1;
+            // 
+            // dataGridView_listeImage
+            // 
+            this.dataGridView_listeImage.AllowUserToDeleteRows = false;
+            this.dataGridView_listeImage.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_listeImage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView_listeImage.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView_listeImage.Name = "dataGridView_listeImage";
+            this.dataGridView_listeImage.ReadOnly = true;
+            this.dataGridView_listeImage.Size = new System.Drawing.Size(982, 354);
+            this.dataGridView_listeImage.TabIndex = 0;
+            // 
+            // richTextBox_infoImage
+            // 
+            this.richTextBox_infoImage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox_infoImage.Enabled = false;
+            this.richTextBox_infoImage.Location = new System.Drawing.Point(3, 363);
+            this.richTextBox_infoImage.Name = "richTextBox_infoImage";
+            this.richTextBox_infoImage.Size = new System.Drawing.Size(982, 143);
+            this.richTextBox_infoImage.TabIndex = 1;
+            this.richTextBox_infoImage.Text = "Information de l\'image sélectionnée";
+            // 
+            // modeDiaporamaToolStripMenuItem
+            // 
+            this.modeDiaporamaToolStripMenuItem.Name = "modeDiaporamaToolStripMenuItem";
+            this.modeDiaporamaToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.modeDiaporamaToolStripMenuItem.Text = "Mode diaporama";
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(1165, 539);
+            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.textBox_recherche);
+            this.Controls.Add(this.menuStrip_barreAccueil);
+            this.MainMenuStrip = this.menuStrip_barreAccueil;
+            this.Name = "Form1";
+            this.Text = "Application";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.menuStrip_barreAccueil.ResumeLayout(false);
+            this.menuStrip_barreAccueil.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_listeImage)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private System.Windows.Forms.MenuStrip menuStrip_barreAccueil;
+        private System.Windows.Forms.ToolStripMenuItem fichierToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ouvrirToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dossierToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fichierToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem editionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tagToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem miseÀJourToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem paramètresToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modifierToolStripMenuItem;
+        private System.Windows.Forms.TextBox textBox_recherche;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.DataGridView dataGridView_listeImage;
+        private System.Windows.Forms.RichTextBox richTextBox_infoImage;
+        private System.Windows.Forms.TreeView treeView_tag;
+        private System.Windows.Forms.ToolStripMenuItem modeDiaporamaToolStripMenuItem;
     }
 }
 

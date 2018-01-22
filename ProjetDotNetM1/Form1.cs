@@ -16,5 +16,22 @@ namespace ProjetDotNetM1
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void miseÀJourToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("màj réussi");
+        }
+
+        private void cacherToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fichierToolStripMenuItem.Visible = false;
+            editionToolStripMenuItem.Visible = false;
+
+        }
     }
 }
