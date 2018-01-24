@@ -27,11 +27,34 @@ namespace ProjetDotNetM1
             Console.WriteLine("màj réussi");
         }
 
-        private void cacherToolStripMenuItem_Click(object sender, EventArgs e)
+        private void dossierToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            fichierToolStripMenuItem.Visible = false;
-            editionToolStripMenuItem.Visible = false;
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                Console.WriteLine("lecture du dossier réussie");
+            }
+        }
 
+        private void fichierToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "Images Files (.png)|*.png|(.jpg)|*.jpg|(.gif)|*.gif|All Files (*.*)|*.*";
+            openFileDialog1.FilterIndex = 1;
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                Console.WriteLine("lecture du dossier réussie");
+            }
+        }
+
+        private void paramètresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Bouton ok");
         }
     }
 }
