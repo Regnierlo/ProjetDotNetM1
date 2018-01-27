@@ -66,6 +66,7 @@
     </Compile>
     <Compile Include="GestionImage.cs" />
     <Compile Include="GestionListeImages.cs" />
+    <Compile Include="GestionListeImport.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ConfirmationChangement.resx">

@@ -50,8 +50,8 @@ namespace ProjetDotNetM1
                 {
                     imagesList.Add(img);
                 }
-                GestionListeImages images = new GestionListeImages(imagesList);
-                images.importer();
+                GestionListeImport image = new GestionListeImport(imagesList,this.images);
+                image.importer();
             }
         }
 
@@ -69,7 +69,7 @@ namespace ProjetDotNetM1
         private void modifierToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tableLayoutPanel1_Ensemble.Hide();
-            tableLayoutPanel3_Modification.BringToFront();
+            tableLayoutPanel3_Modification.Show();
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -79,7 +79,7 @@ namespace ProjetDotNetM1
             if (res == DialogResult.Abort)
             {
                 tableLayoutPanel3_Modification.Hide();
-                tableLayoutPanel1_Ensemble.BringToFront();
+                tableLayoutPanel1_Ensemble.Show();
             }
         }
 
