@@ -8,11 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections;
+using System.IO;
 
 namespace ProjetDotNetM1
 {
-     public partial class Form1 : Form
-     {
+    public partial class Form1 : Form
+    {
         GestionListeImages images;
 
         public Form1()
@@ -28,13 +29,35 @@ namespace ProjetDotNetM1
 
         private void dossierToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            FolderBrowserDialog folderDialog = new FolderBrowserDialog();
+            if (folderDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 Console.WriteLine("lecture du dossier réussie");
+                string path = folderDialog.SelectedPath;
+
+                GestionListeImport image = new GestionListeImport(ProcessDirectory(path), this.images);
+                image.importer();
             }
         }
-
+        public ArrayList ProcessDirectory(string path)
+        {
+            ArrayList res = new ArrayList();
+            string[] fileEntries = Directory.GetFiles(path);
+            foreach (string fileName in fileEntries)
+            {
+                res.Add(Path.Combine(path, fileName));
+            }
+            string[] subdirectoryEntries = Directory.GetDirectories(path);
+            foreach (string subdirectory in subdirectoryEntries)
+            {
+                ArrayList resReq = ProcessDirectory(subdirectory);
+                foreach (string url in resReq)
+                {
+                    res.Add(url);
+                }
+            }
+            return res;
+        }
         private void fichierToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
@@ -50,8 +73,8 @@ namespace ProjetDotNetM1
                 {
                     imagesList.Add(img);
                 }
-                GestionListeImages images = new GestionListeImages(imagesList);
-                images.importer();
+                GestionListeImport image = new GestionListeImport(imagesList, this.images);
+                image.importer();
             }
         }
 
@@ -69,7 +92,7 @@ namespace ProjetDotNetM1
         private void modifierToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tableLayoutPanel1_Ensemble.Hide();
-            tableLayoutPanel3_Modification.BringToFront();
+            tableLayoutPanel3_Modification.Show();
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -79,13 +102,18 @@ namespace ProjetDotNetM1
             if (res == DialogResult.Abort)
             {
                 tableLayoutPanel3_Modification.Hide();
-                tableLayoutPanel1_Ensemble.BringToFront();
+                tableLayoutPanel1_Ensemble.Show();
             }
         }
 
         private void confirmerBtn_Click(object sender, EventArgs e)
         {
 
+        }
+        private void versionDuLogicielToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutBox1 about = new AboutBox1();
+            about.Show();
         }
     }
 }

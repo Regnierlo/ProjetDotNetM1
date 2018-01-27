@@ -13,18 +13,16 @@ namespace ProjetDotNetM1
 {
     public partial class FormImageExistante : Form
     {
-        public FormImageExistante(Image imageFHR, string url)
+        public FormImageExistante(Image imageFHR, Image imageNouv)
         {
             InitializeComponent();
             button1.BackgroundImage = imageFHR;
             button1.BackgroundImageLayout = ImageLayout.Stretch;
-            FileStream fs = new FileStream(url, FileMode.Open);
-            button3.BackgroundImage = Image.FromStream(fs);
+            button3.BackgroundImage = imageNouv;
             button3.BackgroundImageLayout = ImageLayout.Stretch;
-            fs.Close();
         }
 
-        private void FormImageExistante_Load(object sender, EventArgs e)
+            private void FormImageExistante_Load(object sender, EventArgs e)
         {
 
         }

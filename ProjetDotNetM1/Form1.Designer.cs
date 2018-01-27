@@ -57,6 +57,7 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.versionDuLogicielToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1_Ensemble.SuspendLayout();
             this.tableLayoutPanel2_Accueil.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_listeImage)).BeginInit();
@@ -90,7 +91,7 @@
             this.tableLayoutPanel1_Ensemble.Name = "tableLayoutPanel1_Ensemble";
             this.tableLayoutPanel1_Ensemble.RowCount = 1;
             this.tableLayoutPanel1_Ensemble.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1_Ensemble.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 515F));
+            this.tableLayoutPanel1_Ensemble.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 547F));
             this.tableLayoutPanel1_Ensemble.Size = new System.Drawing.Size(1224, 547);
             this.tableLayoutPanel1_Ensemble.TabIndex = 3;
             // 
@@ -178,34 +179,35 @@
             this.dossierToolStripMenuItem,
             this.fichierToolStripMenuItem1});
             this.ouvrirToolStripMenuItem.Name = "ouvrirToolStripMenuItem";
-            this.ouvrirToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.ouvrirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.ouvrirToolStripMenuItem.Text = "Importer";
             // 
             // dossierToolStripMenuItem
             // 
             this.dossierToolStripMenuItem.Name = "dossierToolStripMenuItem";
-            this.dossierToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.dossierToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.dossierToolStripMenuItem.Text = "Dossier";
             this.dossierToolStripMenuItem.Click += new System.EventHandler(this.dossierToolStripMenuItem_Click);
             // 
             // fichierToolStripMenuItem1
             // 
             this.fichierToolStripMenuItem1.Name = "fichierToolStripMenuItem1";
-            this.fichierToolStripMenuItem1.Size = new System.Drawing.Size(112, 22);
+            this.fichierToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.fichierToolStripMenuItem1.Text = "Fichier";
             this.fichierToolStripMenuItem1.Click += new System.EventHandler(this.fichierToolStripMenuItem1_Click);
             // 
             // paramètresToolStripMenuItem
             // 
             this.paramètresToolStripMenuItem.Name = "paramètresToolStripMenuItem";
-            this.paramètresToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.paramètresToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.paramètresToolStripMenuItem.Text = "Paramètres";
             this.paramètresToolStripMenuItem.Click += new System.EventHandler(this.paramètresToolStripMenuItem_Click);
             // 
             // editionToolStripMenuItem
             // 
             this.editionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.modeDiaporamaToolStripMenuItem});
+            this.modeDiaporamaToolStripMenuItem,
+            this.versionDuLogicielToolStripMenuItem});
             this.editionToolStripMenuItem.Name = "editionToolStripMenuItem";
             this.editionToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.editionToolStripMenuItem.Text = "Edition";
@@ -213,7 +215,7 @@
             // modeDiaporamaToolStripMenuItem
             // 
             this.modeDiaporamaToolStripMenuItem.Name = "modeDiaporamaToolStripMenuItem";
-            this.modeDiaporamaToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.modeDiaporamaToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.modeDiaporamaToolStripMenuItem.Text = "Mode diaporama";
             // 
             // tagToolStripMenuItem
@@ -227,7 +229,7 @@
             // modifierToolStripMenuItem
             // 
             this.modifierToolStripMenuItem.Name = "modifierToolStripMenuItem";
-            this.modifierToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.modifierToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.modifierToolStripMenuItem.Text = "Modifier";
             this.modifierToolStripMenuItem.Click += new System.EventHandler(this.modifierToolStripMenuItem_Click);
             // 
@@ -369,6 +371,13 @@
             this.panel1.Size = new System.Drawing.Size(1224, 547);
             this.panel1.TabIndex = 7;
             // 
+            // versionDuLogicielToolStripMenuItem
+            // 
+            this.versionDuLogicielToolStripMenuItem.Name = "versionDuLogicielToolStripMenuItem";
+            this.versionDuLogicielToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.versionDuLogicielToolStripMenuItem.Text = "A propos";
+            this.versionDuLogicielToolStripMenuItem.Click += new System.EventHandler(this.versionDuLogicielToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -430,6 +439,7 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.ToolStripMenuItem versionDuLogicielToolStripMenuItem;
     }
 }
 
