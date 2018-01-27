@@ -47,6 +47,7 @@
             this.modifierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.miseÀJourToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_barreAccueil = new System.Windows.Forms.MenuStrip();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_listeImage)).BeginInit();
@@ -67,7 +68,7 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 994F));
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 5, 0);
             this.tableLayoutPanel1.Controls.Add(this.treeView_tag, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
@@ -79,9 +80,13 @@
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnCount = 5;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.dataGridView_listeImage, 0, 0);
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.Controls.Add(this.dataGridView_listeImage, 5, 1);
             this.tableLayoutPanel2.Controls.Add(this.richTextBox_infoImage, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(174, 3);
@@ -89,6 +94,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 149F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(988, 509);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
@@ -97,10 +103,10 @@
             this.dataGridView_listeImage.AllowUserToDeleteRows = false;
             this.dataGridView_listeImage.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_listeImage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView_listeImage.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView_listeImage.Location = new System.Drawing.Point(971, 363);
             this.dataGridView_listeImage.Name = "dataGridView_listeImage";
             this.dataGridView_listeImage.ReadOnly = true;
-            this.dataGridView_listeImage.Size = new System.Drawing.Size(982, 354);
+            this.dataGridView_listeImage.Size = new System.Drawing.Size(14, 143);
             this.dataGridView_listeImage.TabIndex = 0;
             // 
             // richTextBox_infoImage
@@ -109,7 +115,7 @@
             this.richTextBox_infoImage.Enabled = false;
             this.richTextBox_infoImage.Location = new System.Drawing.Point(3, 363);
             this.richTextBox_infoImage.Name = "richTextBox_infoImage";
-            this.richTextBox_infoImage.Size = new System.Drawing.Size(982, 143);
+            this.richTextBox_infoImage.Size = new System.Drawing.Size(902, 143);
             this.richTextBox_infoImage.TabIndex = 1;
             this.richTextBox_infoImage.Text = "Information de l\'image sélectionnée";
             // 
@@ -159,27 +165,27 @@
             this.dossierToolStripMenuItem,
             this.fichierToolStripMenuItem1});
             this.ouvrirToolStripMenuItem.Name = "ouvrirToolStripMenuItem";
-            this.ouvrirToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.ouvrirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.ouvrirToolStripMenuItem.Text = "Importer";
             // 
             // dossierToolStripMenuItem
             // 
             this.dossierToolStripMenuItem.Name = "dossierToolStripMenuItem";
-            this.dossierToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.dossierToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.dossierToolStripMenuItem.Text = "Dossier";
             this.dossierToolStripMenuItem.Click += new System.EventHandler(this.dossierToolStripMenuItem_Click);
             // 
             // fichierToolStripMenuItem1
             // 
             this.fichierToolStripMenuItem1.Name = "fichierToolStripMenuItem1";
-            this.fichierToolStripMenuItem1.Size = new System.Drawing.Size(112, 22);
+            this.fichierToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.fichierToolStripMenuItem1.Text = "Fichier";
             this.fichierToolStripMenuItem1.Click += new System.EventHandler(this.fichierToolStripMenuItem1_Click);
             // 
             // paramètresToolStripMenuItem
             // 
             this.paramètresToolStripMenuItem.Name = "paramètresToolStripMenuItem";
-            this.paramètresToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.paramètresToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.paramètresToolStripMenuItem.Text = "Paramètres";
             this.paramètresToolStripMenuItem.Click += new System.EventHandler(this.paramètresToolStripMenuItem_Click);
             // 
@@ -202,7 +208,7 @@
             this.tagToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.modifierToolStripMenuItem});
             this.tagToolStripMenuItem.Name = "tagToolStripMenuItem";
-            this.tagToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.tagToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
             this.tagToolStripMenuItem.Text = "Tag";
             // 
             // modifierToolStripMenuItem
@@ -216,7 +222,7 @@
             this.miseÀJourToolStripMenuItem.Name = "miseÀJourToolStripMenuItem";
             this.miseÀJourToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
             this.miseÀJourToolStripMenuItem.Text = "Mise à jour";
-            this.miseÀJourToolStripMenuItem.Click += new System.EventHandler(this.miseÀJourToolStripMenuItem_Click);
+            this.miseÀJourToolStripMenuItem.Click += new System.EventHandler(this.button1_Click);
             // 
             // menuStrip_barreAccueil
             // 
@@ -232,12 +238,21 @@
             this.menuStrip_barreAccueil.TabIndex = 1;
             this.menuStrip_barreAccueil.Text = "menuStrip1";
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(245, 4);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(555, 16);
+            this.progressBar1.TabIndex = 6;
+            this.progressBar1.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1165, 539);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -277,6 +292,7 @@
         private System.Windows.Forms.ToolStripMenuItem modifierToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem miseÀJourToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip_barreAccueil;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 
