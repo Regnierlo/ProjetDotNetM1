@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections;
 using System.IO;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace ProjetDotNetM1
 {
@@ -55,63 +56,18 @@ namespace ProjetDotNetM1
             }
 
         }
-
-        /*
-         * creer un liste de GestionImage a partir d'une array list afin de réaliser une importation par la suite
-         */
-        public GestionListeImages(ArrayList entryList)
+        public Image rechercheImage(string url)
         {
-            ListeImg = new ArrayList();
-            foreach (string img in entryList)
+            Image res = null;
+            foreach(GestionImage img in ListeImg)
             {
-                ListeImg.Add(new GestionImage(img));
-            }
-        }
-
-        /*
-         * permet d'importer les gestionImage de la liste dans le dossier d'importation
-         */
-        public void importer()
-        {
-            foreach (GestionImage img in ListeImg)
-            {
-                Char delim = '\\';
-                string url = img.ImgUrl;
-                string[] nom = url.Split(delim);
-                string name = nom[nom.Count() - 1];
-                string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-                saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
-                string saveUrl = Path.Combine(saveUrlDos, name);
-                try
+                
+                if (img.ImgUrl == url)
                 {
-                    System.IO.File.Copy(img.ImgUrl, saveUrl, false);
-                }
-                catch (System.IO.DirectoryNotFoundException)
-                {
-                    System.IO.Directory.CreateDirectory(saveUrlDos);
-                    System.IO.File.Copy(img.ImgUrl, saveUrl, false);
-                }
-                catch (System.IO.IOException)
-                {
-                    FormImageExistante form = new FormImageExistante(img.Img, saveUrl);
-                    DialogResult res = form.ShowDialog();
-                    if (res == DialogResult.Cancel)
-                    {
-                        System.Console.WriteLine("cancel : 1");
-                    }
-                    else
-                    {
-                        if (res == DialogResult.Ignore)
-                        {
-                            System.Console.WriteLine("ignore : 3");
-                        }
-                        else
-                        {
-                            System.Console.WriteLine("abort : 2");
-                        }
-                    }
+                    res = img.Img;
                 }
             }
-        }
+            return res;
+        } 
     }
 }
