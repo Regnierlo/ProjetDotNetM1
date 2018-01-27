@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
 using System.Collections;
 using System.Drawing;
-using System.Reflection;
 
 namespace ProjetDotNetM1
 {
@@ -30,7 +24,6 @@ namespace ProjetDotNetM1
             this.ImgUrl = image;
         }
 
-        
         /*
          * prend une chaine de caractere en parametre et la transforme en tableau de byte pret a etre inserer dans les metadonnees  
          * contient deja les 2 zero finaux obligatoire dans les métadonnées
@@ -44,7 +37,6 @@ namespace ProjetDotNetM1
                 res[i] = 0;
                 if (i % 2 == 0)
                 {
-
                     if (i / 2 < entry.Length)
                     {
                         res[i] = (Byte)entry[i / 2];
@@ -52,10 +44,12 @@ namespace ProjetDotNetM1
                 }
             }
             return res;
-        }/*
-           * prend un tableau de byte comme ceux présent dans le metadonnée en paramètre et le transforme en string.
-           * 
-           */
+        }
+
+        /*
+         * prend un tableau de byte comme ceux présent dans le metadonnée en paramètre et le transforme en string.
+         * 
+         */
         private string byte2String(Byte[] entry)
         {
             string res = "";
@@ -87,14 +81,13 @@ namespace ProjetDotNetM1
             return res;
         }
 
-        /**
+        /*
          *  permet de remplacer les tags existant de l'image par les tag contenue dans l'ArrayList en entree
          * 
-         * essaie d'ajouter u tag existant et si une exeption null est levée (donc aucun tag existant) récupère une structure de métadonnées sur une image qui en contient et la modifie pour l'apliquer a la nouvelle image
+         * essaie d'ajouter un tag existant et si une exeption null est levée (donc aucun tag existant) récupère une structure de métadonnées sur une image qui en contient et la modifie pour l'appliquer a la nouvelle image
          */
         public void ajoutTag(ArrayList entry)
         {
-
             try
             {
                 var propItem = Img.GetPropertyItem(0x9C9E);
@@ -135,8 +128,8 @@ namespace ProjetDotNetM1
                 Img.SetPropertyItem(propItem);
                 saveImg();
             }
-
         }
+
         /*
          * permet de sauvegarder une image sous le meme nom que l'ancien (Image.FromFile garde le flux ouvert )
          */
