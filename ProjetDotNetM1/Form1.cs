@@ -11,16 +11,14 @@ using System.Collections;
 
 namespace ProjetDotNetM1
 {
-    public partial class Form1 : Form
-    {
+     public partial class Form1 : Form
+     {
+        GestionListeImages images;
+
         public Form1()
         {
             InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
+            images = new GestionListeImages(progressBar1, dataGridView_listeImage);
         }
 
         private void miseÀJourToolStripMenuItem_Click(object sender, EventArgs e)
@@ -40,7 +38,7 @@ namespace ProjetDotNetM1
         private void fichierToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "Images Files (.jpg)|*.jpg";   // ya que les ficheir JPG de pris en compte ^^' on vera plus tard si on rajoute ;) de toute facon un appareil phoo prend pas de sphoto en gif ou PNG ;)
+            openFileDialog1.Filter = "Images Files (.jpg)|*.jpg";
             openFileDialog1.Multiselect = true;
             openFileDialog1.FilterIndex = 1;
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -64,8 +62,30 @@ namespace ProjetDotNetM1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            GestionListeImages images = new GestionListeImages(progressBar1,dataGridView_listeImage);
+            images = new GestionListeImages(progressBar1, dataGridView_listeImage);
             Console.WriteLine("Bouton ok");
+        }
+
+        private void modifierToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tableLayoutPanel1_Ensemble.Hide();
+            tableLayoutPanel3_Modification.BringToFront();
+        }
+
+        private void cancelBtn_Click(object sender, EventArgs e)
+        {
+            ConfirmationChangement cg = new ConfirmationChangement();
+            DialogResult res = cg.ShowDialog();
+            if (res == DialogResult.Abort)
+            {
+                tableLayoutPanel3_Modification.Hide();
+                tableLayoutPanel1_Ensemble.BringToFront();
+            }
+        }
+
+        private void confirmerBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
