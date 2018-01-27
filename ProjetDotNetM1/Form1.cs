@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections;
+using System.IO;
 
 namespace ProjetDotNetM1
 {
@@ -28,13 +29,35 @@ namespace ProjetDotNetM1
 
         private void dossierToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            FolderBrowserDialog folderDialog = new FolderBrowserDialog();
+            if (folderDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 Console.WriteLine("lecture du dossier réussie");
+                string path = folderDialog.SelectedPath;
+
+                GestionListeImport image = new GestionListeImport(ProcessDirectory(path), this.images);
+                image.importer();
             }
         }
-
+        public  ArrayList ProcessDirectory(string path)
+        {
+            ArrayList res = new ArrayList();
+            string[] fileEntries = Directory.GetFiles(path);
+            foreach (string fileName in fileEntries)
+            {
+                res.Add(Path.Combine(path,fileName));
+            }
+            string[] subdirectoryEntries = Directory.GetDirectories(path);
+            foreach (string subdirectory in subdirectoryEntries)
+            {
+                ArrayList resReq = ProcessDirectory(subdirectory);
+                foreach(string url in resReq)
+                {
+                    res.Add(url);
+                }
+            }
+            return res;
+        }
         private void fichierToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
