@@ -107,7 +107,7 @@ namespace ProjetDotNetM1
                 Img.SetPropertyItem(propItem);
                 Img.Save(ImgUrl, System.Drawing.Imaging.ImageFormat.Jpeg);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Bitmap imgRe = new Bitmap(ProjetDotNetM1.Properties.Resources.remplacement_remplacement_image);
                 Image imgRef = ProjetDotNetM1.Properties.Resources.remplacement_remplacement_image;
