@@ -58,6 +58,15 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormImageExistante.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="FormImageExistante.Designer.cs">
+			 <DependentUpon>FormImageExistante.cs</DependentUpon>
+		</Compile>
+    </EmbeddedResource>
+		<EmbeddedResource Include="FormImageExistante.resx">
+		<DependentUpon>FormImageExistante.cs</DependentUpon> 
     <Compile Include="GestionImage.cs" />
     <Compile Include="GestionListeImages.cs" />
     <Compile Include="Program.cs" />
