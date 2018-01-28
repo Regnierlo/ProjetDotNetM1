@@ -115,5 +115,10 @@ namespace ProjetDotNetM1
             AboutBox1 about = new AboutBox1();
             about.Show();
         }
+
+        private void dataGridView_listeImage_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

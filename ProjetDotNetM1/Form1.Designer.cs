@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.textBox_recherche = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1_Ensemble = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2_Accueil = new System.Windows.Forms.TableLayoutPanel();
@@ -43,6 +44,7 @@
             this.paramètresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modeDiaporamaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.versionDuLogicielToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modifierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.miseÀJourToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,7 +59,9 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.versionDuLogicielToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listeImgBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.listeImgBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.gestionListeImagesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1_Ensemble.SuspendLayout();
             this.tableLayoutPanel2_Accueil.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_listeImage)).BeginInit();
@@ -68,6 +72,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listeImgBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listeImgBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gestionListeImagesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox_recherche
@@ -99,7 +106,7 @@
             // 
             this.tableLayoutPanel2_Accueil.ColumnCount = 1;
             this.tableLayoutPanel2_Accueil.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2_Accueil.Controls.Add(this.dataGridView_listeImage, 0, 0);
+            this.tableLayoutPanel2_Accueil.Controls.Add(this.dataGridView_listeImage, 3, 0);
             this.tableLayoutPanel2_Accueil.Controls.Add(this.richTextBox_infoImage, 0, 1);
             this.tableLayoutPanel2_Accueil.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2_Accueil.Location = new System.Drawing.Point(233, 3);
@@ -114,7 +121,11 @@
             // 
             // dataGridView_listeImage
             // 
+            this.dataGridView_listeImage.AllowUserToAddRows = false;
             this.dataGridView_listeImage.AllowUserToDeleteRows = false;
+            this.dataGridView_listeImage.AllowUserToResizeColumns = false;
+            this.dataGridView_listeImage.AllowUserToResizeRows = false;
+            this.dataGridView_listeImage.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dataGridView_listeImage.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_listeImage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView_listeImage.Location = new System.Drawing.Point(3, 3);
@@ -122,6 +133,7 @@
             this.dataGridView_listeImage.ReadOnly = true;
             this.dataGridView_listeImage.Size = new System.Drawing.Size(982, 404);
             this.dataGridView_listeImage.TabIndex = 0;
+            this.dataGridView_listeImage.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_listeImage_CellContentClick);
             // 
             // richTextBox_infoImage
             // 
@@ -179,27 +191,27 @@
             this.dossierToolStripMenuItem,
             this.fichierToolStripMenuItem1});
             this.ouvrirToolStripMenuItem.Name = "ouvrirToolStripMenuItem";
-            this.ouvrirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ouvrirToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.ouvrirToolStripMenuItem.Text = "Importer";
             // 
             // dossierToolStripMenuItem
             // 
             this.dossierToolStripMenuItem.Name = "dossierToolStripMenuItem";
-            this.dossierToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.dossierToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.dossierToolStripMenuItem.Text = "Dossier";
             this.dossierToolStripMenuItem.Click += new System.EventHandler(this.dossierToolStripMenuItem_Click);
             // 
             // fichierToolStripMenuItem1
             // 
             this.fichierToolStripMenuItem1.Name = "fichierToolStripMenuItem1";
-            this.fichierToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.fichierToolStripMenuItem1.Size = new System.Drawing.Size(112, 22);
             this.fichierToolStripMenuItem1.Text = "Fichier";
             this.fichierToolStripMenuItem1.Click += new System.EventHandler(this.fichierToolStripMenuItem1_Click);
             // 
             // paramètresToolStripMenuItem
             // 
             this.paramètresToolStripMenuItem.Name = "paramètresToolStripMenuItem";
-            this.paramètresToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.paramètresToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.paramètresToolStripMenuItem.Text = "Paramètres";
             this.paramètresToolStripMenuItem.Click += new System.EventHandler(this.paramètresToolStripMenuItem_Click);
             // 
@@ -215,8 +227,15 @@
             // modeDiaporamaToolStripMenuItem
             // 
             this.modeDiaporamaToolStripMenuItem.Name = "modeDiaporamaToolStripMenuItem";
-            this.modeDiaporamaToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.modeDiaporamaToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.modeDiaporamaToolStripMenuItem.Text = "Mode diaporama";
+            // 
+            // versionDuLogicielToolStripMenuItem
+            // 
+            this.versionDuLogicielToolStripMenuItem.Name = "versionDuLogicielToolStripMenuItem";
+            this.versionDuLogicielToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.versionDuLogicielToolStripMenuItem.Text = "A propos";
+            this.versionDuLogicielToolStripMenuItem.Click += new System.EventHandler(this.versionDuLogicielToolStripMenuItem_Click);
             // 
             // tagToolStripMenuItem
             // 
@@ -229,7 +248,7 @@
             // modifierToolStripMenuItem
             // 
             this.modifierToolStripMenuItem.Name = "modifierToolStripMenuItem";
-            this.modifierToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.modifierToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.modifierToolStripMenuItem.Text = "Modifier";
             this.modifierToolStripMenuItem.Click += new System.EventHandler(this.modifierToolStripMenuItem_Click);
             // 
@@ -371,12 +390,19 @@
             this.panel1.Size = new System.Drawing.Size(1224, 547);
             this.panel1.TabIndex = 7;
             // 
-            // versionDuLogicielToolStripMenuItem
+            // listeImgBindingSource
             // 
-            this.versionDuLogicielToolStripMenuItem.Name = "versionDuLogicielToolStripMenuItem";
-            this.versionDuLogicielToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.versionDuLogicielToolStripMenuItem.Text = "A propos";
-            this.versionDuLogicielToolStripMenuItem.Click += new System.EventHandler(this.versionDuLogicielToolStripMenuItem_Click);
+            this.listeImgBindingSource.DataMember = "ListeImg";
+            this.listeImgBindingSource.DataSource = this.gestionListeImagesBindingSource;
+            // 
+            // listeImgBindingSource1
+            // 
+            this.listeImgBindingSource1.DataMember = "ListeImg";
+            this.listeImgBindingSource1.DataSource = this.gestionListeImagesBindingSource;
+            // 
+            // gestionListeImagesBindingSource
+            // 
+            this.gestionListeImagesBindingSource.DataSource = typeof(ProjetDotNetM1.GestionListeImages);
             // 
             // Form1
             // 
@@ -404,6 +430,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.listeImgBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listeImgBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gestionListeImagesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -440,6 +469,9 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.ToolStripMenuItem versionDuLogicielToolStripMenuItem;
+        private System.Windows.Forms.BindingSource gestionListeImagesBindingSource;
+        private System.Windows.Forms.BindingSource listeImgBindingSource;
+        private System.Windows.Forms.BindingSource listeImgBindingSource1;
     }
 }
 
