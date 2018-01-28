@@ -7,6 +7,7 @@ using System.Collections;
 using System.IO;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Threading;
 
 namespace ProjetDotNetM1
 {
@@ -35,11 +36,15 @@ namespace ProjetDotNetM1
                 ListeImg.Add(img);
             }
         }
-
+        public void importer()
+        {
+            Thread th = new Thread(Importation);
+            th.Start();
+        }
         /*
          * permet d'importer les gestionImage de la liste dans le dossier d'importation
          */
-        public void importer()
+        private void Importation()
         {
             foreach (string img in ListeImg)
             {
