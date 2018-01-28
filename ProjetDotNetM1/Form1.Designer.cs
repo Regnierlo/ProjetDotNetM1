@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.textBox_recherche = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1_Ensemble = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2_Accueil = new System.Windows.Forms.TableLayoutPanel();
@@ -59,9 +58,6 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.listeImgBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.listeImgBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.gestionListeImagesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1_Ensemble.SuspendLayout();
             this.tableLayoutPanel2_Accueil.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_listeImage)).BeginInit();
@@ -72,9 +68,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.listeImgBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.listeImgBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gestionListeImagesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox_recherche
@@ -390,20 +383,6 @@
             this.panel1.Size = new System.Drawing.Size(1224, 547);
             this.panel1.TabIndex = 7;
             // 
-            // listeImgBindingSource
-            // 
-            this.listeImgBindingSource.DataMember = "ListeImg";
-            this.listeImgBindingSource.DataSource = this.gestionListeImagesBindingSource;
-            // 
-            // listeImgBindingSource1
-            // 
-            this.listeImgBindingSource1.DataMember = "ListeImg";
-            this.listeImgBindingSource1.DataSource = this.gestionListeImagesBindingSource;
-            // 
-            // gestionListeImagesBindingSource
-            // 
-            this.gestionListeImagesBindingSource.DataSource = typeof(ProjetDotNetM1.GestionListeImages);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -430,9 +409,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.listeImgBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.listeImgBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gestionListeImagesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -469,9 +445,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.ToolStripMenuItem versionDuLogicielToolStripMenuItem;
-        private System.Windows.Forms.BindingSource gestionListeImagesBindingSource;
-        private System.Windows.Forms.BindingSource listeImgBindingSource;
-        private System.Windows.Forms.BindingSource listeImgBindingSource1;
     }
 }
 

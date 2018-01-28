@@ -59,15 +59,15 @@ namespace ProjetDotNetM1
         public string rechercheImage(string url)
         {
             string res = null;
-            foreach(GestionImage img in ListeImg)
+            foreach (GestionImage img in ListeImg)
             {
-                
+
                 if (img.ImgUrl == url)
                 {
                     res = img.ImgUrl;
                 }
             }
             return res;
-        } 
+        }
     }
 }
