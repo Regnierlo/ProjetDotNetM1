@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace ProjetDotNetM1
 {
     class GestionImage
     {
-        public Image Img
+        public List<string> Tag
         {
             get;
             set;
@@ -20,8 +21,9 @@ namespace ProjetDotNetM1
         //private string imgUrl;
         public GestionImage(string image)
         {
-            this.Img = Image.FromFile(image);
             this.ImgUrl = image;
+            Image img = Image.FromFile(ImgUrl);
+            Tag = recupTag(img);
         }
 
         /*
@@ -67,13 +69,13 @@ namespace ProjetDotNetM1
          * permet de recuperer les Tag d'une image et de les retourner sous la forme d'une ArrayList
          * 0x9C9E est le code corespondant au tag des données exif
          */
-        public ArrayList recupTag()
+        public List<string> recupTag(Image img)
         {
-            var propItem = Img.GetPropertyItem(0x9C9E);
+            var propItem = img.GetPropertyItem(0x9C9E);
             string resS = byte2String(propItem.Value);
             Char delim = ';';
             String[] substrings = resS.Split(delim);
-            ArrayList res = new ArrayList();
+            List<string> res = new List<string>();
             foreach (var substring in substrings)
             {
                 res.Add(substring);
@@ -88,9 +90,10 @@ namespace ProjetDotNetM1
          */
         public void ajoutTag(ArrayList entry)
         {
+            Image img = Image.FromFile(ImgUrl);
             try
             {
-                var propItem = Img.GetPropertyItem(0x9C9E);
+                var propItem = img.GetPropertyItem(0x9C9E);
                 string tags = "";
                 int cmp = 0;
                 foreach (int tag in entry)
@@ -104,8 +107,8 @@ namespace ProjetDotNetM1
                 }
                 byte[] res = string2Byte(tags);
                 propItem.Value = res;
-                Img.SetPropertyItem(propItem);
-                Img.Save(ImgUrl, System.Drawing.Imaging.ImageFormat.Jpeg);
+                img.SetPropertyItem(propItem);
+                img.Save(ImgUrl, System.Drawing.Imaging.ImageFormat.Jpeg);
             }
             catch (Exception)
             {
@@ -125,24 +128,24 @@ namespace ProjetDotNetM1
                 }
                 byte[] res = string2Byte(tags);
                 propItem.Value = res;
-                Img.SetPropertyItem(propItem);
-                saveImg();
+                img.SetPropertyItem(propItem);
+                saveImg(img);
             }
         }
 
         /*
          * permet de sauvegarder une image sous le meme nom que l'ancien (Image.FromFile garde le flux ouvert )
          */
-        private void saveImg()
+        private void saveImg(Image img)
         {
             string imgUrl2 = ImgUrl.Insert(ImgUrl.Length - 4, "a");
-            Img.Save(imgUrl2, System.Drawing.Imaging.ImageFormat.Jpeg);
-            Img = Image.FromFile(imgUrl2);
+            img.Save(imgUrl2, System.Drawing.Imaging.ImageFormat.Jpeg);
+            img = Image.FromFile(imgUrl2);
             GC.Collect();
             GC.WaitForPendingFinalizers();
             System.IO.File.Delete(ImgUrl);
-            Img.Save(ImgUrl, System.Drawing.Imaging.ImageFormat.Jpeg);
-            Img = Image.FromFile(ImgUrl);
+            img.Save(ImgUrl, System.Drawing.Imaging.ImageFormat.Jpeg);
+            img = Image.FromFile(ImgUrl);
             GC.Collect();
             GC.WaitForPendingFinalizers();
             System.IO.File.Delete(imgUrl2);
