@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using System.Drawing;
@@ -9,7 +9,7 @@ namespace ProjetDotNetM1
 {
     class GestionListeImages
     {
-        public ArrayList ListeImg
+        public List<GestionImage> ListeImg
         {
             get;
             set;
@@ -20,7 +20,7 @@ namespace ProjetDotNetM1
         public GestionListeImages(ProgressBar bar, DataGridView grid)
         {
             bar.Visible = true;
-            ListeImg = new ArrayList();
+            ListeImg = new List<GestionImage>();
             string url = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             url = Path.Combine(url, "FHRImages");
             try
@@ -56,15 +56,15 @@ namespace ProjetDotNetM1
             }
 
         }
-        public Image rechercheImage(string url)
+        public string rechercheImage(string url)
         {
-            Image res = null;
+            string res = null;
             foreach(GestionImage img in ListeImg)
             {
                 
                 if (img.ImgUrl == url)
                 {
-                    res = img.Img;
+                    res = img.ImgUrl;
                 }
             }
             return res;
