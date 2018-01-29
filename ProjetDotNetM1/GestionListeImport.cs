@@ -21,9 +21,11 @@ namespace ProjetDotNetM1
             get;
             set;
         }
-        /*
-         * creer un liste de GestionImage a partir d'une array list afin de réaliser une importation par la suite
-         */
+        /// <summary>
+        /// creer un liste de GestionImage a partir d'une array list afin de réaliser une importation par la suite
+        /// </summary>
+        /// <param name="entryList"></param>
+        /// <param name="images"></param>
         public GestionListeImport(ArrayList entryList, GestionListeImages images)
         {
             ListeImgImport = images;
@@ -34,14 +36,16 @@ namespace ProjetDotNetM1
                 ListeImg.Add(img);
             }
         }
+
         public void Importer()
         {
             Thread th = new Thread(Importation);
             th.Start();
         }
-        /*
-         * permet d'importer les gestionImage de la liste dans le dossier d'importation
-         */
+
+        /// <summary>
+        /// permet d'importer les gestionImage de la liste dans le dossier d'importation
+        /// </summary>
         private void Importation()
         {
             string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);

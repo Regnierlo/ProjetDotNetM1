@@ -13,9 +13,12 @@ namespace ProjetDotNetM1
             get;
             set;
         }
-        /*
-         * creer une liste de gestionImage a partir du dossier d'importation
-         */
+
+        /// <summary>
+        /// creer une liste de gestionImage a partir du dossier d'importation
+        /// </summary>
+        /// <param name="bar"></param>
+        /// <param name="grid"></param>
         public GestionListeImages(ProgressBar bar, DataGridView grid)
         {
             bar.Visible = true;
@@ -55,6 +58,11 @@ namespace ProjetDotNetM1
             }
 
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
         public string RechercheImage(string url)
         {
             string res = null;

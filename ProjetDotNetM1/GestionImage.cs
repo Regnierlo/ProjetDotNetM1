@@ -17,18 +17,23 @@ namespace ProjetDotNetM1
             get;
             set;
         }
-        //private Image img;
-        //private string imgUrl;
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="image"></param>
         public GestionImage(string image)
         {
             this.ImgUrl = image;
             Tag = RecupTag();
         }
 
-        /*
-         * prend une chaine de caractere en parametre et la transforme en tableau de byte pret a etre inserer dans les metadonnees  
-         * contient deja les 2 zero finaux obligatoire dans les métadonnées
-         */
+        /// <summary>
+        /// prend une chaine de caractere en parametre et la transforme en tableau de byte pret a etre inserer dans les metadonnees  
+        /// contient deja les 2 zero finaux obligatoire dans les métadonnées
+        /// </summary>
+        /// <param name="entry"></param>
+        /// <returns></returns>
         private Byte[] String2Byte(string entry)
         {
             int longueur = entry.Length * 2 + 2;
@@ -47,10 +52,11 @@ namespace ProjetDotNetM1
             return res;
         }
 
-        /*
-         * prend un tableau de byte comme ceux présent dans le metadonnée en paramètre et le transforme en string.
-         * 
-         */
+        /// <summary>
+        /// prend un tableau de byte comme ceux présent dans le metadonnée en paramètre et le transforme en string.
+        /// </summary>
+        /// <param name="entry"></param>
+        /// <returns></returns>
         private string Byte2String(Byte[] entry)
         {
             string res = "";
@@ -64,10 +70,11 @@ namespace ProjetDotNetM1
             return res;
         }
 
-        /*
-         * permet de recuperer les Tag d'une image et de les retourner sous la forme d'une ArrayList
-         * 0x9C9E est le code corespondant au tag des données exif
-         */
+        /// <summary>
+        /// permet de recuperer les Tag d'une image et de les retourner sous la forme d'une ArrayList
+        /// 0x9C9E est le code corespondant au tag des données exif
+        /// </summary>
+        /// <returns></returns>
         public List<string> RecupTag()
         {
             Image img = Image.FromFile(ImgUrl);
@@ -93,11 +100,11 @@ namespace ProjetDotNetM1
             }
         }
 
-        /*
-         *  permet de remplacer les tags existant de l'image par les tag contenue dans l'ArrayList en entree
-         * 
-         * essaie d'ajouter un tag existant et si une exeption null est levée (donc aucun tag existant) récupère une structure de métadonnées sur une image qui en contient et la modifie pour l'appliquer a la nouvelle image
-         */
+        /// <summary>
+        /// permet de remplacer les tags existant de l'image par les tag contenue dans l'ArrayList en entree
+        /// essaie d'ajouter un tag existant et si une exeption null est levée (donc aucun tag existant) récupère une structure de métadonnées sur une image qui en contient et la modifie pour l'appliquer a la nouvelle image
+        /// </summary>
+        /// <param name="entry"></param>
         public void AjoutTag(ArrayList entry)
         {
             Image img = Image.FromFile(ImgUrl);
@@ -143,9 +150,10 @@ namespace ProjetDotNetM1
             }
         }
 
-        /*
-         * permet de sauvegarder une image sous le meme nom que l'ancien (Image.FromFile garde le flux ouvert )
-         */
+        /// <summary>
+        /// permet de sauvegarder une image sous le meme nom que l'ancien (Image.FromFile garde le flux ouvert )
+        /// </summary>
+        /// <param name="img"></param>
         private void SaveImg(Image img)
         {
             string imgUrl2 = ImgUrl.Insert(ImgUrl.Length - 4, "a");
