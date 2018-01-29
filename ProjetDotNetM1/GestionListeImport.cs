@@ -5,6 +5,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Threading;
+using System.Text.RegularExpressions;
 
 namespace ProjetDotNetM1
 {
@@ -43,14 +44,14 @@ namespace ProjetDotNetM1
          */
         private void Importation()
         {
+            string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
+            Char delim = '\\';
             foreach (string img in ListeImg)
             {
-                Char delim = '\\';
                 string url = img;//.ImgUrl;
                 string[] nom = url.Split(delim);
                 string name = nom[nom.Count() - 1];
-                string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-                saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
                 string saveUrl = Path.Combine(saveUrlDos, name);
                 string[] decompositionName = name.Split('.');
                 if (decompositionName[decompositionName.Count() - 1] == "jpg" || decompositionName[decompositionName.Count() - 1] == "JPG")
@@ -79,10 +80,46 @@ namespace ProjetDotNetM1
                             if (res == DialogResult.Ignore)
                             {
                                 System.Console.WriteLine("ignore : 3");
+                                System.IO.File.Copy(img/*.ImgUrl*/, saveUrl, true);
                             }
                             else
                             {
-                                System.Console.WriteLine("abort : 2");
+                                System.Console.WriteLine("abort : 2 : "+name);
+                                System.Text.RegularExpressions.Regex myRegex = new Regex(@"(\([0-9]+\).JPG)");
+                                System.Text.RegularExpressions.Regex myRegex2 = new Regex(@"(\([0-9]+\))");
+                                if (myRegex.IsMatch(name))
+                                {
+                                    string[] substrings = myRegex2.Split(name);
+                                    string number = "";
+                                    number = substrings[substrings.Length - 2].Substring(1, substrings[substrings.Length - 2].Length-2);
+                                    int nombre = Int32.Parse(number) + 1;
+                                    number = "(" + nombre + ")";
+                                    substrings[substrings.Length-2]= number;
+                                    string nouveauName = "";
+                                    foreach(string tmp in substrings)
+                                    {
+                                        nouveauName = nouveauName + tmp;
+                                    }
+                                    string nouveauSaveUrl = Path.Combine(saveUrlDos, nouveauName);
+                                    System.IO.File.Copy(img/*.ImgUrl*/, nouveauSaveUrl, false);
+                                }
+                                else
+                                {
+                                    string[] fragmentName = name.Split('.');
+                                    string nouveauName = "";
+                                    foreach(string str in fragmentName){
+                                        if(str == "jpg" | str == "JPG")
+                                        {
+                                            nouveauName = nouveauName + "(1)."+str;
+                                        }
+                                        else
+                                        {
+                                            nouveauName = nouveauName + str;
+                                        }
+                                    }
+                                    string nouveauSaveUrl = Path.Combine(saveUrlDos, nouveauName);
+                                    System.IO.File.Copy(img/*.ImgUrl*/, nouveauSaveUrl, false);
+                                }
                             }
                         }
                         image = null;
