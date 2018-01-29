@@ -31,8 +31,8 @@
             this.textBox_recherche = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1_Ensemble = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2_Accueil = new System.Windows.Forms.TableLayoutPanel();
-            this.dataGridView_listeImage = new System.Windows.Forms.DataGridView();
             this.richTextBox_infoImage = new System.Windows.Forms.RichTextBox();
+            this.dataGridView_listeImage = new System.Windows.Forms.DataGridView();
             this.treeView_tag = new System.Windows.Forms.TreeView();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -47,7 +47,9 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel4_Parametre = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.confirmBtn = new System.Windows.Forms.Button();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.annulerBtn = new System.Windows.Forms.Button();
             this.fichierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ouvrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,8 +63,6 @@
             this.modifierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.miseÀJourToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_barreAccueil = new System.Windows.Forms.MenuStrip();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1_Ensemble.SuspendLayout();
             this.tableLayoutPanel2_Accueil.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_listeImage)).BeginInit();
@@ -73,9 +73,9 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel4_Parametre.SuspendLayout();
-            this.menuStrip_barreAccueil.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            this.menuStrip_barreAccueil.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox_recherche
@@ -119,6 +119,16 @@
             this.tableLayoutPanel2_Accueil.Size = new System.Drawing.Size(988, 541);
             this.tableLayoutPanel2_Accueil.TabIndex = 0;
             // 
+            // richTextBox_infoImage
+            // 
+            this.richTextBox_infoImage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox_infoImage.Enabled = false;
+            this.richTextBox_infoImage.Location = new System.Drawing.Point(3, 413);
+            this.richTextBox_infoImage.Name = "richTextBox_infoImage";
+            this.richTextBox_infoImage.Size = new System.Drawing.Size(982, 125);
+            this.richTextBox_infoImage.TabIndex = 1;
+            this.richTextBox_infoImage.Text = "Information de l\'image sélectionnée";
+            // 
             // dataGridView_listeImage
             // 
             this.dataGridView_listeImage.AllowUserToAddRows = false;
@@ -133,17 +143,7 @@
             this.dataGridView_listeImage.ReadOnly = true;
             this.dataGridView_listeImage.Size = new System.Drawing.Size(982, 404);
             this.dataGridView_listeImage.TabIndex = 0;
-            this.dataGridView_listeImage.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_listeImage_CellContentClick);
-            // 
-            // richTextBox_infoImage
-            // 
-            this.richTextBox_infoImage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox_infoImage.Enabled = false;
-            this.richTextBox_infoImage.Location = new System.Drawing.Point(3, 413);
-            this.richTextBox_infoImage.Name = "richTextBox_infoImage";
-            this.richTextBox_infoImage.Size = new System.Drawing.Size(982, 125);
-            this.richTextBox_infoImage.TabIndex = 1;
-            this.richTextBox_infoImage.Text = "Information de l\'image sélectionnée";
+            this.dataGridView_listeImage.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_listeImage_CellContentClick);
             // 
             // treeView_tag
             // 
@@ -173,7 +173,7 @@
             this.button1.TabIndex = 5;
             this.button1.Text = "Go";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // progressBar1
             // 
@@ -238,7 +238,7 @@
             this.cancelBtn.TabIndex = 1;
             this.cancelBtn.Text = "Annuler";
             this.cancelBtn.UseVisualStyleBackColor = true;
-            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
+            this.cancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
             // 
             // confirmerBtn
             // 
@@ -250,7 +250,7 @@
             this.confirmerBtn.TabIndex = 0;
             this.confirmerBtn.Text = "Confirmer";
             this.confirmerBtn.UseVisualStyleBackColor = true;
-            this.confirmerBtn.Click += new System.EventHandler(this.confirmerBtn_Click);
+            this.confirmerBtn.Click += new System.EventHandler(this.ConfirmerBtn_Click);
             // 
             // dataGridView1
             // 
@@ -312,6 +312,22 @@
             this.tableLayoutPanel4_Parametre.Size = new System.Drawing.Size(1224, 547);
             this.tableLayoutPanel4_Parametre.TabIndex = 2;
             // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 4;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel4.Controls.Add(this.confirmBtn, 2, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 499);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(606, 45);
+            this.tableLayoutPanel4.TabIndex = 2;
+            // 
             // confirmBtn
             // 
             this.confirmBtn.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -322,6 +338,22 @@
             this.confirmBtn.Text = "Enregistrer les paramètres";
             this.confirmBtn.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 4;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel5.Controls.Add(this.annulerBtn, 1, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(615, 499);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 1;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(606, 45);
+            this.tableLayoutPanel5.TabIndex = 3;
+            // 
             // annulerBtn
             // 
             this.annulerBtn.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -331,7 +363,7 @@
             this.annulerBtn.TabIndex = 1;
             this.annulerBtn.Text = "Annuler";
             this.annulerBtn.UseVisualStyleBackColor = true;
-            this.annulerBtn.Click += new System.EventHandler(this.annulerBtn_Click);
+            this.annulerBtn.Click += new System.EventHandler(this.AnnulerBtn_Click);
             // 
             // fichierToolStripMenuItem
             // 
@@ -357,21 +389,21 @@
             this.dossierToolStripMenuItem.Name = "dossierToolStripMenuItem";
             this.dossierToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.dossierToolStripMenuItem.Text = "Dossier";
-            this.dossierToolStripMenuItem.Click += new System.EventHandler(this.dossierToolStripMenuItem_Click);
+            this.dossierToolStripMenuItem.Click += new System.EventHandler(this.DossierToolStripMenuItem_Click);
             // 
             // fichierToolStripMenuItem1
             // 
             this.fichierToolStripMenuItem1.Name = "fichierToolStripMenuItem1";
             this.fichierToolStripMenuItem1.Size = new System.Drawing.Size(112, 22);
             this.fichierToolStripMenuItem1.Text = "Fichier";
-            this.fichierToolStripMenuItem1.Click += new System.EventHandler(this.fichierToolStripMenuItem1_Click);
+            this.fichierToolStripMenuItem1.Click += new System.EventHandler(this.FichierToolStripMenuItem1_Click);
             // 
             // paramètresToolStripMenuItem
             // 
             this.paramètresToolStripMenuItem.Name = "paramètresToolStripMenuItem";
             this.paramètresToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.paramètresToolStripMenuItem.Text = "Paramètres";
-            this.paramètresToolStripMenuItem.Click += new System.EventHandler(this.paramètresToolStripMenuItem_Click);
+            this.paramètresToolStripMenuItem.Click += new System.EventHandler(this.ParamètresToolStripMenuItem_Click);
             // 
             // editionToolStripMenuItem
             // 
@@ -393,7 +425,7 @@
             this.versionDuLogicielToolStripMenuItem.Name = "versionDuLogicielToolStripMenuItem";
             this.versionDuLogicielToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.versionDuLogicielToolStripMenuItem.Text = "A propos";
-            this.versionDuLogicielToolStripMenuItem.Click += new System.EventHandler(this.versionDuLogicielToolStripMenuItem_Click);
+            this.versionDuLogicielToolStripMenuItem.Click += new System.EventHandler(this.VersionDuLogicielToolStripMenuItem_Click);
             // 
             // tagToolStripMenuItem
             // 
@@ -408,14 +440,14 @@
             this.modifierToolStripMenuItem.Name = "modifierToolStripMenuItem";
             this.modifierToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.modifierToolStripMenuItem.Text = "Modifier";
-            this.modifierToolStripMenuItem.Click += new System.EventHandler(this.modifierToolStripMenuItem_Click);
+            this.modifierToolStripMenuItem.Click += new System.EventHandler(this.ModifierToolStripMenuItem_Click);
             // 
             // miseÀJourToolStripMenuItem
             // 
             this.miseÀJourToolStripMenuItem.Name = "miseÀJourToolStripMenuItem";
             this.miseÀJourToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
             this.miseÀJourToolStripMenuItem.Text = "Mise à jour";
-            this.miseÀJourToolStripMenuItem.Click += new System.EventHandler(this.miseÀJourToolStripMenuItem_Click);
+            this.miseÀJourToolStripMenuItem.Click += new System.EventHandler(this.MiseÀJourToolStripMenuItem_Click);
             // 
             // menuStrip_barreAccueil
             // 
@@ -430,38 +462,6 @@
             this.menuStrip_barreAccueil.Size = new System.Drawing.Size(1224, 24);
             this.menuStrip_barreAccueil.TabIndex = 1;
             this.menuStrip_barreAccueil.Text = "menuStrip1";
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.ColumnCount = 4;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel4.Controls.Add(this.confirmBtn, 2, 0);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 499);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(606, 45);
-            this.tableLayoutPanel4.TabIndex = 2;
-            // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.ColumnCount = 4;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel5.Controls.Add(this.annulerBtn, 1, 0);
-            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(615, 499);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 1;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(606, 45);
-            this.tableLayoutPanel5.TabIndex = 3;
             // 
             // Form1
             // 
@@ -488,10 +488,10 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel4_Parametre.ResumeLayout(false);
-            this.menuStrip_barreAccueil.ResumeLayout(false);
-            this.menuStrip_barreAccueil.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
+            this.menuStrip_barreAccueil.ResumeLayout(false);
+            this.menuStrip_barreAccueil.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -55,7 +55,7 @@ namespace ProjetDotNetM1
             }
 
         }
-        public string rechercheImage(string url)
+        public string RechercheImage(string url)
         {
             string res = null;
             foreach (GestionImage img in ListeImg)

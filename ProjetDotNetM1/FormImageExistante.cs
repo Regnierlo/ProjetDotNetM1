@@ -22,29 +22,44 @@ namespace ProjetDotNetM1
             button3.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        private void SplitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void Label1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Garde celle actuellement dans le dossier
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button1_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Dispose();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Ecrase l'ancienne image avec la nouvelle
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button3_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Ignore;
             this.Dispose();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Ajoute la nouvelle avec numéro
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button2_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Abort;
             this.Dispose();

@@ -34,7 +34,7 @@ namespace ProjetDotNetM1
                 ListeImg.Add(img);
             }
         }
-        public void importer()
+        public void Importer()
         {
             Thread th = new Thread(Importation);
             th.Start();
@@ -68,7 +68,7 @@ namespace ProjetDotNetM1
                     catch (System.IO.IOException)
                     {
                         Image image = Image.FromFile(img);
-                        Image image2 = Image.FromFile(ListeImgImport.rechercheImage(saveUrl));
+                        Image image2 = Image.FromFile(ListeImgImport.RechercheImage(saveUrl));
                         FormImageExistante form = new FormImageExistante(image, image2);
                         DialogResult res = form.ShowDialog();
                         if (res == DialogResult.Cancel)
@@ -76,7 +76,7 @@ namespace ProjetDotNetM1
                             System.Console.WriteLine("cancel : 1");
                         }
                         else
-                        {
+                        { 
                             if (res == DialogResult.Ignore)
                             {
                                 System.Console.WriteLine("ignore : 3");

@@ -14,13 +14,14 @@ namespace ProjetDotNetM1
         {
             InitializeComponent();
             textBox_recherche.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            images = new GestionListeImages(progressBar1, dataGridView_listeImage);
         }
 
-        private void miseÀJourToolStripMenuItem_Click(object sender, EventArgs e)
+        private void MiseÀJourToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
-            int nbFichiersJPG = Directory.GetFiles(saveUrlDos, "*.jpg", SearchOption.AllDirectories).Length - 1;
+            int nbFichiersJPG = Directory.GetFiles(saveUrlDos, "*.jpg", SearchOption.AllDirectories).Length;
             if (nbFichiersJPG <= 0)
             {
                 Console.WriteLine("Màj non effectuée");
@@ -29,10 +30,11 @@ namespace ProjetDotNetM1
             {
                 images = new GestionListeImages(progressBar1, dataGridView_listeImage);
                 Console.WriteLine("Màj effectuée");
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
             }
         }
-
-        private void dossierToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DossierToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folderDialog = new FolderBrowserDialog();
             if (folderDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -41,7 +43,7 @@ namespace ProjetDotNetM1
                 string path = folderDialog.SelectedPath;
 
                 GestionListeImport image = new GestionListeImport(ProcessDirectory(path), this.images);
-                image.importer();
+                image.Importer();
             }
         }
         public ArrayList ProcessDirectory(string path)
@@ -63,12 +65,14 @@ namespace ProjetDotNetM1
             }
             return res;
         }
-        private void fichierToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void FichierToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "Images Files (.jpg)|*.jpg";
-            openFileDialog1.Multiselect = true;
-            openFileDialog1.FilterIndex = 1;
+            OpenFileDialog openFileDialog1 = new OpenFileDialog
+            {
+                Filter = "Images Files (.jpg)|*.jpg",
+                Multiselect = true,
+                FilterIndex = 1
+            };
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 Console.WriteLine("lecture du dossier réussie");
@@ -79,30 +83,34 @@ namespace ProjetDotNetM1
                     imagesList.Add(img);
                 }
                 GestionListeImport image = new GestionListeImport(imagesList, this.images);
-                image.importer();
+                image.Importer();
+                images = new GestionListeImages(progressBar1, dataGridView_listeImage);
+                Console.WriteLine("Màj effectuée");
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
             }
         }
 
-        private void paramètresToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ParamètresToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tableLayoutPanel1_Ensemble.Hide();
             tableLayoutPanel3_Modification.Hide();
             tableLayoutPanel4_Parametre.Show();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             Console.WriteLine("bouton ok");
         }
 
-        private void modifierToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ModifierToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tableLayoutPanel1_Ensemble.Hide();
             tableLayoutPanel4_Parametre.Hide();
             tableLayoutPanel3_Modification.Show();
         }
 
-        private void cancelBtn_Click(object sender, EventArgs e)
+        private void CancelBtn_Click(object sender, EventArgs e)
         {
             ConfirmationChangement cg = new ConfirmationChangement();
             DialogResult res = cg.ShowDialog();
@@ -114,22 +122,22 @@ namespace ProjetDotNetM1
             }
         }
 
-        private void confirmerBtn_Click(object sender, EventArgs e)
+        private void ConfirmerBtn_Click(object sender, EventArgs e)
         {
 
         }
-        private void versionDuLogicielToolStripMenuItem_Click(object sender, EventArgs e)
+        private void VersionDuLogicielToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AboutBox1 about = new AboutBox1();
             about.Show();
         }
 
-        private void dataGridView_listeImage_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridView_listeImage_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
-        private void annulerBtn_Click(object sender, EventArgs e)
+        private void AnnulerBtn_Click(object sender, EventArgs e)
         {
             tableLayoutPanel4_Parametre.Hide();
             tableLayoutPanel3_Modification.Hide();

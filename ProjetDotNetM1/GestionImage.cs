@@ -22,14 +22,14 @@ namespace ProjetDotNetM1
         public GestionImage(string image)
         {
             this.ImgUrl = image;
-            Tag = recupTag();
+            Tag = RecupTag();
         }
 
         /*
          * prend une chaine de caractere en parametre et la transforme en tableau de byte pret a etre inserer dans les metadonnees  
          * contient deja les 2 zero finaux obligatoire dans les métadonnées
          */
-        private Byte[] string2Byte(string entry)
+        private Byte[] String2Byte(string entry)
         {
             int longueur = entry.Length * 2 + 2;
             Byte[] res = new Byte[longueur];
@@ -51,7 +51,7 @@ namespace ProjetDotNetM1
          * prend un tableau de byte comme ceux présent dans le metadonnée en paramètre et le transforme en string.
          * 
          */
-        private string byte2String(Byte[] entry)
+        private string Byte2String(Byte[] entry)
         {
             string res = "";
             foreach (int i in entry)
@@ -68,13 +68,13 @@ namespace ProjetDotNetM1
          * permet de recuperer les Tag d'une image et de les retourner sous la forme d'une ArrayList
          * 0x9C9E est le code corespondant au tag des données exif
          */
-        public List<string> recupTag()
+        public List<string> RecupTag()
         {
             Image img = Image.FromFile(ImgUrl);
             try
             {
                 var propItem = img.GetPropertyItem(0x9C9E);
-                string resS = byte2String(propItem.Value);
+                string resS = Byte2String(propItem.Value);
                 Char delim = ';';
                 String[] substrings = resS.Split(delim);
                 List<string> res = new List<string>();
@@ -82,16 +82,15 @@ namespace ProjetDotNetM1
                 {
                     res.Add(substring);
                 }
+                img = null;
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
                 return res;
             }
             catch
             { 
                 return new List<string>();
             }
-            img = null;
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-
         }
 
         /*
@@ -99,7 +98,7 @@ namespace ProjetDotNetM1
          * 
          * essaie d'ajouter un tag existant et si une exeption null est levée (donc aucun tag existant) récupère une structure de métadonnées sur une image qui en contient et la modifie pour l'appliquer a la nouvelle image
          */
-        public void ajoutTag(ArrayList entry)
+        public void AjoutTag(ArrayList entry)
         {
             Image img = Image.FromFile(ImgUrl);
             try
@@ -116,7 +115,7 @@ namespace ProjetDotNetM1
                         tags = tags + ";";
                     }
                 }
-                byte[] res = string2Byte(tags);
+                byte[] res = String2Byte(tags);
                 propItem.Value = res;
                 img.SetPropertyItem(propItem);
                 img.Save(ImgUrl, System.Drawing.Imaging.ImageFormat.Jpeg);
@@ -137,17 +136,17 @@ namespace ProjetDotNetM1
                         tags = tags + ";";
                     }
                 }
-                byte[] res = string2Byte(tags);
+                byte[] res = String2Byte(tags);
                 propItem.Value = res;
                 img.SetPropertyItem(propItem);
-                saveImg(img);
+                SaveImg(img);
             }
         }
 
         /*
          * permet de sauvegarder une image sous le meme nom que l'ancien (Image.FromFile garde le flux ouvert )
          */
-        private void saveImg(Image img)
+        private void SaveImg(Image img)
         {
             string imgUrl2 = ImgUrl.Insert(ImgUrl.Length - 4, "a");
             img.Save(imgUrl2, System.Drawing.Imaging.ImageFormat.Jpeg);
