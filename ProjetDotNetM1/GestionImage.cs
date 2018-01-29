@@ -22,8 +22,7 @@ namespace ProjetDotNetM1
         public GestionImage(string image)
         {
             this.ImgUrl = image;
-            Image img = Image.FromFile(ImgUrl);
-            Tag = recupTag(img);
+            Tag = recupTag();
         }
 
         /*
@@ -69,18 +68,30 @@ namespace ProjetDotNetM1
          * permet de recuperer les Tag d'une image et de les retourner sous la forme d'une ArrayList
          * 0x9C9E est le code corespondant au tag des données exif
          */
-        public List<string> recupTag(Image img)
+        public List<string> recupTag()
         {
-            var propItem = img.GetPropertyItem(0x9C9E);
-            string resS = byte2String(propItem.Value);
-            Char delim = ';';
-            String[] substrings = resS.Split(delim);
-            List<string> res = new List<string>();
-            foreach (var substring in substrings)
+            Image img = Image.FromFile(ImgUrl);
+            try
             {
-                res.Add(substring);
+                var propItem = img.GetPropertyItem(0x9C9E);
+                string resS = byte2String(propItem.Value);
+                Char delim = ';';
+                String[] substrings = resS.Split(delim);
+                List<string> res = new List<string>();
+                foreach (var substring in substrings)
+                {
+                    res.Add(substring);
+                }
+                return res;
             }
-            return res;
+            catch
+            { 
+                return new List<string>();
+            }
+            img = null;
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+
         }
 
         /*
