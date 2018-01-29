@@ -9,32 +9,27 @@ namespace ProjetDotNetM1
     public partial class Form1 : Form
     {
         GestionListeImages images;
-
+        
         public Form1()
         {
             InitializeComponent();
-            images = new GestionListeImages(progressBar1, dataGridView_listeImage);
-            Bitmap img;
-
-            img = new Bitmap(images.ListeImg[0].ImgUrl);
-
-            // Create the DGV with an Image column
-            this.Controls.Add(dataGridView_listeImage);
-
-            DataGridViewImageColumn imageCol = new DataGridViewImageColumn();
-
-            dataGridView_listeImage.Columns.Add(imageCol);
-
-            // Add a row and set its value to the image
-
-            dataGridView_listeImage.Rows.Add();
-
-            dataGridView_listeImage.Rows[0].Cells[0].Value = img;
+            textBox_recherche.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
         }
 
         private void miseÀJourToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("màj réussi");
+            string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
+            int nbFichiersJPG = Directory.GetFiles(saveUrlDos, "*.jpg", SearchOption.AllDirectories).Length - 1;
+            if (nbFichiersJPG <= 0)
+            {
+                Console.WriteLine("Màj non effectuée");
+            }
+            else
+            {
+                images = new GestionListeImages(progressBar1, dataGridView_listeImage);
+                Console.WriteLine("Màj effectuée");
+            }
         }
 
         private void dossierToolStripMenuItem_Click(object sender, EventArgs e)
@@ -90,18 +85,20 @@ namespace ProjetDotNetM1
 
         private void paramètresToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            tableLayoutPanel1_Ensemble.Hide();
+            tableLayoutPanel3_Modification.Hide();
+            tableLayoutPanel4_Parametre.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            images = new GestionListeImages(progressBar1, dataGridView_listeImage);
-            Console.WriteLine("Bouton ok");
+            Console.WriteLine("bouton ok");
         }
 
         private void modifierToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tableLayoutPanel1_Ensemble.Hide();
+            tableLayoutPanel4_Parametre.Hide();
             tableLayoutPanel3_Modification.Show();
         }
 
@@ -112,6 +109,7 @@ namespace ProjetDotNetM1
             if (res == DialogResult.Abort)
             {
                 tableLayoutPanel3_Modification.Hide();
+                tableLayoutPanel4_Parametre.Hide();
                 tableLayoutPanel1_Ensemble.Show();
             }
         }
@@ -130,5 +128,14 @@ namespace ProjetDotNetM1
         {
 
         }
+
+        private void annulerBtn_Click(object sender, EventArgs e)
+        {
+            tableLayoutPanel4_Parametre.Hide();
+            tableLayoutPanel3_Modification.Hide();
+            tableLayoutPanel1_Ensemble.Show();
+        }
+
+        
     }
 }
