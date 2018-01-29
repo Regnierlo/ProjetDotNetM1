@@ -71,16 +71,23 @@ namespace ProjetDotNetM1
          */
         public List<string> recupTag(Image img)
         {
-            var propItem = img.GetPropertyItem(0x9C9E);
-            string resS = byte2String(propItem.Value);
-            Char delim = ';';
-            String[] substrings = resS.Split(delim);
-            List<string> res = new List<string>();
-            foreach (var substring in substrings)
+            try
             {
-                res.Add(substring);
+                var propItem = img.GetPropertyItem(0x9C9E);
+                string resS = byte2String(propItem.Value);
+                Char delim = ';';
+                String[] substrings = resS.Split(delim);
+                List<string> res = new List<string>();
+                foreach (var substring in substrings)
+                {
+                    res.Add(substring);
+                }
+                return res;
             }
-            return res;
+            catch
+            {
+                return new List<string>();
+            }
         }
 
         /*

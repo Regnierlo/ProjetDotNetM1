@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections;
 using System.IO;
@@ -20,6 +14,22 @@ namespace ProjetDotNetM1
         {
             InitializeComponent();
             images = new GestionListeImages(progressBar1, dataGridView_listeImage);
+            Bitmap img;
+
+            img = new Bitmap(images.ListeImg[0].ImgUrl);
+
+            // Create the DGV with an Image column
+            this.Controls.Add(dataGridView_listeImage);
+
+            DataGridViewImageColumn imageCol = new DataGridViewImageColumn();
+
+            dataGridView_listeImage.Columns.Add(imageCol);
+
+            // Add a row and set its value to the image
+
+            dataGridView_listeImage.Rows.Add();
+
+            dataGridView_listeImage.Rows[0].Cells[0].Value = img;
         }
 
         private void miseÀJourToolStripMenuItem_Click(object sender, EventArgs e)

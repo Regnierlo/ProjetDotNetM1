@@ -22,11 +22,6 @@ namespace ProjetDotNetM1
             button3.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
-            private void FormImageExistante_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
 
