@@ -84,14 +84,45 @@ namespace ProjetDotNetM1
                             {
                                 System.Console.WriteLine("ignore : 3");
                                 System.IO.File.Copy(img/*.ImgUrl*/, saveUrl, true);
-                                Console.WriteLine("test");
                             }
                             else
                             {
-                                System.Console.WriteLine("abort : 2");
-                                System.Text.RegularExpressions.Regex myRegex = new Regex(@"\([0-9]+\)\.(jpg|JPG)$");
-                                //if (name.)
-                                System.IO.File.Copy(img/*.ImgUrl*/, saveUrl, true);
+                                System.Console.WriteLine("abort : 2 : "+name);
+                                System.Text.RegularExpressions.Regex myRegex = new Regex(@"(\([0-9]+\).JPG)");
+                                System.Text.RegularExpressions.Regex myRegex2 = new Regex(@"(\([0-9]+\))");
+                                if (myRegex.IsMatch(name))
+                                {
+                                    string[] substrings = myRegex2.Split(name);
+                                    string number = "";
+                                    number = substrings[substrings.Length - 2].Substring(1, substrings[substrings.Length - 2].Length-2);
+                                    int nombre = Int32.Parse(number) + 1;
+                                    number = "(" + nombre + ")";
+                                    substrings[substrings.Length-2]= number;
+                                    string nouveauName = "";
+                                    foreach(string tmp in substrings)
+                                    {
+                                        nouveauName = nouveauName + tmp;
+                                    }
+                                    string nouveauSaveUrl = Path.Combine(saveUrlDos, nouveauName);
+                                    System.IO.File.Copy(img/*.ImgUrl*/, nouveauSaveUrl, false);
+                                }
+                                else
+                                {
+                                    string[] fragmentName = name.Split('.');
+                                    string nouveauName = "";
+                                    foreach(string str in fragmentName){
+                                        if(str == "jpg" | str == "JPG")
+                                        {
+                                            nouveauName = nouveauName + "(1)."+str;
+                                        }
+                                        else
+                                        {
+                                            nouveauName = nouveauName + str;
+                                        }
+                                    }
+                                    string nouveauSaveUrl = Path.Combine(saveUrlDos, nouveauName);
+                                    System.IO.File.Copy(img/*.ImgUrl*/, nouveauSaveUrl, false);
+                                }
                             }
                         }
                         image = null;
