@@ -14,7 +14,6 @@ namespace ProjetDotNetM1
 {
     public partial class Form1 : Form
     {
-        //Test
         GestionListeImages images;
 
         public Form1()
