@@ -82,16 +82,18 @@ namespace ProjetDotNetM1
                 {
                     res.Add(substring);
                 }
+                img = null;
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
                 return res;
             }
             catch
-            { 
+            {
+                img = null;
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
                 return new List<string>();
             }
-            img = null;
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-
         }
 
         /*
@@ -142,6 +144,9 @@ namespace ProjetDotNetM1
                 img.SetPropertyItem(propItem);
                 saveImg(img);
             }
+            img = null;
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
 
         /*
@@ -156,7 +161,7 @@ namespace ProjetDotNetM1
             GC.WaitForPendingFinalizers();
             System.IO.File.Delete(ImgUrl);
             img.Save(ImgUrl, System.Drawing.Imaging.ImageFormat.Jpeg);
-            img = Image.FromFile(ImgUrl);
+            img = null;// Image.FromFile(ImgUrl);
             GC.Collect();
             GC.WaitForPendingFinalizers();
             System.IO.File.Delete(imgUrl2);
