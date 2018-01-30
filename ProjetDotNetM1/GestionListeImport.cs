@@ -68,7 +68,7 @@ namespace ProjetDotNetM1
                     catch (System.IO.IOException)
                     {
                         Image image = Image.FromFile(img);
-                        Image image2 = Image.FromFile(ListeImgImport.rechercheImage(saveUrl));
+                        Image image2 = Image.FromFile(saveUrl);
                         FormImageExistante form = new FormImageExistante(image, image2);
                         DialogResult res = form.ShowDialog();
                         if (res == DialogResult.Cancel)
