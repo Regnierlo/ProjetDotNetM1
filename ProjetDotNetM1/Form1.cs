@@ -3,16 +3,20 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Collections;
 using System.IO;
+using System.Collections.Generic;
 
 namespace ProjetDotNetM1
 {
     public partial class Form1 : Form
     {
         GestionListeImages images;
+        List<System.Windows.Forms.PictureBox> pictureList;
         
         public Form1()
         {
+
             InitializeComponent();
+            pictureList = new List<System.Windows.Forms.PictureBox>();
             textBox_recherche.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             mise_a_jour();
             afficheImage();
@@ -23,7 +27,7 @@ namespace ProjetDotNetM1
         /// </summary>
         public void afficheImage()
         {
-            foreach(GestionImage img in images.ListeImg)
+            foreach (GestionImage img in images.ListeImg)
             {
                 FileStream fs = new FileStream(img.ImgUrl, FileMode.Open);
                 Image image = Image.FromStream(fs);
@@ -72,12 +76,14 @@ namespace ProjetDotNetM1
                     double hautD = (double)image.Height/(double)image.Width * (double)tableLayoutPanel6.Controls.Container.Width/5;
                     haut = (int)hautD;
                 }
-                
                 PictureBox pic = new PictureBox() { Image = new Bitmap(image, new Size(larg, haut)) };
-                pic.Dock = DockStyle.Fill;
-                pic.SizeMode = PictureBoxSizeMode.CenterImage;
+                pictureList.Add( pic );
+                pictureList[pictureList.Count-1].Click += new System.EventHandler(this.pic_Click);
+
+                pictureList[pictureList.Count - 1].Dock = DockStyle.Fill;
+                pictureList[pictureList.Count - 1].SizeMode = PictureBoxSizeMode.CenterImage;
                 tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-                tableLayoutPanel6.Controls.Add(pic,0,0);
+                tableLayoutPanel6.Controls.Add(pictureList[pictureList.Count - 1], 0,0);
             }
                 //tableLayoutPanel6.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;         //affiche la grille pour se reperer
             foreach (System.Windows.Forms.RowStyle row in tableLayoutPanel6.RowStyles)
@@ -86,7 +92,15 @@ namespace ProjetDotNetM1
                 row.Height = 200F;
             }
         }
-
+        private void pic_Click(object sender, EventArgs e)
+        {
+            foreach(PictureBox picture in pictureList)
+            {
+                picture.BackColor = Color.Transparent;
+            }
+            PictureBox pic = (PictureBox)sender;
+            pic.BackColor = Color.DeepSkyBlue;
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -94,7 +108,7 @@ namespace ProjetDotNetM1
         {
             string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
-            int nbFichiersJPG = Directory.GetFiles(saveUrlDos, "*.jpg", SearchOption.AllDirectories).Length - 1;
+            int nbFichiersJPG = Directory.GetFiles(saveUrlDos, "*.jpg", SearchOption.AllDirectories).Length;
             images = new GestionListeImages(progressBar1);
         }
 
@@ -112,6 +126,7 @@ namespace ProjetDotNetM1
                 string path = folderDialog.SelectedPath;
 
                 GestionListeImport image = new GestionListeImport(ProcessDirectory(path), this.images);
+                image.importer();
             }
         }
 
@@ -163,9 +178,8 @@ namespace ProjetDotNetM1
                     imagesList.Add(img);
                 }
                 GestionListeImport image = new GestionListeImport(imagesList, this.images);
+                image.importer();
                 Console.WriteLine("Màj effectuée");
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
             }
         }
 
