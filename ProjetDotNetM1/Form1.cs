@@ -14,14 +14,14 @@ namespace ProjetDotNetM1
         {
             InitializeComponent();
             textBox_recherche.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            mise_a_jour();
-            afficheImage();
+            Mise_a_jour();
+            AfficheImage();
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public void afficheImage()
+        public void AfficheImage()
         {
             foreach(GestionImage img in images.ListeImg)
             {
@@ -40,7 +40,7 @@ namespace ProjetDotNetM1
         /// <summary>
         /// 
         /// </summary>
-        private void mise_a_jour()
+        private void Mise_a_jour()
         {
             string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
@@ -208,7 +208,7 @@ namespace ProjetDotNetM1
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void miseAJourToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void MiseAJourToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");

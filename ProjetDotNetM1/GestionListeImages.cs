@@ -56,7 +56,6 @@ namespace ProjetDotNetM1
                 System.IO.Directory.CreateDirectory(url);
                 bar.Visible = false;
             }
-
         }
 
         /// <summary>

@@ -31,7 +31,7 @@ namespace ProjetDotNetM1
             ListeImgImport = images;
             ListeImg = entryList;
         }
-        public void importer()
+        public void Importer()
         {
             Thread th = new Thread(Importation);
             th.Start();
