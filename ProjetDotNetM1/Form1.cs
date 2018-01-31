@@ -27,14 +27,64 @@ namespace ProjetDotNetM1
             {
                 FileStream fs = new FileStream(img.ImgUrl, FileMode.Open);
                 Image image = Image.FromStream(fs);
-                int larg = tableLayoutPanel6.Controls.Container.Width / 5;
-                double hautD = (double)image.Height/(double)image.Width * (double)tableLayoutPanel6.Controls.Container.Width/5;
-                int haut = (int)hautD;
+                switch (img.Orientation)
+                {
+                    case 6:
+                        image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                        break;
+                    case 8:
+                        image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                        break;
+                    case 2:
+                        //affichage non garanti optimal
+                        image.RotateFlip(RotateFlipType.RotateNoneFlipX);
+                        break;
+                    case 3:
+                        image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                        break;
+                    case 4:
+                        //affichage non garanti optimal
+                        image.RotateFlip(RotateFlipType.RotateNoneFlipY);
+                        break;
+                    case 5:
+                        //affichage non garanti optimal
+                        image.RotateFlip(RotateFlipType.Rotate270FlipX);
+                        break;
+                    case 7:
+                        //affichage non garanti optimal
+                        image.RotateFlip(RotateFlipType.Rotate90FlipX);
+                        break;
+                    default:
+
+                        break;
+                }
+                int larg;
+                int haut;
+                if (img.Orientation == 6 | img.Orientation == 8)
+                {
+                    haut = 200;
+                    double largD = (double)image.Width / (double)image.Height * 200;
+                    larg = (int)largD;
+                }
+                else
+                {
+                    larg = tableLayoutPanel6.Controls.Container.Width / 5;
+                    double hautD = (double)image.Height/(double)image.Width * (double)tableLayoutPanel6.Controls.Container.Width/5;
+                    haut = (int)hautD;
+                }
+                
                 PictureBox pic = new PictureBox() { Image = new Bitmap(image, new Size(larg, haut)) };
                 pic.Dock = DockStyle.Fill;
-                    tableLayoutPanel6.Controls.Add(pic,0,0);
-                tableLayoutPanel6.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
-            } 
+                pic.SizeMode = PictureBoxSizeMode.CenterImage;
+                tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+                tableLayoutPanel6.Controls.Add(pic,0,0);
+            }
+                //tableLayoutPanel6.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;         //affiche la grille pour se reperer
+            foreach (System.Windows.Forms.RowStyle row in tableLayoutPanel6.RowStyles)
+            {
+                row.SizeType = System.Windows.Forms.SizeType.Absolute;
+                row.Height = 200F;
+            }
         }
 
         /// <summary>
