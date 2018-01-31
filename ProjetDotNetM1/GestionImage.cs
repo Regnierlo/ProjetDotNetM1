@@ -12,6 +12,11 @@ namespace ProjetDotNetM1
             get;
             set;
         }
+        public int Orientation
+        {
+            get;
+            set;
+        }
         public string ImgUrl
         {
             get;
@@ -26,6 +31,7 @@ namespace ProjetDotNetM1
         {
             this.ImgUrl = image;
             Tag = RecupTag();
+            Orientation = RecupOrientation();
         }
 
         /// <summary>
@@ -73,9 +79,10 @@ namespace ProjetDotNetM1
         /// <summary>
         /// permet de recuperer les Tag d'une image et de les retourner sous la forme d'une ArrayList
         /// 0x9C9E est le code corespondant au tag des données exif
+        /// les Tag sont stockes sous la forme d'un tableau de Byte avec les lettre codees en ASCII et une case a 0 apres chaque "lettre" puis trois 0 finaux
         /// </summary>
         /// <returns></returns>
-        public List<string> RecupTag()
+        private List<string> RecupTag()
         {
             Image img = Image.FromFile(ImgUrl);
             try
@@ -98,6 +105,36 @@ namespace ProjetDotNetM1
                 return new List<string>();
             }
         }
+        /// <summary>
+        /// permet de recupérer l'orientation d'une image tel qu'elle est défini dans les metadonnée
+        /// 0x0112 est le code correspondant a l'orientation
+        /// 1 = Horizontal (normal)
+        /// 2 = Mirror horizontal
+        /// 3 = Rotate 180
+        /// 4 = Mirror vertical
+        /// 5 = Mirror horizontal and rotate 270 CW
+        /// 6 = Rotate 90 CW
+        /// 7 = Mirror horizontal and rotate 90 CW
+        /// 8 = Rotate 270 CW
+        /// </summary>
+        /// <returns></returns>
+        private int RecupOrientation()
+        {
+            Image img = Image.FromFile(ImgUrl);
+            try
+            {
+                var propItem = img.GetPropertyItem(0x0112);
+                int res = propItem.Value[0];
+                img.Dispose();
+                return res;
+            }
+            catch
+            {
+                img.Dispose();
+                return 1;
+            }
+        }
+        
 
         /// <summary>
         /// permet de remplacer les tags existant de l'image par les tag contenue dans l'ArrayList en entree
