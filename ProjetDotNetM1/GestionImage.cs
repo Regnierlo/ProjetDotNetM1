@@ -82,16 +82,12 @@ namespace ProjetDotNetM1
                 {
                     res.Add(substring);
                 }
-                img = null;
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
+                img.Dispose();
                 return res;
             }
             catch
             {
-                img = null;
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
+                img.Dispose();
                 return new List<string>();
             }
         }

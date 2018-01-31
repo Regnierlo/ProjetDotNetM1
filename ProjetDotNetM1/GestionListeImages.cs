@@ -16,7 +16,7 @@ namespace ProjetDotNetM1
         /*
          * creer une liste de gestionImage a partir du dossier d'importation
          */
-        public GestionListeImages(ProgressBar bar, DataGridView grid)
+        public GestionListeImages(ProgressBar bar)
         {
             bar.Visible = true;
             ListeImg = new List<GestionImage>();
