@@ -61,7 +61,7 @@
             this.versionDuLogicielToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modifierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.miseÀJourToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.miseAJourToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_barreAccueil = new System.Windows.Forms.MenuStrip();
             this.tableLayoutPanel1_Ensemble.SuspendLayout();
             this.tableLayoutPanel2_Accueil.SuspendLayout();
@@ -287,8 +287,8 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.tableLayoutPanel3_Modification);
             this.panel1.Controls.Add(this.tableLayoutPanel1_Ensemble);
+            this.panel1.Controls.Add(this.tableLayoutPanel3_Modification);
             this.panel1.Controls.Add(this.tableLayoutPanel4_Parametre);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 24);
@@ -435,7 +435,7 @@
             this.tagToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.modifierToolStripMenuItem});
             this.tagToolStripMenuItem.Name = "tagToolStripMenuItem";
-            this.tagToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
+            this.tagToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.tagToolStripMenuItem.Text = "Tag";
             // 
             // modifierToolStripMenuItem
@@ -445,12 +445,12 @@
             this.modifierToolStripMenuItem.Text = "Modifier";
             this.modifierToolStripMenuItem.Click += new System.EventHandler(this.ModifierToolStripMenuItem_Click);
             // 
-            // miseÀJourToolStripMenuItem
+            // miseAJourToolStripMenuItem
             // 
-            this.miseÀJourToolStripMenuItem.Name = "miseÀJourToolStripMenuItem";
-            this.miseÀJourToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
-            this.miseÀJourToolStripMenuItem.Text = "Mise à jour";
-            this.miseÀJourToolStripMenuItem.Click += new System.EventHandler(this.MiseÀJourToolStripMenuItem_Click);
+            this.miseAJourToolStripMenuItem.Name = "miseAJourToolStripMenuItem";
+            this.miseAJourToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
+            this.miseAJourToolStripMenuItem.Text = "Mise à jour";
+            this.miseAJourToolStripMenuItem.Click += new System.EventHandler(this.miseAJourToolStripMenuItem_Click_1);
             // 
             // menuStrip_barreAccueil
             // 
@@ -459,7 +459,7 @@
             this.fichierToolStripMenuItem,
             this.editionToolStripMenuItem,
             this.tagToolStripMenuItem,
-            this.miseÀJourToolStripMenuItem});
+            this.miseAJourToolStripMenuItem});
             this.menuStrip_barreAccueil.Location = new System.Drawing.Point(0, 0);
             this.menuStrip_barreAccueil.Name = "menuStrip_barreAccueil";
             this.menuStrip_barreAccueil.Size = new System.Drawing.Size(1224, 24);
@@ -532,7 +532,7 @@
         private System.Windows.Forms.ToolStripMenuItem versionDuLogicielToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tagToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modifierToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem miseÀJourToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem miseAJourToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip_barreAccueil;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
     }

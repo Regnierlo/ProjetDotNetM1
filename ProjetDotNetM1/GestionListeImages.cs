@@ -19,7 +19,7 @@ namespace ProjetDotNetM1
         /// </summary>
         /// <param name="bar"></param>
         /// <param name="grid"></param>
-        public GestionListeImages(ProgressBar bar, DataGridView grid)
+        public GestionListeImages(ProgressBar bar)
         {
             bar.Visible = true;
             ListeImg = new List<GestionImage>();
@@ -58,6 +58,7 @@ namespace ProjetDotNetM1
             }
 
         }
+
         /// <summary>
         /// 
         /// </summary>

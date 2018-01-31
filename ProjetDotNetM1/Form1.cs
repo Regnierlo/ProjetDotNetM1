@@ -17,6 +17,10 @@ namespace ProjetDotNetM1
             mise_a_jour();
             afficheImage();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public void afficheImage()
         {
             foreach(GestionImage img in images.ListeImg)
@@ -30,34 +34,25 @@ namespace ProjetDotNetM1
                 pic.Dock = DockStyle.Fill;
                     tableLayoutPanel6.Controls.Add(pic,0,0);
                 tableLayoutPanel6.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
-            }
-    
-            
+            } 
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
         private void mise_a_jour()
         {
             string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
             int nbFichiersJPG = Directory.GetFiles(saveUrlDos, "*.jpg", SearchOption.AllDirectories).Length - 1;
-                images = new GestionListeImages(progressBar1);
+            images = new GestionListeImages(progressBar1);
         }
-        private void miseÀJourToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-            saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
-            int nbFichiersJPG = Directory.GetFiles(saveUrlDos, "*.jpg", SearchOption.AllDirectories).Length;
-            if (nbFichiersJPG <= 0)
-            {
-                Console.WriteLine("Màj non effectuée");
-            }
-            else
-            {
-                images = new GestionListeImages(progressBar1);
-                Console.WriteLine("Màj effectuée");
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
-            }
-        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DossierToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folderDialog = new FolderBrowserDialog();
@@ -67,9 +62,14 @@ namespace ProjetDotNetM1
                 string path = folderDialog.SelectedPath;
 
                 GestionListeImport image = new GestionListeImport(ProcessDirectory(path), this.images);
-                image.Importer();
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public ArrayList ProcessDirectory(string path)
         {
             ArrayList res = new ArrayList();
@@ -89,6 +89,12 @@ namespace ProjetDotNetM1
             }
             return res;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FichierToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog
@@ -107,14 +113,17 @@ namespace ProjetDotNetM1
                     imagesList.Add(img);
                 }
                 GestionListeImport image = new GestionListeImport(imagesList, this.images);
-                image.Importer();
-                images = new GestionListeImages(progressBar1, dataGridView_listeImage);
                 Console.WriteLine("Màj effectuée");
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ParamètresToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tableLayoutPanel1_Ensemble.Hide();
@@ -122,11 +131,21 @@ namespace ProjetDotNetM1
             tableLayoutPanel4_Parametre.Show();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button1_Click(object sender, EventArgs e)
         {
             Console.WriteLine("bouton ok");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ModifierToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tableLayoutPanel1_Ensemble.Hide();
@@ -134,6 +153,11 @@ namespace ProjetDotNetM1
             tableLayoutPanel3_Modification.Show();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CancelBtn_Click(object sender, EventArgs e)
         {
             ConfirmationChangement cg = new ConfirmationChangement();
@@ -146,26 +170,60 @@ namespace ProjetDotNetM1
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ConfirmerBtn_Click(object sender, EventArgs e)
         {
 
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void VersionDuLogicielToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AboutBox1 about = new AboutBox1();
             about.Show();
         }
 
-        private void DataGridView_listeImage_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AnnulerBtn_Click(object sender, EventArgs e)
         {
             tableLayoutPanel4_Parametre.Hide();
             tableLayoutPanel3_Modification.Hide();
             tableLayoutPanel1_Ensemble.Show();
-        }     
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void miseAJourToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
+            int nbFichiersJPG = Directory.GetFiles(saveUrlDos, "*.jpg", SearchOption.AllDirectories).Length;
+            if (nbFichiersJPG <= 0)
+            {
+                Console.WriteLine("Màj non effectuée");
+            }
+            else
+            {
+                images = new GestionListeImages(progressBar1);
+                Console.WriteLine("Màj effectuée");
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+            }
+        }
     }
 }
