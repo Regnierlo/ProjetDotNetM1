@@ -29,15 +29,9 @@ namespace ProjetDotNetM1
         public GestionListeImport(ArrayList entryList, GestionListeImages images)
         {
             ListeImgImport = images;
-            ListeImg = new ArrayList();
-            foreach (string img in entryList)
-            {
-                //ListeImg.Add(new GestionImage(img));
-                ListeImg.Add(img);
-            }
+            ListeImg = entryList;
         }
-
-        public void Importer()
+        public void importer()
         {
             Thread th = new Thread(Importation);
             th.Start();
@@ -71,10 +65,18 @@ namespace ProjetDotNetM1
                     }
                     catch (System.IO.IOException)
                     {
-                        Image image = Image.FromFile(img);
-                        Image image2 = Image.FromFile(ListeImgImport.RechercheImage(saveUrl));
+                        FileStream fs = new FileStream(img, FileMode.Open);
+                        Image image = Image.FromStream(fs);
+                        FileStream fs2 = new FileStream(saveUrl, FileMode.Open);
+                        Image image2 = Image.FromStream(fs);
+                        fs.Close();
+                        fs2.Close();
                         FormImageExistante form = new FormImageExistante(image, image2);
                         DialogResult res = form.ShowDialog();
+                        image = null;
+                        image2 = null;
+                        GC.Collect();
+                        GC.WaitForPendingFinalizers();
                         if (res == DialogResult.Cancel)
                         {
                             System.Console.WriteLine("cancel : 1");
@@ -88,19 +90,19 @@ namespace ProjetDotNetM1
                             }
                             else
                             {
-                                System.Console.WriteLine("abort : 2 : "+name);
+                                System.Console.WriteLine("abort : 2 : " + name);
                                 System.Text.RegularExpressions.Regex myRegex = new Regex(@"(\([0-9]+\).JPG)");
                                 System.Text.RegularExpressions.Regex myRegex2 = new Regex(@"(\([0-9]+\))");
                                 if (myRegex.IsMatch(name))
                                 {
                                     string[] substrings = myRegex2.Split(name);
                                     string number = "";
-                                    number = substrings[substrings.Length - 2].Substring(1, substrings[substrings.Length - 2].Length-2);
+                                    number = substrings[substrings.Length - 2].Substring(1, substrings[substrings.Length - 2].Length - 2);
                                     int nombre = Int32.Parse(number) + 1;
                                     number = "(" + nombre + ")";
-                                    substrings[substrings.Length-2]= number;
+                                    substrings[substrings.Length - 2] = number;
                                     string nouveauName = "";
-                                    foreach(string tmp in substrings)
+                                    foreach (string tmp in substrings)
                                     {
                                         nouveauName = nouveauName + tmp;
                                     }
@@ -111,10 +113,11 @@ namespace ProjetDotNetM1
                                 {
                                     string[] fragmentName = name.Split('.');
                                     string nouveauName = "";
-                                    foreach(string str in fragmentName){
-                                        if(str == "jpg" | str == "JPG")
+                                    foreach (string str in fragmentName)
+                                    {
+                                        if (str == "jpg" | str == "JPG")
                                         {
-                                            nouveauName = nouveauName + "(1)."+str;
+                                            nouveauName = nouveauName + "(1)." + str;
                                         }
                                         else
                                         {

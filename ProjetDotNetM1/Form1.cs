@@ -14,10 +14,34 @@ namespace ProjetDotNetM1
         {
             InitializeComponent();
             textBox_recherche.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            images = new GestionListeImages(progressBar1, dataGridView_listeImage);
+            mise_a_jour();
+            afficheImage();
         }
-
-        private void MiseÀJourToolStripMenuItem_Click(object sender, EventArgs e)
+        public void afficheImage()
+        {
+            foreach(GestionImage img in images.ListeImg)
+            {
+                FileStream fs = new FileStream(img.ImgUrl, FileMode.Open);
+                Image image = Image.FromStream(fs);
+                int larg = tableLayoutPanel6.Controls.Container.Width / 5;
+                double hautD = (double)image.Height/(double)image.Width * (double)tableLayoutPanel6.Controls.Container.Width/5;
+                int haut = (int)hautD;
+                PictureBox pic = new PictureBox() { Image = new Bitmap(image, new Size(larg, haut)) };
+                pic.Dock = DockStyle.Fill;
+                    tableLayoutPanel6.Controls.Add(pic,0,0);
+                tableLayoutPanel6.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+            }
+    
+            
+        }
+        private void mise_a_jour()
+        {
+            string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
+            int nbFichiersJPG = Directory.GetFiles(saveUrlDos, "*.jpg", SearchOption.AllDirectories).Length - 1;
+                images = new GestionListeImages(progressBar1);
+        }
+        private void miseÀJourToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
@@ -28,7 +52,7 @@ namespace ProjetDotNetM1
             }
             else
             {
-                images = new GestionListeImages(progressBar1, dataGridView_listeImage);
+                images = new GestionListeImages(progressBar1);
                 Console.WriteLine("Màj effectuée");
                 GC.Collect();
                 GC.WaitForPendingFinalizers();

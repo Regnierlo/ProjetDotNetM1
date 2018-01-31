@@ -66,13 +66,16 @@ namespace ProjetDotNetM1
         public string RechercheImage(string url)
         {
             string res = null;
+            int i = 0;
             foreach (GestionImage img in ListeImg)
             {
-
+                
                 if (img.ImgUrl == url)
                 {
-                    res = img.ImgUrl;
+                    ListeImg.RemoveAt(i);
+                    break;
                 }
+                i++;
             }
             return res;
         }

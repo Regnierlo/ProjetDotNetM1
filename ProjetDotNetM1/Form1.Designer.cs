@@ -32,7 +32,7 @@
             this.tableLayoutPanel1_Ensemble = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2_Accueil = new System.Windows.Forms.TableLayoutPanel();
             this.richTextBox_infoImage = new System.Windows.Forms.RichTextBox();
-            this.dataGridView_listeImage = new System.Windows.Forms.DataGridView();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.treeView_tag = new System.Windows.Forms.TreeView();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -65,7 +65,6 @@
             this.menuStrip_barreAccueil = new System.Windows.Forms.MenuStrip();
             this.tableLayoutPanel1_Ensemble.SuspendLayout();
             this.tableLayoutPanel2_Accueil.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_listeImage)).BeginInit();
             this.tableLayoutPanel3_Modification.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -108,7 +107,7 @@
             this.tableLayoutPanel2_Accueil.ColumnCount = 1;
             this.tableLayoutPanel2_Accueil.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2_Accueil.Controls.Add(this.richTextBox_infoImage, 0, 1);
-            this.tableLayoutPanel2_Accueil.Controls.Add(this.dataGridView_listeImage, 0, 0);
+            this.tableLayoutPanel2_Accueil.Controls.Add(this.tableLayoutPanel6, 0, 0);
             this.tableLayoutPanel2_Accueil.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2_Accueil.Location = new System.Drawing.Point(233, 3);
             this.tableLayoutPanel2_Accueil.Name = "tableLayoutPanel2_Accueil";
@@ -129,21 +128,25 @@
             this.richTextBox_infoImage.TabIndex = 1;
             this.richTextBox_infoImage.Text = "Information de l\'image sélectionnée";
             // 
-            // dataGridView_listeImage
+            // tableLayoutPanel6
             // 
-            this.dataGridView_listeImage.AllowUserToAddRows = false;
-            this.dataGridView_listeImage.AllowUserToDeleteRows = false;
-            this.dataGridView_listeImage.AllowUserToResizeColumns = false;
-            this.dataGridView_listeImage.AllowUserToResizeRows = false;
-            this.dataGridView_listeImage.BackgroundColor = System.Drawing.SystemColors.ControlLight;
-            this.dataGridView_listeImage.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_listeImage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView_listeImage.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView_listeImage.Name = "dataGridView_listeImage";
-            this.dataGridView_listeImage.ReadOnly = true;
-            this.dataGridView_listeImage.Size = new System.Drawing.Size(982, 404);
-            this.dataGridView_listeImage.TabIndex = 0;
-            this.dataGridView_listeImage.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_listeImage_CellContentClick);
+            this.tableLayoutPanel6.AutoScroll = true;
+            this.tableLayoutPanel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tableLayoutPanel6.ColumnCount = 5;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel6.MaximumSize = new System.Drawing.Size(982, 404);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 2;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(982, 404);
+            this.tableLayoutPanel6.TabIndex = 2;
             // 
             // treeView_tag
             // 
@@ -432,7 +435,7 @@
             this.tagToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.modifierToolStripMenuItem});
             this.tagToolStripMenuItem.Name = "tagToolStripMenuItem";
-            this.tagToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.tagToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
             this.tagToolStripMenuItem.Text = "Tag";
             // 
             // modifierToolStripMenuItem
@@ -480,7 +483,6 @@
             this.Text = "Application";
             this.tableLayoutPanel1_Ensemble.ResumeLayout(false);
             this.tableLayoutPanel2_Accueil.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_listeImage)).EndInit();
             this.tableLayoutPanel3_Modification.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -505,7 +507,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.DataGridView dataGridView_listeImage;
         private System.Windows.Forms.RichTextBox richTextBox_infoImage;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3_Modification;
         private System.Windows.Forms.Panel panel1;
@@ -533,6 +534,7 @@
         private System.Windows.Forms.ToolStripMenuItem modifierToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem miseÀJourToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip_barreAccueil;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
     }
 }
 
