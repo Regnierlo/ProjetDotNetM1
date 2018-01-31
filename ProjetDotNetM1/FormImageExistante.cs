@@ -22,16 +22,6 @@ namespace ProjetDotNetM1
             button3.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
-        private void SplitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void Label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         /// <summary>
         /// Garde celle actuellement dans le dossier
         /// </summary>

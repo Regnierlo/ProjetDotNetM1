@@ -142,8 +142,6 @@ namespace ProjetDotNetM1
             tableLayoutPanel4_Parametre.Hide();
             tableLayoutPanel3_Modification.Hide();
             tableLayoutPanel1_Ensemble.Show();
-        }
-
-        
+        }     
     }
 }

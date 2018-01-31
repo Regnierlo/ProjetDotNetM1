@@ -284,9 +284,9 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.tableLayoutPanel3_Modification);
             this.panel1.Controls.Add(this.tableLayoutPanel1_Ensemble);
             this.panel1.Controls.Add(this.tableLayoutPanel4_Parametre);
-            this.panel1.Controls.Add(this.tableLayoutPanel3_Modification);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
