@@ -185,9 +185,7 @@ namespace ProjetDotNetM1
                 img.SetPropertyItem(propItem);
                 SaveImg(img);
             }
-            img = null;
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
+            img.Dispose();
         }
 
         /// <summary>
@@ -203,9 +201,7 @@ namespace ProjetDotNetM1
             GC.WaitForPendingFinalizers();
             System.IO.File.Delete(ImgUrl);
             img.Save(ImgUrl, System.Drawing.Imaging.ImageFormat.Jpeg);
-            img = null;// Image.FromFile(ImgUrl);
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
+            img.Dispose();
             System.IO.File.Delete(imgUrl2);
         }
     }
