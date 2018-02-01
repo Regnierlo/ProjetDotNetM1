@@ -77,7 +77,7 @@ namespace ProjetDotNetM1
                 }
                 PictureBox pic = new PictureBox() { Image = new Bitmap(image, new Size(larg, haut)) };
                 pictureList.Add( pic );
-                pictureList[pictureList.Count-1].Click += new System.EventHandler(this.pic_Click);
+                pictureList[pictureList.Count-1].Click += new System.EventHandler(this.Pic_Click);
 
                 pictureList[pictureList.Count - 1].Dock = DockStyle.Fill;
                 pictureList[pictureList.Count - 1].SizeMode = PictureBoxSizeMode.CenterImage;
@@ -92,7 +92,7 @@ namespace ProjetDotNetM1
                 row.Height = 200F;
             }
         }
-        private void pic_Click(object sender, EventArgs e)
+        private void Pic_Click(object sender, EventArgs e)
         {
             foreach(PictureBox picture in pictureList)
             {
@@ -125,7 +125,7 @@ namespace ProjetDotNetM1
                 Console.WriteLine("lecture du dossier réussie");
                 string path = folderDialog.SelectedPath;
                 GestionListeImport image = new GestionListeImport(ProcessDirectory(path), this.images);
-                image.importer();
+                image.Importer();
             }
         }
 
@@ -177,7 +177,7 @@ namespace ProjetDotNetM1
                     imagesList.Add(img);
                 }
                 GestionListeImport image = new GestionListeImport(imagesList, this.images);
-                image.importer();
+                image.Importer();
                 Console.WriteLine("Màj effectuée");
             }
         }
