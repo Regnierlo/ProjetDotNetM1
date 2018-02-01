@@ -58,9 +58,9 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.treeView_Tags = new System.Windows.Forms.TreeView();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.contextMenuStrip_Tag = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ajouterToolStripMenuItem_Ajouter = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1_Ensemble.SuspendLayout();
             this.tableLayoutPanel2_Accueil.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_listeImage)).BeginInit();
@@ -70,8 +70,8 @@
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.contextMenuStrip_Tag.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox_recherche
@@ -372,22 +372,13 @@
             // 
             // treeView_Tags
             // 
+            this.treeView_Tags.CheckBoxes = true;
             this.treeView_Tags.ContextMenuStrip = this.contextMenuStrip_Tag;
             this.treeView_Tags.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView_Tags.Location = new System.Drawing.Point(3, 3);
             this.treeView_Tags.Name = "treeView_Tags";
             this.treeView_Tags.Size = new System.Drawing.Size(315, 515);
             this.treeView_Tags.TabIndex = 0;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.tableLayoutPanel3_Modification);
-            this.panel1.Controls.Add(this.tableLayoutPanel1_Ensemble);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 24);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1224, 547);
-            this.panel1.TabIndex = 7;
             // 
             // contextMenuStrip_Tag
             // 
@@ -399,9 +390,19 @@
             // ajouterToolStripMenuItem_Ajouter
             // 
             this.ajouterToolStripMenuItem_Ajouter.Name = "ajouterToolStripMenuItem_Ajouter";
-            this.ajouterToolStripMenuItem_Ajouter.Size = new System.Drawing.Size(152, 22);
+            this.ajouterToolStripMenuItem_Ajouter.Size = new System.Drawing.Size(113, 22);
             this.ajouterToolStripMenuItem_Ajouter.Text = "Ajouter";
             this.ajouterToolStripMenuItem_Ajouter.Click += new System.EventHandler(this.ajouterToolStripMenuItem_Ajouter_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.tableLayoutPanel3_Modification);
+            this.panel1.Controls.Add(this.tableLayoutPanel1_Ensemble);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 24);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1224, 547);
+            this.panel1.TabIndex = 7;
             // 
             // Form1
             // 
@@ -428,8 +429,8 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             this.contextMenuStrip_Tag.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

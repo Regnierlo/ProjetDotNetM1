@@ -14,6 +14,8 @@ namespace ProjetDotNetM1
         private String _chemin;
         private XmlDocument _doc;
         private const String _nomXML = "tags.xml";
+        private String _cheminComplet;
+        private XmlNode root;
         private List<Tag> _ltag;
         #endregion
 
@@ -26,7 +28,7 @@ namespace ProjetDotNetM1
 
         public List<Tag> Ltag
         {
-            get { return _ltag; s}
+            get { return _ltag; }
         }
         #endregion
 
@@ -36,7 +38,9 @@ namespace ProjetDotNetM1
             _chemin = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             _chemin = Path.Combine(_chemin, "FHRImages");
             _chemin = String.Concat(_chemin, "\\");
+            _cheminComplet = String.Concat(_chemin, _nomXML);
             _doc = new XmlDocument();
+            root = _doc.CreateElement("tags");
             _ltag = new List<Tag>();
             CheckXMLFile();
         }
@@ -87,11 +91,13 @@ namespace ProjetDotNetM1
         #endregion
 
         #region Gestion XML
-        public void AjouterNoeud(String nomNoeud)
+        public void AjouterNoeud(Tag newTag)
         {
-            //1 - Vérifier s'il existe
-            //2a - S'il existe lui ajouter un parent dans sa liste des peres
-            //2b - Sinon Créer un objet tag avec ce parent
+            _doc.Load(_cheminComplet);
+            XmlNode xnode = _doc.CreateElement(newTag.Libelle);
+
+            root.AppendChild(xnode);
+            _doc.Save(_chemin + _nomXML);
         }
 
         public void SupprimerNoeud()
@@ -99,16 +105,37 @@ namespace ProjetDotNetM1
             
         }
 
-        public void RenommerTag()
+        public void RenommerNoeud()
         {
             
         }
         #endregion
 
         #region Gestion liste des TAGS
-        public void AjouterTag()
+        public void AjouterTag(String nomTag)
         {
-            
+            Boolean tagExist = false;
+
+            foreach (var tag in _ltag)
+            {
+                if (tag.Libelle == nomTag)
+                    tagExist = true;
+            }
+
+            Tag ntag = null;
+
+            //Si le tag n'existe pas alors on le créé
+            if (!tagExist)
+            {
+                ntag = new Tag(nomTag);
+                _ltag.Add(ntag);
+            }
+            else //sinon msgbox avec possibilité de renommer
+            {
+
+            }
+
+            AjouterNoeud(ntag);
         }
 
         public void SupprimerTag()
