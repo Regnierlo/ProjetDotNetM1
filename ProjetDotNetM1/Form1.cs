@@ -124,8 +124,6 @@ namespace ProjetDotNetM1
         private void ajouterToolStripMenuItem_Ajouter_Click(object sender, EventArgs e)
         {
             GestionXML gXML = GestionXML.Instance;
-
-
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
@@ -13,6 +14,7 @@ namespace ProjetDotNetM1
         private String _chemin;
         private XmlDocument _doc;
         private const String _nomXML = "tags.xml";
+        private List<Tag> _ltag;
         #endregion
 
         #region Proprietes
@@ -21,14 +23,21 @@ namespace ProjetDotNetM1
             get { return _chemin; }
             set { _chemin = value; }
         }
+
+        public List<Tag> Ltag
+        {
+            get { return _ltag; s}
+        }
         #endregion
 
+        #region Creation fichier et objet XML
         public GestionXML()
         {
             _chemin = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             _chemin = Path.Combine(_chemin, "FHRImages");
             _chemin = String.Concat(_chemin, "\\");
             _doc = new XmlDocument();
+            _ltag = new List<Tag>();
             CheckXMLFile();
         }
 
@@ -38,13 +47,13 @@ namespace ProjetDotNetM1
         private void CheckXMLFile()
         {
             //Si le fichier n'existe pas
-            if(!File.Exists(_chemin+_nomXML))
+            if (!File.Exists(_chemin + _nomXML))
             {
                 try
                 {
-                    String tmp = String.Concat(_chemin,"\\");
+                    String tmp = String.Concat(_chemin, "\\");
                     tmp = String.Concat(tmp, _nomXML);
-                    XmlTextWriter xwriter = new XmlTextWriter(tmp,Encoding.UTF8);
+                    XmlTextWriter xwriter = new XmlTextWriter(tmp, Encoding.UTF8);
                     xwriter.WriteStartDocument();
                     xwriter.Formatting = Formatting.Indented;
                     xwriter.WriteStartElement("tags");
@@ -75,13 +84,42 @@ namespace ProjetDotNetM1
                 return _instance;
             }
         }
+        #endregion
 
-        /// <summary>
-        /// Ajouter un noeud sans pere.
-        /// </summary>
-        public void AjouterNoeud()
+        #region Gestion XML
+        public void AjouterNoeud(String nomNoeud)
+        {
+            //1 - Vérifier s'il existe
+            //2a - S'il existe lui ajouter un parent dans sa liste des peres
+            //2b - Sinon Créer un objet tag avec ce parent
+        }
+
+        public void SupprimerNoeud()
         {
             
         }
+
+        public void RenommerTag()
+        {
+            
+        }
+        #endregion
+
+        #region Gestion liste des TAGS
+        public void AjouterTag()
+        {
+            
+        }
+
+        public void SupprimerTag()
+        {
+            
+        }
+
+        public void RenommerTag()
+        {
+            
+        }
+        #endregion
     }
 }
