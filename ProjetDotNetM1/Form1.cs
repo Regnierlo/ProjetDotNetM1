@@ -72,8 +72,8 @@ namespace ProjetDotNetM1
                 }
                 else
                 {
-                    larg = tableLayoutPanel6.Controls.Container.Width / 5;
-                    double hautD = (double)image.Height/(double)image.Width * (double)tableLayoutPanel6.Controls.Container.Width/5;
+                    larg = tableLayoutPanel_Photos.Controls.Container.Width / 5;
+                    double hautD = (double)image.Height/(double)image.Width * (double)tableLayoutPanel_Photos.Controls.Container.Width/5;
                     haut = (int)hautD;
                 }
                 PictureBox pic = new PictureBox() { Image = new Bitmap(image, new Size(larg, haut)) };
@@ -82,13 +82,13 @@ namespace ProjetDotNetM1
 
                 pictureList[pictureList.Count - 1].Dock = DockStyle.Fill;
                 pictureList[pictureList.Count - 1].SizeMode = PictureBoxSizeMode.CenterImage;
-                tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-                tableLayoutPanel6.Controls.Add(pictureList[pictureList.Count - 1], 0,0);
+                tableLayoutPanel_Photos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+                tableLayoutPanel_Photos.Controls.Add(pictureList[pictureList.Count - 1], 0,0);
                 image.Dispose();
             }
             //affiche la grille pour se reperer
             //tableLayoutPanel6.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;         
-            foreach (System.Windows.Forms.RowStyle row in tableLayoutPanel6.RowStyles)
+            foreach (System.Windows.Forms.RowStyle row in tableLayoutPanel_Photos.RowStyles)
             {
                 row.SizeType = System.Windows.Forms.SizeType.Absolute;
                 row.Height = 200F;
@@ -191,9 +191,9 @@ namespace ProjetDotNetM1
         /// <param name="e"></param>
         private void ParamètresToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            tableLayoutPanel1_Ensemble.Hide();
-            tableLayoutPanel3_Modification.Hide();
-            tableLayoutPanel4_Parametre.Show();
+            tableLayoutPanel_Ensemble.Hide();
+            tableLayoutPanel_Modification.Hide();
+            tableLayoutPanel_Parametres.Show();
         }
 
         /// <summary>
@@ -213,9 +213,9 @@ namespace ProjetDotNetM1
         /// <param name="e"></param>
         private void ModifierToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            tableLayoutPanel1_Ensemble.Hide();
-            tableLayoutPanel4_Parametre.Hide();
-            tableLayoutPanel3_Modification.Show();
+            tableLayoutPanel_Ensemble.Hide();
+            tableLayoutPanel_Parametres.Hide();
+            tableLayoutPanel_Modification.Show();
         }
 
         /// <summary>
@@ -229,9 +229,9 @@ namespace ProjetDotNetM1
             DialogResult res = cg.ShowDialog();
             if (res == DialogResult.Abort)
             {
-                tableLayoutPanel3_Modification.Hide();
-                tableLayoutPanel4_Parametre.Hide();
-                tableLayoutPanel1_Ensemble.Show();
+                tableLayoutPanel_Modification.Hide();
+                tableLayoutPanel_Parametres.Hide();
+                tableLayoutPanel_Ensemble.Show();
             }
         }
 
@@ -263,9 +263,9 @@ namespace ProjetDotNetM1
         /// <param name="e"></param>
         private void AnnulerBtn_Click(object sender, EventArgs e)
         {
-            tableLayoutPanel4_Parametre.Hide();
-            tableLayoutPanel3_Modification.Hide();
-            tableLayoutPanel1_Ensemble.Show();
+            tableLayoutPanel_Parametres.Hide();
+            tableLayoutPanel_Modification.Hide();
+            tableLayoutPanel_Ensemble.Show();
         }
 
         /// <summary>
