@@ -73,10 +73,8 @@ namespace ProjetDotNetM1
                         fs2.Close();
                         FormImageExistante form = new FormImageExistante(image, image2);
                         DialogResult res = form.ShowDialog();
-                        image = null;
-                        image2 = null;
-                        GC.Collect();
-                        GC.WaitForPendingFinalizers();
+                        image.Dispose();
+                        image2.Dispose();
                         if (res == DialogResult.Cancel)
                         {
                             System.Console.WriteLine("cancel : 1");
@@ -129,7 +127,7 @@ namespace ProjetDotNetM1
                                 }
                             }
                         }
-                        image = null;
+                        image.Dispose(); ;
                     }
                 }
             }

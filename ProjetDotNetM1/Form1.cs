@@ -3,16 +3,20 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Collections;
 using System.IO;
+using System.Collections.Generic;
 
 namespace ProjetDotNetM1
 {
     public partial class Form1 : Form
     {
         GestionListeImages images;
+        List<System.Windows.Forms.PictureBox> pictureList;
         
         public Form1()
         {
+
             InitializeComponent();
+            pictureList = new List<System.Windows.Forms.PictureBox>();
             textBox_recherche.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             Mise_a_jour();
             AfficheImage();
@@ -23,7 +27,7 @@ namespace ProjetDotNetM1
         /// </summary>
         public void AfficheImage()
         {
-            foreach(GestionImage img in images.ListeImg)
+            foreach (GestionImage img in images.ListeImg)
             {
                 int larg;
                 int haut;
@@ -72,10 +76,13 @@ namespace ProjetDotNetM1
                     haut = (int)hautD;
                 }
                 PictureBox pic = new PictureBox() { Image = new Bitmap(image, new Size(larg, haut)) };
-                pic.Dock = DockStyle.Fill;
-                pic.SizeMode = PictureBoxSizeMode.CenterImage;
+                pictureList.Add( pic );
+                pictureList[pictureList.Count-1].Click += new System.EventHandler(this.pic_Click);
+
+                pictureList[pictureList.Count - 1].Dock = DockStyle.Fill;
+                pictureList[pictureList.Count - 1].SizeMode = PictureBoxSizeMode.CenterImage;
                 tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-                tableLayoutPanel6.Controls.Add(pic,0,0);
+                tableLayoutPanel6.Controls.Add(pictureList[pictureList.Count - 1], 0,0);
             }
             //affiche la grille pour se reperer
             //tableLayoutPanel6.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;         
@@ -85,7 +92,15 @@ namespace ProjetDotNetM1
                 row.Height = 200F;
             }
         }
-
+        private void pic_Click(object sender, EventArgs e)
+        {
+            foreach(PictureBox picture in pictureList)
+            {
+                picture.BackColor = Color.Transparent;
+            }
+            PictureBox pic = (PictureBox)sender;
+            pic.BackColor = Color.DeepSkyBlue;
+        }
         /// <summary>
         /// Fonction permettant de mettre à jour le dossier d'images lors du lancement de l'application
         /// </summary>
@@ -110,6 +125,7 @@ namespace ProjetDotNetM1
                 Console.WriteLine("lecture du dossier réussie");
                 string path = folderDialog.SelectedPath;
                 GestionListeImport image = new GestionListeImport(ProcessDirectory(path), this.images);
+                image.importer();
             }
         }
 
@@ -161,9 +177,8 @@ namespace ProjetDotNetM1
                     imagesList.Add(img);
                 }
                 GestionListeImport image = new GestionListeImport(imagesList, this.images);
+                image.importer();
                 Console.WriteLine("Màj effectuée");
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
             }
         }
 
