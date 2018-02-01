@@ -19,12 +19,14 @@ namespace ProjetDotNetM1
         }
 
         /// <summary>
-        /// 
+        /// Fonction permettant l'affichage des photos du dossier lors du lancement du logiciel sur la page d'accueil
         /// </summary>
         public void AfficheImage()
         {
             foreach(GestionImage img in images.ListeImg)
             {
+                int larg;
+                int haut;
                 FileStream fs = new FileStream(img.ImgUrl, FileMode.Open);
                 Image image = Image.FromStream(fs);
                 switch (img.Orientation)
@@ -36,30 +38,27 @@ namespace ProjetDotNetM1
                         image.RotateFlip(RotateFlipType.Rotate270FlipNone);
                         break;
                     case 2:
-                        //affichage non garanti optimal
+                        //affichage optimal non garanti 
                         image.RotateFlip(RotateFlipType.RotateNoneFlipX);
                         break;
                     case 3:
                         image.RotateFlip(RotateFlipType.Rotate180FlipNone);
                         break;
                     case 4:
-                        //affichage non garanti optimal
+                        //affichage optimal non garanti 
                         image.RotateFlip(RotateFlipType.RotateNoneFlipY);
                         break;
                     case 5:
-                        //affichage non garanti optimal
+                        //affichage optimal non garanti 
                         image.RotateFlip(RotateFlipType.Rotate270FlipX);
                         break;
                     case 7:
-                        //affichage non garanti optimal
+                        //affichage optimal non garanti 
                         image.RotateFlip(RotateFlipType.Rotate90FlipX);
                         break;
                     default:
-
                         break;
                 }
-                int larg;
-                int haut;
                 if (img.Orientation == 6 | img.Orientation == 8)
                 {
                     haut = 200;
@@ -72,14 +71,14 @@ namespace ProjetDotNetM1
                     double hautD = (double)image.Height/(double)image.Width * (double)tableLayoutPanel6.Controls.Container.Width/5;
                     haut = (int)hautD;
                 }
-                
                 PictureBox pic = new PictureBox() { Image = new Bitmap(image, new Size(larg, haut)) };
                 pic.Dock = DockStyle.Fill;
                 pic.SizeMode = PictureBoxSizeMode.CenterImage;
                 tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
                 tableLayoutPanel6.Controls.Add(pic,0,0);
             }
-                //tableLayoutPanel6.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;         //affiche la grille pour se reperer
+            //affiche la grille pour se reperer
+            //tableLayoutPanel6.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;         
             foreach (System.Windows.Forms.RowStyle row in tableLayoutPanel6.RowStyles)
             {
                 row.SizeType = System.Windows.Forms.SizeType.Absolute;
@@ -88,18 +87,18 @@ namespace ProjetDotNetM1
         }
 
         /// <summary>
-        /// 
+        /// Fonction permettant de mettre à jour le dossier d'images lors du lancement de l'application
         /// </summary>
         private void Mise_a_jour()
         {
             string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
-            int nbFichiersJPG = Directory.GetFiles(saveUrlDos, "*.jpg", SearchOption.AllDirectories).Length - 1;
+            int nbFichiersJPG = Directory.GetFiles(saveUrlDos, "*.jpg", SearchOption.AllDirectories).Length;
             images = new GestionListeImages(progressBar1);
         }
 
         /// <summary>
-        /// 
+        /// Permet à l'utilisateur d'importer un ou plusieurs dossiers dans l'application
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -110,13 +109,12 @@ namespace ProjetDotNetM1
             {
                 Console.WriteLine("lecture du dossier réussie");
                 string path = folderDialog.SelectedPath;
-
                 GestionListeImport image = new GestionListeImport(ProcessDirectory(path), this.images);
             }
         }
 
         /// <summary>
-        /// 
+        /// Permet la récursivité de la lecture des dossiers
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
@@ -141,7 +139,7 @@ namespace ProjetDotNetM1
         }
 
         /// <summary>
-        /// 
+        /// Permet à l'utilisateur d'importer un ou plusieurs fichiers dans l'application
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -170,7 +168,7 @@ namespace ProjetDotNetM1
         }
 
         /// <summary>
-        /// 
+        /// Permet à l'utilisateur de montrer la fenetre des paramètres
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -182,7 +180,7 @@ namespace ProjetDotNetM1
         }
 
         /// <summary>
-        /// 
+        /// Evenement lié au bouton permettant à l'utilisateur de rechercher des tags/images,...
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -192,7 +190,7 @@ namespace ProjetDotNetM1
         }
 
         /// <summary>
-        /// 
+        /// Permet à l'utilisateur de faire apparaitre la fenetre des modifications de tag
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -204,7 +202,7 @@ namespace ProjetDotNetM1
         }
 
         /// <summary>
-        /// 
+        /// Permet à l'utilisateur d'annuler les modifications effectuées lors de la modification de tag
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -231,7 +229,7 @@ namespace ProjetDotNetM1
         }
 
         /// <summary>
-        /// 
+        /// Permet d'afficher la fenetre "A propos" menant à une visualisation des détails du logiciel
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -242,7 +240,7 @@ namespace ProjetDotNetM1
         }
 
         /// <summary>
-        /// 
+        /// Permet à l'utilisateur d'annuler les modifications effectuées lors de l'utilisation des paramètres
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -254,7 +252,7 @@ namespace ProjetDotNetM1
         }
 
         /// <summary>
-        /// 
+        /// Evenement permettant à l'utilisateur de mettre à jour le dossier d'images
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -263,16 +261,16 @@ namespace ProjetDotNetM1
             string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
             int nbFichiersJPG = Directory.GetFiles(saveUrlDos, "*.jpg", SearchOption.AllDirectories).Length;
-            if (nbFichiersJPG <= 0)
-            {
-                Console.WriteLine("Màj non effectuée");
-            }
-            else
+            if (nbFichiersJPG > 0)
             {
                 images = new GestionListeImages(progressBar1);
                 Console.WriteLine("Màj effectuée");
                 GC.Collect();
-                GC.WaitForPendingFinalizers();
+                GC.WaitForPendingFinalizers();     
+            }
+            else
+            {
+                Console.WriteLine("Màj non effectuée");
             }
         }
     }

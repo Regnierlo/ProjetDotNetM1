@@ -289,8 +289,8 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.tableLayoutPanel1_Ensemble);
-            this.panel1.Controls.Add(this.tableLayoutPanel3_Modification);
             this.panel1.Controls.Add(this.tableLayoutPanel4_Parametre);
+            this.panel1.Controls.Add(this.tableLayoutPanel3_Modification);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
@@ -436,7 +436,7 @@
             this.tagToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.modifierToolStripMenuItem});
             this.tagToolStripMenuItem.Name = "tagToolStripMenuItem";
-            this.tagToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
+            this.tagToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.tagToolStripMenuItem.Text = "Tag";
             // 
             // modifierToolStripMenuItem
