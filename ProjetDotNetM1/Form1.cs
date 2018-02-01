@@ -33,6 +33,7 @@ namespace ProjetDotNetM1
                 int haut;
                 FileStream fs = new FileStream(img.ImgUrl, FileMode.Open);
                 Image image = Image.FromStream(fs);
+                fs.Close();
                 switch (img.Orientation)
                 {
                     case 6:
@@ -83,6 +84,7 @@ namespace ProjetDotNetM1
                 pictureList[pictureList.Count - 1].SizeMode = PictureBoxSizeMode.CenterImage;
                 tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
                 tableLayoutPanel6.Controls.Add(pictureList[pictureList.Count - 1], 0,0);
+                image.Dispose();
             }
             //affiche la grille pour se reperer
             //tableLayoutPanel6.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;         
@@ -281,7 +283,7 @@ namespace ProjetDotNetM1
                 images = new GestionListeImages(progressBar1);
                 Console.WriteLine("Màj effectuée");
                 GC.Collect();
-                GC.WaitForPendingFinalizers();     
+                GC.WaitForPendingFinalizers();
             }
             else
             {
