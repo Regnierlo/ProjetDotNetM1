@@ -451,7 +451,7 @@
             this.miseAJourToolStripMenuItem.Name = "miseAJourToolStripMenuItem";
             this.miseAJourToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
             this.miseAJourToolStripMenuItem.Text = "Mise à jour";
-            this.miseAJourToolStripMenuItem.Click += new System.EventHandler(this.miseAJourToolStripMenuItem_Click_1);
+            this.miseAJourToolStripMenuItem.Click += new System.EventHandler(this.MiseAJourToolStripMenuItem_Click_1);
             // 
             // menuStrip_barreAccueil
             // 

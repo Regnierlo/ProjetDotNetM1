@@ -18,14 +18,14 @@ namespace ProjetDotNetM1
             InitializeComponent();
             pictureList = new List<System.Windows.Forms.PictureBox>();
             textBox_recherche.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            mise_a_jour();
-            afficheImage();
+            Mise_a_jour();
+            AfficheImage();
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public void afficheImage()
+        public void AfficheImage()
         {
             foreach (GestionImage img in images.ListeImg)
             {
@@ -78,7 +78,7 @@ namespace ProjetDotNetM1
                 }
                 PictureBox pic = new PictureBox() { Image = new Bitmap(image, new Size(larg, haut)) };
                 pictureList.Add( pic );
-                pictureList[pictureList.Count-1].Click += new System.EventHandler(this.pic_Click);
+                pictureList[pictureList.Count-1].Click += new System.EventHandler(this.Pic_Click);
 
                 pictureList[pictureList.Count - 1].Dock = DockStyle.Fill;
                 pictureList[pictureList.Count - 1].SizeMode = PictureBoxSizeMode.CenterImage;
@@ -92,7 +92,7 @@ namespace ProjetDotNetM1
                 row.Height = 200F;
             }
         }
-        private void pic_Click(object sender, EventArgs e)
+        private void Pic_Click(object sender, EventArgs e)
         {
             foreach(PictureBox picture in pictureList)
             {
@@ -104,7 +104,7 @@ namespace ProjetDotNetM1
         /// <summary>
         /// 
         /// </summary>
-        private void mise_a_jour()
+        private void Mise_a_jour()
         {
             string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
@@ -126,7 +126,7 @@ namespace ProjetDotNetM1
                 string path = folderDialog.SelectedPath;
 
                 GestionListeImport image = new GestionListeImport(ProcessDirectory(path), this.images);
-                image.importer();
+                image.Importer();
             }
         }
 
@@ -178,7 +178,7 @@ namespace ProjetDotNetM1
                     imagesList.Add(img);
                 }
                 GestionListeImport image = new GestionListeImport(imagesList, this.images);
-                image.importer();
+                image.Importer();
                 Console.WriteLine("Màj effectuée");
             }
         }
@@ -272,7 +272,7 @@ namespace ProjetDotNetM1
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void miseAJourToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void MiseAJourToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
