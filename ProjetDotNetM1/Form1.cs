@@ -20,7 +20,7 @@ namespace ProjetDotNetM1
         public Form1()
         {
             InitializeComponent();
-            images = new GestionListeImages(progressBar1, dataGridView_listeImage);
+            images = new GestionListeImages(progressBar, dataGridView_listeImage);
         }
 
         private void miseÀJourToolStripMenuItem_Click(object sender, EventArgs e)
@@ -86,14 +86,14 @@ namespace ProjetDotNetM1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            images = new GestionListeImages(progressBar1, dataGridView_listeImage);
+            images = new GestionListeImages(progressBar, dataGridView_listeImage);
             Console.WriteLine("Bouton ok");
         }
 
         private void modifierToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            tableLayoutPanel1_Ensemble.Hide();
-            tableLayoutPanel3_Modification.Show();
+            tableLayoutPanel_Ensemble.Hide();
+            tableLayoutPanel_Modification.Show();
             rafraîchirToolStripMenuItem_Click(sender, e);//Affiche les tags dans le treeView
         }
 
@@ -103,8 +103,8 @@ namespace ProjetDotNetM1
             DialogResult res = cg.ShowDialog();
             if (res == DialogResult.Abort)
             {
-                tableLayoutPanel3_Modification.Hide();
-                tableLayoutPanel1_Ensemble.Show();
+                tableLayoutPanel_Modification.Hide();
+                tableLayoutPanel_Ensemble.Show();
             }
             rafraîchirToolStripMenuItem_Click(sender, e);//Affiche les tags dans le treeView
         }
@@ -182,10 +182,10 @@ namespace ProjetDotNetM1
         {
             TreeView tv;
 
-            if (tableLayoutPanel1_Ensemble.Visible)//On récupère le bon treeview
+            if (tableLayoutPanel_Ensemble.Visible)//On récupère le bon treeview
                 tv = treeView_tag;
             else
-                tv = treeView_Tags;
+                tv = treeView_TagsModification;
 
             return tv;
         }
