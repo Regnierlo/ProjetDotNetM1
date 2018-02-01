@@ -111,7 +111,7 @@ namespace ProjetDotNetM1
             string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
             int nbFichiersJPG = Directory.GetFiles(saveUrlDos, "*.jpg", SearchOption.AllDirectories).Length;
-            images = new GestionListeImages(progressBar1);
+            images = new GestionListeImages(progressBar);
         }
 
         /// <summary>
@@ -280,7 +280,7 @@ namespace ProjetDotNetM1
             int nbFichiersJPG = Directory.GetFiles(saveUrlDos, "*.jpg", SearchOption.AllDirectories).Length;
             if (nbFichiersJPG > 0)
             {
-                images = new GestionListeImages(progressBar1);
+                images = new GestionListeImages(progressBar);
                 Console.WriteLine("Màj effectuée");
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
