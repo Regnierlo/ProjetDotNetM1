@@ -7,15 +7,16 @@ using System.Xml;
 
 namespace ProjetDotNetM1
 {
-    public class GestionXML
+    public class GestionnaireTags
     {
         #region Variables de classe
-        private static GestionXML _instance;
+        private static GestionnaireTags _instance;
         private String _chemin;
         private XmlDocument _doc;
         private const String _nomXML = "tags.xml";
         private String _cheminComplet;
         private XmlNode root;
+        private const String string_root = "Liste_des_tags";
         private List<Tag> _ltag;
         #endregion
 
@@ -43,7 +44,7 @@ namespace ProjetDotNetM1
         #endregion
 
         #region Creation fichier et objet XML
-        public GestionXML()
+        public GestionnaireTags()
         {
             _chemin = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             _chemin = Path.Combine(_chemin, "FHRImages");
@@ -70,7 +71,7 @@ namespace ProjetDotNetM1
                     XmlTextWriter xwriter = new XmlTextWriter(tmp, Encoding.UTF8);
                     xwriter.WriteStartDocument();
                     xwriter.Formatting = Formatting.Indented;
-                    xwriter.WriteStartElement("tags");
+                    xwriter.WriteStartElement(string_root);
                     xwriter.WriteStartElement("tag");
                     xwriter.WriteEndElement();
                     xwriter.WriteEndElement();
@@ -89,12 +90,12 @@ namespace ProjetDotNetM1
         }
 
         //Singleton
-        public static GestionXML Instance
+        public static GestionnaireTags Instance
         {
             get
             {
                 if (_instance == null)
-                    _instance = new GestionXML();
+                    _instance = new GestionnaireTags();
                 return _instance;
             }
         }
@@ -103,7 +104,40 @@ namespace ProjetDotNetM1
         #region Gestion XML
         public void AjouterNoeud(Tag newTag)
         {
-            
+            // Chargement du document
+            _doc.Load(_cheminComplet);
+
+            // Positionner sur le noeud à partir duquel inserer
+            String pere="";
+            if (newTag.ListePere.Count == 0)
+                pere = string_root;
+
+            XmlNode root = _doc.SelectSingleNode(pere);
+            XmlNode[] copy = new XmlNode[root.ChildNodes.Count];
+
+            // Création tableau de XmlNode
+            int i = 0;
+            foreach (XmlNode x in root.ChildNodes)
+            {
+                copy[i] = x.Clone();
+                i++;
+            }
+
+            // Création du nouvel element
+            XmlElement element = _doc.CreateElement(newTag.Libelle);
+
+            // Suppression des noeuds clonés
+            root.RemoveAll();
+
+            // Ajout du noeud crée et des noeuds clonés
+            XmlNode nwNode = root.AppendChild(element);
+            for (i = 0; i < copy.Length; i++)
+            {
+                nwNode.AppendChild(copy[i]);
+            }
+
+            // Sauvegarde du document
+            _doc.Save(_cheminComplet);
         }
 
         public void SupprimerNoeud()
@@ -182,16 +216,35 @@ namespace ProjetDotNetM1
 
         public void AfficheTreeView(TreeView tv)
         {
-            XmlNode xnode;
-            FileStream fstream = new FileStream(_chemin + _nomXML, FileMode.Open, FileAccess.Read);
-            _doc.Load(fstream);
-            xnode = _doc.ChildNodes[1];
-            tv.Nodes.Clear();
-            tv.Nodes.Add(new TreeNode(_doc.DocumentElement.Name));
-            TreeNode tree_node;
-            tree_node = tv.Nodes[0];
-            Add_nodes(xnode, tree_node);
-            tree_node.ExpandAll();
+            try//on tente d'ouvrir un flux
+            {
+                FileStream fstream = new FileStream(_chemin + _nomXML, FileMode.Open, FileAccess.Read);
+
+                try//si c'est bon on pourra forcement le fermer a un moment donné
+                {
+                    XmlNode xnode;
+                    _doc.Load(fstream);
+                    xnode = _doc.ChildNodes[1];
+                    tv.Nodes.Clear();
+                    tv.Nodes.Add(new TreeNode(_doc.DocumentElement.Name));
+                    TreeNode tree_node;
+                    tree_node = tv.Nodes[0];
+                    Add_nodes(xnode, tree_node);
+                    tree_node.ExpandAll();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally //Dans tous les cas (exception levée ou non) on ferme le flux
+                {
+                    fstream.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
         #endregion
     }

@@ -104,7 +104,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Tag.cs" />
-    <Compile Include="GestionXML.cs" />
+    <Compile Include="GestionnaireTags.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

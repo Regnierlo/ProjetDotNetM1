@@ -94,7 +94,7 @@ namespace ProjetDotNetM1
         {
             tableLayoutPanel1_Ensemble.Hide();
             tableLayoutPanel3_Modification.Show();
-            rafraîchirToolStripMenuItem_Click(sender, e);
+            rafraîchirToolStripMenuItem_Click(sender, e);//Affiche les tags dans le treeView
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -106,7 +106,7 @@ namespace ProjetDotNetM1
                 tableLayoutPanel3_Modification.Hide();
                 tableLayoutPanel1_Ensemble.Show();
             }
-            rafraîchirToolStripMenuItem_Click(sender, e);
+            rafraîchirToolStripMenuItem_Click(sender, e);//Affiche les tags dans le treeView
         }
 
         private void confirmerBtn_Click(object sender, EventArgs e)
@@ -126,23 +126,68 @@ namespace ProjetDotNetM1
 
         private void ajouterToolStripMenuItem_Ajouter_Click(object sender, EventArgs e)
         {
-            GestionXML gXML = GestionXML.Instance;
-            //gXML.AjouterTag("Test1");
+            GestionnaireTags gXML = GestionnaireTags.Instance;
+            gXML.AjouterTag("Test1");
 
-            rafraîchirToolStripMenuItem_Click(sender, e);
+            rafraîchirToolStripMenuItem_Click(sender, e);//rafraichie le treeview
         }
 
+        /// <summary>
+        /// Permet de rafraichir un treeView pour afficher la liste des tags
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rafraîchirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            GestionXML gXML = GestionXML.Instance;
+            //On récupere le gestionnaire
+            GestionnaireTags gestionnaire = GestionnaireTags.Instance;
 
+            //On demande un affichage
+            gestionnaire.AfficheTreeView(getTreeViewActif());
+        }
+
+        /// <summary>
+        /// Permet de renommer un tags dans le treeView
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void renommerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TreeView tv = getTreeViewActif();
+
+            if (tv.SelectedNode == null)//Si aucun tag n'es sélectionné
+            {
+                label_info.Text = "Aucun tag sélectionné pour le renommage.";
+                label_info.ForeColor = Color.Red;
+            }
+            else if (tv.SelectedNode.Text == "Liste_des_tags")//Si l'utilisateur tente de renommer le noeud root
+            {
+                label_info.Text = "Impossible de renommer le noeud initial.";
+                label_info.ForeColor = Color.Red;
+            }
+            else//Sinon on renomme le noeud désiré
+            {
+                label_info.Text = "Renommage fini.";
+                label_info.ForeColor = Color.Green;
+            }
+
+        }
+
+        /// <summary>
+        /// Retourne le treeview qui est dans la fenêtre courante. 
+        /// /!\ NE FONCTIONNE QUE SI UN SEUL TREEVIEW EST PRESENT DANS LA FENÊTRE ! /!\
+        /// </summary>
+        /// <returns></returns>
+        private TreeView getTreeViewActif()
+        {
             TreeView tv;
-            if (tableLayoutPanel1_Ensemble.Visible)
+
+            if (tableLayoutPanel1_Ensemble.Visible)//On récupère le bon treeview
                 tv = treeView_tag;
             else
                 tv = treeView_Tags;
 
-            gXML.AfficheTreeView(tv);
+            return tv;
         }
     }
 }
