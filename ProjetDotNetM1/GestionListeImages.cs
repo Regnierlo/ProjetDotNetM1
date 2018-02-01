@@ -3,7 +3,6 @@ using System.Linq;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
-using System.Drawing;
 
 namespace ProjetDotNetM1
 {
@@ -14,10 +13,13 @@ namespace ProjetDotNetM1
             get;
             set;
         }
-        /*
-         * creer une liste de gestionImage a partir du dossier d'importation
-         */
-        public GestionListeImages(ProgressBar bar, DataGridView grid)
+
+        /// <summary>
+        /// creer une liste de gestionImage a partir du dossier d'importation
+        /// </summary>
+        /// <param name="bar"></param>
+        /// <param name="grid"></param>
+        public GestionListeImages(ProgressBar bar)
         {
             bar.Visible = true;
             ListeImg = new List<GestionImage>();
@@ -54,20 +56,6 @@ namespace ProjetDotNetM1
                 System.IO.Directory.CreateDirectory(url);
                 bar.Visible = false;
             }
-
-        }
-        public string rechercheImage(string url)
-        {
-            string res = null;
-            foreach (GestionImage img in ListeImg)
-            {
-
-                if (img.ImgUrl == url)
-                {
-                    res = img.ImgUrl;
-                }
-            }
-            return res;
         }
     }
 }
