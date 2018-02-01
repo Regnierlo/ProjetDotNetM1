@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections;
 using System.IO;
+using System.Xml;
 
 namespace ProjetDotNetM1
 {
@@ -93,6 +94,7 @@ namespace ProjetDotNetM1
         {
             tableLayoutPanel1_Ensemble.Hide();
             tableLayoutPanel3_Modification.Show();
+            rafraîchirToolStripMenuItem_Click(sender, e);
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -104,11 +106,12 @@ namespace ProjetDotNetM1
                 tableLayoutPanel3_Modification.Hide();
                 tableLayoutPanel1_Ensemble.Show();
             }
+            rafraîchirToolStripMenuItem_Click(sender, e);
         }
 
         private void confirmerBtn_Click(object sender, EventArgs e)
         {
-
+            rafraîchirToolStripMenuItem_Click(sender, e); //Affiche les tags dans le treeView
         }
         private void versionDuLogicielToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -124,7 +127,22 @@ namespace ProjetDotNetM1
         private void ajouterToolStripMenuItem_Ajouter_Click(object sender, EventArgs e)
         {
             GestionXML gXML = GestionXML.Instance;
-            gXML.AjouterTag("Test1");
+            //gXML.AjouterTag("Test1");
+
+            rafraîchirToolStripMenuItem_Click(sender, e);
+        }
+
+        private void rafraîchirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GestionXML gXML = GestionXML.Instance;
+
+            TreeView tv;
+            if (tableLayoutPanel1_Ensemble.Visible)
+                tv = treeView_tag;
+            else
+                tv = treeView_Tags;
+
+            gXML.AfficheTreeView(tv);
         }
     }
 }

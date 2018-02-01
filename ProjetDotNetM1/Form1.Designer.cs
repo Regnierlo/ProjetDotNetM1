@@ -61,6 +61,7 @@
             this.contextMenuStrip_Tag = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ajouterToolStripMenuItem_Ajouter = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.rafraîchirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1_Ensemble.SuspendLayout();
             this.tableLayoutPanel2_Accueil.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_listeImage)).BeginInit();
@@ -144,6 +145,7 @@
             // 
             // treeView_tag
             // 
+            this.treeView_tag.ContextMenuStrip = this.contextMenuStrip_Tag;
             this.treeView_tag.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView_tag.Location = new System.Drawing.Point(3, 3);
             this.treeView_tag.Name = "treeView_tag";
@@ -372,7 +374,6 @@
             // 
             // treeView_Tags
             // 
-            this.treeView_Tags.CheckBoxes = true;
             this.treeView_Tags.ContextMenuStrip = this.contextMenuStrip_Tag;
             this.treeView_Tags.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView_Tags.Location = new System.Drawing.Point(3, 3);
@@ -383,26 +384,34 @@
             // contextMenuStrip_Tag
             // 
             this.contextMenuStrip_Tag.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ajouterToolStripMenuItem_Ajouter});
+            this.ajouterToolStripMenuItem_Ajouter,
+            this.rafraîchirToolStripMenuItem});
             this.contextMenuStrip_Tag.Name = "contextMenuStrip_Tag";
-            this.contextMenuStrip_Tag.Size = new System.Drawing.Size(114, 26);
+            this.contextMenuStrip_Tag.Size = new System.Drawing.Size(125, 48);
             // 
             // ajouterToolStripMenuItem_Ajouter
             // 
             this.ajouterToolStripMenuItem_Ajouter.Name = "ajouterToolStripMenuItem_Ajouter";
-            this.ajouterToolStripMenuItem_Ajouter.Size = new System.Drawing.Size(113, 22);
+            this.ajouterToolStripMenuItem_Ajouter.Size = new System.Drawing.Size(152, 22);
             this.ajouterToolStripMenuItem_Ajouter.Text = "Ajouter";
             this.ajouterToolStripMenuItem_Ajouter.Click += new System.EventHandler(this.ajouterToolStripMenuItem_Ajouter_Click);
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.tableLayoutPanel3_Modification);
             this.panel1.Controls.Add(this.tableLayoutPanel1_Ensemble);
+            this.panel1.Controls.Add(this.tableLayoutPanel3_Modification);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1224, 547);
             this.panel1.TabIndex = 7;
+            // 
+            // rafraîchirToolStripMenuItem
+            // 
+            this.rafraîchirToolStripMenuItem.Name = "rafraîchirToolStripMenuItem";
+            this.rafraîchirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rafraîchirToolStripMenuItem.Text = "Rafraîchir";
+            this.rafraîchirToolStripMenuItem.Click += new System.EventHandler(this.rafraîchirToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -469,6 +478,7 @@
         private System.Windows.Forms.ToolStripMenuItem versionDuLogicielToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip_Tag;
         private System.Windows.Forms.ToolStripMenuItem ajouterToolStripMenuItem_Ajouter;
+        private System.Windows.Forms.ToolStripMenuItem rafraîchirToolStripMenuItem;
     }
 }
 

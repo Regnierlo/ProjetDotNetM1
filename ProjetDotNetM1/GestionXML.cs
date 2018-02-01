@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Windows.Forms;
 using System.Xml;
-using System.Xml.Serialization;
 
 namespace ProjetDotNetM1
 {
@@ -26,9 +26,19 @@ namespace ProjetDotNetM1
             set { _chemin = value; }
         }
 
+        public String NomXML
+        {
+            get { return _nomXML; }
+        }
+
         public List<Tag> Ltag
         {
             get { return _ltag; }
+        }
+
+        public XmlDocument Doc
+        {
+            get { return _doc; }
         }
         #endregion
 
@@ -93,11 +103,7 @@ namespace ProjetDotNetM1
         #region Gestion XML
         public void AjouterNoeud(Tag newTag)
         {
-            _doc.Load(_cheminComplet);
-            XmlNode xnode = _doc.CreateElement(newTag.Libelle);
-
-            root.AppendChild(xnode);
-            _doc.Save(_chemin + _nomXML);
+            
         }
 
         public void SupprimerNoeud()
@@ -146,6 +152,46 @@ namespace ProjetDotNetM1
         public void RenommerTag()
         {
             
+        }
+        #endregion
+
+        #region Gestion tree view
+        public void Add_nodes(XmlNode x_node, TreeNode t_node)
+        {
+            XmlNode xnode;
+            TreeNode tnode;
+            XmlNodeList node_list;
+
+            if(x_node.HasChildNodes)
+            {
+                node_list = x_node.ChildNodes;
+
+                for(int i = 0; i <= node_list.Count-1;i++)
+                {
+                    xnode = x_node.ChildNodes[i];
+                    t_node.Nodes.Add(new TreeNode(xnode.Name));
+                    tnode = t_node.Nodes[i];
+                    Add_nodes(xnode, tnode);
+                }
+            }
+            else
+            {
+                t_node.Name = x_node.Name.ToString();
+            }
+        }
+
+        public void AfficheTreeView(TreeView tv)
+        {
+            XmlNode xnode;
+            FileStream fstream = new FileStream(_chemin + _nomXML, FileMode.Open, FileAccess.Read);
+            _doc.Load(fstream);
+            xnode = _doc.ChildNodes[1];
+            tv.Nodes.Clear();
+            tv.Nodes.Add(new TreeNode(_doc.DocumentElement.Name));
+            TreeNode tree_node;
+            tree_node = tv.Nodes[0];
+            Add_nodes(xnode, tree_node);
+            tree_node.ExpandAll();
         }
         #endregion
     }
