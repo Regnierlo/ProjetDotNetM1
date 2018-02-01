@@ -138,7 +138,8 @@ namespace ProjetDotNetM1
 
         /// <summary>
         /// permet de remplacer les tags existant de l'image par les tag contenue dans l'ArrayList en entree
-        /// essaie d'ajouter un tag existant et si une exeption null est levée (donc aucun tag existant) récupère une structure de métadonnées sur une image qui en contient et la modifie pour l'appliquer a la nouvelle image
+        /// essaie d'ajouter un tag existant et si une exeption null est levée (donc aucun tag existant) 
+        /// récupère une structure de métadonnées sur une image qui en contient et la modifie pour l'appliquer a la nouvelle image
         /// </summary>
         /// <param name="entry"></param>
         public void AjoutTag(ArrayList entry)
