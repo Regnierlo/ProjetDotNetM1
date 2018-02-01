@@ -36,7 +36,27 @@ namespace ProjetDotNetM1
             Thread th = new Thread(Importation);
             th.Start();
         }
-
+        private string RecursiveNombre(string name, string saveUrlDos){
+            string res="";
+            System.Text.RegularExpressions.Regex myRegex2 = new Regex(@"(\([0-9]+\))");
+            string[] substrings = myRegex2.Split(name);
+            string number = "";
+            number = substrings[substrings.Length - 2].Substring(1, substrings[substrings.Length - 2].Length - 2);
+            int nombre = Int32.Parse(number) + 1;
+            number = "(" + nombre + ")";
+            substrings[substrings.Length - 2] = number;
+            string nouveauName = "";
+            foreach (string tmp in substrings)
+            {
+                nouveauName = nouveauName + tmp;
+            }
+            if(File.Exists(Path.Combine(saveUrlDos,nouveauName))){
+                res = RecursiveNombre(nouveauName,saveUrlDos);
+            }else{
+                res=Path.Combine(saveUrlDos,nouveauName);
+            }
+            return res;
+        }
         /// <summary>
         /// permet d'importer les gestionImage de la liste dans le dossier d'importation
         /// </summary>
@@ -106,6 +126,9 @@ namespace ProjetDotNetM1
                                         nouveauName = nouveauName + tmp;
                                     }
                                     string nouveauSaveUrl = Path.Combine(saveUrlDos, nouveauName);
+                                    if(File.Exists(nouveauSaveUrl)){
+                                        nouveauSaveUrl = RecursiveNombre(nouveauName,saveUrlDos);
+                                    }
                                     System.IO.File.Copy(img/*.ImgUrl*/, nouveauSaveUrl, false);
                                 }
                                 else //cas  zero
@@ -124,6 +147,9 @@ namespace ProjetDotNetM1
                                         }
                                     }
                                     string nouveauSaveUrl = Path.Combine(saveUrlDos, nouveauName);
+                                    if(File.Exists(nouveauSaveUrl)){
+                                        nouveauSaveUrl = RecursiveNombre(nouveauName,saveUrlDos);
+                                    }
                                     System.IO.File.Copy(img/*.ImgUrl*/, nouveauSaveUrl, false);
                                 }
                             }
