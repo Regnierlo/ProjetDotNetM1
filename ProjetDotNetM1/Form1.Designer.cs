@@ -89,7 +89,7 @@
             // textBox_recherche
             // 
             this.textBox_recherche.BackColor = System.Drawing.Color.LightGray;
-            this.textBox_recherche.Location = new System.Drawing.Point(964, 3);
+            this.textBox_recherche.Location = new System.Drawing.Point(963, 3);
             this.textBox_recherche.Name = "textBox_recherche";
             this.textBox_recherche.Size = new System.Drawing.Size(210, 20);
             this.textBox_recherche.TabIndex = 7;
@@ -182,21 +182,21 @@
             this.ajouterToolStripMenuItem.Name = "ajouterToolStripMenuItem";
             this.ajouterToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.ajouterToolStripMenuItem.Text = "Ajouter";
-            this.ajouterToolStripMenuItem.Click += new System.EventHandler(this.ajouterToolStripMenuItem_Click);
+            this.ajouterToolStripMenuItem.Click += new System.EventHandler(this.AjouterToolStripMenuItem_Click);
             // 
             // renommerToolStripMenuItem
             // 
             this.renommerToolStripMenuItem.Name = "renommerToolStripMenuItem";
             this.renommerToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.renommerToolStripMenuItem.Text = "Renommer";
-            this.renommerToolStripMenuItem.Click += new System.EventHandler(this.renommerToolStripMenuItem_Click_1);
+            this.renommerToolStripMenuItem.Click += new System.EventHandler(this.RenommerToolStripMenuItem_Click_1);
             // 
             // rafraîchirToolStripMenuItem
             // 
             this.rafraîchirToolStripMenuItem.Name = "rafraîchirToolStripMenuItem";
             this.rafraîchirToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.rafraîchirToolStripMenuItem.Text = "Rafraîchir";
-            this.rafraîchirToolStripMenuItem.Click += new System.EventHandler(this.rafraîchirToolStripMenuItem_Click_1);
+            this.rafraîchirToolStripMenuItem.Click += new System.EventHandler(this.RafraîchirToolStripMenuItem_Click_1);
             // 
             // supprimerToolStripMenuItem
             // 
@@ -218,7 +218,7 @@
             // 
             // button_Go_Recherche
             // 
-            this.button_Go_Recherche.Location = new System.Drawing.Point(1180, 3);
+            this.button_Go_Recherche.Location = new System.Drawing.Point(1179, 3);
             this.button_Go_Recherche.Name = "button_Go_Recherche";
             this.button_Go_Recherche.Size = new System.Drawing.Size(34, 23);
             this.button_Go_Recherche.TabIndex = 6;
@@ -228,9 +228,10 @@
             // 
             // progressBar
             // 
+            this.progressBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.progressBar.Location = new System.Drawing.Point(3, 3);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(213, 16);
+            this.progressBar.Size = new System.Drawing.Size(225, 23);
             this.progressBar.TabIndex = 8;
             this.progressBar.Visible = false;
             // 
@@ -425,15 +426,15 @@
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.06639F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.93361F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 216F));
-            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 46F));
+            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 47F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.36034F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.63966F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 244F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel_InformationsLogiciel.Controls.Add(this.progressBar, 0, 0);
-            this.tableLayoutPanel_InformationsLogiciel.Controls.Add(this.label_info, 1, 0);
             this.tableLayoutPanel_InformationsLogiciel.Controls.Add(this.button_Go_Recherche, 3, 0);
             this.tableLayoutPanel_InformationsLogiciel.Controls.Add(this.textBox_recherche, 2, 0);
+            this.tableLayoutPanel_InformationsLogiciel.Controls.Add(this.label_info, 1, 0);
             this.tableLayoutPanel_InformationsLogiciel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tableLayoutPanel_InformationsLogiciel.Location = new System.Drawing.Point(0, 518);
             this.tableLayoutPanel_InformationsLogiciel.Name = "tableLayoutPanel_InformationsLogiciel";
@@ -510,7 +511,7 @@
             this.Tag_ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Modifier_ToolStripMenuItem});
             this.Tag_ToolStripMenuItem.Name = "Tag_ToolStripMenuItem";
-            this.Tag_ToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
+            this.Tag_ToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.Tag_ToolStripMenuItem.Text = "Tag";
             // 
             // Modifier_ToolStripMenuItem

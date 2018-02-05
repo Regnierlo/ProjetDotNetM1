@@ -217,7 +217,7 @@ namespace ProjetDotNetM1
             tableLayoutPanel_Ensemble.Hide();
             tableLayoutPanel_Parametres.Hide();
             tableLayoutPanel_Modification.Show();
-            rafraîchirToolStripMenuItem_Click_1(sender, e);//Affiche les tags dans le treeView
+            RafraîchirToolStripMenuItem_Click_1(sender, e);//Affiche les tags dans le treeView
         }
 
         /// <summary>
@@ -235,7 +235,7 @@ namespace ProjetDotNetM1
                 tableLayoutPanel_Parametres.Hide();
                 tableLayoutPanel_Ensemble.Show();
             }
-            rafraîchirToolStripMenuItem_Click_1(sender, e);//Affiche les tags dans le treeView
+            RafraîchirToolStripMenuItem_Click_1(sender, e);//Affiche les tags dans le treeView
         }
 
         /// <summary>
@@ -245,7 +245,7 @@ namespace ProjetDotNetM1
         /// <param name="e"></param>
         private void ConfirmerBtn_Click(object sender, EventArgs e)
         {
-            rafraîchirToolStripMenuItem_Click_1(sender, e); //Affiche les tags dans le treeView
+            RafraîchirToolStripMenuItem_Click_1(sender, e); //Affiche les tags dans le treeView
         }
 
         /// <summary>
@@ -279,7 +279,7 @@ namespace ProjetDotNetM1
         /// /!\ NE FONCTIONNE QUE SI UN SEUL TREEVIEW EST PRESENT DANS LA FENÊTRE ! /!\
         /// </summary>
         /// <returns></returns>
-        private TreeView getTreeViewActif()
+        private TreeView GetTreeViewActif()
         {
             TreeView tv;
 
@@ -319,9 +319,9 @@ namespace ProjetDotNetM1
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void renommerToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void RenommerToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            TreeView tv = getTreeViewActif();
+            TreeView tv = GetTreeViewActif();
 
             if (tv.SelectedNode == null)//Si aucun tag n'es sélectionné
             {
@@ -340,12 +340,12 @@ namespace ProjetDotNetM1
             }
         }
 
-        private void ajouterToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AjouterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             GestionnaireTags gXML = GestionnaireTags.Instance;
             gXML.AjouterTag("Test1");
 
-            rafraîchirToolStripMenuItem_Click_1(sender, e);//rafraichie le treeview
+            RafraîchirToolStripMenuItem_Click_1(sender, e);//rafraichie le treeview
         }
 
         /// <summary>
@@ -353,13 +353,13 @@ namespace ProjetDotNetM1
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void rafraîchirToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void RafraîchirToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             //On récupere le gestionnaire
             GestionnaireTags gestionnaire = GestionnaireTags.Instance;
 
             //On demande un affichage
-            gestionnaire.AfficheTreeView(getTreeViewActif());
+            gestionnaire.AfficheTreeView(GetTreeViewActif());
         }
     }
 }
