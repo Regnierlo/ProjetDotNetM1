@@ -217,7 +217,7 @@ namespace ProjetDotNetM1
             tableLayoutPanel_Ensemble.Hide();
             tableLayoutPanel_Parametres.Hide();
             tableLayoutPanel_Modification.Show();
-            RafraîchirToolStripMenuItem_Click_1(sender, e);//Affiche les tags dans le treeView
+            RafraichirTreeView();//Affiche les tags dans le treeView
         }
 
         /// <summary>
@@ -235,7 +235,7 @@ namespace ProjetDotNetM1
                 tableLayoutPanel_Parametres.Hide();
                 tableLayoutPanel_Ensemble.Show();
             }
-            RafraîchirToolStripMenuItem_Click_1(sender, e);//Affiche les tags dans le treeView
+            RafraichirTreeView();//Affiche les tags dans le treeView
         }
 
         /// <summary>
@@ -345,7 +345,7 @@ namespace ProjetDotNetM1
             GestionnaireTags gXML = GestionnaireTags.Instance;
             gXML.AjouterTag("Test1");
 
-            RafraîchirToolStripMenuItem_Click_1(sender, e);//rafraichie le treeview
+            RafraichirTreeView();//rafraichie le treeview
         }
 
         /// <summary>
@@ -354,6 +354,11 @@ namespace ProjetDotNetM1
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void RafraîchirToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            RafraichirTreeView();            
+        }
+
+        private void RafraichirTreeView()
         {
             //On récupere le gestionnaire
             GestionnaireTags gestionnaire = GestionnaireTags.Instance;
