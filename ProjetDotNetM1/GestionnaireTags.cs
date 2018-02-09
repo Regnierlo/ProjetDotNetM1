@@ -19,7 +19,7 @@ namespace ProjetDotNetM1
         private const String string_root = "Liste_des_tags";
         private List<Tag> _ltag;
 
-        private XmlTextWriter xr;
+        private StreamWriter sr;
         #endregion
 
         #region Proprietes
@@ -202,38 +202,29 @@ namespace ProjetDotNetM1
         #endregion
 
 
-        public void exportToXml2(TreeView tv, string filename)
+        public void exportToXml(TreeView tv, string filename)
         {
-            xr = new XmlTextWriter(filename, System.Text.Encoding.UTF8);
-            xr.WriteStartDocument();
+            sr = new StreamWriter(filename, false, System.Text.Encoding.UTF8);
+            //Write the header
+            sr.WriteLine("<?xml version=\"1.0\" encoding=\"utf-8\" ?>");
             //Write our root node
-            xr.WriteStartElement(tv.Nodes[0].Text);
+            sr.WriteLine("<" + tv.Nodes[0].Text + ">");
             foreach (TreeNode node in tv.Nodes)
             {
-                saveNode2(node.Nodes);
+                saveNode(node.Nodes);
             }
             //Close the root node
-            xr.WriteEndElement();
-            xr.Close();
+            sr.WriteLine("</" + tv.Nodes[0].Text + ">");
+            sr.Close();
         }
 
-        private void saveNode2(TreeNodeCollection tnc)
+        private void saveNode(TreeNodeCollection tnc)
         {
             foreach (TreeNode node in tnc)
             {
-                //If we have child nodes, we'll write 
-                //a parent node, then iterrate through
-                //the children
-                if (node.Nodes.Count > 0)
-                {
-                    xr.WriteStartElement(node.Text);
-                    saveNode2(node.Nodes);
-                    xr.WriteEndElement();
-                }
-                else //No child nodes, so we just write the text
-                {
-                    xr.WriteString(node.Text);
-                }
+                sr.WriteLine("<" + node.Text + ">");
+                saveNode(node.Nodes);
+                sr.WriteLine("</" + node.Text + ">");
             }
         }
     }

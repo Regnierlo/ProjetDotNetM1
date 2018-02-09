@@ -264,7 +264,7 @@ namespace ProjetDotNetM1
         /// <param name="e"></param>
         private void ConfirmerBtn_Click(object sender, EventArgs e)
         {
-            RafraîchirToolStripMenuItem_Click_1(sender, e); //Affiche les tags dans le treeView
+            RafraichirTreeView(); //Affiche les tags dans le treeView
         }
 
         /// <summary>
@@ -363,20 +363,17 @@ namespace ProjetDotNetM1
         {
             GestionnaireTags gXML = GestionnaireTags.Instance;
             TreeView tv = GetTreeViewActif();
-            TreeNode newNode = new TreeNode("Nouveau Tag");
-
-
+            TreeNode newNode = new TreeNode("NouveauTag");
+            
             tv.SelectedNode.Nodes.Add(newNode);//Ajout du noeud avec comme père la sélection
             tv.SelectedNode = newNode;//On sélectionne notre nouveau noeud
             tv.ExpandAll();//On étend TOUS le treeview
             label_info.Text = "Ajout d'un nouveau tag";//MaJ du label
             label_info.ForeColor = Color.OrangeRed;//Indication en orange car action en cours
-            tv.LabelEdit = true;//On accepte l'édition de tag                                                                      //GERER FIN FIN EDITION
-            newNode.BeginEdit();//On permet l'édition du tag
+            tv.LabelEdit = true;//On accepte l'édition de tag
+            newNode.BeginEdit();//Permet d'éditer le tag
 
             gXML.AjouterTag(newNode.Text, tv.SelectedNode);//On ajoute le tag dans la liste
-
-            
         }
 
         /// <summary>
@@ -400,7 +397,45 @@ namespace ProjetDotNetM1
 
         private void treeView_TagsAcceuil_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
         {
-
+            TreeView tv = GetTreeViewActif();//On récupère le treeview actif
+            TreeNode node = tv.SelectedNode;//On récupère le noeud sélectionné
+            
+            if (e.Label != null) //Si le tag a changé
+            {
+                if (e.Label.Length > 0)//On faut que la taille du tag soit au moins de 1
+                {
+                    if (e.Label.IndexOfAny(new char[] { ' ','@', '.', ',', '!' }) == -1) //Si aucun des caractères sont présent 
+                    {
+                        e.Node.EndEdit(false);//Arret de l'édition avec aucune annulation sur le label
+                        GestionnaireTags gt = GestionnaireTags.Instance;
+                        gt.exportToXml(GetTreeViewActif(), gt.Chemin + gt.NomXML);//Exportation en XML
+                        label_info.Text = "Fin ajout";//Affichage de l'information
+                        label_info.ForeColor = Color.Green;//Vert car c'est OK
+                    }
+                    else
+                    {
+                        node.EndEdit(true);//On annule l'édition
+                        label_info.Text = "Présence de caractères impossible";//Information pour l'utilisateur
+                        label_info.ForeColor = Color.Red;//Rouge car c'est pas cool
+                        node.BeginEdit();//On recommence l'édition
+                    }
+                }
+                else
+                {
+                    node.EndEdit(true);//On annule l'édition
+                    label_info.Text = "Nom de tag vide impossible";//Informaiton pour l'utilisateur
+                    label_info.ForeColor = Color.Red;//Rouge car c'est pas cool
+                    e.Node.BeginEdit();//On reommence l'édition
+                }
+            }
+            else //S'il n'a pas changé on lui donne le nom par défaut
+            {
+                e.Node.EndEdit(false);
+                GestionnaireTags gt = GestionnaireTags.Instance;
+                gt.exportToXml(GetTreeViewActif(), gt.Chemin + gt.NomXML);
+                label_info.Text = "Fin ajout";
+                label_info.ForeColor = Color.Green;
+            }
         }
     }
 }
