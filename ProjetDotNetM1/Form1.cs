@@ -437,5 +437,10 @@ namespace ProjetDotNetM1
                 label_info.ForeColor = Color.Green;
             }
         }
+
+        private void supprimerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
