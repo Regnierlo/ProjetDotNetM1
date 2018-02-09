@@ -102,11 +102,25 @@ namespace ProjetDotNetM1
         #endregion
 
         #region Gestion XML
-        public void AjouterNoeud(Tag newTag)
+        public void AjouterNoeud(Tag newTag, TreeNode treeNodeSelected)
         {
             // Chargement du document
             _doc.Load(_cheminComplet);
 
+            var node = _doc.SelectNodes(string_root);
+            
+            
+
+
+            
+
+
+
+
+
+
+            #region commentaires
+            /*
             // Positionner sur le noeud à partir duquel inserer
             String pere="";
             if (newTag.ListePere.Count == 0)
@@ -134,13 +148,14 @@ namespace ProjetDotNetM1
             for (i = 0; i < copy.Length; i++)
             {
                 nwNode.AppendChild(copy[i]);
-            }
+            }*/
+            #endregion
 
             // Sauvegarde du document
             _doc.Save(_cheminComplet);
         }
 
-        public void SupprimerNoeud()
+        public void SupprimerNoeud(XmlNode xnodeDel)
         {
             
         }
@@ -152,7 +167,7 @@ namespace ProjetDotNetM1
         #endregion
 
         #region Gestion liste des TAGS
-        public void AjouterTag(String nomTag)
+        public void AjouterTag(String nomTag, TreeNode treeNodeSelect)
         {
             Boolean tagExist = false;
 
@@ -175,7 +190,7 @@ namespace ProjetDotNetM1
 
             }
 
-            AjouterNoeud(ntag);
+            AjouterNoeud(ntag, treeNodeSelect);
         }
 
         public void SupprimerTag()

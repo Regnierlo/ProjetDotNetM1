@@ -20,7 +20,14 @@ namespace ProjetDotNetM1
             pictureList = new List<System.Windows.Forms.PictureBox>();
             textBox_recherche.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             Mise_a_jour();
+            InitialisationPerso();
             AfficheImage();
+        }
+
+        private void InitialisationPerso()
+        {
+            TreeView t = treeView_TagsAcceuil;
+
         }
 
         /// <summary>
@@ -284,9 +291,9 @@ namespace ProjetDotNetM1
             TreeView tv;
 
             if (tableLayoutPanel_Ensemble.Visible)//On récupère le bon treeview
-                tv = treeView_tag;
+                tv = treeView_TagsAcceuil;
             else
-                tv = treeView_Tags;
+                tv = treeView_TagsModification;
 
             return tv;
         }
@@ -343,9 +350,13 @@ namespace ProjetDotNetM1
         private void AjouterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             GestionnaireTags gXML = GestionnaireTags.Instance;
-            gXML.AjouterTag("Test1");
+            TreeView t = GetTreeViewActif();
+            gXML.AjouterTag("NouveauNoeu",t.SelectedNode);
 
             RafraichirTreeView();//rafraichie le treeview
+
+            /*treeView_tag.LabelEdit = true;
+            treeView_tag.Nodes[0].BeginEdit();//Edit root*/
         }
 
         /// <summary>
