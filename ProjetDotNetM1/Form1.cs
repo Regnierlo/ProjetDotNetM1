@@ -24,10 +24,22 @@ namespace ProjetDotNetM1
             AfficheImage();
         }
 
+        /// <summary>
+        /// Initialise certains outils de l'accuil pour que ce soit à jour
+        /// </summary>
         private void InitialisationPerso()
         {
+            #region Affiche le treeView au démarrage
             TreeView t = treeView_TagsAcceuil;
+            //On récupere le gestionnaire
+            GestionnaireTags gestionnaire = GestionnaireTags.Instance;
 
+            //On demande un affichage
+            gestionnaire.AfficheTreeView(t);
+            #endregion
+
+            comboBox_Recherche.SelectedIndex = 0; //Mis par défaut à "TOUS" pour la comboxbox_recherche
+            label_info.Text = "Les informations de l'application seront affichées ici.";
         }
 
         /// <summary>
@@ -350,13 +362,21 @@ namespace ProjetDotNetM1
         private void AjouterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             GestionnaireTags gXML = GestionnaireTags.Instance;
-            TreeView t = GetTreeViewActif();
-            gXML.AjouterTag("NouveauNoeu",t.SelectedNode);
+            TreeView tv = GetTreeViewActif();
+            TreeNode newNode = new TreeNode("Nouveau Tag");
 
-            RafraichirTreeView();//rafraichie le treeview
 
-            /*treeView_tag.LabelEdit = true;
-            treeView_tag.Nodes[0].BeginEdit();//Edit root*/
+            tv.SelectedNode.Nodes.Add(newNode);//Ajout du noeud avec comme père la sélection
+            tv.SelectedNode = newNode;//On sélectionne notre nouveau noeud
+            tv.ExpandAll();//On étend TOUS le treeview
+            label_info.Text = "Ajout d'un nouveau tag";//MaJ du label
+            label_info.ForeColor = Color.OrangeRed;//Indication en orange car action en cours
+            tv.LabelEdit = true;//On accepte l'édition de tag                                                                      //GERER FIN FIN EDITION
+            newNode.BeginEdit();//On permet l'édition du tag
+
+            gXML.AjouterTag(newNode.Text, tv.SelectedNode);//On ajoute le tag dans la liste
+
+            
         }
 
         /// <summary>
@@ -376,6 +396,11 @@ namespace ProjetDotNetM1
 
             //On demande un affichage
             gestionnaire.AfficheTreeView(GetTreeViewActif());
+        }
+
+        private void treeView_TagsAcceuil_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
+        {
+
         }
     }
 }

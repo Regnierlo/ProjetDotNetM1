@@ -18,6 +18,8 @@ namespace ProjetDotNetM1
         private XmlNode root;
         private const String string_root = "Liste_des_tags";
         private List<Tag> _ltag;
+
+        private XmlTextWriter xr;
         #endregion
 
         #region Proprietes
@@ -102,68 +104,6 @@ namespace ProjetDotNetM1
         #endregion
 
         #region Gestion XML
-        public void AjouterNoeud(Tag newTag, TreeNode treeNodeSelected)
-        {
-            // Chargement du document
-            _doc.Load(_cheminComplet);
-
-            var node = _doc.SelectNodes(string_root);
-            
-            
-
-
-            
-
-
-
-
-
-
-            #region commentaires
-            /*
-            // Positionner sur le noeud à partir duquel inserer
-            String pere="";
-            if (newTag.ListePere.Count == 0)
-                pere = string_root;
-
-            XmlNode root = _doc.SelectSingleNode(pere);
-            XmlNode[] copy = new XmlNode[root.ChildNodes.Count];
-
-            // Création tableau de XmlNode
-            int i = 0;
-            foreach (XmlNode x in root.ChildNodes)
-            {
-                copy[i] = x.Clone();
-                i++;
-            }
-
-            // Création du nouvel element
-            XmlElement element = _doc.CreateElement(newTag.Libelle);
-
-            // Suppression des noeuds clonés
-            root.RemoveAll();
-
-            // Ajout du noeud crée et des noeuds clonés
-            XmlNode nwNode = root.AppendChild(element);
-            for (i = 0; i < copy.Length; i++)
-            {
-                nwNode.AppendChild(copy[i]);
-            }*/
-            #endregion
-
-            // Sauvegarde du document
-            _doc.Save(_cheminComplet);
-        }
-
-        public void SupprimerNoeud(XmlNode xnodeDel)
-        {
-            
-        }
-
-        public void RenommerNoeud()
-        {
-            
-        }
         #endregion
 
         #region Gestion liste des TAGS
@@ -189,8 +129,6 @@ namespace ProjetDotNetM1
             {
 
             }
-
-            AjouterNoeud(ntag, treeNodeSelect);
         }
 
         public void SupprimerTag()
@@ -262,5 +200,41 @@ namespace ProjetDotNetM1
             }
         }
         #endregion
+
+
+        public void exportToXml2(TreeView tv, string filename)
+        {
+            xr = new XmlTextWriter(filename, System.Text.Encoding.UTF8);
+            xr.WriteStartDocument();
+            //Write our root node
+            xr.WriteStartElement(tv.Nodes[0].Text);
+            foreach (TreeNode node in tv.Nodes)
+            {
+                saveNode2(node.Nodes);
+            }
+            //Close the root node
+            xr.WriteEndElement();
+            xr.Close();
+        }
+
+        private void saveNode2(TreeNodeCollection tnc)
+        {
+            foreach (TreeNode node in tnc)
+            {
+                //If we have child nodes, we'll write 
+                //a parent node, then iterrate through
+                //the children
+                if (node.Nodes.Count > 0)
+                {
+                    xr.WriteStartElement(node.Text);
+                    saveNode2(node.Nodes);
+                    xr.WriteEndElement();
+                }
+                else //No child nodes, so we just write the text
+                {
+                    xr.WriteString(node.Text);
+                }
+            }
+        }
     }
 }

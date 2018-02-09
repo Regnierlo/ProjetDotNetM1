@@ -90,7 +90,7 @@
             // textBox_recherche
             // 
             this.textBox_recherche.BackColor = System.Drawing.Color.LightGray;
-            this.textBox_recherche.Location = new System.Drawing.Point(970, 3);
+            this.textBox_recherche.Location = new System.Drawing.Point(968, 3);
             this.textBox_recherche.Name = "textBox_recherche";
             this.textBox_recherche.Size = new System.Drawing.Size(210, 20);
             this.textBox_recherche.TabIndex = 7;
@@ -167,6 +167,7 @@
             this.treeView_TagsAcceuil.Name = "treeView_TagsAcceuil";
             this.treeView_TagsAcceuil.Size = new System.Drawing.Size(224, 512);
             this.treeView_TagsAcceuil.TabIndex = 1;
+            this.treeView_TagsAcceuil.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.treeView_TagsAcceuil_AfterLabelEdit);
             // 
             // contextMenuStrip_Tags
             // 
@@ -211,7 +212,7 @@
             this.label_info.BackColor = System.Drawing.Color.LightGray;
             this.label_info.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_info.ForeColor = System.Drawing.Color.Green;
-            this.label_info.Location = new System.Drawing.Point(214, 0);
+            this.label_info.Location = new System.Drawing.Point(213, 0);
             this.label_info.Name = "label_info";
             this.label_info.Size = new System.Drawing.Size(83, 13);
             this.label_info.TabIndex = 4;
@@ -219,7 +220,7 @@
             // 
             // button_Go_Recherche
             // 
-            this.button_Go_Recherche.Location = new System.Drawing.Point(1186, 3);
+            this.button_Go_Recherche.Location = new System.Drawing.Point(1184, 3);
             this.button_Go_Recherche.Name = "button_Go_Recherche";
             this.button_Go_Recherche.Size = new System.Drawing.Size(34, 23);
             this.button_Go_Recherche.TabIndex = 6;
@@ -232,7 +233,7 @@
             this.progressBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.progressBar.Location = new System.Drawing.Point(3, 3);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(205, 23);
+            this.progressBar.Size = new System.Drawing.Size(204, 23);
             this.progressBar.TabIndex = 8;
             this.progressBar.Visible = false;
             // 
@@ -428,7 +429,7 @@
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.93361F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 91F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 216F));
-            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.36034F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.63966F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 244F));
@@ -455,7 +456,7 @@
             "Tous",
             "Photos",
             "Tags"});
-            this.comboBox_Recherche.Location = new System.Drawing.Point(879, 3);
+            this.comboBox_Recherche.Location = new System.Drawing.Point(877, 3);
             this.comboBox_Recherche.Name = "comboBox_Recherche";
             this.comboBox_Recherche.Size = new System.Drawing.Size(85, 21);
             this.comboBox_Recherche.TabIndex = 9;
