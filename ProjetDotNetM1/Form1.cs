@@ -354,8 +354,11 @@ namespace ProjetDotNetM1
             }
             else//Sinon on renomme le noeud désiré
             {
-                label_info.Text = "Renommage fini.";
-                label_info.ForeColor = Color.Green;
+                TreeNode node = tv.SelectedNode;
+                label_info.Text = "Renommer le tag";
+                label_info.ForeColor = Color.OrangeRed;
+                tv.LabelEdit = true;
+                node.BeginEdit();
             }
         }
 
@@ -368,7 +371,7 @@ namespace ProjetDotNetM1
             tv.SelectedNode.Nodes.Add(newNode);//Ajout du noeud avec comme père la sélection
             tv.SelectedNode = newNode;//On sélectionne notre nouveau noeud
             tv.ExpandAll();//On étend TOUS le treeview
-            label_info.Text = "Ajout d'un nouveau tag";//MaJ du label
+            label_info.Text = "Ajout d'un nouveau tag - Modifier son nom";//MaJ du label
             label_info.ForeColor = Color.OrangeRed;//Indication en orange car action en cours
             tv.LabelEdit = true;//On accepte l'édition de tag
             newNode.BeginEdit();//Permet d'éditer le tag
@@ -390,6 +393,7 @@ namespace ProjetDotNetM1
         {
             //On récupere le gestionnaire
             GestionnaireTags gestionnaire = GestionnaireTags.Instance;
+            gestionnaire.exportToXml(GetTreeViewActif(), gestionnaire.Chemin + gestionnaire.NomXML);//Exportation en XML
 
             //On demande un affichage
             gestionnaire.AfficheTreeView(GetTreeViewActif());
@@ -407,9 +411,10 @@ namespace ProjetDotNetM1
                     if (e.Label.IndexOfAny(new char[] { ' ','@', '.', ',', '!' }) == -1) //Si aucun des caractères sont présent 
                     {
                         e.Node.EndEdit(false);//Arret de l'édition avec aucune annulation sur le label
+                        node.Text = e.Label;
                         GestionnaireTags gt = GestionnaireTags.Instance;
                         gt.exportToXml(GetTreeViewActif(), gt.Chemin + gt.NomXML);//Exportation en XML
-                        label_info.Text = "Fin ajout";//Affichage de l'information
+                        label_info.Text = "Modification du tag ok";//Affichage de l'information
                         label_info.ForeColor = Color.Green;//Vert car c'est OK
                     }
                     else
@@ -433,14 +438,18 @@ namespace ProjetDotNetM1
                 e.Node.EndEdit(false);
                 GestionnaireTags gt = GestionnaireTags.Instance;
                 gt.exportToXml(GetTreeViewActif(), gt.Chemin + gt.NomXML);
-                label_info.Text = "Fin ajout";
+                label_info.Text = "Modification du tag ok";
                 label_info.ForeColor = Color.Green;
             }
         }
 
         private void supprimerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            TreeView tv = GetTreeViewActif();
+            TreeNode node = tv.SelectedNode;
+            node.Remove();
+            GestionnaireTags gt = GestionnaireTags.Instance;
+            gt.exportToXml(GetTreeViewActif(), gt.Chemin + gt.NomXML);//Exportation en XML
         }
     }
 }

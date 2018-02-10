@@ -90,7 +90,7 @@
             // textBox_recherche
             // 
             this.textBox_recherche.BackColor = System.Drawing.Color.LightGray;
-            this.textBox_recherche.Location = new System.Drawing.Point(967, 3);
+            this.textBox_recherche.Location = new System.Drawing.Point(966, 3);
             this.textBox_recherche.Name = "textBox_recherche";
             this.textBox_recherche.Size = new System.Drawing.Size(210, 20);
             this.textBox_recherche.TabIndex = 7;
@@ -177,33 +177,33 @@
             this.rafraîchirToolStripMenuItem,
             this.supprimerToolStripMenuItem});
             this.contextMenuStrip_Tags.Name = "contextMenuStrip_Tags";
-            this.contextMenuStrip_Tags.Size = new System.Drawing.Size(153, 114);
+            this.contextMenuStrip_Tags.Size = new System.Drawing.Size(134, 92);
             // 
             // ajouterToolStripMenuItem
             // 
             this.ajouterToolStripMenuItem.Name = "ajouterToolStripMenuItem";
-            this.ajouterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ajouterToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.ajouterToolStripMenuItem.Text = "Ajouter";
             this.ajouterToolStripMenuItem.Click += new System.EventHandler(this.AjouterToolStripMenuItem_Click);
             // 
             // renommerToolStripMenuItem
             // 
             this.renommerToolStripMenuItem.Name = "renommerToolStripMenuItem";
-            this.renommerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.renommerToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.renommerToolStripMenuItem.Text = "Renommer";
             this.renommerToolStripMenuItem.Click += new System.EventHandler(this.RenommerToolStripMenuItem_Click_1);
             // 
             // rafraîchirToolStripMenuItem
             // 
             this.rafraîchirToolStripMenuItem.Name = "rafraîchirToolStripMenuItem";
-            this.rafraîchirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rafraîchirToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.rafraîchirToolStripMenuItem.Text = "Rafraîchir";
             this.rafraîchirToolStripMenuItem.Click += new System.EventHandler(this.RafraîchirToolStripMenuItem_Click_1);
             // 
             // supprimerToolStripMenuItem
             // 
             this.supprimerToolStripMenuItem.Name = "supprimerToolStripMenuItem";
-            this.supprimerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.supprimerToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.supprimerToolStripMenuItem.Text = "Supprimer";
             this.supprimerToolStripMenuItem.Click += new System.EventHandler(this.supprimerToolStripMenuItem_Click);
             // 
@@ -221,7 +221,7 @@
             // 
             // button_Go_Recherche
             // 
-            this.button_Go_Recherche.Location = new System.Drawing.Point(1183, 3);
+            this.button_Go_Recherche.Location = new System.Drawing.Point(1182, 3);
             this.button_Go_Recherche.Name = "button_Go_Recherche";
             this.button_Go_Recherche.Size = new System.Drawing.Size(34, 23);
             this.button_Go_Recherche.TabIndex = 6;
@@ -430,7 +430,7 @@
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.93361F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 91F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 216F));
-            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 44F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.36034F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.63966F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 244F));
@@ -457,7 +457,7 @@
             "Tous",
             "Photos",
             "Tags"});
-            this.comboBox_Recherche.Location = new System.Drawing.Point(876, 3);
+            this.comboBox_Recherche.Location = new System.Drawing.Point(875, 3);
             this.comboBox_Recherche.Name = "comboBox_Recherche";
             this.comboBox_Recherche.Size = new System.Drawing.Size(85, 21);
             this.comboBox_Recherche.TabIndex = 9;

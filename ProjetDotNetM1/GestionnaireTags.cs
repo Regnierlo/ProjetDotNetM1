@@ -211,19 +211,27 @@ namespace ProjetDotNetM1
             sr.WriteLine("<" + tv.Nodes[0].Text + ">");
             foreach (TreeNode node in tv.Nodes)
             {
-                saveNode(node.Nodes);
+                saveNode(node.Nodes,1);
             }
             //Close the root node
             sr.WriteLine("</" + tv.Nodes[0].Text + ">");
             sr.Close();
         }
 
-        private void saveNode(TreeNodeCollection tnc)
+        private void saveNode(TreeNodeCollection tnc, int n)
         {
             foreach (TreeNode node in tnc)
             {
+                for (int i = 0; i < n; i++)
+                    sr.Write("  ");
                 sr.WriteLine("<" + node.Text + ">");
-                saveNode(node.Nodes);
+
+                n++;
+                saveNode(node.Nodes,n);
+                n--;
+
+                for (int i = 0; i < n; i++)
+                    sr.Write("  ");
                 sr.WriteLine("</" + node.Text + ">");
             }
         }
