@@ -451,5 +451,15 @@ namespace ProjetDotNetM1
             GestionnaireTags gt = GestionnaireTags.Instance;
             gt.exportToXml(GetTreeViewActif(), gt.Chemin + gt.NomXML);//Exportation en XML
         }
+
+        private void monterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void descendreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

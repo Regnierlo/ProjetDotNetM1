@@ -71,6 +71,8 @@
             this.Modifier_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MiseAJour_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_barreAccueil = new System.Windows.Forms.MenuStrip();
+            this.monterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.descendreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel_Ensemble.SuspendLayout();
             this.tableLayoutPanel_Accueil.SuspendLayout();
             this.contextMenuStrip_Tags.SuspendLayout();
@@ -90,7 +92,7 @@
             // textBox_recherche
             // 
             this.textBox_recherche.BackColor = System.Drawing.Color.LightGray;
-            this.textBox_recherche.Location = new System.Drawing.Point(966, 3);
+            this.textBox_recherche.Location = new System.Drawing.Point(965, 3);
             this.textBox_recherche.Name = "textBox_recherche";
             this.textBox_recherche.Size = new System.Drawing.Size(210, 20);
             this.textBox_recherche.TabIndex = 7;
@@ -174,36 +176,38 @@
             this.contextMenuStrip_Tags.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ajouterToolStripMenuItem,
             this.renommerToolStripMenuItem,
+            this.monterToolStripMenuItem,
+            this.descendreToolStripMenuItem,
             this.rafraîchirToolStripMenuItem,
             this.supprimerToolStripMenuItem});
             this.contextMenuStrip_Tags.Name = "contextMenuStrip_Tags";
-            this.contextMenuStrip_Tags.Size = new System.Drawing.Size(134, 92);
+            this.contextMenuStrip_Tags.Size = new System.Drawing.Size(153, 158);
             // 
             // ajouterToolStripMenuItem
             // 
             this.ajouterToolStripMenuItem.Name = "ajouterToolStripMenuItem";
-            this.ajouterToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.ajouterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.ajouterToolStripMenuItem.Text = "Ajouter";
             this.ajouterToolStripMenuItem.Click += new System.EventHandler(this.AjouterToolStripMenuItem_Click);
             // 
             // renommerToolStripMenuItem
             // 
             this.renommerToolStripMenuItem.Name = "renommerToolStripMenuItem";
-            this.renommerToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.renommerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.renommerToolStripMenuItem.Text = "Renommer";
             this.renommerToolStripMenuItem.Click += new System.EventHandler(this.RenommerToolStripMenuItem_Click_1);
             // 
             // rafraîchirToolStripMenuItem
             // 
             this.rafraîchirToolStripMenuItem.Name = "rafraîchirToolStripMenuItem";
-            this.rafraîchirToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.rafraîchirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.rafraîchirToolStripMenuItem.Text = "Rafraîchir";
             this.rafraîchirToolStripMenuItem.Click += new System.EventHandler(this.RafraîchirToolStripMenuItem_Click_1);
             // 
             // supprimerToolStripMenuItem
             // 
             this.supprimerToolStripMenuItem.Name = "supprimerToolStripMenuItem";
-            this.supprimerToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.supprimerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.supprimerToolStripMenuItem.Text = "Supprimer";
             this.supprimerToolStripMenuItem.Click += new System.EventHandler(this.supprimerToolStripMenuItem_Click);
             // 
@@ -213,7 +217,7 @@
             this.label_info.BackColor = System.Drawing.Color.LightGray;
             this.label_info.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_info.ForeColor = System.Drawing.Color.Green;
-            this.label_info.Location = new System.Drawing.Point(213, 0);
+            this.label_info.Location = new System.Drawing.Point(212, 0);
             this.label_info.Name = "label_info";
             this.label_info.Size = new System.Drawing.Size(83, 13);
             this.label_info.TabIndex = 4;
@@ -221,7 +225,7 @@
             // 
             // button_Go_Recherche
             // 
-            this.button_Go_Recherche.Location = new System.Drawing.Point(1182, 3);
+            this.button_Go_Recherche.Location = new System.Drawing.Point(1181, 3);
             this.button_Go_Recherche.Name = "button_Go_Recherche";
             this.button_Go_Recherche.Size = new System.Drawing.Size(34, 23);
             this.button_Go_Recherche.TabIndex = 6;
@@ -234,7 +238,7 @@
             this.progressBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.progressBar.Location = new System.Drawing.Point(3, 3);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(204, 23);
+            this.progressBar.Size = new System.Drawing.Size(203, 23);
             this.progressBar.TabIndex = 8;
             this.progressBar.Visible = false;
             // 
@@ -430,7 +434,7 @@
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.93361F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 91F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 216F));
-            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 44F));
+            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.36034F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.63966F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 244F));
@@ -457,7 +461,7 @@
             "Tous",
             "Photos",
             "Tags"});
-            this.comboBox_Recherche.Location = new System.Drawing.Point(875, 3);
+            this.comboBox_Recherche.Location = new System.Drawing.Point(874, 3);
             this.comboBox_Recherche.Name = "comboBox_Recherche";
             this.comboBox_Recherche.Size = new System.Drawing.Size(85, 21);
             this.comboBox_Recherche.TabIndex = 9;
@@ -560,6 +564,20 @@
             this.menuStrip_barreAccueil.TabIndex = 1;
             this.menuStrip_barreAccueil.Text = "menuStrip1";
             // 
+            // monterToolStripMenuItem
+            // 
+            this.monterToolStripMenuItem.Name = "monterToolStripMenuItem";
+            this.monterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.monterToolStripMenuItem.Text = "Monter";
+            this.monterToolStripMenuItem.Click += new System.EventHandler(this.monterToolStripMenuItem_Click);
+            // 
+            // descendreToolStripMenuItem
+            // 
+            this.descendreToolStripMenuItem.Name = "descendreToolStripMenuItem";
+            this.descendreToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.descendreToolStripMenuItem.Text = "Descendre";
+            this.descendreToolStripMenuItem.Click += new System.EventHandler(this.descendreToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -635,6 +653,8 @@
         private System.Windows.Forms.ToolStripMenuItem rafraîchirToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem supprimerToolStripMenuItem;
         private System.Windows.Forms.ComboBox comboBox_Recherche;
+        private System.Windows.Forms.ToolStripMenuItem monterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem descendreToolStripMenuItem;
     }
 }
 
