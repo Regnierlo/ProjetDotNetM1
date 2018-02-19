@@ -57,5 +57,27 @@ namespace ProjetDotNetM1
                 bar.Visible = false;
             }
         }
+        public string rechercheinfo(string urlEntry)
+        {
+            string  listInfo = "";
+            foreach(GestionImage urlSearch in ListeImg)
+            {
+                if(urlSearch.ImgUrl == urlEntry)
+                {
+                    listInfo = "Nom : "+urlSearch.ImgUrl+"\n";
+                    listInfo = listInfo + "Tags : ";
+                    foreach(string tag in urlSearch.Tag)
+                    {
+                        listInfo = listInfo + tag;
+                        if(urlSearch.Tag[urlSearch.Tag.Count-1] != tag)
+                        {
+                            listInfo = listInfo + ";";
+                        }
+                    }
+                    listInfo = listInfo + "\n";
+                }
+            }
+            return listInfo;
+        }
     }
 }

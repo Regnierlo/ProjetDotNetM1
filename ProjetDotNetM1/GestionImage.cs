@@ -102,7 +102,7 @@ namespace ProjetDotNetM1
             catch
             {
                 img.Dispose();
-                ArrayList tagVide = new ArrayList { "test" };
+                ArrayList tagVide = new ArrayList { "" };
                 AjoutTag(tagVide);
                 return new List<string>();
             }

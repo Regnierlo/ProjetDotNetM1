@@ -12,7 +12,7 @@ namespace ProjetDotNetM1
     {
         GestionListeImages images;
         List<System.Windows.Forms.PictureBox> pictureList;
-        
+        string imageSelect;
         public Form1()
         {
 
@@ -86,17 +86,18 @@ namespace ProjetDotNetM1
                 }
                 if (img.Orientation == 6 | img.Orientation == 8)
                 {
-                    haut = 200;
+                    haut = 200-20;
                     double largD = (double)image.Width / (double)image.Height * 200;
-                    larg = (int)largD;
+                    larg = (int)largD-20;
                 }
                 else
                 {
-                    larg = tableLayoutPanel_Photos.Controls.Container.Width / 5;
+                    larg = tableLayoutPanel_Photos.Controls.Container.Width / 5-20;
                     double hautD = (double)image.Height/(double)image.Width * (double)tableLayoutPanel_Photos.Controls.Container.Width/5;
-                    haut = (int)hautD;
+                    haut = (int)hautD-20;
                 }
                 PictureBox pic = new PictureBox() { Image = new Bitmap(image, new Size(larg, haut)) };
+                pic.Name = img.ImgUrl;
                 pictureList.Add( pic );
                 pictureList[pictureList.Count-1].Click += new System.EventHandler(this.Pic_Click);
 
@@ -116,12 +117,16 @@ namespace ProjetDotNetM1
         }
         private void Pic_Click(object sender, EventArgs e)
         {
-            foreach(PictureBox picture in pictureList)
+            PictureBox pic = (PictureBox)sender;
+            int i = 0;
+            foreach (PictureBox picture in pictureList)
             {
                 picture.BackColor = Color.Transparent;
+                i = i++;
             }
-            PictureBox pic = (PictureBox)sender;
             pic.BackColor = Color.DeepSkyBlue;
+            imageSelect = pic.Name;
+            richTextBox_infoImage.Text = images.rechercheinfo(pic.Name);
         }
         /// <summary>
         /// Fonction permettant de mettre à jour le dossier d'images lors du lancement de l'application
