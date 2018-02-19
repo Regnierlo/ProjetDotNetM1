@@ -56,29 +56,6 @@ namespace ProjetDotNetM1
                 System.IO.Directory.CreateDirectory(url);
                 bar.Visible = false;
             }
-
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="url"></param>
-        /// <returns></returns>
-        public string RechercheImage(string url)
-        {
-            string res = null;
-            int i = 0;
-            foreach (GestionImage img in ListeImg)
-            {
-                
-                if (img.ImgUrl == url)
-                {
-                    ListeImg.RemoveAt(i);
-                    break;
-                }
-                i++;
-            }
-            return res;
         }
     }
 }

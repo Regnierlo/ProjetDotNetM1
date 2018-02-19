@@ -102,9 +102,12 @@ namespace ProjetDotNetM1
             catch
             {
                 img.Dispose();
+                ArrayList tagVide = new ArrayList { "test" };
+                AjoutTag(tagVide);
                 return new List<string>();
             }
         }
+
         /// <summary>
         /// permet de recupérer l'orientation d'une image tel qu'elle est défini dans les metadonnée
         /// 0x0112 est le code correspondant a l'orientation
@@ -130,15 +133,20 @@ namespace ProjetDotNetM1
             }
             catch
             {
+                Bitmap imgRe = new Bitmap(ProjetDotNetM1.Properties.Resources.remplacement_remplacement_image);
+                Image imgRef = ProjetDotNetM1.Properties.Resources.remplacement_remplacement_image;
+                var propItem = imgRef.GetPropertyItem(0x0112);
+                img.SetPropertyItem(propItem);
+                SaveImg(img);
                 img.Dispose();
                 return 1;
             }
         }
         
-
         /// <summary>
         /// permet de remplacer les tags existant de l'image par les tag contenue dans l'ArrayList en entree
-        /// essaie d'ajouter un tag existant et si une exeption null est levée (donc aucun tag existant) récupère une structure de métadonnées sur une image qui en contient et la modifie pour l'appliquer a la nouvelle image
+        /// essaie d'ajouter un tag existant et si une exeption null est levée (donc aucun tag existant) 
+        /// récupère une structure de métadonnées sur une image qui en contient et la modifie pour l'appliquer a la nouvelle image
         /// </summary>
         /// <param name="entry"></param>
         public void AjoutTag(ArrayList entry)
@@ -195,9 +203,8 @@ namespace ProjetDotNetM1
         {
             string imgUrl2 = ImgUrl.Insert(ImgUrl.Length - 4, "a");
             img.Save(imgUrl2, System.Drawing.Imaging.ImageFormat.Jpeg);
+            img.Dispose();
             img = Image.FromFile(imgUrl2);
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
             System.IO.File.Delete(ImgUrl);
             img.Save(ImgUrl, System.Drawing.Imaging.ImageFormat.Jpeg);
             img.Dispose();
