@@ -100,6 +100,7 @@ namespace ProjetDotNetM1
                 pic.Name = img.ImgUrl;
                 pictureList.Add( pic );
                 pictureList[pictureList.Count-1].Click += new System.EventHandler(this.Pic_Click);
+                pictureList[pictureList.Count - 1].DoubleClick += new System.EventHandler(this.Pic_Double_Click);
 
                 pictureList[pictureList.Count - 1].Dock = DockStyle.Fill;
                 pictureList[pictureList.Count - 1].SizeMode = PictureBoxSizeMode.CenterImage;
@@ -115,6 +116,11 @@ namespace ProjetDotNetM1
                 row.Height = 200F;
             }
         }
+        /// <summary>
+        /// evenement de clic pour chacune des picture box de la liste
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Pic_Click(object sender, EventArgs e)
         {
             PictureBox pic = (PictureBox)sender;
@@ -127,6 +133,15 @@ namespace ProjetDotNetM1
             pic.BackColor = Color.DeepSkyBlue;
             imageSelect = pic.Name;
             richTextBox_infoImage.Text = images.rechercheinfo(pic.Name);
+        }
+        /// <summary>
+        /// evenement de deouble click pour chacune des picture box de la liste
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Pic_Double_Click(object sender, EventArgs e)
+        {
+            botonModifier();
         }
         /// <summary>
         /// Fonction permettant de mettre à jour le dossier d'images lors du lancement de l'application
@@ -238,10 +253,58 @@ namespace ProjetDotNetM1
         /// <param name="e"></param>
         private void ModifierToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            botonModifier();
+        }
+        /// <summary>
+        /// fonction pour entrer dans le menu modification
+        /// </summary>
+        private void botonModifier()
+        {
             tableLayoutPanel_Ensemble.Hide();
             tableLayoutPanel_Parametres.Hide();
             tableLayoutPanel_Modification.Show();
-            RafraichirTreeView();//Affiche les tags dans le treeView
+            FileStream fs = new FileStream(imageSelect, FileMode.Open);
+            Image image = Image.FromStream(fs);
+            fs.Close();
+            int orientation = images.rechercheOrientation(imageSelect);
+            int larg;
+            int haut;
+            switch (orientation)
+            {
+                case 6:
+                    image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    break;
+                case 8:
+                    image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                    break;
+                case 2:
+                    //affichage optimal non garanti 
+                    image.RotateFlip(RotateFlipType.RotateNoneFlipX);
+                    break;
+                case 3:
+                    image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                    break;
+                case 4:
+                    //affichage optimal non garanti 
+                    image.RotateFlip(RotateFlipType.RotateNoneFlipY);
+                    break;
+                case 5:
+                    //affichage optimal non garanti 
+                    image.RotateFlip(RotateFlipType.Rotate270FlipX);
+                    break;
+                case 7:
+                    //affichage optimal non garanti 
+                    image.RotateFlip(RotateFlipType.Rotate90FlipX);
+                    break;
+                default:
+                    break;
+            }
+            haut = pictureBoxModifAfficheImage.Height;
+            double largD = (double)image.Width / (double)image.Height * pictureBoxModifAfficheImage.Height;
+            larg = (int)largD;
+            pictureBoxModifAfficheImage.Image = new Bitmap(image, new Size(larg, haut));
+            image.Dispose();
+            //RafraichirTreeView();//Affiche les tags dans le treeView
         }
 
         /// <summary>

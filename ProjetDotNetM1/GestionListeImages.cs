@@ -57,6 +57,11 @@ namespace ProjetDotNetM1
                 bar.Visible = false;
             }
         }
+        /// <summary>
+        /// permet d'obtenir les information d'une image a affivher dans le bas de la fenetre principale grace a l'url de l'image
+        /// </summary>
+        /// <param name="urlEntry"></param>
+        /// <returns></returns>
         public string rechercheinfo(string urlEntry)
         {
             string  listInfo = "";
@@ -78,6 +83,24 @@ namespace ProjetDotNetM1
                 }
             }
             return listInfo;
+        }
+        /// <summary>
+        /// permet d'avoir l'orientation d'une image grace a l'url
+        /// 
+        /// </summary>
+        /// <param name="urlEntry"></param>
+        /// <returns></returns>
+        public int rechercheOrientation(string urlEntry)
+        {
+            int orientation = 0;
+            foreach (GestionImage urlSearch in ListeImg)
+            {
+                if (urlSearch.ImgUrl == urlEntry)
+                {
+                    orientation = urlSearch.Orientation;
+                }
+            }
+            return orientation;
         }
     }
 }
