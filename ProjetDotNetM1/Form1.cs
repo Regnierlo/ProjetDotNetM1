@@ -433,13 +433,20 @@ namespace ProjetDotNetM1
                     e.Node.BeginEdit();//On reommence l'édition
                 }
             }
-            else //S'il n'a pas changé on lui donne le nom par défaut
+            else if(node.Text == "NouveauTag") //S'il n'a pas changé on lui donne le nom par défaut
             {
                 e.Node.EndEdit(false);
                 GestionnaireTags gt = GestionnaireTags.Instance;
                 gt.exportToXml(GetTreeViewActif(), gt.Chemin + gt.NomXML);
                 label_info.Text = "Modification du tag ok";
                 label_info.ForeColor = Color.Green;
+            }
+            else
+            {
+                node.EndEdit(true);//On annule l'édition
+                label_info.Text = "Nom de tag incorrect";//Informaiton pour l'utilisateur
+                label_info.ForeColor = Color.Red;//Rouge car c'est pas cool
+                e.Node.BeginEdit();//On reommence l'édition
             }
         }
 
@@ -454,12 +461,34 @@ namespace ProjetDotNetM1
 
         private void monterToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            TreeView tv = GetTreeViewActif();
+            TreeNode node = tv.SelectedNode;
+            TreeNode parent = node.Parent;
+            GestionnaireTags gestionnaire = GestionnaireTags.Instance;
 
+            if(parent != null && parent.Text != gestionnaire.Root)
+            {
+                TreeNode parentParent = parent.Parent;
+                node.Remove();
+                parentParent.Nodes.Add(node);
+                gestionnaire.exportToXml(tv, gestionnaire.Chemin + gestionnaire.NomXML);
+                label_info.Text = "Le tag et ses fils ont été remontés";
+                label_info.ForeColor = Color.Green;
+            }
+            else
+            {
+                label_info.Text = "Impossible de monter au dessus de la racine";
+                label_info.ForeColor = Color.Red;
+            }
         }
 
         private void descendreToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            TreeView tv = GetTreeViewActif();
+            TreeNode node = tv.SelectedNode;
 
+            DescendreTag dt = new DescendreTag(tv, node);
+            dt.ShowDialog();
         }
     }
 }

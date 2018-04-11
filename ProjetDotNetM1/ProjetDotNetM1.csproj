@@ -58,6 +58,12 @@
     <Compile Include="ConfirmationChangement.Designer.cs">
       <DependentUpon>ConfirmationChangement.cs</DependentUpon>
     </Compile>
+    <Compile Include="DescendreTag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DescendreTag.Designer.cs">
+      <DependentUpon>DescendreTag.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +86,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConfirmationChangement.resx">
       <DependentUpon>ConfirmationChangement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DescendreTag.resx">
+      <DependentUpon>DescendreTag.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

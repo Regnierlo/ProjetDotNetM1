@@ -39,6 +39,11 @@ namespace ProjetDotNetM1
             get { return _ltag; }
         }
 
+        public String Root
+        {
+            get { return string_root; }
+        }
+
         public XmlDocument Doc
         {
             get { return _doc; }
@@ -204,18 +209,24 @@ namespace ProjetDotNetM1
 
         public void exportToXml(TreeView tv, string filename)
         {
-            sr = new StreamWriter(filename, false, System.Text.Encoding.UTF8);
-            //Write the header
-            sr.WriteLine("<?xml version=\"1.0\" encoding=\"utf-8\" ?>");
-            //Write our root node
-            sr.WriteLine("<" + tv.Nodes[0].Text + ">");
-            foreach (TreeNode node in tv.Nodes)
+            try
             {
-                saveNode(node.Nodes,1);
+                sr = new StreamWriter(filename, false, System.Text.Encoding.UTF8);
+                //Write the header
+                sr.WriteLine("<?xml version=\"1.0\" encoding=\"utf-8\" ?>");
+                //Write our root node
+                sr.WriteLine("<" + tv.Nodes[0].Text + ">");
+                foreach (TreeNode node in tv.Nodes)
+                {
+                    saveNode(node.Nodes, 1);
+                }
+                //Close the root node
+                sr.WriteLine("</" + tv.Nodes[0].Text + ">");
+                sr.Close();
+            }catch(Exception e)
+            {
+
             }
-            //Close the root node
-            sr.WriteLine("</" + tv.Nodes[0].Text + ">");
-            sr.Close();
         }
 
         private void saveNode(TreeNodeCollection tnc, int n)
