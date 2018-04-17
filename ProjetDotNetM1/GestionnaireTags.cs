@@ -53,7 +53,8 @@ namespace ProjetDotNetM1
         #region Creation fichier et objet XML
         public GestionnaireTags()
         {
-            _chemin = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            _chemin = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+
             _chemin = Path.Combine(_chemin, "FHRImages");
             _chemin = String.Concat(_chemin, "\\");
             _cheminComplet = String.Concat(_chemin, _nomXML);
@@ -69,6 +70,17 @@ namespace ProjetDotNetM1
         private void CheckXMLFile()
         {
             //Si le fichier n'existe pas
+            if(!Directory.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FHRImages")))
+            {
+                try
+                {
+                    Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FHRImages"));
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
             if (!File.Exists(_chemin + _nomXML))
             {
                 try

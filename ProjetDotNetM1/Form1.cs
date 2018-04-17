@@ -377,6 +377,8 @@ namespace ProjetDotNetM1
             newNode.BeginEdit();//Permet d'éditer le tag
 
             gXML.AjouterTag(newNode.Text, tv.SelectedNode);//On ajoute le tag dans la liste
+
+            gXML.exportToXml(GetTreeViewActif(), gXML.Chemin + gXML.NomXML);//Exportation en XML
         }
 
         /// <summary>
@@ -393,7 +395,6 @@ namespace ProjetDotNetM1
         {
             //On récupere le gestionnaire
             GestionnaireTags gestionnaire = GestionnaireTags.Instance;
-            gestionnaire.exportToXml(GetTreeViewActif(), gestionnaire.Chemin + gestionnaire.NomXML);//Exportation en XML
 
             //On demande un affichage
             gestionnaire.AfficheTreeView(GetTreeViewActif());
@@ -454,9 +455,18 @@ namespace ProjetDotNetM1
         {
             TreeView tv = GetTreeViewActif();
             TreeNode node = tv.SelectedNode;
-            node.Remove();
             GestionnaireTags gt = GestionnaireTags.Instance;
-            gt.exportToXml(GetTreeViewActif(), gt.Chemin + gt.NomXML);//Exportation en XML
+            if (node.Text != gt.Root)
+            {
+                node.Remove();
+                gt.exportToXml(GetTreeViewActif(), gt.Chemin + gt.NomXML);//Exportation en XML
+            }
+            else
+            {
+                label_info.Text = "Impossible de supprimer le noeud " + gt.Root+".";
+                label_info.ForeColor = Color.Red;
+            }
+
         }
 
         private void monterToolStripMenuItem_Click(object sender, EventArgs e)
