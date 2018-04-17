@@ -77,87 +77,114 @@ namespace ProjetDotNetM1
                 {
                     try
                     {
-                        System.IO.File.Copy(img/*.ImgUrl*/, saveUrl, false);
+                        if (!File.Exists(img)){ //si le fichier n'existe pas deja on essaie de la copier
+                            System.IO.File.Copy(img/*.ImgUrl*/, saveUrl, false);
+                        }else//si le fichier existe deja 
+                        {
+                            Importation_deja_present(img, saveUrl, name, saveUrlDos);
+                        }
+                        
                     }
                     catch (System.IO.DirectoryNotFoundException)
                     {
-                        System.IO.Directory.CreateDirectory(saveUrlDos);
-                        System.IO.File.Copy(img/*.ImgUrl*/, saveUrl, false);
-                    }
-                    catch (System.IO.IOException)
-                    {
-                        FileStream fs = new FileStream(img, FileMode.Open);
-                        Image image = Image.FromStream(fs);
-                        FileStream fs2 = new FileStream(saveUrl, FileMode.Open);
-                        Image image2 = Image.FromStream(fs);
-                        fs.Close();
-                        fs2.Close();
-                        FormImageExistante form = new FormImageExistante(image, image2);
-                        DialogResult res = form.ShowDialog();
-                        image.Dispose();
-                        image2.Dispose();
-                        if (res == DialogResult.Cancel)
+                        try
                         {
-                            System.Console.WriteLine("Garde l'image déjà présente dans le répertoire");
-                        }
-                        else
-                        { 
-                            if (res == DialogResult.Ignore)
+                            System.IO.Directory.CreateDirectory(saveUrlDos);
+                            try
                             {
-                                System.Console.WriteLine("Force la copie en écrasant l'image");
-                                System.IO.File.Copy(img/*.ImgUrl*/, saveUrl, true);
+                                System.IO.File.Copy(img/*.ImgUrl*/, saveUrl, false);
                             }
-                            else
-                            {  
-                                System.Console.WriteLine("Confirmation de l'image avec ajout du parenthesage " + name);
-                                System.Text.RegularExpressions.Regex myRegex = new Regex(@"(\([0-9]+\).JPG)");
-                                System.Text.RegularExpressions.Regex myRegex2 = new Regex(@"(\([0-9]+\))");
-                                if (myRegex.IsMatch(name))
-                                {
-                                    string[] substrings = myRegex2.Split(name);
-                                    string number = "";
-                                    number = substrings[substrings.Length - 2].Substring(1, substrings[substrings.Length - 2].Length - 2);
-                                    int nombre = Int32.Parse(number) + 1;
-                                    number = "(" + nombre + ")";
-                                    substrings[substrings.Length - 2] = number;
-                                    string nouveauName = "";
-                                    foreach (string tmp in substrings)
-                                    {
-                                        nouveauName = nouveauName + tmp;
-                                    }
-                                    string nouveauSaveUrl = Path.Combine(saveUrlDos, nouveauName);
-                                    if(File.Exists(nouveauSaveUrl)){
-                                        nouveauSaveUrl = RecursiveNombre(nouveauName,saveUrlDos);
-                                    }
-                                    System.IO.File.Copy(img/*.ImgUrl*/, nouveauSaveUrl, false);
-                                }
-                                else //cas  zero
-                                {
-                                    string[] fragmentName = name.Split('.');
-                                    string nouveauName = "";
-                                    foreach (string str in fragmentName)
-                                    {
-                                        if (str == "jpg" | str == "JPG")
-                                        {
-                                            nouveauName = nouveauName + "(1)." + str;
-                                        }
-                                        else
-                                        {
-                                            nouveauName = nouveauName + str;
-                                        }
-                                    }
-                                    string nouveauSaveUrl = Path.Combine(saveUrlDos, nouveauName);
-                                    if(File.Exists(nouveauSaveUrl)){
-                                        nouveauSaveUrl = RecursiveNombre(nouveauName,saveUrlDos);
-                                    }
-                                    System.IO.File.Copy(img/*.ImgUrl*/, nouveauSaveUrl, false);
-                                }
+                            catch (Exception e)
+                            {
+                                System.Console.WriteLine(e.Message);
                             }
+                            
                         }
-                    image.Dispose();
+                        catch (Exception e)
+                        {
+                            System.Console.WriteLine(e.Message);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        System.Console.WriteLine(e.Message);
                     }
                 }
             }
+        }
+        private void Importation_deja_present(string img,string saveUrl,string name,string saveUrlDos)
+        {
+            FileStream fs = new FileStream(img, FileMode.Open);
+            Image image = Image.FromStream(fs);
+            FileStream fs2 = new FileStream(saveUrl, FileMode.Open);
+            Image image2 = Image.FromStream(fs);
+            fs.Close();
+            fs2.Close();
+            FormImageExistante form = new FormImageExistante(image, image2);
+            DialogResult res = form.ShowDialog();
+            image.Dispose();
+            image2.Dispose();
+            if (res == DialogResult.Cancel)
+            {
+                System.Console.WriteLine("Garde l'image déjà présente dans le répertoire");
+            }
+            else
+            {
+                if (res == DialogResult.Ignore)
+                {
+                    System.Console.WriteLine("Force la copie en écrasant l'image");
+                    System.IO.File.Copy(img/*.ImgUrl*/, saveUrl, true);
+                }
+                else
+                {
+                    System.Console.WriteLine("Confirmation de l'image avec ajout du parenthesage " + name);
+                    System.Text.RegularExpressions.Regex myRegex = new Regex(@"(\([0-9]+\).JPG)");
+                    System.Text.RegularExpressions.Regex myRegex2 = new Regex(@"(\([0-9]+\))");
+                    if (myRegex.IsMatch(name))
+                    {
+                        string[] substrings = myRegex2.Split(name);
+                        string number = "";
+                        number = substrings[substrings.Length - 2].Substring(1, substrings[substrings.Length - 2].Length - 2);
+                        int nombre = Int32.Parse(number) + 1;
+                        number = "(" + nombre + ")";
+                        substrings[substrings.Length - 2] = number;
+                        string nouveauName = "";
+                        foreach (string tmp in substrings)
+                        {
+                            nouveauName = nouveauName + tmp;
+                        }
+                        string nouveauSaveUrl = Path.Combine(saveUrlDos, nouveauName);
+                        if (File.Exists(nouveauSaveUrl))
+                        {
+                            nouveauSaveUrl = RecursiveNombre(nouveauName, saveUrlDos);
+                        }
+                        System.IO.File.Copy(img/*.ImgUrl*/, nouveauSaveUrl, false);
+                    }
+                    else //cas  zero
+                    {
+                        string[] fragmentName = name.Split('.');
+                        string nouveauName = "";
+                        foreach (string str in fragmentName)
+                        {
+                            if (str == "jpg" | str == "JPG")
+                            {
+                                nouveauName = nouveauName + "(1)." + str;
+                            }
+                            else
+                            {
+                                nouveauName = nouveauName + str;
+                            }
+                        }
+                        string nouveauSaveUrl = Path.Combine(saveUrlDos, nouveauName);
+                        if (File.Exists(nouveauSaveUrl))
+                        {
+                            nouveauSaveUrl = RecursiveNombre(nouveauName, saveUrlDos);
+                        }
+                        System.IO.File.Copy(img/*.ImgUrl*/, nouveauSaveUrl, false);
+                    }
+                }
+            }
+            image.Dispose();
         }
     }
 }
