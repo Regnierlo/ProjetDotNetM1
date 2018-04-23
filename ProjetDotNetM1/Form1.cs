@@ -135,7 +135,7 @@ namespace ProjetDotNetM1
             richTextBox_infoImage.Text = images.rechercheinfo(pic.Name);
         }
         /// <summary>
-        /// evenement de deouble click pour chacune des picture box de la liste
+        /// evenement de double click pour chacune des picture box de la liste
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -264,51 +264,64 @@ namespace ProjetDotNetM1
         /// </summary>
         private void botonModifier()
         {
-            tableLayoutPanel_Ensemble.Hide();
-            tableLayoutPanel_Parametres.Hide();
-            tableLayoutPanel_Modification.Show();
-            FileStream fs = new FileStream(imageSelect, FileMode.Open);
-            Image image = Image.FromStream(fs);
-            fs.Close();
-            int orientation = images.rechercheOrientation(imageSelect);
-            int larg;
-            int haut;
-            switch (orientation)
+            if (imageSelect != null)
             {
-                case 6:
-                    image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                    break;
-                case 8:
-                    image.RotateFlip(RotateFlipType.Rotate270FlipNone);
-                    break;
-                case 2:
-                    //affichage optimal non garanti 
-                    image.RotateFlip(RotateFlipType.RotateNoneFlipX);
-                    break;
-                case 3:
-                    image.RotateFlip(RotateFlipType.Rotate180FlipNone);
-                    break;
-                case 4:
-                    //affichage optimal non garanti 
-                    image.RotateFlip(RotateFlipType.RotateNoneFlipY);
-                    break;
-                case 5:
-                    //affichage optimal non garanti 
-                    image.RotateFlip(RotateFlipType.Rotate270FlipX);
-                    break;
-                case 7:
-                    //affichage optimal non garanti 
-                    image.RotateFlip(RotateFlipType.Rotate90FlipX);
-                    break;
-                default:
-                    break;
+                //Mis à jour du label
+                label_info.Text = "Modification des tags.";
+                label_info.ForeColor = Color.Green;
+
+
+                tableLayoutPanel_Ensemble.Hide();
+                tableLayoutPanel_Parametres.Hide();
+                tableLayoutPanel_Modification.Show();
+                FileStream fs = new FileStream(imageSelect, FileMode.Open);
+                Image image = Image.FromStream(fs);
+                fs.Close();
+                int orientation = images.rechercheOrientation(imageSelect);
+                int larg;
+                int haut;
+                switch (orientation)
+                {
+                    case 6:
+                        image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                        break;
+                    case 8:
+                        image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                        break;
+                    case 2:
+                        //affichage optimal non garanti 
+                        image.RotateFlip(RotateFlipType.RotateNoneFlipX);
+                        break;
+                    case 3:
+                        image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                        break;
+                    case 4:
+                        //affichage optimal non garanti 
+                        image.RotateFlip(RotateFlipType.RotateNoneFlipY);
+                        break;
+                    case 5:
+                        //affichage optimal non garanti 
+                        image.RotateFlip(RotateFlipType.Rotate270FlipX);
+                        break;
+                    case 7:
+                        //affichage optimal non garanti 
+                        image.RotateFlip(RotateFlipType.Rotate90FlipX);
+                        break;
+                    default:
+                        break;
+                }
+                haut = pictureBoxModifAfficheImage.Height;
+                double largD = (double)image.Width / (double)image.Height * pictureBoxModifAfficheImage.Height;
+                larg = (int)largD;
+                pictureBoxModifAfficheImage.Image = new Bitmap(image, new Size(larg, haut));
+                image.Dispose();
+                RafraichirTreeView();//Affiche les tags dans le treeView
             }
-            haut = pictureBoxModifAfficheImage.Height;
-            double largD = (double)image.Width / (double)image.Height * pictureBoxModifAfficheImage.Height;
-            larg = (int)largD;
-            pictureBoxModifAfficheImage.Image = new Bitmap(image, new Size(larg, haut));
-            image.Dispose();
-            //RafraichirTreeView();//Affiche les tags dans le treeView
+            else
+            {
+                label_info.Text = "Veuillez sélectionner une image afin de modifier ses tags.";
+                label_info.ForeColor = Color.Red;
+            }
         }
 
         /// <summary>
@@ -523,38 +536,49 @@ namespace ProjetDotNetM1
             }
         }
 
+        /// <summary>
+        /// Supprimer un tag dans le treeView
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void supprimerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TreeView tv = GetTreeViewActif();
-            TreeNode node = tv.SelectedNode;
-            GestionnaireTags gt = GestionnaireTags.Instance;
-            if (node.Text != gt.Root)
+            TreeView tv = GetTreeViewActif();//On récupère le treeview actif
+            TreeNode node = tv.SelectedNode;//On recupère le noeud sélectionné
+            GestionnaireTags gt = GestionnaireTags.Instance;//On récupère l'instance de GestionnaireTags
+
+            if (node.Text != gt.Root)//Si le noeud sélectionné n'est pas le noeud root
             {
-                node.Remove();
+                node.Remove();//On le supprime
                 gt.exportToXml(GetTreeViewActif(), gt.Chemin + gt.NomXML);//Exportation en XML
             }
-            else
+            else//Sinon
             {
-                label_info.Text = "Impossible de supprimer le noeud " + gt.Root+".";
-                label_info.ForeColor = Color.Red;
+                label_info.Text = "Impossible de supprimer le noeud " + gt.Root+".";//On l'indique dans le label
+                label_info.ForeColor = Color.Red;//En rouge
             }
 
         }
 
+        /// <summary>
+        /// Monter un tag dans la hiérachisation du treeview
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void monterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TreeView tv = GetTreeViewActif();
-            TreeNode node = tv.SelectedNode;
-            TreeNode parent = node.Parent;
-            GestionnaireTags gestionnaire = GestionnaireTags.Instance;
+            TreeView tv = GetTreeViewActif();//On récupère le tag sélectionné
+            TreeNode node = tv.SelectedNode;//On récupère le noeud selectionné
+            TreeNode parent = node.Parent;//On récupère le noeud parent
+            GestionnaireTags gestionnaire = GestionnaireTags.Instance;//On récupère l'instance de GestionnaireTags
 
-            if(parent != null && parent.Text != gestionnaire.Root)
+            if(parent != null && parent.Text != gestionnaire.Root)//Si le noeud parent n'est pas null et n'est pas le noeud root
             {
-                TreeNode parentParent = parent.Parent;
-                node.Remove();
-                parentParent.Nodes.Add(node);
-                gestionnaire.exportToXml(tv, gestionnaire.Chemin + gestionnaire.NomXML);
-                label_info.Text = "Le tag et ses fils ont été remontés";
+                TreeNode parentParent = parent.Parent;//On récupère le parent du parent
+                node.Remove();//On supprime le noeud qu'on veut monter
+                parentParent.Nodes.Add(node);//On ajoute le noeud qu'on veut monter comme fils du parent du parent
+                gestionnaire.exportToXml(tv, gestionnaire.Chemin + gestionnaire.NomXML);//On exporte en XML
+                label_info.Text = "Le tag et ses fils ont été remontés";//On affiche dans le label
                 label_info.ForeColor = Color.Green;
             }
             else
