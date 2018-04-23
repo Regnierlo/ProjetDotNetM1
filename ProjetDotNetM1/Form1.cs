@@ -394,8 +394,14 @@ namespace ProjetDotNetM1
 
             return tv;
         }
+        private void LabelMessage(string message, Color couleur)
+        {
+            label_info.Text = message;
+            label_info.ForeColor = couleur;
+        }
+        
 
-        #region ActionsCliqueDroitTreeView
+        
         /// <summary>
         /// Evenement permettant à l'utilisateur de mettre à jour le dossier d'images
         /// </summary>
@@ -419,6 +425,7 @@ namespace ProjetDotNetM1
             }
         }
 
+        #region ActionsCliqueDroitTreeView
         /// <summary>
         /// Permet de renommer un tags dans le treeView
         /// </summary>
@@ -430,19 +437,16 @@ namespace ProjetDotNetM1
 
             if (tv.SelectedNode == null)//Si aucun tag n'es sélectionné
             {
-                label_info.Text = "Aucun tag sélectionné pour le renommage.";
-                label_info.ForeColor = Color.Red;
+                LabelMessage("Aucun tag sélectionné pour le renommage.", Color.Red);
             }
             else if (tv.SelectedNode.Text == "Liste_des_tags")//Si l'utilisateur tente de renommer le noeud root
             {
-                label_info.Text = "Impossible de renommer le noeud initial.";
-                label_info.ForeColor = Color.Red;
+                LabelMessage("Impossible de renommer le noeud initial.", Color.Red);
             }
             else//Sinon on renomme le noeud désiré
             {
                 TreeNode node = tv.SelectedNode;
-                label_info.Text = "Renommer le tag";
-                label_info.ForeColor = Color.OrangeRed;
+                LabelMessage("Renommer le tag", Color.OrangeRed);
                 tv.LabelEdit = true;
                 node.BeginEdit();
             }
@@ -628,8 +632,7 @@ namespace ProjetDotNetM1
             gestionnaire.exportToXml(tv,gestionnaire.Chemin + gestionnaire.NomXML);
 
 
-            label_info.Text = "Déplacement du tag enregistré";
-            label_info.ForeColor = Color.Green;
+            LabelMessage("Déplacement du tag enregistré", Color.Green);
         }
 
         private void ItemDragPerso(ItemDragEventArgs e)
@@ -658,8 +661,7 @@ namespace ProjetDotNetM1
         {
             e.Effect = DragDropEffects.Move;
 
-            label_info.Text = "Déplacement du tag (ECHAP pour annuler)";
-            label_info.ForeColor = Color.OrangeRed;
+            LabelMessage("Déplacement du tag (ECHAP pour annuler)", Color.OrangeRed);
         }
 
         private void treeView_TagsModification_DragDrop(object sender, DragEventArgs e)
@@ -700,19 +702,16 @@ namespace ProjetDotNetM1
                     {
                         File.Copy(ofd.FileName, gestionnaire.Chemin + gestionnaire.NomXML, true);
                         RafraichirTreeView();
-                        label_info.Text = "Importation réussie.";
-                        label_info.ForeColor = Color.Green;
+                        LabelMessage("Importation réussie", Color.Green);
                     }
                     catch (Exception ex)
                     {
-                        label_info.Text = ex.Message;
-                        label_info.ForeColor = Color.Red;
+                        LabelMessage(ex.Message, Color.Red);
                     }
                 }
                 else
                 {
-                    label_info.Text = "Structure du fichier importé incorrect";
-                    label_info.ForeColor = Color.Red;
+                    LabelMessage("Structure du fichier importé incorrect", Color.Red);
                 }
             }
         }
@@ -736,13 +735,11 @@ namespace ProjetDotNetM1
                 try
                 {
                     File.Copy(gestionnaire.Chemin + gestionnaire.NomXML, sfd.FileName);
-                    label_info.Text = "Exportation effectuée.";
-                    label_info.ForeColor = Color.Green;
+                    LabelMessage("Exportation effectuée.", Color.Green);
                 }
                 catch (Exception ex)
                 {
-                    label_info.Text = ex.Message;
-                    label_info.ForeColor = Color.Red;
+                    LabelMessage(ex.Message, Color.Red);
                 }
             }
         }
