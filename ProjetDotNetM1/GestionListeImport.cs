@@ -77,7 +77,7 @@ namespace ProjetDotNetM1
                 {
                     try
                     {
-                        if (!File.Exists(img)){ //si le fichier n'existe pas deja on essaie de la copier
+                        if (!File.Exists(saveUrl)){ //si le fichier n'existe pas deja on essaie de la copier
                             System.IO.File.Copy(img/*.ImgUrl*/, saveUrl, false);
                         }else//si le fichier existe deja 
                         {
