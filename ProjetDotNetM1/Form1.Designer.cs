@@ -165,6 +165,7 @@
             // 
             // treeView_TagsAcceuil
             // 
+            this.treeView_TagsAcceuil.AllowDrop = true;
             this.treeView_TagsAcceuil.ContextMenuStrip = this.contextMenuStrip_Tags;
             this.treeView_TagsAcceuil.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView_TagsAcceuil.Location = new System.Drawing.Point(3, 3);
@@ -172,6 +173,9 @@
             this.treeView_TagsAcceuil.Size = new System.Drawing.Size(224, 512);
             this.treeView_TagsAcceuil.TabIndex = 1;
             this.treeView_TagsAcceuil.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.treeView_TagsAcceuil_AfterLabelEdit);
+            this.treeView_TagsAcceuil.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.treeView_TagsAcceuil_ItemDrag);
+            this.treeView_TagsAcceuil.DragDrop += new System.Windows.Forms.DragEventHandler(this.treeView_TagsAcceuil_DragDrop);
+            this.treeView_TagsAcceuil.DragEnter += new System.Windows.Forms.DragEventHandler(this.treeView_TagsAcceuil_DragEnter);
             // 
             // contextMenuStrip_Tags
             // 

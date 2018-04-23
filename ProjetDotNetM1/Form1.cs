@@ -596,5 +596,81 @@ namespace ProjetDotNetM1
             DescendreTag dt = new DescendreTag(tv, node);
             dt.ShowDialog();
         }
+
+        private void treeView_TagsAcceuil_DragDrop(object sender, DragEventArgs e)
+        {
+            TreeView tv = GetTreeViewActif();
+            // Retrieve the client coordinates of the drop location.
+            Point targetPoint = tv.PointToClient(new Point(e.X, e.Y));
+
+            // Retrieve the node at the drop location.
+            TreeNode targetNode = tv.GetNodeAt(targetPoint);
+
+            // Retrieve the node that was dragged.
+            TreeNode draggedNode = (TreeNode)e.Data.GetData(typeof(TreeNode));
+
+            // Confirm that the node at the drop location is not 
+            // the dragged node and that target node isn't null
+            // (for example if you drag outside the control)
+            if (!draggedNode.Equals(targetNode) && targetNode != null)
+            {
+                // Remove the node from its current 
+                // location and add it to the node at the drop location.
+                draggedNode.Remove();
+                targetNode.Nodes.Add(draggedNode);
+
+                // Expand the node at the location 
+                // to show the dropped node.
+                targetNode.Expand();
+            }
+        }
+
+        private void DragAndDropPerso()
+        {
+            /*
+             
+            // Retrieve the client coordinates of the drop location.
+            Point targetPoint = tv.PointToClient(new Point(e.X, e.Y));
+
+            // Retrieve the node at the drop location.
+            TreeNode targetNode = tv.GetNodeAt(targetPoint);
+
+            // Retrieve the node that was dragged.
+            TreeNode draggedNode = (TreeNode)e.Data.GetData(typeof(TreeNode));
+
+            // Confirm that the node at the drop location is not 
+            // the dragged node and that target node isn't null
+            // (for example if you drag outside the control)
+            if (!draggedNode.Equals(targetNode) && targetNode != null)
+            {
+                // Remove the node from its current 
+                // location and add it to the node at the drop location.
+                draggedNode.Remove();
+                targetNode.Nodes.Add(draggedNode);
+
+                // Expand the node at the location 
+                // to show the dropped node.
+                targetNode.Expand();
+            }
+
+
+             */
+        }
+
+        private void treeView_TagsAcceuil_ItemDrag(object sender, ItemDragEventArgs e)
+        {
+            
+            TreeView tv = GetTreeViewActif();
+            TreeNode node = (TreeNode)e.Item;
+            Console.WriteLine("JE SUIS DANS ITEM DRAG");
+            Console.WriteLine(node.Text);
+            tv.DoDragDrop(node, DragDropEffects.Move);
+        }
+
+        private void treeView_TagsAcceuil_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Move;
+
+        }
     }
 }
