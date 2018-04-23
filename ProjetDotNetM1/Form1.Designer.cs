@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem("coucou");
-            System.Windows.Forms.ListViewItem listViewItem17 = new System.Windows.Forms.ListViewItem("coucou");
-            System.Windows.Forms.ListViewItem listViewItem18 = new System.Windows.Forms.ListViewItem("coucou");
+            System.Windows.Forms.ListViewItem listViewItem22 = new System.Windows.Forms.ListViewItem("coucou");
+            System.Windows.Forms.ListViewItem listViewItem23 = new System.Windows.Forms.ListViewItem("coucou");
+            System.Windows.Forms.ListViewItem listViewItem24 = new System.Windows.Forms.ListViewItem("coucou");
             this.textBox_recherche = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel_Ensemble = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel_Accueil = new System.Windows.Forms.TableLayoutPanel();
@@ -82,6 +82,9 @@
             this.Modifier_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MiseAJour_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_barreAccueil = new System.Windows.Forms.MenuStrip();
+            this.listeDesTagsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importerUneListeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exporterUneListeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel_Ensemble.SuspendLayout();
             this.tableLayoutPanel_Accueil.SuspendLayout();
             this.contextMenuStrip_Tags.SuspendLayout();
@@ -431,13 +434,13 @@
             // 
             this.listViewTags.CheckBoxes = true;
             this.listViewTags.Dock = System.Windows.Forms.DockStyle.Fill;
-            listViewItem16.StateImageIndex = 0;
-            listViewItem17.StateImageIndex = 0;
-            listViewItem18.StateImageIndex = 0;
+            listViewItem22.StateImageIndex = 0;
+            listViewItem23.StateImageIndex = 0;
+            listViewItem24.StateImageIndex = 0;
             this.listViewTags.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem16,
-            listViewItem17,
-            listViewItem18});
+            listViewItem22,
+            listViewItem23,
+            listViewItem24});
             this.listViewTags.Location = new System.Drawing.Point(3, 3);
             this.listViewTags.Name = "listViewTags";
             this.listViewTags.Size = new System.Drawing.Size(671, 100);
@@ -598,7 +601,8 @@
             // 
             this.Fichier_ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Ouvrir_ToolStripMenuItem,
-            this.Paramètres_ToolStripMenuItem});
+            this.Paramètres_ToolStripMenuItem,
+            this.listeDesTagsToolStripMenuItem});
             this.Fichier_ToolStripMenuItem.Name = "Fichier_ToolStripMenuItem";
             this.Fichier_ToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.Fichier_ToolStripMenuItem.Text = "Fichier";
@@ -610,7 +614,7 @@
             this.Dossier_ToolStripMenuItem,
             this.Fichier_ToolStripMenuItem1});
             this.Ouvrir_ToolStripMenuItem.Name = "Ouvrir_ToolStripMenuItem";
-            this.Ouvrir_ToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.Ouvrir_ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.Ouvrir_ToolStripMenuItem.Text = "Importer";
             // 
             // Dossier_ToolStripMenuItem
@@ -691,6 +695,29 @@
             this.menuStrip_barreAccueil.Size = new System.Drawing.Size(1224, 24);
             this.menuStrip_barreAccueil.TabIndex = 1;
             this.menuStrip_barreAccueil.Text = "menuStrip1";
+            // 
+            // listeDesTagsToolStripMenuItem
+            // 
+            this.listeDesTagsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.importerUneListeToolStripMenuItem,
+            this.exporterUneListeToolStripMenuItem});
+            this.listeDesTagsToolStripMenuItem.Name = "listeDesTagsToolStripMenuItem";
+            this.listeDesTagsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.listeDesTagsToolStripMenuItem.Text = "Liste des tags";
+            // 
+            // importerUneListeToolStripMenuItem
+            // 
+            this.importerUneListeToolStripMenuItem.Name = "importerUneListeToolStripMenuItem";
+            this.importerUneListeToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.importerUneListeToolStripMenuItem.Text = "Importer une liste...";
+            this.importerUneListeToolStripMenuItem.Click += new System.EventHandler(this.importerUneListeToolStripMenuItem_Click);
+            // 
+            // exporterUneListeToolStripMenuItem
+            // 
+            this.exporterUneListeToolStripMenuItem.Name = "exporterUneListeToolStripMenuItem";
+            this.exporterUneListeToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.exporterUneListeToolStripMenuItem.Text = "Exporter une liste...";
+            this.exporterUneListeToolStripMenuItem.Click += new System.EventHandler(this.exporterUneListeToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -780,6 +807,9 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button buttonSupprimerTag;
         private System.Windows.Forms.ListView listViewTags;
+        private System.Windows.Forms.ToolStripMenuItem listeDesTagsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importerUneListeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exporterUneListeToolStripMenuItem;
     }
 }
 

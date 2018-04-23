@@ -19,6 +19,8 @@ namespace ProjetDotNetM1
         private const String string_root = "Liste_des_tags";
         private List<Tag> _ltag;
 
+        private string PremiereLigneXML = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
+
         private StreamWriter sr;
         #endregion
 
@@ -218,7 +220,7 @@ namespace ProjetDotNetM1
         }
         #endregion
 
-
+        #region EnregistrerXML
         public void exportToXml(TreeView tv, string filename)
         {
             try
@@ -257,6 +259,27 @@ namespace ProjetDotNetM1
                     sr.Write("  ");
                 sr.WriteLine("</" + node.Text + ">");
             }
+        }
+        #endregion
+
+        public Boolean VerificationUnSeulRoot(string fileName)
+        {
+            Boolean res = false;
+
+            string[] lines = System.IO.File.ReadAllLines(fileName);
+            string firstLine = lines[0];
+            string debutRoot = lines[1];
+            string finRoot = lines[lines.Length - 1];
+
+            if(firstLine == this.PremiereLigneXML)
+            {
+                if (debutRoot.Substring(1,debutRoot.Length-2) == finRoot.Substring(2,finRoot.Length-3))
+                {
+                    res = true;
+                }
+            }
+
+            return res;
         }
     }
 }

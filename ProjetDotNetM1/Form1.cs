@@ -395,6 +395,7 @@ namespace ProjetDotNetM1
             return tv;
         }
 
+        #region ActionsCliqueDroitTreeView
         /// <summary>
         /// Evenement permettant à l'utilisateur de mettre à jour le dossier d'images
         /// </summary>
@@ -587,7 +588,9 @@ namespace ProjetDotNetM1
                 label_info.ForeColor = Color.Red;
             }
         }
+        #endregion
 
+        #region dragAndDropTreeView
         private void treeView_TagsAcceuil_DragDrop(object sender, DragEventArgs e)
         {
             TreeView tv = GetTreeViewActif();
@@ -643,13 +646,15 @@ namespace ProjetDotNetM1
 
         private void treeView_TagsAcceuil_DragEnter(object sender, DragEventArgs e)
         {
-            e.Effect = DragDropEffects.Move;
-
-            label_info.Text = "Déplacement du tag (ECHAP pour annuler)";
-            label_info.ForeColor = Color.OrangeRed;
+            DragEnterPerso(e);
         }
 
         private void treeView_TagsModification_DragEnter(object sender, DragEventArgs e)
+        {
+            DragEnterPerso(e);
+        }
+
+        private void DragEnterPerso(DragEventArgs e)
         {
             e.Effect = DragDropEffects.Move;
 
@@ -667,5 +672,80 @@ namespace ProjetDotNetM1
         {
             ItemDragPerso(e);
         }
+        #endregion
+
+        #region FichierXML_ImportationExportation
+
+        /// <summary>
+        /// Importation d'un fichier XML qui à un Noeud root dans la localisation appdata
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void importerUneListeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GestionnaireTags gestionnaire = GestionnaireTags.Instance;
+
+            OpenFileDialog ofd = new OpenFileDialog
+            {
+                Filter = "XML Files (.xml)|*.xml",
+                Multiselect = false,
+                FilterIndex = 1
+            };
+            if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {   
+                if (gestionnaire.VerificationUnSeulRoot(ofd.FileName))
+                {
+                    //Importation
+                    try
+                    {
+                        File.Copy(ofd.FileName, gestionnaire.Chemin + gestionnaire.NomXML, true);
+                        RafraichirTreeView();
+                        label_info.Text = "Importation réussie.";
+                        label_info.ForeColor = Color.Green;
+                    }
+                    catch (Exception ex)
+                    {
+                        label_info.Text = ex.Message;
+                        label_info.ForeColor = Color.Red;
+                    }
+                }
+                else
+                {
+                    label_info.Text = "Structure du fichier importé incorrect";
+                    label_info.ForeColor = Color.Red;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Permet à l'utilisateur d'enregistrer le fichier XML utilisé pour les tags où il veut et avec le nom qu'il veut
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void exporterUneListeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GestionnaireTags gestionnaire = GestionnaireTags.Instance;
+
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                Filter = "XML Files (.xml)|*.xml",
+                FilterIndex = 1
+            };
+            if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                try
+                {
+                    File.Copy(gestionnaire.Chemin + gestionnaire.NomXML, sfd.FileName);
+                    label_info.Text = "Exportation effectuée.";
+                    label_info.ForeColor = Color.Green;
+                }
+                catch (Exception ex)
+                {
+                    label_info.Text = ex.Message;
+                    label_info.ForeColor = Color.Red;
+                }
+            }
+        }
+        #endregion
     }
 }
