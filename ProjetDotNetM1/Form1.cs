@@ -588,15 +588,6 @@ namespace ProjetDotNetM1
             }
         }
 
-        private void descendreToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            TreeView tv = GetTreeViewActif();
-            TreeNode node = tv.SelectedNode;
-
-            DescendreTag dt = new DescendreTag(tv, node);
-            dt.ShowDialog();
-        }
-
         private void treeView_TagsAcceuil_DragDrop(object sender, DragEventArgs e)
         {
             TreeView tv = GetTreeViewActif();
@@ -627,23 +618,54 @@ namespace ProjetDotNetM1
                 // Expand the node at the location 
                 // to show the dropped node.
                 targetNode.Expand();
+
             }
 
             GestionnaireTags gestionnaire = GestionnaireTags.Instance;
             gestionnaire.exportToXml(tv,gestionnaire.Chemin + gestionnaire.NomXML);
+
+
+            label_info.Text = "Déplacement du tag enregistré";
+            label_info.ForeColor = Color.Green;
         }
 
-        private void treeView_TagsAcceuil_ItemDrag(object sender, ItemDragEventArgs e)
+        private void ItemDragPerso(ItemDragEventArgs e)
         {
-            
             TreeView tv = GetTreeViewActif();
             TreeNode node = (TreeNode)e.Item;
             tv.DoDragDrop(node, DragDropEffects.Move);
         }
 
+        private void treeView_TagsAcceuil_ItemDrag(object sender, ItemDragEventArgs e)
+        {
+            ItemDragPerso(e);
+        }
+
         private void treeView_TagsAcceuil_DragEnter(object sender, DragEventArgs e)
         {
             e.Effect = DragDropEffects.Move;
+
+            label_info.Text = "Déplacement du tag (ECHAP pour annuler)";
+            label_info.ForeColor = Color.OrangeRed;
+        }
+
+        private void treeView_TagsModification_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Move;
+
+            label_info.Text = "Déplacement du tag (ECHAP pour annuler)";
+            label_info.ForeColor = Color.OrangeRed;
+        }
+
+        private void treeView_TagsModification_DragDrop(object sender, DragEventArgs e)
+        {
+            TreeView tv = GetTreeViewActif();
+            DragAndDropPerso(tv, e);
+        }
+
+        private void treeView_TagsModification_ItemDrag(object sender, ItemDragEventArgs e)
+        {
+            ItemDragPerso(e);
         }
     }
 }
