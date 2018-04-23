@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("coucou");
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("coucou");
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("coucou");
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("coucou");
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("coucou");
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("coucou");
             this.textBox_recherche = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel_Ensemble = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel_Accueil = new System.Windows.Forms.TableLayoutPanel();
@@ -55,6 +55,13 @@
             this.confirmerBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBoxModifAfficheImage = new System.Windows.Forms.PictureBox();
+            this.tabInformations = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.richTextBoxInformationModif = new System.Windows.Forms.RichTextBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.buttonSupprimerTag = new System.Windows.Forms.Button();
+            this.listViewTags = new System.Windows.Forms.ListView();
             this.tableLayoutPanel_TreeView = new System.Windows.Forms.TableLayoutPanel();
             this.treeView_TagsModification = new System.Windows.Forms.TreeView();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -77,13 +84,6 @@
             this.Modifier_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MiseAJour_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_barreAccueil = new System.Windows.Forms.MenuStrip();
-            this.tabInformations = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.buttonSupprimerTag = new System.Windows.Forms.Button();
-            this.listViewTags = new System.Windows.Forms.ListView();
             this.tableLayoutPanel_Ensemble.SuspendLayout();
             this.tableLayoutPanel_Accueil.SuspendLayout();
             this.contextMenuStrip_Tags.SuspendLayout();
@@ -92,6 +92,10 @@
             this.tableLayoutPanel_Buttons.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxModifAfficheImage)).BeginInit();
+            this.tabInformations.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel_TreeView.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel_Parametres.SuspendLayout();
@@ -99,16 +103,12 @@
             this.tableLayoutPanel_AnnulerParametres.SuspendLayout();
             this.tableLayoutPanel_InformationsLogiciel.SuspendLayout();
             this.menuStrip_barreAccueil.SuspendLayout();
-            this.tabInformations.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox_recherche
             // 
             this.textBox_recherche.BackColor = System.Drawing.Color.LightGray;
-            this.textBox_recherche.Location = new System.Drawing.Point(962, 3);
+            this.textBox_recherche.Location = new System.Drawing.Point(961, 3);
             this.textBox_recherche.Name = "textBox_recherche";
             this.textBox_recherche.Size = new System.Drawing.Size(210, 20);
             this.textBox_recherche.TabIndex = 7;
@@ -248,7 +248,7 @@
             this.label_info.BackColor = System.Drawing.Color.LightGray;
             this.label_info.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_info.ForeColor = System.Drawing.Color.Green;
-            this.label_info.Location = new System.Drawing.Point(212, 0);
+            this.label_info.Location = new System.Drawing.Point(211, 0);
             this.label_info.Name = "label_info";
             this.label_info.Size = new System.Drawing.Size(83, 13);
             this.label_info.TabIndex = 4;
@@ -256,7 +256,7 @@
             // 
             // button_Go_Recherche
             // 
-            this.button_Go_Recherche.Location = new System.Drawing.Point(1178, 3);
+            this.button_Go_Recherche.Location = new System.Drawing.Point(1177, 3);
             this.button_Go_Recherche.Name = "button_Go_Recherche";
             this.button_Go_Recherche.Size = new System.Drawing.Size(34, 23);
             this.button_Go_Recherche.TabIndex = 6;
@@ -269,7 +269,7 @@
             this.progressBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.progressBar.Location = new System.Drawing.Point(3, 3);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(203, 23);
+            this.progressBar.Size = new System.Drawing.Size(202, 23);
             this.progressBar.TabIndex = 8;
             this.progressBar.Visible = false;
             // 
@@ -369,6 +369,95 @@
             this.pictureBoxModifAfficheImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxModifAfficheImage.TabIndex = 0;
             this.pictureBoxModifAfficheImage.TabStop = false;
+            // 
+            // tabInformations
+            // 
+            this.tabInformations.Controls.Add(this.tabPage1);
+            this.tabInformations.Controls.Add(this.tabPage2);
+            this.tabInformations.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabInformations.Location = new System.Drawing.Point(0, 307);
+            this.tabInformations.Margin = new System.Windows.Forms.Padding(0);
+            this.tabInformations.Name = "tabInformations";
+            this.tabInformations.SelectedIndex = 0;
+            this.tabInformations.Size = new System.Drawing.Size(885, 132);
+            this.tabInformations.TabIndex = 1;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.richTextBoxInformationModif);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(877, 106);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Informations";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // richTextBoxInformationModif
+            // 
+            this.richTextBoxInformationModif.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBoxInformationModif.Enabled = false;
+            this.richTextBoxInformationModif.Location = new System.Drawing.Point(3, 3);
+            this.richTextBoxInformationModif.Name = "richTextBoxInformationModif";
+            this.richTextBoxInformationModif.Size = new System.Drawing.Size(871, 100);
+            this.richTextBoxInformationModif.TabIndex = 0;
+            this.richTextBoxInformationModif.Text = "";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.tableLayoutPanel2);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(0);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Size = new System.Drawing.Size(877, 106);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Tags";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tableLayoutPanel2.Controls.Add(this.buttonSupprimerTag, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.listViewTags, 0, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 106F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(877, 106);
+            this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // buttonSupprimerTag
+            // 
+            this.buttonSupprimerTag.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonSupprimerTag.Location = new System.Drawing.Point(680, 3);
+            this.buttonSupprimerTag.Name = "buttonSupprimerTag";
+            this.buttonSupprimerTag.Size = new System.Drawing.Size(194, 100);
+            this.buttonSupprimerTag.TabIndex = 0;
+            this.buttonSupprimerTag.Text = "Supprimer";
+            this.buttonSupprimerTag.UseVisualStyleBackColor = true;
+            this.buttonSupprimerTag.Click += new System.EventHandler(this.buttonSupprimerTag_Click);
+            // 
+            // listViewTags
+            // 
+            this.listViewTags.CheckBoxes = true;
+            this.listViewTags.Dock = System.Windows.Forms.DockStyle.Fill;
+            listViewItem7.StateImageIndex = 0;
+            listViewItem8.StateImageIndex = 0;
+            listViewItem9.StateImageIndex = 0;
+            this.listViewTags.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem7,
+            listViewItem8,
+            listViewItem9});
+            this.listViewTags.Location = new System.Drawing.Point(3, 3);
+            this.listViewTags.Name = "listViewTags";
+            this.listViewTags.Size = new System.Drawing.Size(671, 100);
+            this.listViewTags.TabIndex = 1;
+            this.listViewTags.UseCompatibleStateImageBehavior = false;
             // 
             // tableLayoutPanel_TreeView
             // 
@@ -484,7 +573,7 @@
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.93361F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 91F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 216F));
-            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 49F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.36034F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.63966F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 244F));
@@ -511,7 +600,7 @@
             "Tous",
             "Photos",
             "Tags"});
-            this.comboBox_Recherche.Location = new System.Drawing.Point(871, 3);
+            this.comboBox_Recherche.Location = new System.Drawing.Point(870, 3);
             this.comboBox_Recherche.Name = "comboBox_Recherche";
             this.comboBox_Recherche.Size = new System.Drawing.Size(85, 21);
             this.comboBox_Recherche.TabIndex = 9;
@@ -589,7 +678,7 @@
             // Modifier_ToolStripMenuItem
             // 
             this.Modifier_ToolStripMenuItem.Name = "Modifier_ToolStripMenuItem";
-            this.Modifier_ToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.Modifier_ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.Modifier_ToolStripMenuItem.Text = "Modifier";
             this.Modifier_ToolStripMenuItem.Click += new System.EventHandler(this.ModifierToolStripMenuItem_Click);
             // 
@@ -614,94 +703,6 @@
             this.menuStrip_barreAccueil.TabIndex = 1;
             this.menuStrip_barreAccueil.Text = "menuStrip1";
             // 
-            // tabInformations
-            // 
-            this.tabInformations.Controls.Add(this.tabPage1);
-            this.tabInformations.Controls.Add(this.tabPage2);
-            this.tabInformations.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabInformations.Location = new System.Drawing.Point(0, 307);
-            this.tabInformations.Margin = new System.Windows.Forms.Padding(0);
-            this.tabInformations.Name = "tabInformations";
-            this.tabInformations.SelectedIndex = 0;
-            this.tabInformations.Size = new System.Drawing.Size(885, 132);
-            this.tabInformations.TabIndex = 1;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.richTextBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(877, 106);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Informations";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.tableLayoutPanel2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(0);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(877, 106);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Tags";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Enabled = false;
-            this.richTextBox1.Location = new System.Drawing.Point(3, 3);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(871, 100);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.tableLayoutPanel2.Controls.Add(this.buttonSupprimerTag, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.listViewTags, 0, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(877, 106);
-            this.tableLayoutPanel2.TabIndex = 0;
-            // 
-            // buttonSupprimerTag
-            // 
-            this.buttonSupprimerTag.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonSupprimerTag.Location = new System.Drawing.Point(680, 3);
-            this.buttonSupprimerTag.Name = "buttonSupprimerTag";
-            this.buttonSupprimerTag.Size = new System.Drawing.Size(194, 100);
-            this.buttonSupprimerTag.TabIndex = 0;
-            this.buttonSupprimerTag.Text = "Supprimer";
-            this.buttonSupprimerTag.UseVisualStyleBackColor = true;
-            // 
-            // listViewTags
-            // 
-            this.listViewTags.CheckBoxes = true;
-            this.listViewTags.Dock = System.Windows.Forms.DockStyle.Fill;
-            listViewItem4.StateImageIndex = 0;
-            listViewItem5.StateImageIndex = 0;
-            listViewItem6.StateImageIndex = 0;
-            this.listViewTags.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem4,
-            listViewItem5,
-            listViewItem6});
-            this.listViewTags.Location = new System.Drawing.Point(3, 3);
-            this.listViewTags.Name = "listViewTags";
-            this.listViewTags.Size = new System.Drawing.Size(671, 100);
-            this.listViewTags.TabIndex = 1;
-            this.listViewTags.UseCompatibleStateImageBehavior = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -721,6 +722,10 @@
             this.tableLayoutPanel_Buttons.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxModifAfficheImage)).EndInit();
+            this.tabInformations.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel_TreeView.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel_Parametres.ResumeLayout(false);
@@ -730,10 +735,6 @@
             this.tableLayoutPanel_InformationsLogiciel.PerformLayout();
             this.menuStrip_barreAccueil.ResumeLayout(false);
             this.menuStrip_barreAccueil.PerformLayout();
-            this.tabInformations.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -787,7 +788,7 @@
         private System.Windows.Forms.PictureBox pictureBoxModifAfficheImage;
         private System.Windows.Forms.TabControl tabInformations;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richTextBoxInformationModif;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button buttonSupprimerTag;
