@@ -150,6 +150,10 @@ namespace ProjetDotNetM1
         {
             string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
+
+            if (!Directory.Exists(saveUrlDos))
+                Directory.CreateDirectory(saveUrlDos);
+
             int nbFichiersJPG = Directory.GetFiles(saveUrlDos, "*.jpg", SearchOption.AllDirectories).Length;
             images = new GestionListeImages(progressBar);
         }

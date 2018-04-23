@@ -33,7 +33,7 @@ namespace ProjetDotNetM1
                 {
                     nb++;
                 }
-                bar.Maximum = nb - 1;
+                bar.Maximum = nb;// - 1;
                 bar.Minimum = 0;
                 bar.Step = 1;
                 nb = 0;
