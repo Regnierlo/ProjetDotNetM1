@@ -114,6 +114,7 @@
             this.textBox_recherche.Size = new System.Drawing.Size(210, 20);
             this.textBox_recherche.TabIndex = 7;
             this.textBox_recherche.Text = "Rechercher photo, tag, ...";
+            this.textBox_recherche.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_recherche_KeyDown);
             // 
             // tableLayoutPanel_Ensemble
             // 
