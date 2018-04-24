@@ -941,5 +941,10 @@ namespace ProjetDotNetM1
                 label_info.ForeColor = Color.Green;
             }
         }
+
+        private void treeView_TagsAcceuil_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            Console.WriteLine(e.Node.Text);
+        }
     }
 }
