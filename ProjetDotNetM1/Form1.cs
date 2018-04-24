@@ -47,6 +47,8 @@ namespace ProjetDotNetM1
         /// </summary>
         public void AfficheImage()
         {
+            tableLayoutPanel_Photos.Controls.Clear();
+            tableLayoutPanel_Photos.RowStyles.Clear();
             foreach (GestionImage img in images.ListeImg)
             {
                 int larg;
@@ -142,6 +144,7 @@ namespace ProjetDotNetM1
         private void Pic_Double_Click(object sender, EventArgs e)
         {
             botonModifier();
+            RafraichirTreeView();
         }
         /// <summary>
         /// Fonction permettant de mettre à jour le dossier d'images lors du lancement de l'application
@@ -304,8 +307,19 @@ namespace ProjetDotNetM1
                 double largD = (double)image.Width / (double)image.Height * pictureBoxModifAfficheImage.Height;
                 larg = (int)largD;
                 pictureBoxModifAfficheImage.Image = new Bitmap(image, new Size(larg, haut));
+                richTextBoxInformationModif.Text = images.rechercheinfo(imageSelect);
+                string[] decompositionNom = imageSelect.Split('\\');
+                string[] nom = decompositionNom[decompositionNom.Length - 1].Split('.');
+                richTextBoxRename.Text = nom[0];
+                listViewTags.Items.Clear();
+                foreach (string tag in images.rechercheTags(imageSelect))
+                {
+                    listViewTags.Items.Add(tag);
+                }
+                tabInformations.SelectedTab = tabPage1;
+                listViewTags.CheckBoxes = false;
                 image.Dispose();
-                RafraichirTreeView();//Affiche les tags dans le treeView
+                //RafraichirTreeView();//Affiche les tags dans le treeView
             }
             else
             {
@@ -401,6 +415,7 @@ namespace ProjetDotNetM1
                 Console.WriteLine("Màj effectuée");
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
+                AfficheImage();
             }
             else
             {

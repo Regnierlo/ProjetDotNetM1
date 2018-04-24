@@ -55,7 +55,7 @@
             this.pictureBoxModifAfficheImage = new System.Windows.Forms.PictureBox();
             this.tabInformations = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxInformationModif = new System.Windows.Forms.RichTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.buttonSupprimerTag = new System.Windows.Forms.Button();
@@ -115,7 +115,7 @@
             // textBox_recherche
             // 
             this.textBox_recherche.BackColor = System.Drawing.Color.LightGray;
-            this.textBox_recherche.Location = new System.Drawing.Point(956, 3);
+            this.textBox_recherche.Location = new System.Drawing.Point(955, 3);
             this.textBox_recherche.Name = "textBox_recherche";
             this.textBox_recherche.Size = new System.Drawing.Size(210, 20);
             this.textBox_recherche.TabIndex = 7;
@@ -252,7 +252,7 @@
             // 
             // button_Go_Recherche
             // 
-            this.button_Go_Recherche.Location = new System.Drawing.Point(1172, 3);
+            this.button_Go_Recherche.Location = new System.Drawing.Point(1171, 3);
             this.button_Go_Recherche.Name = "button_Go_Recherche";
             this.button_Go_Recherche.Size = new System.Drawing.Size(34, 23);
             this.button_Go_Recherche.TabIndex = 6;
@@ -381,7 +381,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.richTextBox1);
+            this.tabPage1.Controls.Add(this.richTextBoxInformationModif);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -390,15 +390,15 @@
             this.tabPage1.Text = "Informations";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // richTextBox1
+            // richTextBoxInformationModif
             // 
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Enabled = false;
-            this.richTextBox1.Location = new System.Drawing.Point(3, 3);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(871, 100);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.richTextBoxInformationModif.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBoxInformationModif.Enabled = false;
+            this.richTextBoxInformationModif.Location = new System.Drawing.Point(3, 3);
+            this.richTextBoxInformationModif.Name = "richTextBoxInformationModif";
+            this.richTextBoxInformationModif.Size = new System.Drawing.Size(871, 100);
+            this.richTextBoxInformationModif.TabIndex = 0;
+            this.richTextBoxInformationModif.Text = "";
             // 
             // tabPage2
             // 
@@ -533,8 +533,8 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.tableLayoutPanel_Modification);
             this.panel1.Controls.Add(this.tableLayoutPanel_Ensemble);
+            this.panel1.Controls.Add(this.tableLayoutPanel_Modification);
             this.panel1.Controls.Add(this.tableLayoutPanel_Parametres);
             this.panel1.Controls.Add(this.tableLayoutPanel_InformationsLogiciel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -622,7 +622,7 @@
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.93361F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 91F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 216F));
-            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 54F));
+            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.36034F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.63966F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 244F));
@@ -649,7 +649,7 @@
             "Tous",
             "Photos",
             "Tags"});
-            this.comboBox_Recherche.Location = new System.Drawing.Point(865, 3);
+            this.comboBox_Recherche.Location = new System.Drawing.Point(864, 3);
             this.comboBox_Recherche.Name = "comboBox_Recherche";
             this.comboBox_Recherche.Size = new System.Drawing.Size(85, 21);
             this.comboBox_Recherche.TabIndex = 9;
@@ -861,7 +861,7 @@
         private System.Windows.Forms.PictureBox pictureBoxModifAfficheImage;
         private System.Windows.Forms.TabControl tabInformations;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richTextBoxInformationModif;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button buttonSupprimerTag;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Collections;
 using System.IO;
 using System.Windows.Forms;
 
@@ -101,6 +102,34 @@ namespace ProjetDotNetM1
                 }
             }
             return orientation;
+        }
+
+        /// <summary>
+        /// permte d'obtenir la liste de stags d'une imae grace a l'url
+        /// </summary>
+        /// <param name="urlEntry"></param>
+        /// <returns></returns>
+        public List<string> rechercheTags(string urlEntry)
+        {
+            List<string> tags = new List<string>();
+            foreach (GestionImage urlSearch in ListeImg)
+            {
+                if (urlSearch.ImgUrl == urlEntry)
+                {
+                    tags = urlSearch.Tag;
+                }
+            }
+            return tags;
+        }
+        public void modifieTags(string urlEntry, ArrayList tags)
+        {
+            foreach (GestionImage urlSearch in ListeImg)
+            {
+                if (urlSearch.ImgUrl == urlEntry)
+                {
+                    urlSearch.AjoutTag(tags);
+                }
+            }
         }
     }
 }
