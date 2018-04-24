@@ -143,6 +143,7 @@ namespace ProjetDotNetM1
         private void Pic_Double_Click(object sender, EventArgs e)
         {
             botonModifier();
+            RafraichirTreeView();
         }
         /// <summary>
         /// Fonction permettant de mettre à jour le dossier d'images lors du lancement de l'application
@@ -260,6 +261,7 @@ namespace ProjetDotNetM1
         private void ModifierToolStripMenuItem_Click(object sender, EventArgs e)
         {
             botonModifier();
+            RafraichirTreeView();
         }
         /// <summary>
         /// fonction pour entrer dans le menu modification
