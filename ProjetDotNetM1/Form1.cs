@@ -758,21 +758,26 @@ namespace ProjetDotNetM1
         {
             string secteurRecherche = this.comboBox_Recherche.Text;
             string rechercheUtilisateur = this.textBox_recherche.Text;
-
+            Recherche r = new Recherche();
 
             if (secteurRecherche == this.comboBox_Recherche.Items[0].ToString())//Tous
             {
                 if (rechercheUtilisateur != "")
-                    RechercheTous(rechercheUtilisateur);
+                {
+                    List<GestionImage> limage = r.RechercheTous(rechercheUtilisateur, images);
+                    GestionListeImages imgRechercheTous = new GestionListeImages(limage);
+                    AfficheImage(imgRechercheTous);
+                }
                 else
+                {
                     AfficheImage(images);
+                }
             }
             else if (secteurRecherche == this.comboBox_Recherche.Items[1].ToString())//Photos
             {
                 if (rechercheUtilisateur != "")
                 {
-                    List<GestionImage> limage;
-                    limage = RecherchePhotos(rechercheUtilisateur);
+                    List<GestionImage> limage = r.RecherchePhotos(rechercheUtilisateur, images);
                     GestionListeImages imagesAvecTags = new GestionListeImages(limage);
                     AfficheImage(imagesAvecTags);
                 }
@@ -785,8 +790,7 @@ namespace ProjetDotNetM1
             {
                 if (rechercheUtilisateur != "")
                 {
-                    List<GestionImage> limage;
-                    limage = RechercheTags(rechercheUtilisateur);
+                    List<GestionImage> limage = r.RechercheTags(rechercheUtilisateur, images);
                     GestionListeImages imagesAvecTags = new GestionListeImages(limage);
                     AfficheImage(imagesAvecTags);
                 }
@@ -799,94 +803,6 @@ namespace ProjetDotNetM1
             {
                 LabelMessage("Impossible de lancer la recherche.", Color.Red);
             }
-        }
-
-        private void RechercheTous(string rechercheUtilisateur)
-        {
-            
-            List<GestionImage> limage = new List<GestionImage>();
-
-            //Nom photos
-            List<GestionImage> tmp = RecherchePhotos(rechercheUtilisateur);
-            foreach (GestionImage img in tmp)
-            {
-                limage.Add(img);
-            }
-
-            //Tags photos
-            tmp = RechercheTags(rechercheUtilisateur);
-            limage.AddRange(tmp);
-            Boolean imagePresente = false;
-            List<int> imagesAEnlever = new List<int>();
-            for (int i = 0; i < limage.Count - 1; i++)
-            {
-                for (int j = i + 1; j < limage.Count; j++)
-                {
-                    if (limage[i].ImgUrl == limage[j].ImgUrl)
-                    {
-                        imagePresente = true;
-                    }
-                }
-
-                if (imagePresente)
-                    imagesAEnlever.Add(i);
-            }
-
-            for (int i = 0; i < imagesAEnlever.Count; i++)
-            {
-                limage.RemoveAt(i);
-            }
-
-            GestionListeImages imagesAvecTags = new GestionListeImages(limage);
-            AfficheImage(imagesAvecTags);
-        }
-
-        private List<GestionImage> RecherchePhotos(string rechercheUtilisateur)
-        {
-            List<GestionImage> limage = new List<GestionImage>();
-            string[] decompositionNom;
-            string[] tnom;
-
-            foreach (GestionImage img in images.ListeImg)
-            {
-
-                decompositionNom = img.ImgUrl.Split('\\');
-                tnom = decompositionNom[decompositionNom.Length - 1].Split('.');
-
-                if(tnom[0] == rechercheUtilisateur)
-                    limage.Add(img);
-            }
-
-            return limage;
-        }
-
-        private List<GestionImage> RechercheTags(string rechercheUtilisateur)
-        {
-            List<GestionImage> limage = new List<GestionImage>();
-
-            foreach (GestionImage img in images.ListeImg)
-            {
-                FileStream fs = new FileStream(img.ImgUrl, FileMode.Open);
-                Image image = Image.FromStream(fs);
-                fs.Close();
-
-                Boolean tagPresent = false;
-                foreach (string tag in img.Tag)
-                {
-                    if (tag == rechercheUtilisateur)
-                    {
-                        tagPresent = true;
-                    }
-                }
-
-                if (tagPresent)
-                {
-                    limage.Add(img);
-                }
-            }
-
-
-            return limage;
         }
         #endregion
 
