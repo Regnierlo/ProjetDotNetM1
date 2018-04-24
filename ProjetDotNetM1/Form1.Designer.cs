@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("coucou");
-            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("coucou");
-            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("coucou");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("coucou");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("coucou");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("coucou");
             this.textBox_recherche = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel_Ensemble = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel_Accueil = new System.Windows.Forms.TableLayoutPanel();
@@ -114,7 +114,7 @@
             // textBox_recherche
             // 
             this.textBox_recherche.BackColor = System.Drawing.Color.LightGray;
-            this.textBox_recherche.Location = new System.Drawing.Point(1010, 3);
+            this.textBox_recherche.Location = new System.Drawing.Point(1009, 3);
             this.textBox_recherche.Name = "textBox_recherche";
             this.textBox_recherche.Size = new System.Drawing.Size(210, 20);
             this.textBox_recherche.TabIndex = 7;
@@ -196,6 +196,7 @@
             this.treeView_TagsAcceuil.TabIndex = 1;
             this.treeView_TagsAcceuil.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.treeView_TagsAcceuil_AfterLabelEdit);
             this.treeView_TagsAcceuil.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.treeView_TagsAcceuil_ItemDrag);
+            this.treeView_TagsAcceuil.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView_TagsAcceuil_NodeMouseClick);
             this.treeView_TagsAcceuil.DragDrop += new System.Windows.Forms.DragEventHandler(this.treeView_TagsAcceuil_DragDrop);
             this.treeView_TagsAcceuil.DragEnter += new System.Windows.Forms.DragEventHandler(this.treeView_TagsAcceuil_DragEnter);
             // 
@@ -432,13 +433,13 @@
             // 
             this.listViewTags.CheckBoxes = true;
             this.listViewTags.Dock = System.Windows.Forms.DockStyle.Fill;
-            listViewItem10.StateImageIndex = 0;
-            listViewItem11.StateImageIndex = 0;
-            listViewItem12.StateImageIndex = 0;
+            listViewItem1.StateImageIndex = 0;
+            listViewItem2.StateImageIndex = 0;
+            listViewItem3.StateImageIndex = 0;
             this.listViewTags.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem10,
-            listViewItem11,
-            listViewItem12});
+            listViewItem1,
+            listViewItem2,
+            listViewItem3});
             this.listViewTags.Location = new System.Drawing.Point(3, 3);
             this.listViewTags.Name = "listViewTags";
             this.listViewTags.Size = new System.Drawing.Size(671, 100);
@@ -610,7 +611,7 @@
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.06639F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.93361F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 91F));
-            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 216F));
+            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 217F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.36034F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.63966F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 244F));
@@ -636,7 +637,7 @@
             "Tous",
             "Photos",
             "Tags"});
-            this.comboBox_Recherche.Location = new System.Drawing.Point(919, 3);
+            this.comboBox_Recherche.Location = new System.Drawing.Point(918, 3);
             this.comboBox_Recherche.Name = "comboBox_Recherche";
             this.comboBox_Recherche.Size = new System.Drawing.Size(85, 21);
             this.comboBox_Recherche.TabIndex = 9;
