@@ -17,11 +17,9 @@ namespace ProjetDotNetM1
         {
 
             InitializeComponent();
-            pictureList = new List<System.Windows.Forms.PictureBox>();
             textBox_recherche.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             Mise_a_jour();
             InitialisationPerso();
-            AfficheImage();
         }
 
         /// <summary>
@@ -47,6 +45,9 @@ namespace ProjetDotNetM1
         /// </summary>
         public void AfficheImage()
         {
+            tableLayoutPanel_Photos.Controls.Clear();
+            tableLayoutPanel_Photos.RowStyles.Clear();
+            pictureList = new List<System.Windows.Forms.PictureBox>();
             foreach (GestionImage img in images.ListeImg)
             {
                 int larg;
@@ -156,6 +157,7 @@ namespace ProjetDotNetM1
 
             int nbFichiersJPG = Directory.GetFiles(saveUrlDos, "*.jpg", SearchOption.AllDirectories).Length;
             images = new GestionListeImages(progressBar);
+            AfficheImage();
         }
 
         /// <summary>
@@ -308,6 +310,9 @@ namespace ProjetDotNetM1
             larg = (int)largD;
             pictureBoxModifAfficheImage.Image = new Bitmap(image, new Size(larg, haut));
             richTextBoxInformationModif.Text = images.rechercheinfo(imageSelect);
+            string[] decompositionNom = imageSelect.Split('\\');
+            string[] nom = decompositionNom[decompositionNom.Length-1].Split('.');
+            richTextBoxRename.Text = nom[0];
             listViewTags.Items.Clear();
             foreach (string tag in images.rechercheTags(imageSelect))
             {
@@ -390,12 +395,7 @@ namespace ProjetDotNetM1
             return tv;
         }
 
-        /// <summary>
-        /// Evenement permettant à l'utilisateur de mettre à jour le dossier d'images
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void MiseAJourToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void MiseAJour()
         {
             string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
@@ -406,11 +406,22 @@ namespace ProjetDotNetM1
                 Console.WriteLine("Màj effectuée");
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
+                AfficheImage();
             }
             else
             {
                 Console.WriteLine("Màj non effectuée");
             }
+        }
+
+        /// <summary>
+        /// Evenement permettant à l'utilisateur de mettre à jour le dossier d'images
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MiseAJourToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            MiseAJour();
         }
 
         /// <summary>
@@ -600,6 +611,36 @@ namespace ProjetDotNetM1
                 listViewTags.CheckBoxes = false;
                 label_info.Text = "le(s) tag(s) on été supprimé(s)";
                 label_info.ForeColor = Color.Green;
+            }
+        }
+
+        private void buttonRename_Click(object sender, EventArgs e)
+        {
+            if(richTextBoxRename.Enabled == false)//si on veut entrer dans e mode edition
+            {
+                richTextBoxRename.Enabled = true;
+            }
+            else//si on est deja dans le mode edition
+            {
+                string[] decompositionNom = imageSelect.Split('\\');
+                string[] nom = decompositionNom[decompositionNom.Length-1].Split('.');
+                nom[nom.Length - 2] = richTextBoxRename.Text;
+                string name = nom[0] + "." + nom[1];
+                decompositionNom[decompositionNom.Length - 1] = name;
+                string newUrl = decompositionNom[0]+"\\";
+                foreach(string urlPart in decompositionNom)
+                {
+                    //newUrl = Path.Combine(newUrl, urlPart);
+                    if (urlPart != decompositionNom[0])
+                    {
+                        newUrl = Path.Combine(newUrl, urlPart);
+                    }
+                    
+                }
+                File.Move(imageSelect, newUrl);
+                imageSelect = newUrl;
+                MiseAJour();
+                richTextBoxRename.Enabled = false;
             }
         }
     }

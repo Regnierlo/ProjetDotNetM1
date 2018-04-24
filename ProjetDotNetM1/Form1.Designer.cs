@@ -84,6 +84,10 @@
             this.Modifier_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MiseAJour_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_barreAccueil = new System.Windows.Forms.MenuStrip();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.buttonRename = new System.Windows.Forms.Button();
+            this.richTextBoxRename = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel_Ensemble.SuspendLayout();
             this.tableLayoutPanel_Accueil.SuspendLayout();
             this.contextMenuStrip_Tags.SuspendLayout();
@@ -103,12 +107,14 @@
             this.tableLayoutPanel_AnnulerParametres.SuspendLayout();
             this.tableLayoutPanel_InformationsLogiciel.SuspendLayout();
             this.menuStrip_barreAccueil.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox_recherche
             // 
             this.textBox_recherche.BackColor = System.Drawing.Color.LightGray;
-            this.textBox_recherche.Location = new System.Drawing.Point(961, 3);
+            this.textBox_recherche.Location = new System.Drawing.Point(960, 3);
             this.textBox_recherche.Name = "textBox_recherche";
             this.textBox_recherche.Size = new System.Drawing.Size(210, 20);
             this.textBox_recherche.TabIndex = 7;
@@ -256,7 +262,7 @@
             // 
             // button_Go_Recherche
             // 
-            this.button_Go_Recherche.Location = new System.Drawing.Point(1177, 3);
+            this.button_Go_Recherche.Location = new System.Drawing.Point(1176, 3);
             this.button_Go_Recherche.Name = "button_Go_Recherche";
             this.button_Go_Recherche.Size = new System.Drawing.Size(34, 23);
             this.button_Go_Recherche.TabIndex = 6;
@@ -374,6 +380,7 @@
             // 
             this.tabInformations.Controls.Add(this.tabPage1);
             this.tabInformations.Controls.Add(this.tabPage2);
+            this.tabInformations.Controls.Add(this.tabPage3);
             this.tabInformations.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabInformations.Location = new System.Drawing.Point(0, 307);
             this.tabInformations.Margin = new System.Windows.Forms.Padding(0);
@@ -573,7 +580,7 @@
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.93361F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 91F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 216F));
-            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 49F));
+            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.36034F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.63966F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 244F));
@@ -600,7 +607,7 @@
             "Tous",
             "Photos",
             "Tags"});
-            this.comboBox_Recherche.Location = new System.Drawing.Point(870, 3);
+            this.comboBox_Recherche.Location = new System.Drawing.Point(869, 3);
             this.comboBox_Recherche.Name = "comboBox_Recherche";
             this.comboBox_Recherche.Size = new System.Drawing.Size(85, 21);
             this.comboBox_Recherche.TabIndex = 9;
@@ -678,7 +685,7 @@
             // Modifier_ToolStripMenuItem
             // 
             this.Modifier_ToolStripMenuItem.Name = "Modifier_ToolStripMenuItem";
-            this.Modifier_ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.Modifier_ToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.Modifier_ToolStripMenuItem.Text = "Modifier";
             this.Modifier_ToolStripMenuItem.Click += new System.EventHandler(this.ModifierToolStripMenuItem_Click);
             // 
@@ -702,6 +709,54 @@
             this.menuStrip_barreAccueil.Size = new System.Drawing.Size(1224, 24);
             this.menuStrip_barreAccueil.TabIndex = 1;
             this.menuStrip_barreAccueil.Text = "menuStrip1";
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.tableLayoutPanel3);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(877, 106);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Renommer";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tableLayoutPanel3.Controls.Add(this.buttonRename, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.richTextBoxRename, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(871, 100);
+            this.tableLayoutPanel3.TabIndex = 0;
+            // 
+            // buttonRename
+            // 
+            this.buttonRename.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonRename.Location = new System.Drawing.Point(674, 3);
+            this.buttonRename.Name = "buttonRename";
+            this.buttonRename.Size = new System.Drawing.Size(194, 94);
+            this.buttonRename.TabIndex = 0;
+            this.buttonRename.Text = "Renommer";
+            this.buttonRename.UseVisualStyleBackColor = true;
+            this.buttonRename.Click += new System.EventHandler(this.buttonRename_Click);
+            // 
+            // richTextBoxRename
+            // 
+            this.richTextBoxRename.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBoxRename.Enabled = false;
+            this.richTextBoxRename.Location = new System.Drawing.Point(3, 3);
+            this.richTextBoxRename.Name = "richTextBoxRename";
+            this.richTextBoxRename.Size = new System.Drawing.Size(665, 94);
+            this.richTextBoxRename.TabIndex = 1;
+            this.richTextBoxRename.Text = "";
             // 
             // Form1
             // 
@@ -735,6 +790,8 @@
             this.tableLayoutPanel_InformationsLogiciel.PerformLayout();
             this.menuStrip_barreAccueil.ResumeLayout(false);
             this.menuStrip_barreAccueil.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -793,6 +850,10 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button buttonSupprimerTag;
         private System.Windows.Forms.ListView listViewTags;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Button buttonRename;
+        private System.Windows.Forms.RichTextBox richTextBoxRename;
     }
 }
 
