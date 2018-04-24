@@ -247,7 +247,10 @@ namespace ProjetDotNetM1
         /// <param name="e"></param>
         private void Button1_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("bouton ok");
+            string secteurRecherche = this.comboBox_Recherche.Text;
+            string rechercheUtilisateur = this.textBox_recherche.Text;
+
+            Console.WriteLine("bouton ok : "+secteurRecherche+" -> "+rechercheUtilisateur);
         }
 
         /// <summary>
