@@ -788,15 +788,38 @@ namespace ProjetDotNetM1
 
             if(secteurRecherche == this.comboBox_Recherche.Items[0].ToString())//Tous
             {
-                RechercheTous(rechercheUtilisateur);
+                if (rechercheUtilisateur != "")
+                    RechercheTous(rechercheUtilisateur);
+                else
+                    AfficheImage(images);
             }
             else if(secteurRecherche == this.comboBox_Recherche.Items[1].ToString())//Photos
             {
-                RecherchePhotos(rechercheUtilisateur);
+                if (rechercheUtilisateur != "")
+                {
+                    List<GestionImage> limage;
+                    limage = RecherchePhotos(rechercheUtilisateur);
+                    GestionListeImages imagesAvecTags = new GestionListeImages(limage);
+                    AfficheImage(imagesAvecTags);
+                }
+                else
+                {
+                    AfficheImage(images);
+                }
             }
             else if(secteurRecherche == this.comboBox_Recherche.Items[2].ToString())//Tags
             {
-                RechercheTags(rechercheUtilisateur);
+                if (rechercheUtilisateur != "")
+                {
+                    List<GestionImage> limage;
+                    limage = RechercheTags(rechercheUtilisateur);
+                    GestionListeImages imagesAvecTags = new GestionListeImages(limage);
+                    AfficheImage(imagesAvecTags);
+                }
+                else
+                {
+                    AfficheImage(images);
+                }
             }
             else
             {
@@ -806,19 +829,65 @@ namespace ProjetDotNetM1
 
         private void RechercheTous(string rechercheUtilisateur)
         {
-
-        }
-
-        private void RecherchePhotos(string rechercheUtilisateur)
-        {
             
+            List<GestionImage> limage = new List<GestionImage>();
+
+            //Nom photos
+            List<GestionImage> tmp = RecherchePhotos(rechercheUtilisateur);
+            foreach (GestionImage img in tmp)
+            {
+                limage.Add(img);
+            }
+
+            //Tags photos
+            tmp = RechercheTags(rechercheUtilisateur);
+            limage.AddRange(tmp);
+            Boolean imagePresente = false;
+            List<int> imagesAEnlever = new List<int>();
+            for (int i = 0; i < limage.Count - 1; i++)
+            {
+                for (int j = i + 1; j < limage.Count; j++)
+                {
+                    if (limage[i].ImgUrl == limage[j].ImgUrl)
+                    {
+                        imagePresente = true;
+                    }
+                }
+
+                if (imagePresente)
+                    imagesAEnlever.Add(i);
+            }
+
+            for (int i = 0; i < imagesAEnlever.Count; i++)
+            {
+                limage.RemoveAt(i);
+            }
+
+            GestionListeImages imagesAvecTags = new GestionListeImages(limage);
+            AfficheImage(imagesAvecTags);
         }
 
-        private void RechercheTags(string rechercheUtilisateur)
+        private List<GestionImage> RecherchePhotos(string rechercheUtilisateur)
         {
-            TableLayoutPanel lphoto = tableLayoutPanel_Photos;
-            //GestionListeImages imagesAvecTags = new GestionListeImages(this.progressBar);
+            List<GestionImage> limage = new List<GestionImage>();
+            string[] decompositionNom;
+            string[] tnom;
 
+            foreach (GestionImage img in images.ListeImg)
+            {
+
+                decompositionNom = img.ImgUrl.Split('\\');
+                tnom = decompositionNom[decompositionNom.Length - 1].Split('.');
+
+                if(tnom[0] == rechercheUtilisateur)
+                    limage.Add(img);
+            }
+
+            return limage;
+        }
+
+        private List<GestionImage> RechercheTags(string rechercheUtilisateur)
+        {
             List<GestionImage> limage = new List<GestionImage>();
 
             foreach (GestionImage img in images.ListeImg)
@@ -840,14 +909,10 @@ namespace ProjetDotNetM1
                 {
                     limage.Add(img);
                 }
-
-                foreach (GestionImage ti in limage)
-                {
-                    Console.WriteLine("Images : " + ti.ImgUrl);
-                }
             }
 
-            //lphoto.Controls.Find(images.rechercheinfo, true);
+
+            return limage;
         }
         #endregion
 
