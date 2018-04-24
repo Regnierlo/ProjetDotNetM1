@@ -56,7 +56,7 @@ namespace ProjetDotNetM1
                 decompositionNom = img.ImgUrl.Split('\\');
                 tnom = decompositionNom[decompositionNom.Length - 1].Split('.');
 
-                if (tnom[0] == rechercheUtilisateur)
+                if (tnom[0].ToUpper() == rechercheUtilisateur.ToUpper())
                     limage.Add(img);
             }
 
@@ -76,7 +76,7 @@ namespace ProjetDotNetM1
                 Boolean tagPresent = false;
                 foreach (string tag in img.Tag)
                 {
-                    if (tag == rechercheUtilisateur)
+                    if (tag.ToUpper() == rechercheUtilisateur.ToUpper())
                     {
                         tagPresent = true;
                     }

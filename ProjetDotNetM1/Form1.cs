@@ -804,6 +804,16 @@ namespace ProjetDotNetM1
                 LabelMessage("Impossible de lancer la recherche.", Color.Red);
             }
         }
+
+        private void treeView_TagsAcceuil_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            Recherche r = new Recherche();
+
+            List<GestionImage> limage = r.RechercheTags(e.Node.Text, images);
+            GestionListeImages imagesAvecTags = new GestionListeImages(limage);
+            AfficheImage(imagesAvecTags);
+
+        }
         #endregion
 
         private void buttonRename_Click(object sender, EventArgs e)
@@ -856,11 +866,6 @@ namespace ProjetDotNetM1
                 label_info.Text = "le(s) tag(s) on été supprimé(s)";
                 label_info.ForeColor = Color.Green;
             }
-        }
-
-        private void treeView_TagsAcceuil_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            Console.WriteLine(e.Node.Text);
         }
     }
 }
