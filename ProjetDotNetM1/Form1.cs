@@ -754,46 +754,20 @@ namespace ProjetDotNetM1
         #endregion
 
         #region Recherche
-        /// <summary>
-        /// Permet de lancer la recherche en appuyant sur la touche "Entrée"
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void textBox_recherche_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                LancerRecherche();
-            }
-        }
-
-        /// <summary>
-        /// Evenement lié au bouton permettant à l'utilisateur de rechercher des tags/images,...
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            LancerRecherche();
-        }
-
-        /// <summary>
-        /// Lance la recherche approprié
-        /// </summary>
-        private void LancerRecherche()
+        private void textBox_recherche_TextChanged(object sender, EventArgs e)
         {
             string secteurRecherche = this.comboBox_Recherche.Text;
             string rechercheUtilisateur = this.textBox_recherche.Text;
 
 
-            if(secteurRecherche == this.comboBox_Recherche.Items[0].ToString())//Tous
+            if (secteurRecherche == this.comboBox_Recherche.Items[0].ToString())//Tous
             {
                 if (rechercheUtilisateur != "")
                     RechercheTous(rechercheUtilisateur);
                 else
                     AfficheImage(images);
             }
-            else if(secteurRecherche == this.comboBox_Recherche.Items[1].ToString())//Photos
+            else if (secteurRecherche == this.comboBox_Recherche.Items[1].ToString())//Photos
             {
                 if (rechercheUtilisateur != "")
                 {
@@ -807,7 +781,7 @@ namespace ProjetDotNetM1
                     AfficheImage(images);
                 }
             }
-            else if(secteurRecherche == this.comboBox_Recherche.Items[2].ToString())//Tags
+            else if (secteurRecherche == this.comboBox_Recherche.Items[2].ToString())//Tags
             {
                 if (rechercheUtilisateur != "")
                 {

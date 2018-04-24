@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("coucou");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("coucou");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("coucou");
+            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("coucou");
+            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("coucou");
+            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("coucou");
             this.textBox_recherche = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel_Ensemble = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel_Accueil = new System.Windows.Forms.TableLayoutPanel();
@@ -44,7 +44,6 @@
             this.rafraîchirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.supprimerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label_info = new System.Windows.Forms.Label();
-            this.button_Go_Recherche = new System.Windows.Forms.Button();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.tableLayoutPanel_Modification = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel_Photo = new System.Windows.Forms.TableLayoutPanel();
@@ -115,12 +114,12 @@
             // textBox_recherche
             // 
             this.textBox_recherche.BackColor = System.Drawing.Color.LightGray;
-            this.textBox_recherche.Location = new System.Drawing.Point(954, 3);
+            this.textBox_recherche.Location = new System.Drawing.Point(1010, 3);
             this.textBox_recherche.Name = "textBox_recherche";
             this.textBox_recherche.Size = new System.Drawing.Size(210, 20);
             this.textBox_recherche.TabIndex = 7;
             this.textBox_recherche.Text = "Rechercher photo, tag, ...";
-            this.textBox_recherche.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_recherche_KeyDown);
+            this.textBox_recherche.TextChanged += new System.EventHandler(this.textBox_recherche_TextChanged);
             // 
             // tableLayoutPanel_Ensemble
             // 
@@ -244,28 +243,18 @@
             this.label_info.BackColor = System.Drawing.Color.LightGray;
             this.label_info.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_info.ForeColor = System.Drawing.Color.Green;
-            this.label_info.Location = new System.Drawing.Point(210, 0);
+            this.label_info.Location = new System.Drawing.Point(223, 0);
             this.label_info.Name = "label_info";
             this.label_info.Size = new System.Drawing.Size(83, 13);
             this.label_info.TabIndex = 4;
             this.label_info.Text = "Label de MàJ";
-            // 
-            // button_Go_Recherche
-            // 
-            this.button_Go_Recherche.Location = new System.Drawing.Point(1170, 3);
-            this.button_Go_Recherche.Name = "button_Go_Recherche";
-            this.button_Go_Recherche.Size = new System.Drawing.Size(34, 23);
-            this.button_Go_Recherche.TabIndex = 6;
-            this.button_Go_Recherche.Text = "Go";
-            this.button_Go_Recherche.UseVisualStyleBackColor = true;
-            this.button_Go_Recherche.Click += new System.EventHandler(this.Button1_Click);
             // 
             // progressBar
             // 
             this.progressBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.progressBar.Location = new System.Drawing.Point(3, 3);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(201, 23);
+            this.progressBar.Size = new System.Drawing.Size(214, 23);
             this.progressBar.TabIndex = 8;
             this.progressBar.Visible = false;
             // 
@@ -443,13 +432,13 @@
             // 
             this.listViewTags.CheckBoxes = true;
             this.listViewTags.Dock = System.Windows.Forms.DockStyle.Fill;
-            listViewItem1.StateImageIndex = 0;
-            listViewItem2.StateImageIndex = 0;
-            listViewItem3.StateImageIndex = 0;
+            listViewItem10.StateImageIndex = 0;
+            listViewItem11.StateImageIndex = 0;
+            listViewItem12.StateImageIndex = 0;
             this.listViewTags.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3});
+            listViewItem10,
+            listViewItem11,
+            listViewItem12});
             this.listViewTags.Location = new System.Drawing.Point(3, 3);
             this.listViewTags.Name = "listViewTags";
             this.listViewTags.Size = new System.Drawing.Size(671, 100);
@@ -617,19 +606,17 @@
             // 
             // tableLayoutPanel_InformationsLogiciel
             // 
-            this.tableLayoutPanel_InformationsLogiciel.ColumnCount = 5;
+            this.tableLayoutPanel_InformationsLogiciel.ColumnCount = 4;
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.06639F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.93361F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 91F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 216F));
-            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 56F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.36034F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.63966F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 244F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel_InformationsLogiciel.Controls.Add(this.progressBar, 0, 0);
             this.tableLayoutPanel_InformationsLogiciel.Controls.Add(this.label_info, 1, 0);
-            this.tableLayoutPanel_InformationsLogiciel.Controls.Add(this.button_Go_Recherche, 4, 0);
             this.tableLayoutPanel_InformationsLogiciel.Controls.Add(this.textBox_recherche, 3, 0);
             this.tableLayoutPanel_InformationsLogiciel.Controls.Add(this.comboBox_Recherche, 2, 0);
             this.tableLayoutPanel_InformationsLogiciel.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -649,7 +636,7 @@
             "Tous",
             "Photos",
             "Tags"});
-            this.comboBox_Recherche.Location = new System.Drawing.Point(863, 3);
+            this.comboBox_Recherche.Location = new System.Drawing.Point(919, 3);
             this.comboBox_Recherche.Name = "comboBox_Recherche";
             this.comboBox_Recherche.Size = new System.Drawing.Size(85, 21);
             this.comboBox_Recherche.TabIndex = 9;
@@ -821,7 +808,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_Accueil;
         private System.Windows.Forms.TreeView treeView_TagsAcceuil;
         private System.Windows.Forms.Label label_info;
-        private System.Windows.Forms.Button button_Go_Recherche;
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.RichTextBox richTextBox_infoImage;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_Modification;
