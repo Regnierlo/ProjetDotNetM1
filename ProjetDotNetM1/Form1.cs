@@ -865,5 +865,27 @@ namespace ProjetDotNetM1
                 richTextBoxRename.Enabled = false;
             }
         }
+
+        private void buttonSupprimerTag_Click(object sender, EventArgs e)
+        {
+            if (listViewTags.CheckBoxes == false)//si on est dans le mode par defaut
+            {
+                listViewTags.CheckBoxes = true;
+                label_info.ForeColor = Color.Green;
+                label_info.Text = "cochez le ou les tags a supprimer puis appuyez de nouveau sur le bouton";
+            }
+            else//si on est deja dans le mode de suppression
+            {
+                List<string> tags = images.rechercheTags(imageSelect);
+                foreach (ListViewItem tag in listViewTags.CheckedItems)
+                {
+                    tags.Remove(tag.Text);
+                }
+                images.modifieTags(imageSelect, new ArrayList(tags));
+                listViewTags.CheckBoxes = false;
+                label_info.Text = "le(s) tag(s) on été supprimé(s)";
+                label_info.ForeColor = Color.Green;
+            }
+        }
     }
 }
