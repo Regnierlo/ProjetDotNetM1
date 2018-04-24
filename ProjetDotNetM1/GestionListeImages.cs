@@ -15,6 +15,11 @@ namespace ProjetDotNetM1
             set;
         }
 
+
+        public GestionListeImages(List<GestionImage> list)
+        {
+            ListeImg = list;
+        }
         /// <summary>
         /// creer une liste de gestionImage a partir du dossier d'importation
         /// </summary>

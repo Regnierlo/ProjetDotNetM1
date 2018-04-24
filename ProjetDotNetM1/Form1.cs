@@ -21,7 +21,7 @@ namespace ProjetDotNetM1
             textBox_recherche.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             Mise_a_jour();
             InitialisationPerso();
-            AfficheImage();
+            AfficheImage(images);
         }
 
         /// <summary>
@@ -45,11 +45,11 @@ namespace ProjetDotNetM1
         /// <summary>
         /// Fonction permettant l'affichage des photos du dossier lors du lancement du logiciel sur la page d'accueil
         /// </summary>
-        public void AfficheImage()
+        private void AfficheImage(GestionListeImages list)
         {
             tableLayoutPanel_Photos.Controls.Clear();
             tableLayoutPanel_Photos.RowStyles.Clear();
-            foreach (GestionImage img in images.ListeImg)
+            foreach (GestionImage img in list.ListeImg)
             {
                 int larg;
                 int haut;
@@ -415,7 +415,7 @@ namespace ProjetDotNetM1
                 Console.WriteLine("Màj effectuée");
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
-                AfficheImage();
+                AfficheImage(images);
             }
             else
             {
