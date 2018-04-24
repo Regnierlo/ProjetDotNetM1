@@ -390,14 +390,7 @@ namespace ProjetDotNetM1
             label_info.ForeColor = couleur;
         }
         
-
-        
-        /// <summary>
-        /// Evenement permettant à l'utilisateur de mettre à jour le dossier d'images
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void MiseAJourToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void MiseAJour()
         {
             string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
@@ -413,6 +406,16 @@ namespace ProjetDotNetM1
             {
                 Console.WriteLine("Màj non effectuée");
             }
+        }
+        
+        /// <summary>
+        /// Evenement permettant à l'utilisateur de mettre à jour le dossier d'images
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MiseAJourToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            MiseAJour();
         }
 
         #region ActionsCliqueDroitTreeView
@@ -832,5 +835,35 @@ namespace ProjetDotNetM1
             //lphoto.Controls.Find(images.rechercheinfo, true);
         }
         #endregion
+
+        private void buttonRename_Click(object sender, EventArgs e)
+        {
+            if (richTextBoxRename.Enabled == false)//si on veut entrer dans e mode edition
+            {
+                richTextBoxRename.Enabled = true;
+            }
+            else//si on est deja dans le mode edition
+            {
+                string[] decompositionNom = imageSelect.Split('\\');
+                string[] nom = decompositionNom[decompositionNom.Length - 1].Split('.');
+                nom[nom.Length - 2] = richTextBoxRename.Text;
+                string name = nom[0] + "." + nom[1];
+                decompositionNom[decompositionNom.Length - 1] = name;
+                string newUrl = decompositionNom[0] + "\\";
+                foreach (string urlPart in decompositionNom)
+                {
+                    //newUrl = Path.Combine(newUrl, urlPart);
+                    if (urlPart != decompositionNom[0])
+                    {
+                        newUrl = Path.Combine(newUrl, urlPart);
+                    }
+
+                }
+                File.Move(imageSelect, newUrl);
+                imageSelect = newUrl;
+                MiseAJour();
+                richTextBoxRename.Enabled = false;
+            }
+        }
     }
 }
