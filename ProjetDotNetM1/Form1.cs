@@ -744,5 +744,13 @@ namespace ProjetDotNetM1
             }
         }
         #endregion
+
+        private void textBox_recherche_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Console.WriteLine("ok");
+            }
+        }
     }
 }

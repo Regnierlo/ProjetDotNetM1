@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem22 = new System.Windows.Forms.ListViewItem("coucou");
-            System.Windows.Forms.ListViewItem listViewItem23 = new System.Windows.Forms.ListViewItem("coucou");
-            System.Windows.Forms.ListViewItem listViewItem24 = new System.Windows.Forms.ListViewItem("coucou");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("coucou");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("coucou");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("coucou");
             this.textBox_recherche = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel_Ensemble = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel_Accueil = new System.Windows.Forms.TableLayoutPanel();
@@ -75,6 +75,9 @@
             this.Dossier_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Fichier_ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.Paramètres_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listeDesTagsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importerUneListeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exporterUneListeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Edition_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ModeDiaporama_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.VersionDuLogiciel_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,9 +85,6 @@
             this.Modifier_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MiseAJour_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_barreAccueil = new System.Windows.Forms.MenuStrip();
-            this.listeDesTagsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importerUneListeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exporterUneListeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel_Ensemble.SuspendLayout();
             this.tableLayoutPanel_Accueil.SuspendLayout();
             this.contextMenuStrip_Tags.SuspendLayout();
@@ -109,11 +109,12 @@
             // textBox_recherche
             // 
             this.textBox_recherche.BackColor = System.Drawing.Color.LightGray;
-            this.textBox_recherche.Location = new System.Drawing.Point(961, 3);
+            this.textBox_recherche.Location = new System.Drawing.Point(960, 3);
             this.textBox_recherche.Name = "textBox_recherche";
             this.textBox_recherche.Size = new System.Drawing.Size(210, 20);
             this.textBox_recherche.TabIndex = 7;
             this.textBox_recherche.Text = "Rechercher photo, tag, ...";
+            this.textBox_recherche.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_recherche_KeyDown);
             // 
             // tableLayoutPanel_Ensemble
             // 
@@ -245,7 +246,7 @@
             // 
             // button_Go_Recherche
             // 
-            this.button_Go_Recherche.Location = new System.Drawing.Point(1177, 3);
+            this.button_Go_Recherche.Location = new System.Drawing.Point(1176, 3);
             this.button_Go_Recherche.Name = "button_Go_Recherche";
             this.button_Go_Recherche.Size = new System.Drawing.Size(34, 23);
             this.button_Go_Recherche.TabIndex = 6;
@@ -434,13 +435,13 @@
             // 
             this.listViewTags.CheckBoxes = true;
             this.listViewTags.Dock = System.Windows.Forms.DockStyle.Fill;
-            listViewItem22.StateImageIndex = 0;
-            listViewItem23.StateImageIndex = 0;
-            listViewItem24.StateImageIndex = 0;
+            listViewItem1.StateImageIndex = 0;
+            listViewItem2.StateImageIndex = 0;
+            listViewItem3.StateImageIndex = 0;
             this.listViewTags.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem22,
-            listViewItem23,
-            listViewItem24});
+            listViewItem1,
+            listViewItem2,
+            listViewItem3});
             this.listViewTags.Location = new System.Drawing.Point(3, 3);
             this.listViewTags.Name = "listViewTags";
             this.listViewTags.Size = new System.Drawing.Size(671, 100);
@@ -565,7 +566,7 @@
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.93361F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 91F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 216F));
-            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 49F));
+            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.36034F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.63966F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 244F));
@@ -592,7 +593,7 @@
             "Tous",
             "Photos",
             "Tags"});
-            this.comboBox_Recherche.Location = new System.Drawing.Point(870, 3);
+            this.comboBox_Recherche.Location = new System.Drawing.Point(869, 3);
             this.comboBox_Recherche.Name = "comboBox_Recherche";
             this.comboBox_Recherche.Size = new System.Drawing.Size(85, 21);
             this.comboBox_Recherche.TabIndex = 9;
@@ -614,7 +615,7 @@
             this.Dossier_ToolStripMenuItem,
             this.Fichier_ToolStripMenuItem1});
             this.Ouvrir_ToolStripMenuItem.Name = "Ouvrir_ToolStripMenuItem";
-            this.Ouvrir_ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.Ouvrir_ToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.Ouvrir_ToolStripMenuItem.Text = "Importer";
             // 
             // Dossier_ToolStripMenuItem
@@ -634,9 +635,32 @@
             // Paramètres_ToolStripMenuItem
             // 
             this.Paramètres_ToolStripMenuItem.Name = "Paramètres_ToolStripMenuItem";
-            this.Paramètres_ToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.Paramètres_ToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.Paramètres_ToolStripMenuItem.Text = "Paramètres";
             this.Paramètres_ToolStripMenuItem.Click += new System.EventHandler(this.ParamètresToolStripMenuItem_Click);
+            // 
+            // listeDesTagsToolStripMenuItem
+            // 
+            this.listeDesTagsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.importerUneListeToolStripMenuItem,
+            this.exporterUneListeToolStripMenuItem});
+            this.listeDesTagsToolStripMenuItem.Name = "listeDesTagsToolStripMenuItem";
+            this.listeDesTagsToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.listeDesTagsToolStripMenuItem.Text = "Liste des tags";
+            // 
+            // importerUneListeToolStripMenuItem
+            // 
+            this.importerUneListeToolStripMenuItem.Name = "importerUneListeToolStripMenuItem";
+            this.importerUneListeToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.importerUneListeToolStripMenuItem.Text = "Importer une liste...";
+            this.importerUneListeToolStripMenuItem.Click += new System.EventHandler(this.importerUneListeToolStripMenuItem_Click);
+            // 
+            // exporterUneListeToolStripMenuItem
+            // 
+            this.exporterUneListeToolStripMenuItem.Name = "exporterUneListeToolStripMenuItem";
+            this.exporterUneListeToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.exporterUneListeToolStripMenuItem.Text = "Exporter une liste...";
+            this.exporterUneListeToolStripMenuItem.Click += new System.EventHandler(this.exporterUneListeToolStripMenuItem_Click);
             // 
             // Edition_ToolStripMenuItem
             // 
@@ -695,29 +719,6 @@
             this.menuStrip_barreAccueil.Size = new System.Drawing.Size(1224, 24);
             this.menuStrip_barreAccueil.TabIndex = 1;
             this.menuStrip_barreAccueil.Text = "menuStrip1";
-            // 
-            // listeDesTagsToolStripMenuItem
-            // 
-            this.listeDesTagsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.importerUneListeToolStripMenuItem,
-            this.exporterUneListeToolStripMenuItem});
-            this.listeDesTagsToolStripMenuItem.Name = "listeDesTagsToolStripMenuItem";
-            this.listeDesTagsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.listeDesTagsToolStripMenuItem.Text = "Liste des tags";
-            // 
-            // importerUneListeToolStripMenuItem
-            // 
-            this.importerUneListeToolStripMenuItem.Name = "importerUneListeToolStripMenuItem";
-            this.importerUneListeToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.importerUneListeToolStripMenuItem.Text = "Importer une liste...";
-            this.importerUneListeToolStripMenuItem.Click += new System.EventHandler(this.importerUneListeToolStripMenuItem_Click);
-            // 
-            // exporterUneListeToolStripMenuItem
-            // 
-            this.exporterUneListeToolStripMenuItem.Name = "exporterUneListeToolStripMenuItem";
-            this.exporterUneListeToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.exporterUneListeToolStripMenuItem.Text = "Exporter une liste...";
-            this.exporterUneListeToolStripMenuItem.Click += new System.EventHandler(this.exporterUneListeToolStripMenuItem_Click);
             // 
             // Form1
             // 
