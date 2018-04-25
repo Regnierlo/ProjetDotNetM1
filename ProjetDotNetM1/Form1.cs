@@ -11,6 +11,8 @@ namespace ProjetDotNetM1
     public partial class Form1 : Form
     {
         GestionListeImages images;
+        Boolean enCourDeModifAdd=false;
+        Boolean enCourDeModifSupr = false;
         List<System.Windows.Forms.PictureBox> pictureList;
         string imageSelect;
         public Form1()
@@ -41,6 +43,8 @@ namespace ProjetDotNetM1
             comboBox_Recherche.SelectedIndex = 0; //Mis par défaut à "TOUS" pour la comboxbox_recherche
             label_info.Text = "Les informations de l'application seront affichées ici.";
         }
+
+        #region affiche les images des la zone d'accueil
 
         /// <summary>
         /// Fonction permettant l'affichage des photos du dossier lors du lancement du logiciel sur la page d'accueil
@@ -103,7 +107,6 @@ namespace ProjetDotNetM1
                 pictureList.Add( pic );
                 pictureList[pictureList.Count-1].Click += new System.EventHandler(this.Pic_Click);
                 pictureList[pictureList.Count - 1].DoubleClick += new System.EventHandler(this.Pic_Double_Click);
-
                 pictureList[pictureList.Count - 1].Dock = DockStyle.Fill;
                 pictureList[pictureList.Count - 1].SizeMode = PictureBoxSizeMode.CenterImage;
                 tableLayoutPanel_Photos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
@@ -146,6 +149,8 @@ namespace ProjetDotNetM1
             botonModifier();
             RafraichirTreeView();
         }
+        #endregion
+
         /// <summary>
         /// Fonction permettant de mettre à jour le dossier d'images lors du lancement de l'application
         /// </summary>
@@ -159,6 +164,29 @@ namespace ProjetDotNetM1
 
             int nbFichiersJPG = Directory.GetFiles(saveUrlDos, "*.jpg", SearchOption.AllDirectories).Length;
             images = new GestionListeImages(progressBar);
+        }
+
+        #region barre de menu
+
+        /// <summary>
+        /// Evenement permettant à l'utilisateur de mettre à jour le dossier d'images
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MiseAJourToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            MiseAJour();
+        }
+
+        /// <summary>
+        /// Permet d'afficher la fenetre "A propos" menant à une visualisation des détails du logiciel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void VersionDuLogicielToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutBox1 about = new AboutBox1();
+            about.Show();
         }
 
         /// <summary>
@@ -253,6 +281,9 @@ namespace ProjetDotNetM1
         {
             botonModifier();
         }
+        #endregion
+
+        #region Chargement de la zone modifier
         /// <summary>
         /// fonction pour entrer dans le menu modification
         /// </summary>
@@ -338,6 +369,7 @@ namespace ProjetDotNetM1
                 label_info.ForeColor = Color.Red;
             }
         }
+        #endregion
 
         /// <summary>
         /// Permet à l'utilisateur d'annuler les modifications effectuées lors de la modification de tag
@@ -367,16 +399,7 @@ namespace ProjetDotNetM1
             RafraichirTreeView(); //Affiche les tags dans le treeView
         }
 
-        /// <summary>
-        /// Permet d'afficher la fenetre "A propos" menant à une visualisation des détails du logiciel
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void VersionDuLogicielToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AboutBox1 about = new AboutBox1();
-            about.Show();
-        }
+       
 
         /// <summary>
         /// Permet à l'utilisateur d'annuler les modifications effectuées lors de l'utilisation des paramètres
@@ -436,15 +459,7 @@ namespace ProjetDotNetM1
             }
         }
         
-        /// <summary>
-        /// Evenement permettant à l'utilisateur de mettre à jour le dossier d'images
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void MiseAJourToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            MiseAJour();
-        }
+        
 
         #region ActionsCliqueDroitTreeView
         /// <summary>
@@ -875,6 +890,7 @@ namespace ProjetDotNetM1
         {
             if (listViewTags.CheckBoxes == false)//si on est dans le mode par defaut
             {
+                enCourDeModifSupr = true;
                 listViewTags.CheckBoxes = true;
                 label_info.ForeColor = Color.Green;
                 label_info.Text = "cochez le ou les tags a supprimer puis appuyez de nouveau sur le bouton";
@@ -885,11 +901,15 @@ namespace ProjetDotNetM1
                 foreach (ListViewItem tag in listViewTags.CheckedItems)
                 {
                     tags.Remove(tag.Text);
+                    listViewTags.Items.Remove(tag);
                 }
                 images.modifieTags(imageSelect, new ArrayList(tags));
                 listViewTags.CheckBoxes = false;
+                richTextBoxInformationModif.Text = images.rechercheinfo(imageSelect);
+                richTextBox_infoImage.Text = images.rechercheinfo(imageSelect);
                 label_info.Text = "le(s) tag(s) on été supprimé(s)";
                 label_info.ForeColor = Color.Green;
+                enCourDeModifSupr = false;
             }
         }
 
@@ -906,6 +926,48 @@ namespace ProjetDotNetM1
             {
                 textBox_recherche.Clear();
             }
+        }
+
+        private void listViewTags_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (!enCourDeModifAdd & !enCourDeModifSupr)
+            {
+                enCourDeModifAdd = true;
+                listViewTags.Items.Add("nouveau_tag");
+                listViewTags.Items[listViewTags.Items.Count-1].BeginEdit();
+            }
+            else
+            {
+                enCourDeModifAdd = false;
+            }
+        }
+        private void listViewTags_AfterLabelEdit(object sender, LabelEditEventArgs e)
+        {
+            
+            if (e.Label == null)
+            {
+
+                LabelMessage("vous n'avez pas changer le nom par default du tag, il n'a pas été sauvegardé", Color.Red);
+                listViewTags.Items.RemoveAt(listViewTags.Items.Count - 1);
+            }
+            else
+            {
+                //enCourDAjoutDeTag = false;
+                SauvegarderLaModificationDeTags(e.Label); //on transmet le nouveau nom donné par l'evenement
+                Mise_a_jour();
+                richTextBoxInformationModif.Text = images.rechercheinfo(imageSelect);
+                richTextBox_infoImage.Text = images.rechercheinfo(imageSelect);
+            }
+        }
+        private void SauvegarderLaModificationDeTags(string nouveauTag)
+        {
+            ArrayList listTag = new ArrayList();
+            for(int i = 0; i< listViewTags.Items.Count - 1; i++) //on ne prend pas la derniere valeur qui ets le nouveau_nom
+            {
+                listTag.Add(listViewTags.Items[i].Text);
+            }
+            listTag.Add(nouveauTag); // mais on met le nouveau tag transmis en parametre
+            images.modifieTags(imageSelect, new ArrayList(listTag)); //on modifi les tags
         }
     }
 }

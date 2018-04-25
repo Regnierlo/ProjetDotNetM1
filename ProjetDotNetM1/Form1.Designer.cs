@@ -115,7 +115,7 @@
             // textBox_recherche
             // 
             this.textBox_recherche.BackColor = System.Drawing.Color.LightGray;
-            this.textBox_recherche.Location = new System.Drawing.Point(1003, 3);
+            this.textBox_recherche.Location = new System.Drawing.Point(1000, 3);
             this.textBox_recherche.Name = "textBox_recherche";
             this.textBox_recherche.Size = new System.Drawing.Size(210, 20);
             this.textBox_recherche.TabIndex = 7;
@@ -126,16 +126,15 @@
             // tableLayoutPanel_Ensemble
             // 
             this.tableLayoutPanel_Ensemble.ColumnCount = 2;
-            this.tableLayoutPanel_Ensemble.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel_Ensemble.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 994F));
+            this.tableLayoutPanel_Ensemble.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel_Ensemble.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85.71429F));
             this.tableLayoutPanel_Ensemble.Controls.Add(this.tableLayoutPanel_Accueil, 5, 0);
             this.tableLayoutPanel_Ensemble.Controls.Add(this.treeView_TagsAcceuil, 0, 0);
             this.tableLayoutPanel_Ensemble.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel_Ensemble.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel_Ensemble.Name = "tableLayoutPanel_Ensemble";
             this.tableLayoutPanel_Ensemble.RowCount = 1;
-            this.tableLayoutPanel_Ensemble.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel_Ensemble.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 518F));
+            this.tableLayoutPanel_Ensemble.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel_Ensemble.Size = new System.Drawing.Size(1224, 518);
             this.tableLayoutPanel_Ensemble.TabIndex = 3;
             // 
@@ -146,23 +145,23 @@
             this.tableLayoutPanel_Accueil.Controls.Add(this.richTextBox_infoImage, 0, 1);
             this.tableLayoutPanel_Accueil.Controls.Add(this.tableLayoutPanel_Photos, 0, 0);
             this.tableLayoutPanel_Accueil.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel_Accueil.Location = new System.Drawing.Point(233, 3);
+            this.tableLayoutPanel_Accueil.Location = new System.Drawing.Point(177, 3);
+            this.tableLayoutPanel_Accueil.MaximumSize = new System.Drawing.Size(7892, 4320);
             this.tableLayoutPanel_Accueil.Name = "tableLayoutPanel_Accueil";
             this.tableLayoutPanel_Accueil.RowCount = 2;
-            this.tableLayoutPanel_Accueil.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 410F));
-            this.tableLayoutPanel_Accueil.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 84F));
-            this.tableLayoutPanel_Accueil.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel_Accueil.Size = new System.Drawing.Size(988, 512);
+            this.tableLayoutPanel_Accueil.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.tableLayoutPanel_Accueil.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel_Accueil.Size = new System.Drawing.Size(1044, 512);
             this.tableLayoutPanel_Accueil.TabIndex = 0;
             // 
             // richTextBox_infoImage
             // 
             this.richTextBox_infoImage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox_infoImage.Enabled = false;
-            this.richTextBox_infoImage.Location = new System.Drawing.Point(3, 413);
-            this.richTextBox_infoImage.MaximumSize = new System.Drawing.Size(7892, 200);
+            this.richTextBox_infoImage.Location = new System.Drawing.Point(3, 412);
+            this.richTextBox_infoImage.MaximumSize = new System.Drawing.Size(10000, 200);
             this.richTextBox_infoImage.Name = "richTextBox_infoImage";
-            this.richTextBox_infoImage.Size = new System.Drawing.Size(982, 96);
+            this.richTextBox_infoImage.Size = new System.Drawing.Size(1038, 97);
             this.richTextBox_infoImage.TabIndex = 1;
             this.richTextBox_infoImage.Text = "Information de l\'image sélectionnée";
             // 
@@ -178,12 +177,13 @@
             this.tableLayoutPanel_Photos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel_Photos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel_Photos.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel_Photos.MaximumSize = new System.Drawing.Size(7892, 4020);
             this.tableLayoutPanel_Photos.Name = "tableLayoutPanel_Photos";
             this.tableLayoutPanel_Photos.RowCount = 3;
             this.tableLayoutPanel_Photos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tableLayoutPanel_Photos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tableLayoutPanel_Photos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.tableLayoutPanel_Photos.Size = new System.Drawing.Size(982, 404);
+            this.tableLayoutPanel_Photos.Size = new System.Drawing.Size(1038, 403);
             this.tableLayoutPanel_Photos.TabIndex = 2;
             // 
             // treeView_TagsAcceuil
@@ -193,8 +193,9 @@
             this.treeView_TagsAcceuil.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView_TagsAcceuil.Location = new System.Drawing.Point(3, 3);
             this.treeView_TagsAcceuil.MaximumSize = new System.Drawing.Size(300, 4320);
+            this.treeView_TagsAcceuil.MinimumSize = new System.Drawing.Size(300, 500);
             this.treeView_TagsAcceuil.Name = "treeView_TagsAcceuil";
-            this.treeView_TagsAcceuil.Size = new System.Drawing.Size(224, 512);
+            this.treeView_TagsAcceuil.Size = new System.Drawing.Size(300, 512);
             this.treeView_TagsAcceuil.TabIndex = 1;
             this.treeView_TagsAcceuil.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.treeView_TagsAcceuil_AfterLabelEdit);
             this.treeView_TagsAcceuil.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.treeView_TagsAcceuil_ItemDrag);
@@ -246,7 +247,7 @@
             this.label_info.BackColor = System.Drawing.Color.LightGray;
             this.label_info.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_info.ForeColor = System.Drawing.Color.Green;
-            this.label_info.Location = new System.Drawing.Point(222, 0);
+            this.label_info.Location = new System.Drawing.Point(221, 0);
             this.label_info.Name = "label_info";
             this.label_info.Size = new System.Drawing.Size(83, 13);
             this.label_info.TabIndex = 4;
@@ -257,15 +258,15 @@
             this.progressBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.progressBar.Location = new System.Drawing.Point(3, 3);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(213, 23);
+            this.progressBar.Size = new System.Drawing.Size(212, 23);
             this.progressBar.TabIndex = 8;
             this.progressBar.Visible = false;
             // 
             // tableLayoutPanel_Modification
             // 
             this.tableLayoutPanel_Modification.ColumnCount = 2;
-            this.tableLayoutPanel_Modification.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.71569F));
-            this.tableLayoutPanel_Modification.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.28432F));
+            this.tableLayoutPanel_Modification.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel_Modification.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85F));
             this.tableLayoutPanel_Modification.Controls.Add(this.tableLayoutPanel_Photo, 1, 0);
             this.tableLayoutPanel_Modification.Controls.Add(this.tableLayoutPanel_TreeView, 0, 0);
             this.tableLayoutPanel_Modification.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -273,7 +274,6 @@
             this.tableLayoutPanel_Modification.Name = "tableLayoutPanel_Modification";
             this.tableLayoutPanel_Modification.RowCount = 1;
             this.tableLayoutPanel_Modification.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_Modification.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 518F));
             this.tableLayoutPanel_Modification.Size = new System.Drawing.Size(1224, 518);
             this.tableLayoutPanel_Modification.TabIndex = 2;
             // 
@@ -284,12 +284,12 @@
             this.tableLayoutPanel_Photo.Controls.Add(this.tableLayoutPanel_Buttons, 0, 1);
             this.tableLayoutPanel_Photo.Controls.Add(this.tableLayoutPanel1, 0, 0);
             this.tableLayoutPanel_Photo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel_Photo.Location = new System.Drawing.Point(330, 3);
+            this.tableLayoutPanel_Photo.Location = new System.Drawing.Point(186, 3);
             this.tableLayoutPanel_Photo.Name = "tableLayoutPanel_Photo";
             this.tableLayoutPanel_Photo.RowCount = 2;
             this.tableLayoutPanel_Photo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 87F));
             this.tableLayoutPanel_Photo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13F));
-            this.tableLayoutPanel_Photo.Size = new System.Drawing.Size(891, 512);
+            this.tableLayoutPanel_Photo.Size = new System.Drawing.Size(1035, 512);
             this.tableLayoutPanel_Photo.TabIndex = 0;
             // 
             // tableLayoutPanel_Buttons
@@ -306,16 +306,16 @@
             this.tableLayoutPanel_Buttons.Name = "tableLayoutPanel_Buttons";
             this.tableLayoutPanel_Buttons.RowCount = 1;
             this.tableLayoutPanel_Buttons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel_Buttons.Size = new System.Drawing.Size(885, 66);
+            this.tableLayoutPanel_Buttons.Size = new System.Drawing.Size(1029, 66);
             this.tableLayoutPanel_Buttons.TabIndex = 0;
             // 
             // cancelBtn
             // 
             this.cancelBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cancelBtn.Location = new System.Drawing.Point(612, 20);
+            this.cancelBtn.Location = new System.Drawing.Point(684, 20);
             this.cancelBtn.Margin = new System.Windows.Forms.Padding(170, 20, 170, 20);
             this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(103, 26);
+            this.cancelBtn.Size = new System.Drawing.Size(175, 26);
             this.cancelBtn.TabIndex = 1;
             this.cancelBtn.Text = "Annuler";
             this.cancelBtn.UseVisualStyleBackColor = true;
@@ -327,7 +327,7 @@
             this.confirmerBtn.Location = new System.Drawing.Point(170, 20);
             this.confirmerBtn.Margin = new System.Windows.Forms.Padding(170, 20, 170, 20);
             this.confirmerBtn.Name = "confirmerBtn";
-            this.confirmerBtn.Size = new System.Drawing.Size(102, 26);
+            this.confirmerBtn.Size = new System.Drawing.Size(174, 26);
             this.confirmerBtn.TabIndex = 0;
             this.confirmerBtn.Text = "Confirmer";
             this.confirmerBtn.UseVisualStyleBackColor = true;
@@ -345,7 +345,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(885, 439);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1029, 439);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // pictureBoxModifAfficheImage
@@ -353,7 +353,7 @@
             this.pictureBoxModifAfficheImage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxModifAfficheImage.Location = new System.Drawing.Point(3, 3);
             this.pictureBoxModifAfficheImage.Name = "pictureBoxModifAfficheImage";
-            this.pictureBoxModifAfficheImage.Size = new System.Drawing.Size(879, 301);
+            this.pictureBoxModifAfficheImage.Size = new System.Drawing.Size(1023, 301);
             this.pictureBoxModifAfficheImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxModifAfficheImage.TabIndex = 0;
             this.pictureBoxModifAfficheImage.TabStop = false;
@@ -367,9 +367,10 @@
             this.tabInformations.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabInformations.Location = new System.Drawing.Point(0, 307);
             this.tabInformations.Margin = new System.Windows.Forms.Padding(0);
+            this.tabInformations.MaximumSize = new System.Drawing.Size(7892, 200);
             this.tabInformations.Name = "tabInformations";
             this.tabInformations.SelectedIndex = 0;
-            this.tabInformations.Size = new System.Drawing.Size(885, 132);
+            this.tabInformations.Size = new System.Drawing.Size(1029, 132);
             this.tabInformations.TabIndex = 1;
             // 
             // tabPage1
@@ -378,7 +379,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(877, 106);
+            this.tabPage1.Size = new System.Drawing.Size(1021, 106);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Informations";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -389,7 +390,7 @@
             this.richTextBoxInformationModif.Enabled = false;
             this.richTextBoxInformationModif.Location = new System.Drawing.Point(3, 3);
             this.richTextBoxInformationModif.Name = "richTextBoxInformationModif";
-            this.richTextBoxInformationModif.Size = new System.Drawing.Size(871, 100);
+            this.richTextBoxInformationModif.Size = new System.Drawing.Size(1015, 100);
             this.richTextBoxInformationModif.TabIndex = 0;
             this.richTextBoxInformationModif.Text = "";
             // 
@@ -399,7 +400,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(877, 106);
+            this.tabPage2.Size = new System.Drawing.Size(1021, 106);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tags";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -418,13 +419,13 @@
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 106F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(877, 106);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1021, 106);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // buttonSupprimerTag
             // 
             this.buttonSupprimerTag.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonSupprimerTag.Location = new System.Drawing.Point(680, 3);
+            this.buttonSupprimerTag.Location = new System.Drawing.Point(824, 3);
             this.buttonSupprimerTag.Name = "buttonSupprimerTag";
             this.buttonSupprimerTag.Size = new System.Drawing.Size(194, 100);
             this.buttonSupprimerTag.TabIndex = 0;
@@ -444,11 +445,14 @@
             listViewItem1,
             listViewItem2,
             listViewItem3});
+            this.listViewTags.LabelEdit = true;
             this.listViewTags.Location = new System.Drawing.Point(3, 3);
             this.listViewTags.Name = "listViewTags";
-            this.listViewTags.Size = new System.Drawing.Size(671, 100);
+            this.listViewTags.Size = new System.Drawing.Size(815, 100);
             this.listViewTags.TabIndex = 1;
             this.listViewTags.UseCompatibleStateImageBehavior = false;
+            this.listViewTags.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.listViewTags_AfterLabelEdit);
+            this.listViewTags.MouseUp += new System.Windows.Forms.MouseEventHandler(this.listViewTags_MouseUp);
             // 
             // tabPage3
             // 
@@ -456,7 +460,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(877, 106);
+            this.tabPage3.Size = new System.Drawing.Size(1021, 106);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Renommer";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -465,7 +469,7 @@
             // 
             this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel3.Controls.Add(this.buttonRename, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.richTextBoxRename, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -473,16 +477,15 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(871, 100);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1015, 100);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // buttonRename
             // 
             this.buttonRename.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonRename.Location = new System.Drawing.Point(674, 3);
+            this.buttonRename.Location = new System.Drawing.Point(918, 3);
             this.buttonRename.Name = "buttonRename";
-            this.buttonRename.Size = new System.Drawing.Size(194, 94);
+            this.buttonRename.Size = new System.Drawing.Size(94, 94);
             this.buttonRename.TabIndex = 0;
             this.buttonRename.Text = "Renommer";
             this.buttonRename.UseVisualStyleBackColor = true;
@@ -494,7 +497,7 @@
             this.richTextBoxRename.Enabled = false;
             this.richTextBoxRename.Location = new System.Drawing.Point(3, 3);
             this.richTextBoxRename.Name = "richTextBoxRename";
-            this.richTextBoxRename.Size = new System.Drawing.Size(665, 94);
+            this.richTextBoxRename.Size = new System.Drawing.Size(909, 94);
             this.richTextBoxRename.TabIndex = 1;
             this.richTextBoxRename.Text = "";
             // 
@@ -508,7 +511,7 @@
             this.tableLayoutPanel_TreeView.Name = "tableLayoutPanel_TreeView";
             this.tableLayoutPanel_TreeView.RowCount = 1;
             this.tableLayoutPanel_TreeView.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.09612F));
-            this.tableLayoutPanel_TreeView.Size = new System.Drawing.Size(321, 512);
+            this.tableLayoutPanel_TreeView.Size = new System.Drawing.Size(177, 512);
             this.tableLayoutPanel_TreeView.TabIndex = 1;
             // 
             // treeView_TagsModification
@@ -519,7 +522,7 @@
             this.treeView_TagsModification.Location = new System.Drawing.Point(3, 3);
             this.treeView_TagsModification.MaximumSize = new System.Drawing.Size(300, 4320);
             this.treeView_TagsModification.Name = "treeView_TagsModification";
-            this.treeView_TagsModification.Size = new System.Drawing.Size(300, 506);
+            this.treeView_TagsModification.Size = new System.Drawing.Size(171, 506);
             this.treeView_TagsModification.TabIndex = 0;
             this.treeView_TagsModification.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.treeView_TagsModification_ItemDrag);
             this.treeView_TagsModification.DragDrop += new System.Windows.Forms.DragEventHandler(this.treeView_TagsModification_DragDrop);
@@ -543,7 +546,7 @@
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.06639F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.93361F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 91F));
-            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 223F));
+            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 226F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 56F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.36034F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.63966F));
@@ -580,7 +583,7 @@
             "Tous",
             "Photos",
             "Tags"});
-            this.comboBox_Recherche.Location = new System.Drawing.Point(912, 3);
+            this.comboBox_Recherche.Location = new System.Drawing.Point(909, 3);
             this.comboBox_Recherche.Name = "comboBox_Recherche";
             this.comboBox_Recherche.Size = new System.Drawing.Size(85, 21);
             this.comboBox_Recherche.TabIndex = 9;
