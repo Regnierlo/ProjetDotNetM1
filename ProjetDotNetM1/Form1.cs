@@ -887,7 +887,10 @@ namespace ProjetDotNetM1
 
         private void textBox_recherche_Click(object sender, EventArgs e)
         {
-            textBox_recherche.Clear();
+            if (textBox_recherche.Text == "Rechercher nom ou tag d'une photo")
+            {
+                textBox_recherche.Clear();
+            }
         }
     }
 }
