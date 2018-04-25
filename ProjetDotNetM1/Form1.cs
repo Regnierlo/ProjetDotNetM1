@@ -303,9 +303,19 @@ namespace ProjetDotNetM1
                     default:
                         break;
                 }
-                haut = pictureBoxModifAfficheImage.Height;
-                double largD = (double)image.Width / (double)image.Height * pictureBoxModifAfficheImage.Height;
-                larg = (int)largD;
+                if (image.Height > image.Width)
+                {
+                    double largD;
+                    haut = pictureBoxModifAfficheImage.Height;
+                    largD = (double)image.Width / (double)image.Height * pictureBoxModifAfficheImage.Height;
+                    larg = (int)largD;
+                }
+                else
+                {
+                    larg = pictureBoxModifAfficheImage.Width;
+                    double hautD = (double)image.Height / (double)image.Width * pictureBoxModifAfficheImage.Height;
+                    haut = (int)hautD;
+                }
                 pictureBoxModifAfficheImage.Image = new Bitmap(image, new Size(larg, haut));
                 richTextBoxInformationModif.Text = images.rechercheinfo(imageSelect);
                 string[] decompositionNom = imageSelect.Split('\\');
@@ -866,6 +876,13 @@ namespace ProjetDotNetM1
                 label_info.Text = "le(s) tag(s) on été supprimé(s)";
                 label_info.ForeColor = Color.Green;
             }
+        }
+
+        private void pictureBoxModifAfficheImage_DoubleClick(object sender, EventArgs e)
+        {
+
+            Form2 full = new Form2(imageSelect,images.rechercheOrientation(imageSelect));
+            full.Show();
         }
 
         private void textBox_recherche_Click(object sender, EventArgs e)

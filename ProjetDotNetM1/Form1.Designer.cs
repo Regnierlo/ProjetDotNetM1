@@ -66,13 +66,13 @@
             this.tableLayoutPanel_TreeView = new System.Windows.Forms.TableLayoutPanel();
             this.treeView_TagsModification = new System.Windows.Forms.TreeView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel_InformationsLogiciel = new System.Windows.Forms.TableLayoutPanel();
+            this.comboBox_Recherche = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel_Parametres = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel_EnregistrerParametres = new System.Windows.Forms.TableLayoutPanel();
             this.Button_ConfirmerParametres = new System.Windows.Forms.Button();
             this.tableLayoutPanel_AnnulerParametres = new System.Windows.Forms.TableLayoutPanel();
             this.Button_AnnulerParametres = new System.Windows.Forms.Button();
-            this.tableLayoutPanel_InformationsLogiciel = new System.Windows.Forms.TableLayoutPanel();
-            this.comboBox_Recherche = new System.Windows.Forms.ComboBox();
             this.Fichier_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Ouvrir_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Dossier_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -104,10 +104,10 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel_TreeView.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.tableLayoutPanel_InformationsLogiciel.SuspendLayout();
             this.tableLayoutPanel_Parametres.SuspendLayout();
             this.tableLayoutPanel_EnregistrerParametres.SuspendLayout();
             this.tableLayoutPanel_AnnulerParametres.SuspendLayout();
-            this.tableLayoutPanel_InformationsLogiciel.SuspendLayout();
             this.menuStrip_barreAccueil.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -251,6 +251,16 @@
             this.label_info.TabIndex = 4;
             this.label_info.Text = "Label de MàJ";
             // 
+            // button_Go_Recherche
+            // 
+            this.button_Go_Recherche.Location = new System.Drawing.Point(1170, 3);
+            this.button_Go_Recherche.Name = "button_Go_Recherche";
+            this.button_Go_Recherche.Size = new System.Drawing.Size(34, 23);
+            this.button_Go_Recherche.TabIndex = 6;
+            this.button_Go_Recherche.Text = "Go";
+            this.button_Go_Recherche.UseVisualStyleBackColor = true;
+            this.button_Go_Recherche.Click += new System.EventHandler(this.Button1_Click);
+            // 
             // progressBar
             // 
             this.progressBar.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -356,6 +366,7 @@
             this.pictureBoxModifAfficheImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxModifAfficheImage.TabIndex = 0;
             this.pictureBoxModifAfficheImage.TabStop = false;
+            this.pictureBoxModifAfficheImage.DoubleClick += new System.EventHandler(this.pictureBoxModifAfficheImage_DoubleClick);
             // 
             // tabInformations
             // 
@@ -432,6 +443,7 @@
             // 
             // listViewTags
             // 
+            this.listViewTags.AllowDrop = true;
             this.listViewTags.CheckBoxes = true;
             this.listViewTags.Dock = System.Windows.Forms.DockStyle.Fill;
             listViewItem7.StateImageIndex = 0;
@@ -526,13 +538,52 @@
             // 
             this.panel1.Controls.Add(this.tableLayoutPanel_Ensemble);
             this.panel1.Controls.Add(this.tableLayoutPanel_Modification);
-            this.panel1.Controls.Add(this.tableLayoutPanel_Parametres);
             this.panel1.Controls.Add(this.tableLayoutPanel_InformationsLogiciel);
+            this.panel1.Controls.Add(this.tableLayoutPanel_Parametres);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1224, 547);
             this.panel1.TabIndex = 7;
+            // 
+            // tableLayoutPanel_InformationsLogiciel
+            // 
+            this.tableLayoutPanel_InformationsLogiciel.ColumnCount = 5;
+            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.06639F));
+            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.93361F));
+            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 91F));
+            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 216F));
+            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 56F));
+            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.36034F));
+            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.63966F));
+            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 244F));
+            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel_InformationsLogiciel.Controls.Add(this.progressBar, 0, 0);
+            this.tableLayoutPanel_InformationsLogiciel.Controls.Add(this.label_info, 1, 0);
+            this.tableLayoutPanel_InformationsLogiciel.Controls.Add(this.button_Go_Recherche, 4, 0);
+            this.tableLayoutPanel_InformationsLogiciel.Controls.Add(this.textBox_recherche, 3, 0);
+            this.tableLayoutPanel_InformationsLogiciel.Controls.Add(this.comboBox_Recherche, 2, 0);
+            this.tableLayoutPanel_InformationsLogiciel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanel_InformationsLogiciel.Location = new System.Drawing.Point(0, 518);
+            this.tableLayoutPanel_InformationsLogiciel.Name = "tableLayoutPanel_InformationsLogiciel";
+            this.tableLayoutPanel_InformationsLogiciel.RowCount = 1;
+            this.tableLayoutPanel_InformationsLogiciel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel_InformationsLogiciel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel_InformationsLogiciel.Size = new System.Drawing.Size(1224, 29);
+            this.tableLayoutPanel_InformationsLogiciel.TabIndex = 8;
+            // 
+            // comboBox_Recherche
+            // 
+            this.comboBox_Recherche.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_Recherche.FormattingEnabled = true;
+            this.comboBox_Recherche.Items.AddRange(new object[] {
+            "Tous",
+            "Photos",
+            "Tags"});
+            this.comboBox_Recherche.Location = new System.Drawing.Point(863, 3);
+            this.comboBox_Recherche.Name = "comboBox_Recherche";
+            this.comboBox_Recherche.Size = new System.Drawing.Size(85, 21);
+            this.comboBox_Recherche.TabIndex = 9;
             // 
             // tableLayoutPanel_Parametres
             // 
@@ -550,7 +601,7 @@
             this.tableLayoutPanel_Parametres.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.72727F));
             this.tableLayoutPanel_Parametres.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.72727F));
             this.tableLayoutPanel_Parametres.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
-            this.tableLayoutPanel_Parametres.Size = new System.Drawing.Size(1224, 518);
+            this.tableLayoutPanel_Parametres.Size = new System.Drawing.Size(1224, 547);
             this.tableLayoutPanel_Parametres.TabIndex = 2;
             // 
             // tableLayoutPanel_EnregistrerParametres
@@ -562,11 +613,11 @@
             this.tableLayoutPanel_EnregistrerParametres.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel_EnregistrerParametres.Controls.Add(this.Button_ConfirmerParametres, 2, 0);
             this.tableLayoutPanel_EnregistrerParametres.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel_EnregistrerParametres.Location = new System.Drawing.Point(3, 471);
+            this.tableLayoutPanel_EnregistrerParametres.Location = new System.Drawing.Point(3, 499);
             this.tableLayoutPanel_EnregistrerParametres.Name = "tableLayoutPanel_EnregistrerParametres";
             this.tableLayoutPanel_EnregistrerParametres.RowCount = 1;
             this.tableLayoutPanel_EnregistrerParametres.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_EnregistrerParametres.Size = new System.Drawing.Size(606, 44);
+            this.tableLayoutPanel_EnregistrerParametres.Size = new System.Drawing.Size(606, 45);
             this.tableLayoutPanel_EnregistrerParametres.TabIndex = 2;
             // 
             // Button_ConfirmerParametres
@@ -574,7 +625,7 @@
             this.Button_ConfirmerParametres.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Button_ConfirmerParametres.Location = new System.Drawing.Point(305, 3);
             this.Button_ConfirmerParametres.Name = "Button_ConfirmerParametres";
-            this.Button_ConfirmerParametres.Size = new System.Drawing.Size(145, 38);
+            this.Button_ConfirmerParametres.Size = new System.Drawing.Size(145, 39);
             this.Button_ConfirmerParametres.TabIndex = 0;
             this.Button_ConfirmerParametres.Text = "Enregistrer les paramètres";
             this.Button_ConfirmerParametres.UseVisualStyleBackColor = true;
@@ -588,11 +639,11 @@
             this.tableLayoutPanel_AnnulerParametres.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel_AnnulerParametres.Controls.Add(this.Button_AnnulerParametres, 1, 0);
             this.tableLayoutPanel_AnnulerParametres.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel_AnnulerParametres.Location = new System.Drawing.Point(615, 471);
+            this.tableLayoutPanel_AnnulerParametres.Location = new System.Drawing.Point(615, 499);
             this.tableLayoutPanel_AnnulerParametres.Name = "tableLayoutPanel_AnnulerParametres";
             this.tableLayoutPanel_AnnulerParametres.RowCount = 1;
             this.tableLayoutPanel_AnnulerParametres.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_AnnulerParametres.Size = new System.Drawing.Size(606, 44);
+            this.tableLayoutPanel_AnnulerParametres.Size = new System.Drawing.Size(606, 45);
             this.tableLayoutPanel_AnnulerParametres.TabIndex = 3;
             // 
             // Button_AnnulerParametres
@@ -600,7 +651,7 @@
             this.Button_AnnulerParametres.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Button_AnnulerParametres.Location = new System.Drawing.Point(154, 3);
             this.Button_AnnulerParametres.Name = "Button_AnnulerParametres";
-            this.Button_AnnulerParametres.Size = new System.Drawing.Size(145, 38);
+            this.Button_AnnulerParametres.Size = new System.Drawing.Size(145, 39);
             this.Button_AnnulerParametres.TabIndex = 1;
             this.Button_AnnulerParametres.Text = "Annuler";
             this.Button_AnnulerParametres.UseVisualStyleBackColor = true;
@@ -792,11 +843,11 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel_TreeView.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.tableLayoutPanel_InformationsLogiciel.ResumeLayout(false);
+            this.tableLayoutPanel_InformationsLogiciel.PerformLayout();
             this.tableLayoutPanel_Parametres.ResumeLayout(false);
             this.tableLayoutPanel_EnregistrerParametres.ResumeLayout(false);
             this.tableLayoutPanel_AnnulerParametres.ResumeLayout(false);
-            this.tableLayoutPanel_InformationsLogiciel.ResumeLayout(false);
-            this.tableLayoutPanel_InformationsLogiciel.PerformLayout();
             this.menuStrip_barreAccueil.ResumeLayout(false);
             this.menuStrip_barreAccueil.PerformLayout();
             this.ResumeLayout(false);
