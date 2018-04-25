@@ -867,5 +867,10 @@ namespace ProjetDotNetM1
                 label_info.ForeColor = Color.Green;
             }
         }
+
+        private void textBox_recherche_Click(object sender, EventArgs e)
+        {
+            textBox_recherche.Clear();
+        }
     }
 }
