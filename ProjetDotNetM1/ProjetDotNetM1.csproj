@@ -116,6 +116,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Recherche.cs" />
     <Compile Include="Tag.cs" />
     <Compile Include="GestionnaireTags.cs" />
   </ItemGroup>

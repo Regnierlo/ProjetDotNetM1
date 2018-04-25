@@ -764,49 +764,50 @@ namespace ProjetDotNetM1
         #endregion
 
         #region Recherche
-        /// <summary>
-        /// Permet de lancer la recherche en appuyant sur la touche "Entrée"
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void textBox_recherche_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                LancerRecherche();
-            }
-        }
-
-        /// <summary>
-        /// Evenement lié au bouton permettant à l'utilisateur de rechercher des tags/images,...
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            LancerRecherche();
-        }
-
-        /// <summary>
-        /// Lance la recherche approprié
-        /// </summary>
-        private void LancerRecherche()
+        private void textBox_recherche_TextChanged(object sender, EventArgs e)
         {
             string secteurRecherche = this.comboBox_Recherche.Text;
             string rechercheUtilisateur = this.textBox_recherche.Text;
+            Recherche r = new Recherche();
 
-
-            if(secteurRecherche == this.comboBox_Recherche.Items[0].ToString())//Tous
+            if (secteurRecherche == this.comboBox_Recherche.Items[0].ToString())//Tous
             {
-                RechercheTous(rechercheUtilisateur);
+                if (rechercheUtilisateur != "")
+                {
+                    List<GestionImage> limage = r.RechercheTous(rechercheUtilisateur, images);
+                    GestionListeImages imgRechercheTous = new GestionListeImages(limage);
+                    AfficheImage(imgRechercheTous);
+                }
+                else
+                {
+                    AfficheImage(images);
+                }
             }
-            else if(secteurRecherche == this.comboBox_Recherche.Items[1].ToString())//Photos
+            else if (secteurRecherche == this.comboBox_Recherche.Items[1].ToString())//Photos
             {
-                RecherchePhotos(rechercheUtilisateur);
+                if (rechercheUtilisateur != "")
+                {
+                    List<GestionImage> limage = r.RecherchePhotos(rechercheUtilisateur, images);
+                    GestionListeImages imagesAvecTags = new GestionListeImages(limage);
+                    AfficheImage(imagesAvecTags);
+                }
+                else
+                {
+                    AfficheImage(images);
+                }
             }
-            else if(secteurRecherche == this.comboBox_Recherche.Items[2].ToString())//Tags
+            else if (secteurRecherche == this.comboBox_Recherche.Items[2].ToString())//Tags
             {
-                RechercheTags(rechercheUtilisateur);
+                if (rechercheUtilisateur != "")
+                {
+                    List<GestionImage> limage = r.RechercheTags(rechercheUtilisateur, images);
+                    GestionListeImages imagesAvecTags = new GestionListeImages(limage);
+                    AfficheImage(imagesAvecTags);
+                }
+                else
+                {
+                    AfficheImage(images);
+                }
             }
             else
             {
@@ -814,50 +815,14 @@ namespace ProjetDotNetM1
             }
         }
 
-        private void RechercheTous(string rechercheUtilisateur)
+        private void treeView_TagsAcceuil_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
+            Recherche r = new Recherche();
 
-        }
+            List<GestionImage> limage = r.RechercheTags(e.Node.Text, images);
+            GestionListeImages imagesAvecTags = new GestionListeImages(limage);
+            AfficheImage(imagesAvecTags);
 
-        private void RecherchePhotos(string rechercheUtilisateur)
-        {
-            
-        }
-
-        private void RechercheTags(string rechercheUtilisateur)
-        {
-            TableLayoutPanel lphoto = tableLayoutPanel_Photos;
-            //GestionListeImages imagesAvecTags = new GestionListeImages(this.progressBar);
-
-            List<GestionImage> limage = new List<GestionImage>();
-
-            foreach (GestionImage img in images.ListeImg)
-            {
-                FileStream fs = new FileStream(img.ImgUrl, FileMode.Open);
-                Image image = Image.FromStream(fs);
-                fs.Close();
-
-                Boolean tagPresent = false;
-                foreach (string tag in img.Tag)
-                {
-                    if (tag == rechercheUtilisateur)
-                    {
-                        tagPresent = true;
-                    }
-                }
-
-                if (tagPresent)
-                {
-                    limage.Add(img);
-                }
-
-                foreach (GestionImage ti in limage)
-                {
-                    Console.WriteLine("Images : " + ti.ImgUrl);
-                }
-            }
-
-            //lphoto.Controls.Find(images.rechercheinfo, true);
         }
         #endregion
 
