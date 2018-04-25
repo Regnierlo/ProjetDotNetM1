@@ -314,7 +314,7 @@ namespace ProjetDotNetM1
                 else
                 {
                     larg = pictureBoxModifAfficheImage.Width;
-                    double hautD = (double)image.Height / (double)image.Width * pictureBoxModifAfficheImage.Height;
+                    double hautD = (double)image.Height / (double)image.Width * pictureBoxModifAfficheImage.Width;
                     haut = (int)hautD;
                 }
                 pictureBoxModifAfficheImage.Image = new Bitmap(image, new Size(larg, haut));

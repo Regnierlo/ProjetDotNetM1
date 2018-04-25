@@ -69,7 +69,7 @@ namespace ProjetDotNetM1
             else
             {
                 larg = pictureBox1.Width;
-                double hautD = (double)image.Height/ (double)image.Width * pictureBox1.Height;
+                double hautD = (double)image.Height/ (double)image.Width * pictureBox1.Width;
                 haut = (int)hautD;
             }
     
