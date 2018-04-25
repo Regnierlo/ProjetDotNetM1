@@ -2,57 +2,34 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace ProjetDotNetM1
 {
     class Recherche
     {
+        /// <summary>
+        /// Permet de faire une recherche sur les noms des photos et les tags associés
+        /// </summary>
+        /// <param name="rechercheUtilisateur">Chaine entrée par l'utilisateur pour la recherche</param>
+        /// <param name="images">Liste des images où on va chercher</param>
+        /// <returns>Liste d'image à afficher</returns>
         public List<GestionImage> RechercheTous(string rechercheUtilisateur, GestionListeImages images)
         {
             List<GestionImage> limage = new List<GestionImage>();
 
             //Nom photos
-            List<GestionImage> tmp = RecherchePhotos(rechercheUtilisateur, images);
-            foreach (GestionImage img in tmp)
+            List<GestionImage> tmp = RecherchePhotos(rechercheUtilisateur, images);//On effectue une recherche sur les noms des photos
+            foreach (GestionImage img in tmp)//On les ajoutes
             {
                 limage.Add(img);
             }
 
             //Tags photos
-            tmp = RechercheTags(rechercheUtilisateur, images);
-            limage.AddRange(tmp);
-            Boolean imagePresente;
-            List<string> imagesAEnlever = new List<string>();
-            for (int i = 0; i < limage.Count - 1; i++)
-            {
-                imagePresente = false;
-                for (int j = i + 1; j < limage.Count; j++)
-                {
-                    if (limage[i].ImgUrl == limage[j].ImgUrl)
-                    {
-                        imagePresente = true;
-                    }
-                }
+            tmp = RechercheTags(rechercheUtilisateur, images);//on effectue une recherche sur les tags d'une photos
+            limage.AddRange(tmp);//On fusionne les deux listes (noms photos + tags photos)
 
-                if (imagePresente)
-                    imagesAEnlever.Add(limage[i].ImgUrl);
-            }
-
-            Boolean enlever;
-            int k;
-            for (int i = 0; i < imagesAEnlever.Count; i++)
-            {
-                enlever = false;
-                k = 0;
-                while(!enlever)
-                {
-                    if (limage[k].ImgUrl == imagesAEnlever[i])
-                    {
-                        limage.RemoveAt(k);
-                        enlever = true;
-                    }
-                }
-            }
+            limage = EnleverDoubleImageListe(limage);//On enlève les doublons
 
             return limage;
         }
@@ -96,66 +73,97 @@ namespace ProjetDotNetM1
         {
             List<GestionImage> limage = new List<GestionImage>();
 
-            string pat = @"(\w*)" + rechercheUtilisateur + @"(\w*)";
+            string pat = @"(\w*)" + rechercheUtilisateur + @"(\w*)";//Pattern pour l'expression régulière
 
-            Regex reg = new Regex(pat, RegexOptions.IgnoreCase);
+            Regex reg = new Regex(pat, RegexOptions.IgnoreCase);//On ignore la case
 
-            Boolean tagPresent;
+            Boolean tagPresent;//Pour vérifier si le tag est présent dans la photo
 
             foreach (GestionImage img in images.ListeImg)
             {
-                tagPresent = false;
+                tagPresent = false;//On suppose que le tag n'est pas présent
                 foreach (string tag in img.Tag)
                 {
-                    Match m = reg.Match(tag);
-                    while (m.Success)
+                    Match m = reg.Match(tag);//On tente de trouver des photos avec le tag
+                    while (m.Success)//Si il y en a
                     {
-                        Console.WriteLine("Tag de la photo : " + m.ToString());
-                        tagPresent = true;
-                        m = m.NextMatch();
+                        tagPresent = true;//On l'indique
+                        m = m.NextMatch();//Et on passe au suivant
                     }
 
-                    if (tagPresent)
+                    if (tagPresent)//Si le tag est présent
                     {
-                        limage.Add(img);
+                        limage.Add(img);//On ajoute l'image à la liste
                     }
                 }
             }
-
-            Console.WriteLine("\n\n-------------------------\n\n");
 
             return limage;
         }
 
-        public void expReg(string s, GestionListeImages images)
+        /// <summary>
+        /// On effectue une recherche sur le tag avec le treeView
+        /// </summary>
+        /// <param name="selectedNode"></param>
+        /// <param name="images"></param>
+        /// <returns></returns>
+        public List<GestionImage> RechercheTagsTreeView(TreeNode selectedNode, GestionListeImages images)
         {
-            string pat = @"(\w*)" + s + @"(\w*)";
+            List<GestionImage> limage = new List<GestionImage>();
 
-            Regex reg = new Regex(pat, RegexOptions.IgnoreCase);
-
-            Boolean tagPresent;
-
-            foreach (GestionImage img in images.ListeImg)
+            foreach (TreeNode childNode in selectedNode.Nodes)//Pour tous les fils du noeud
             {
-                tagPresent = false;
-                foreach (string tag in img.Tag)
-                {
-                    Match m = reg.Match(tag);
-                    while (m.Success)
-                    {
-                        Console.WriteLine("Tag de la photo : " + m.ToString());
-                        tagPresent = true;
-                        m = m.NextMatch();
-                    }
+                limage.AddRange(RechercheTags(childNode.Text, images));//On fusionne la liste présente avec celle retourné après une recherche sur les fils
+                if (childNode.Nodes != null)//Si le fils à des fils lui aussi
+                    limage.AddRange(RechercheTagsTreeView(childNode, images));//On fait une recherche sur le fils du coup
+            }
 
-                    if (tagPresent)
+            limage = EnleverDoubleImageListe(limage);//On enlève les doublons
+
+            return limage;
+        }
+
+        /// <summary>
+        /// On supprime les doublons de la liste
+        /// </summary>
+        /// <param name="limage">La liste où on va enlever les doublons</param>
+        /// <returns>On retourne la liste sans les doublons</returns>
+        private List<GestionImage> EnleverDoubleImageListe(List<GestionImage> limage)
+        {
+            Boolean imagePresente;//Pour savoir si l'image est présente
+            List<string> imagesAEnlever = new List<string>();//Liste des images à enlever
+            for (int i = 0; i < limage.Count - 1; i++)
+            {
+                imagePresente = false;//On suppose qu'elle n'existe pas déjà
+                for (int j = i + 1; j < limage.Count; j++)
+                {
+                    if (limage[i].ImgUrl == limage[j].ImgUrl)//Si l'URL est la même (donc même image)
                     {
-                        Console.WriteLine("Nom de la photo : " + img.ImgUrl);
+                        imagePresente = true;//On l'indique
+                    }
+                }
+
+                if (imagePresente)//Si elle est présente
+                    imagesAEnlever.Add(limage[i].ImgUrl);//On indique l'url à supprimer
+            }
+
+            Boolean enlever;//Savoir si c'est enlevé
+            int k;
+            for (int i = 0; i < imagesAEnlever.Count; i++)//Pour toutes les images à enlever
+            {
+                enlever = false;//On suppose qu'elle est pas encore enlevée
+                k = 0;
+                while (!enlever)//Tant que c'est pas enlevé
+                {
+                    if (limage[k].ImgUrl == imagesAEnlever[i])//On compare les URL
+                    {
+                        limage.RemoveAt(k);//Si c'est les mêmes, on supprime
+                        enlever = true;//On indique que c'est enlevé
                     }
                 }
             }
 
-            Console.WriteLine("\n\n-------------------------\n\n");
+            return limage;
         }
     }
 }

@@ -764,6 +764,11 @@ namespace ProjetDotNetM1
         #endregion
 
         #region Recherche
+        /// <summary>
+        /// Fais une recherche dès que le texte change
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void textBox_recherche_TextChanged(object sender, EventArgs e)
         {
             string secteurRecherche = this.comboBox_Recherche.Text;
@@ -815,14 +820,21 @@ namespace ProjetDotNetM1
             }
         }
 
+        /// <summary>
+        /// Fais une recherche quand on clique sur un tag d'une photo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void treeView_TagsAcceuil_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             Recherche r = new Recherche();
 
-            List<GestionImage> limage = r.RechercheTags(e.Node.Text, images);
+            List<GestionImage> limage = r.RechercheTags(e.Node.Text, images);//On recherche les photos avec le tag sélectionné
+
+            limage.AddRange(r.RechercheTagsTreeView(e.Node, images));//On fusionne les photos trouvées avant avec celle des fils
+
             GestionListeImages imagesAvecTags = new GestionListeImages(limage);
             AfficheImage(imagesAvecTags);
-
         }
         #endregion
 
