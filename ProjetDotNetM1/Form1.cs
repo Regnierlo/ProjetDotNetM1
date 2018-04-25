@@ -227,7 +227,8 @@ namespace ProjetDotNetM1
                 }
                 GestionListeImport image = new GestionListeImport(imagesList, this.images);
                 image.Importer();
-                Console.WriteLine("Màj effectuée");
+                //Console.WriteLine("Màj effectuée");
+                LabelMessage("Mise à jour effectuée", Color.Green);
             }
         }
 
@@ -422,14 +423,16 @@ namespace ProjetDotNetM1
             if (nbFichiersJPG > 0)
             {
                 images = new GestionListeImages(progressBar);
-                Console.WriteLine("Màj effectuée");
+                //Console.WriteLine("Màj effectuée");
+                LabelMessage("Mise à jour effectuée", Color.Green);
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
                 AfficheImage(images);
             }
             else
             {
-                Console.WriteLine("Màj non effectuée");
+                LabelMessage("Mise à jour non effectuée", Color.Red);
+                //Console.WriteLine("Màj non effectuée");
             }
         }
         
