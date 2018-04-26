@@ -7,10 +7,12 @@ using System.Drawing;
 using System.Threading;
 using System.Text.RegularExpressions;
 
-namespace ProjetDotNetM1
+
+namespace ProjetDotNetM1    
 {
     class GestionListeImport
     {
+        Form1 form;
         public ArrayList ListeImg
         {
             get;
@@ -26,10 +28,11 @@ namespace ProjetDotNetM1
         /// </summary>
         /// <param name="entryList"></param>
         /// <param name="images"></param>
-        public GestionListeImport(ArrayList entryList, GestionListeImages images)
+        public GestionListeImport(ArrayList entryList, GestionListeImages images, Form1 f)
         {
             ListeImgImport = images;
             ListeImg = entryList;
+            form = f;
         }
         public void Importer()
         {
@@ -111,6 +114,8 @@ namespace ProjetDotNetM1
                     }
                 }
             }
+            //appeler le invoke
+            form.Invoke(form.monDelegue);
         }
         private void Importation_deja_present(string img,string saveUrl,string name,string saveUrlDos)
         {

@@ -239,7 +239,7 @@ namespace ProjetDotNetM1
                 sr.Close();
             }catch(Exception e)
             {
-
+                Console.WriteLine("Erreur : " + e);
             }
         }
 

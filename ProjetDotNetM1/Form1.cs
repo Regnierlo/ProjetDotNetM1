@@ -10,6 +10,8 @@ namespace ProjetDotNetM1
 {
     public partial class Form1 : Form
     {
+        public delegate void MiseAJourDelegate();
+        public MiseAJourDelegate monDelegue;
         GestionListeImages images;
         Boolean enCourDeModifAdd=false;
         Boolean enCourDeModifSupr = false;
@@ -17,13 +19,12 @@ namespace ProjetDotNetM1
         string imageSelect;
         public Form1()
         {
-
             InitializeComponent();
             pictureList = new List<System.Windows.Forms.PictureBox>();
             textBox_recherche.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            Mise_a_jour();
+            monDelegue = new MiseAJourDelegate(MiseAJour);
             InitialisationPerso();
-            AfficheImage(images);
+            MiseAJour();
         }
 
         /// <summary>
@@ -158,19 +159,6 @@ namespace ProjetDotNetM1
         }
         #endregion
 
-        /// <summary>
-        /// Fonction permettant de mettre à jour le dossier d'images lors du lancement de l'application
-        /// </summary>
-        private void Mise_a_jour()
-        {
-            string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-            saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
-
-            if (!Directory.Exists(saveUrlDos))
-                Directory.CreateDirectory(saveUrlDos);
-            int nbFichiersJPG = Directory.GetFiles(saveUrlDos, "*.jpg", SearchOption.AllDirectories).Length;
-            images = new GestionListeImages(progressBar);
-        }
         #region barre de menu
 
         /// <summary>
@@ -202,12 +190,22 @@ namespace ProjetDotNetM1
         private void DossierToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folderDialog = new FolderBrowserDialog();
+            string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
             if (folderDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 Console.WriteLine("lecture du dossier réussie");
                 string path = folderDialog.SelectedPath;
-                GestionListeImport image = new GestionListeImport(ProcessDirectory(path), this.images);
-                image.Importer();
+                if(saveUrlDos == path)
+                {
+                    Console.WriteLine("dossier HRF = dossier courant");
+                    MessageBox.Show("Le dossier importé est le même dossier courrant.");
+                }
+                else
+                {
+                    GestionListeImport image = new GestionListeImport(ProcessDirectory(path), this.images,this);
+                    image.Importer();
+                }
             }
         }
 
@@ -243,6 +241,10 @@ namespace ProjetDotNetM1
         /// <param name="e"></param>
         private void FichierToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            bool T = false;
+            string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
+            Console.WriteLine(saveUrlDos);
             OpenFileDialog openFileDialog1 = new OpenFileDialog
             {
                 Filter = "Images Files (.jpg)|*.jpg",
@@ -251,17 +253,52 @@ namespace ProjetDotNetM1
             };
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+
                 Console.WriteLine("lecture du dossier réussie");
                 ArrayList imagesList;
                 imagesList = new ArrayList();
                 foreach (string img in openFileDialog1.FileNames)
                 {
-                    imagesList.Add(img);
+                    string[] decompositionNom = img.Split('\\');
+                    string[] nom = decompositionNom[decompositionNom.Length - 1].Split('.');
+                    string courrantUrlDos = decompositionNom[0] + "\\";
+
+                    string[] decompositionNom2 = saveUrlDos.Split('\\');
+                    string[] nom2 = decompositionNom2[decompositionNom2.Length - 1].Split('.');
+                    saveUrlDos = decompositionNom2[0] + "\\";
+
+                    foreach (string urlPart in decompositionNom)
+                    {
+                        if (urlPart != decompositionNom[decompositionNom.Length - 1])
+                        {
+                            courrantUrlDos = Path.Combine(courrantUrlDos, urlPart);
+                        }
+                    }
+                    foreach (string urlPart in decompositionNom2)
+                    {
+                       saveUrlDos = Path.Combine(saveUrlDos, urlPart);
+                    }
+                    
+                    if (saveUrlDos == courrantUrlDos)
+                    {
+                        Console.WriteLine("Dossier courant : " + courrantUrlDos + "\nDossier FHRImages : " + saveUrlDos);
+                        Console.WriteLine("dossier HRF = dossier courant");
+                        T = true;
+                    }
+                    else
+                    {
+                        imagesList.Add(img);
+                    }
                 }
-                GestionListeImport image = new GestionListeImport(imagesList, this.images);
-                image.Importer();
-                //Console.WriteLine("Màj effectuée");
-                LabelMessage("Mise à jour effectuée", Color.Green);
+                if (T == false)
+                {
+                    GestionListeImport image = new GestionListeImport(imagesList, this.images, this);
+                    image.Importer();
+                }
+                else
+                {
+                    MessageBox.Show("Le fichier importé est déjà présent dans le dossier d'importation.");
+                }
             }
         }
 
@@ -391,15 +428,8 @@ namespace ProjetDotNetM1
             }
             RafraichirTreeView();//Affiche les tags dans le treeView
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ConfirmerBtn_Click(object sender, EventArgs e)
-        {
-            RafraichirTreeView(); //Affiche les tags dans le treeView
-        }
+       
+
         /// <summary>
         /// Permet à l'utilisateur d'annuler les modifications effectuées lors de l'utilisation des paramètres
         /// </summary>
@@ -411,6 +441,7 @@ namespace ProjetDotNetM1
             tableLayoutPanel_Modification.Hide();
             tableLayoutPanel_Ensemble.Show();
         }
+
         /// <summary>
         /// Retourne le treeview qui est dans la fenêtre courante. 
         /// /!\ NE FONCTIONNE QUE SI UN SEUL TREEVIEW EST PRESENT DANS LA FENÊTRE ! /!\
@@ -434,7 +465,13 @@ namespace ProjetDotNetM1
         {
             string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
+
             int nbFichiersJPG = Directory.GetFiles(saveUrlDos, "*.jpg", SearchOption.AllDirectories).Length;
+
+            if (!Directory.Exists(saveUrlDos))
+            {
+                Directory.CreateDirectory(saveUrlDos);
+            }
             if (nbFichiersJPG > 0)
             {
                 images = new GestionListeImages(progressBar);
@@ -447,9 +484,19 @@ namespace ProjetDotNetM1
             else
             {
                 LabelMessage("Mise à jour non effectuée", Color.Red);
+                tableLayoutPanel_Photos.Controls.Clear();
+                tableLayoutPanel_Photos.RowStyles.Clear();
                 //Console.WriteLine("Màj non effectuée");
             }
         }
+
+        // Declare a method with the same signature as the delegate.
+        static void Notify(string name)
+        {
+            Console.WriteLine("Notification received for: {0}", name);
+        }
+
+
         #region ActionsCliqueDroitTreeView
         /// <summary>
         /// Permet de renommer un tags dans le treeView
@@ -966,12 +1013,20 @@ namespace ProjetDotNetM1
         private void SauvegarderLaModificationDeTags(string nouveauTag)
         {
             ArrayList listTag = new ArrayList();
-            for(int i = 0; i< listViewTags.Items.Count - 1; i++) //on ne prend pas la derniere valeur qui ets le nouveau_nom
+            for(int i = 0; i< listViewTags.Items.Count - 1; i++) //on ne prend pas la derniere valeur qui est le nouveau_nom
             {
                 listTag.Add(listViewTags.Items[i].Text);
             }
             listTag.Add(nouveauTag); // mais on met le nouveau tag transmis en parametre
-            images.modifieTags(imageSelect, new ArrayList(listTag)); //on modifi les tags
+            images.modifieTags(imageSelect, new ArrayList(listTag)); //on modifie les tags
+        }
+
+        private void retourBtn_Click(object sender, EventArgs e)
+        {
+            RafraichirTreeView(); //Affiche les tags dans le treeView
+            tableLayoutPanel_Parametres.Hide();
+            tableLayoutPanel_Modification.Hide();
+            tableLayoutPanel_Ensemble.Show();
         }
     }
 }

@@ -49,8 +49,7 @@
             this.tableLayoutPanel_Modification = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel_Photo = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel_Buttons = new System.Windows.Forms.TableLayoutPanel();
-            this.cancelBtn = new System.Windows.Forms.Button();
-            this.confirmerBtn = new System.Windows.Forms.Button();
+            this.retourBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBoxModifAfficheImage = new System.Windows.Forms.PictureBox();
             this.tabInformations = new System.Windows.Forms.TabControl();
@@ -115,7 +114,7 @@
             // textBox_recherche
             // 
             this.textBox_recherche.BackColor = System.Drawing.Color.LightGray;
-            this.textBox_recherche.Location = new System.Drawing.Point(999, 3);
+            this.textBox_recherche.Location = new System.Drawing.Point(996, 3);
             this.textBox_recherche.Name = "textBox_recherche";
             this.textBox_recherche.Size = new System.Drawing.Size(210, 20);
             this.textBox_recherche.TabIndex = 7;
@@ -247,7 +246,7 @@
             this.label_info.BackColor = System.Drawing.Color.LightGray;
             this.label_info.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_info.ForeColor = System.Drawing.Color.Green;
-            this.label_info.Location = new System.Drawing.Point(221, 0);
+            this.label_info.Location = new System.Drawing.Point(220, 0);
             this.label_info.Name = "label_info";
             this.label_info.Size = new System.Drawing.Size(83, 13);
             this.label_info.TabIndex = 4;
@@ -258,7 +257,7 @@
             this.progressBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.progressBar.Location = new System.Drawing.Point(3, 3);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(212, 23);
+            this.progressBar.Size = new System.Drawing.Size(211, 23);
             this.progressBar.TabIndex = 8;
             this.progressBar.Visible = false;
             // 
@@ -294,11 +293,10 @@
             // 
             // tableLayoutPanel_Buttons
             // 
-            this.tableLayoutPanel_Buttons.ColumnCount = 2;
+            this.tableLayoutPanel_Buttons.ColumnCount = 1;
             this.tableLayoutPanel_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel_Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel_Buttons.Controls.Add(this.cancelBtn, 1, 0);
-            this.tableLayoutPanel_Buttons.Controls.Add(this.confirmerBtn, 0, 0);
+            this.tableLayoutPanel_Buttons.Controls.Add(this.retourBtn, 0, 0);
             this.tableLayoutPanel_Buttons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel_Buttons.Location = new System.Drawing.Point(3, 448);
             this.tableLayoutPanel_Buttons.MaximumSize = new System.Drawing.Size(0, 66);
@@ -309,29 +307,17 @@
             this.tableLayoutPanel_Buttons.Size = new System.Drawing.Size(1029, 66);
             this.tableLayoutPanel_Buttons.TabIndex = 0;
             // 
-            // cancelBtn
+            // retourBtn
             // 
-            this.cancelBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cancelBtn.Location = new System.Drawing.Point(684, 20);
-            this.cancelBtn.Margin = new System.Windows.Forms.Padding(170, 20, 170, 20);
-            this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(175, 26);
-            this.cancelBtn.TabIndex = 1;
-            this.cancelBtn.Text = "Annuler";
-            this.cancelBtn.UseVisualStyleBackColor = true;
-            this.cancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
-            // 
-            // confirmerBtn
-            // 
-            this.confirmerBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.confirmerBtn.Location = new System.Drawing.Point(170, 20);
-            this.confirmerBtn.Margin = new System.Windows.Forms.Padding(170, 20, 170, 20);
-            this.confirmerBtn.Name = "confirmerBtn";
-            this.confirmerBtn.Size = new System.Drawing.Size(174, 26);
-            this.confirmerBtn.TabIndex = 0;
-            this.confirmerBtn.Text = "Confirmer";
-            this.confirmerBtn.UseVisualStyleBackColor = true;
-            this.confirmerBtn.Click += new System.EventHandler(this.ConfirmerBtn_Click);
+            this.retourBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.retourBtn.Location = new System.Drawing.Point(170, 20);
+            this.retourBtn.Margin = new System.Windows.Forms.Padding(170, 20, 170, 20);
+            this.retourBtn.Name = "retourBtn";
+            this.retourBtn.Size = new System.Drawing.Size(689, 26);
+            this.retourBtn.TabIndex = 0;
+            this.retourBtn.Text = "Retour";
+            this.retourBtn.UseVisualStyleBackColor = true;
+            this.retourBtn.Click += new System.EventHandler(this.retourBtn_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -546,7 +532,7 @@
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.06639F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.93361F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 91F));
-            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 227F));
+            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 230F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 56F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.36034F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.63966F));
@@ -583,7 +569,7 @@
             "Tous",
             "Photos",
             "Tags"});
-            this.comboBox_Recherche.Location = new System.Drawing.Point(908, 3);
+            this.comboBox_Recherche.Location = new System.Drawing.Point(905, 3);
             this.comboBox_Recherche.Name = "comboBox_Recherche";
             this.comboBox_Recherche.Size = new System.Drawing.Size(85, 21);
             this.comboBox_Recherche.TabIndex = 9;
@@ -736,13 +722,13 @@
             // ModeDiaporama_ToolStripMenuItem
             // 
             this.ModeDiaporama_ToolStripMenuItem.Name = "ModeDiaporama_ToolStripMenuItem";
-            this.ModeDiaporama_ToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.ModeDiaporama_ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ModeDiaporama_ToolStripMenuItem.Text = "Mode diaporama";
             // 
             // VersionDuLogiciel_ToolStripMenuItem
             // 
             this.VersionDuLogiciel_ToolStripMenuItem.Name = "VersionDuLogiciel_ToolStripMenuItem";
-            this.VersionDuLogiciel_ToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.VersionDuLogiciel_ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.VersionDuLogiciel_ToolStripMenuItem.Text = "A propos";
             this.VersionDuLogiciel_ToolStripMenuItem.Click += new System.EventHandler(this.VersionDuLogicielToolStripMenuItem_Click);
             // 
@@ -751,7 +737,7 @@
             this.Tag_ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Modifier_ToolStripMenuItem});
             this.Tag_ToolStripMenuItem.Name = "Tag_ToolStripMenuItem";
-            this.Tag_ToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
+            this.Tag_ToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.Tag_ToolStripMenuItem.Text = "Tag";
             // 
             // Modifier_ToolStripMenuItem
@@ -834,8 +820,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_Photo;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_Buttons;
-        private System.Windows.Forms.Button confirmerBtn;
-        private System.Windows.Forms.Button cancelBtn;
+        private System.Windows.Forms.Button retourBtn;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_TreeView;
         private System.Windows.Forms.TreeView treeView_TagsModification;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_Parametres;
