@@ -5,6 +5,7 @@ using System.Collections;
 using System.IO;
 using System.Xml;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace ProjetDotNetM1
 {
@@ -909,7 +910,6 @@ namespace ProjetDotNetM1
                     {
                         newUrl = Path.Combine(newUrl, urlPart);
                     }
-
                 }
                 File.Move(imageSelect, newUrl);
                 imageSelect = newUrl;
@@ -947,9 +947,9 @@ namespace ProjetDotNetM1
 
         private void pictureBoxModifAfficheImage_DoubleClick(object sender, EventArgs e)
         {
-
-            Form2 full = new Form2(imageSelect,images.rechercheOrientation(imageSelect));
-            full.Show();
+            //Form2 full = new Form2(imageSelect,images.rechercheOrientation(imageSelect));
+            //full.Show();
+            Process.Start(imageSelect);
         }
 
         private void textBox_recherche_Click(object sender, EventArgs e)
