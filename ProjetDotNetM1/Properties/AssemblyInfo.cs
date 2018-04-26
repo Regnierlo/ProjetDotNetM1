@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
 [assembly: AssemblyTitle("ProjetDotNetM1")]
-[assembly: AssemblyDescription("Logiciel permettant de trier les photos plus vite que la lumière ! Alllllleeyyyyyyyyyyyyy !!! ;)")]
+[assembly: AssemblyDescription("Logiciel permettant de trier les photos plus vite que la lumière !")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("FHR Corporate")]
 [assembly: AssemblyProduct("ProjetDotNetM1")]
