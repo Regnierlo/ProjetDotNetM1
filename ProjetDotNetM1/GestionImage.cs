@@ -22,7 +22,17 @@ namespace ProjetDotNetM1
             get;
             set;
         }
-        
+
+        public int Hauteur
+        {
+            get;
+            set;
+        }
+        public int Largeur
+        {
+            get;
+            set;
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -32,6 +42,8 @@ namespace ProjetDotNetM1
             this.ImgUrl = image;
             Tag = RecupTag();
             Orientation = RecupOrientation();
+            //Largeur = RecupDimentionX();
+            //Hauteur = RecupDimentionY();
         }
 
         /// <summary>
@@ -142,7 +154,50 @@ namespace ProjetDotNetM1
                 return 1;
             }
         }
-        
+        private int RecupDimentionY()
+        {
+            Image img = Image.FromFile(ImgUrl);
+            try
+            {
+                var propItem = img.GetPropertyItem(0xbc81);
+                int res = propItem.Value[0];
+                img.Dispose();
+                return res;
+            }
+            catch //normalement n'ira jamais mais au cas ou...
+            {
+                Bitmap imgRe = new Bitmap(ProjetDotNetM1.Properties.Resources.remplacement_remplacement_image);
+                Image imgRef = ProjetDotNetM1.Properties.Resources.remplacement_remplacement_image;
+                var propItem = imgRef.GetPropertyItem(0xbc81);
+                img.SetPropertyItem(propItem);
+                SaveImg(img);
+                img.Dispose();
+                return 1;
+            }
+        }
+
+        private int RecupDimentionX()
+        {
+            Image img = Image.FromFile(ImgUrl);
+            try
+            {
+                var propItem = img.GetPropertyItem(0xbc80);
+                int res = propItem.Value[0];
+                img.Dispose();
+                return res;
+            }
+            catch //normalement n'ira jamais mais au cas ou...
+            {
+                Bitmap imgRe = new Bitmap(ProjetDotNetM1.Properties.Resources.remplacement_remplacement_image);
+                Image imgRef = ProjetDotNetM1.Properties.Resources.remplacement_remplacement_image;
+                var propItem = imgRef.GetPropertyItem(0xbc80);
+                img.SetPropertyItem(propItem);
+                SaveImg(img);
+                img.Dispose();
+                return 1;
+            }
+        }
+
         /// <summary>
         /// permet de remplacer les tags existant de l'image par les tag contenue dans l'ArrayList en entree
         /// essaie d'ajouter un tag existant et si une exeption null est levée (donc aucun tag existant) 
@@ -157,7 +212,7 @@ namespace ProjetDotNetM1
                 var propItem = img.GetPropertyItem(0x9C9E);
                 string tags = "";
                 int cmp = 0;
-                foreach (int tag in entry)
+                foreach (string tag in entry)
                 {
                     cmp++;
                     tags = tags + tag;
@@ -169,7 +224,8 @@ namespace ProjetDotNetM1
                 byte[] res = String2Byte(tags);
                 propItem.Value = res;
                 img.SetPropertyItem(propItem);
-                img.Save(ImgUrl, System.Drawing.Imaging.ImageFormat.Jpeg);
+                //img.Save(ImgUrl, System.Drawing.Imaging.ImageFormat.Jpeg);
+                SaveImg(img);
             }
             catch (Exception)
             {
@@ -201,7 +257,7 @@ namespace ProjetDotNetM1
         /// <param name="img"></param>
         private void SaveImg(Image img)
         {
-            string imgUrl2 = ImgUrl.Insert(ImgUrl.Length - 4, "a");
+            string imgUrl2 = ImgUrl.Insert(ImgUrl.Length - 4, "as485d7s5s");//on rajoute au nom de fchier une chaine qui ne sera probablement jamais utilisé par l'utilisateur
             img.Save(imgUrl2, System.Drawing.Imaging.ImageFormat.Jpeg);
             img.Dispose();
             img = Image.FromFile(imgUrl2);
