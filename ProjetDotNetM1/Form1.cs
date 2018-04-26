@@ -10,6 +10,8 @@ namespace ProjetDotNetM1
 {
     public partial class Form1 : Form
     {
+        public delegate void MiseAJourDelegate();
+        public MiseAJourDelegate monDelegue;
         GestionListeImages images;
         Boolean enCourDeModifAdd=false;
         Boolean enCourDeModifSupr = false;
@@ -17,13 +19,12 @@ namespace ProjetDotNetM1
         string imageSelect;
         public Form1()
         {
-
             InitializeComponent();
             pictureList = new List<System.Windows.Forms.PictureBox>();
             textBox_recherche.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            Mise_a_jour();
+            monDelegue = new MiseAJourDelegate(MiseAJour);
             InitialisationPerso();
-            AfficheImage(images);
+            MiseAJour();
         }
 
         /// <summary>
@@ -151,21 +152,6 @@ namespace ProjetDotNetM1
         }
         #endregion
 
-        /// <summary>
-        /// Fonction permettant de mettre à jour le dossier d'images lors du lancement de l'application
-        /// </summary>
-        private void Mise_a_jour()
-        {
-            string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-            saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
-
-            if (!Directory.Exists(saveUrlDos))
-                Directory.CreateDirectory(saveUrlDos);
-
-            int nbFichiersJPG = Directory.GetFiles(saveUrlDos, "*.jpg", SearchOption.AllDirectories).Length;
-            images = new GestionListeImages(progressBar);
-        }
-
         #region barre de menu
 
         /// <summary>
@@ -210,7 +196,7 @@ namespace ProjetDotNetM1
                 }
                 else
                 {
-                    GestionListeImport image = new GestionListeImport(ProcessDirectory(path), this.images);
+                    GestionListeImport image = new GestionListeImport(ProcessDirectory(path), this.images,this);
                     image.Importer();
                 }
             }
@@ -295,9 +281,8 @@ namespace ProjetDotNetM1
                         imagesList.Add(img);
                     }
                 }
-                GestionListeImport image = new GestionListeImport(imagesList, this.images);
+                GestionListeImport image = new GestionListeImport(imagesList, this.images,this);
                 image.Importer();
-                Console.WriteLine("Màj effectuée");
             }
         }
 
@@ -469,7 +454,13 @@ namespace ProjetDotNetM1
         {
             string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
+
             int nbFichiersJPG = Directory.GetFiles(saveUrlDos, "*.jpg", SearchOption.AllDirectories).Length;
+
+            if (!Directory.Exists(saveUrlDos))
+            {
+                Directory.CreateDirectory(saveUrlDos);
+            }
             if (nbFichiersJPG > 0)
             {
                 images = new GestionListeImages(progressBar);
@@ -485,8 +476,13 @@ namespace ProjetDotNetM1
                 //Console.WriteLine("Màj non effectuée");
             }
         }
-        
-        
+
+        // Declare a method with the same signature as the delegate.
+        static void Notify(string name)
+        {
+            Console.WriteLine("Notification received for: {0}", name);
+        }
+
 
         #region ActionsCliqueDroitTreeView
         /// <summary>
@@ -981,7 +977,7 @@ namespace ProjetDotNetM1
             {
                 //enCourDAjoutDeTag = false;
                 SauvegarderLaModificationDeTags(e.Label); //on transmet le nouveau nom donné par l'evenement
-                Mise_a_jour();
+                MiseAJour();
                 richTextBoxInformationModif.Text = images.rechercheinfo(imageSelect);
                 richTextBox_infoImage.Text = images.rechercheinfo(imageSelect);
             }
@@ -989,12 +985,12 @@ namespace ProjetDotNetM1
         private void SauvegarderLaModificationDeTags(string nouveauTag)
         {
             ArrayList listTag = new ArrayList();
-            for(int i = 0; i< listViewTags.Items.Count - 1; i++) //on ne prend pas la derniere valeur qui ets le nouveau_nom
+            for(int i = 0; i< listViewTags.Items.Count - 1; i++) //on ne prend pas la derniere valeur qui est le nouveau_nom
             {
                 listTag.Add(listViewTags.Items[i].Text);
             }
             listTag.Add(nouveauTag); // mais on met le nouveau tag transmis en parametre
-            images.modifieTags(imageSelect, new ArrayList(listTag)); //on modifi les tags
+            images.modifieTags(imageSelect, new ArrayList(listTag)); //on modifie les tags
         }
 
         private void retourBtn_Click(object sender, EventArgs e)
