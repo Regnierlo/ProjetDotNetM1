@@ -952,11 +952,28 @@ namespace ProjetDotNetM1
             }
             else
             {
-                //enCourDAjoutDeTag = false;
-                SauvegarderLaModificationDeTags(e.Label); //on transmet le nouveau nom donné par l'evenement
-                Mise_a_jour();
-                richTextBoxInformationModif.Text = images.rechercheinfo(imageSelect);
-                richTextBox_infoImage.Text = images.rechercheinfo(imageSelect);
+                Boolean dejaPresent = false;
+                foreach(string tag in images.rechercheTags(imageSelect))
+                {
+                    if(tag == e.Label)
+                    {
+                        dejaPresent = true;
+                    }
+                }
+                if (!dejaPresent)//si le tag n'est pas deja dans la liste
+                {
+                    //enCourDAjoutDeTag = false;
+                    SauvegarderLaModificationDeTags(e.Label); //on transmet le nouveau nom donné par l'evenement
+                    Mise_a_jour();
+                    richTextBoxInformationModif.Text = images.rechercheinfo(imageSelect);
+                    richTextBox_infoImage.Text = images.rechercheinfo(imageSelect);
+                }
+                else//si le tag est deja présent
+                {
+                    LabelMessage("ce tag Existe déjà, le tag n'a pas été sauvegardé", Color.Red);
+                    listViewTags.Items.RemoveAt(listViewTags.Items.Count - 1);
+                }
+                
             }
         }
         private void SauvegarderLaModificationDeTags(string nouveauTag)
