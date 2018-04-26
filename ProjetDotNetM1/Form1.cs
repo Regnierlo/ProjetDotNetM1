@@ -473,6 +473,8 @@ namespace ProjetDotNetM1
             else
             {
                 LabelMessage("Mise à jour non effectuée", Color.Red);
+                tableLayoutPanel_Photos.Controls.Clear();
+                tableLayoutPanel_Photos.RowStyles.Clear();
                 //Console.WriteLine("Màj non effectuée");
             }
         }
