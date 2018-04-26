@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,23 +13,30 @@ using System.Windows.Forms;
 namespace ProjetDotNetM1
 {
     public partial class Form2 : Form
-    {/// <summary>
-     /// La fenètre Form 2 permet d'afficher une image en plein écran.
-     /// </summary>
-     /// <param name="urlImg"></param>
-     /// <param name="orient"></param>
+    {
+
+        /// <summary>
+        /// La fenètre Form 2 permet d'afficher une image en plein écran.
+        /// </summary>
+        /// <param name="urlImg"></param>
+        /// <param name="orient"></param>
         public Form2(string urlImg, int orient)
         {
             InitializeComponent();
-            afficheImage(urlImg, orient);
+            AfficheImage(urlImg, orient);
         }
-        private void afficheImage(string url, int orientation)
+
+        private void AfficheImage(string url, int orientation)
         {
             FileStream fs = new FileStream(url, FileMode.Open);
             Image image = Image.FromStream(fs);
             fs.Close();
             int larg;
             int haut;
+
+            PictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            PictureBox1.Image = new Bitmap(image, new Size(PictureBox1.Width, PictureBox1.Height));
+
             switch (orientation)
             {
                 case 6:
@@ -59,31 +67,29 @@ namespace ProjetDotNetM1
                 default:
                     break;
             }
-           /* 
-            if (image.Height > image.Width)
-            {
-                double largD;
-                haut = pictureBox1.Height;
-                largD = (double)image.Width / (double)image.Height * pictureBox1.Height;
-                larg = (int)largD;
-            }
-            else
-            {
-                larg = pictureBox1.Width;
-                double hautD = (double)image.Height / (double)image.Width * pictureBox1.Width;
-                haut = (int)hautD;
-            }*/
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.Image = new Bitmap(image, new Size(pictureBox1.Width, pictureBox1.Height));
+           
+             if (image.Height > image.Width)
+             {
+                 double largD;
+                 haut = PictureBox1.Height;
+                 largD = (double)image.Width / (double)image.Height * PictureBox1.Height;
+                 larg = (int)largD;
+             }
+             else
+             {
+                 larg = PictureBox1.Width;
+                 double hautD = (double)image.Height / (double)image.Width * PictureBox1.Width;
+                 haut = (int)hautD;
+             }
 
-            //pictureBox1.Image = new Bitmap(image, new Size(larg, haut));
-            image.Dispose();
+             PictureBox1.Image = new Bitmap(image, new Size(larg, haut));
+             image.Dispose();
 
-        }
-        private void pictureBox1_Click(object sender, EventArgs e)
+        }       
+
+        private void PictureBox1_Click_1(object sender, EventArgs e)
         {
             this.Dispose();
-
         }
     }
 }

@@ -10,21 +10,22 @@ using System.Windows.Forms;
 
 namespace ProjetDotNetM1
 {
-    public partial class ConfirmationChangement : Form
+    public partial class ChoixZoom : Form
     {
-        public ConfirmationChangement()
+        public ChoixZoom()
         {
             InitializeComponent();
         }
 
-        private void Button3_Click(object sender, EventArgs e)
+        private void WindowsBtn_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Yes;
             Close();
         }
 
-        private void Button2_Click(object sender, EventArgs e)
+        private void HrfBtn_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Abort;
+            this.DialogResult = DialogResult.No;
             Close();
         }
     }

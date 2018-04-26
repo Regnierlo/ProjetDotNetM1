@@ -945,11 +945,25 @@ namespace ProjetDotNetM1
             }
         }
 
+        /// <summary>
+        /// On demande à l'utilisateur s'il veut regarder l'image via notre application ou via Windows
+        /// yes = windows, no = appli
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void pictureBoxModifAfficheImage_DoubleClick(object sender, EventArgs e)
         {
-            //Form2 full = new Form2(imageSelect,images.rechercheOrientation(imageSelect));
-            //full.Show();
-            Process.Start(imageSelect);
+            ChoixZoom cz = new ChoixZoom();
+            DialogResult res = cz.ShowDialog();
+            if (res == DialogResult.Yes)
+            {
+                Process.Start(imageSelect);
+            }
+            else if (res == DialogResult.No)
+            {
+                Form2 full = new Form2(imageSelect,images.rechercheOrientation(imageSelect));
+                full.Show();
+            }
         }
 
         private void textBox_recherche_Click(object sender, EventArgs e)
@@ -1002,7 +1016,7 @@ namespace ProjetDotNetM1
             images.modifieTags(imageSelect, new ArrayList(listTag)); //on modifie les tags
         }
 
-        private void retourBtn_Click(object sender, EventArgs e)
+        private void RetourBtn_Click(object sender, EventArgs e)
         {
             RafraichirTreeView(); //Affiche les tags dans le treeView
             tableLayoutPanel_Parametres.Hide();
