@@ -5,6 +5,7 @@ using System.Collections;
 using System.IO;
 using System.Xml;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace ProjetDotNetM1
 {
@@ -944,8 +945,9 @@ namespace ProjetDotNetM1
         }
         private void pictureBoxModifAfficheImage_DoubleClick(object sender, EventArgs e)
         {
-            Form2 full = new Form2(imageSelect,images.rechercheOrientation(imageSelect));
-            full.Show();
+            //Form2 full = new Form2(imageSelect,images.rechercheOrientation(imageSelect));
+            //full.Show();
+            Process.Start(imageSelect);
         }
         private void textBox_recherche_Click(object sender, EventArgs e)
         {
@@ -989,7 +991,7 @@ namespace ProjetDotNetM1
                 {
                     //enCourDAjoutDeTag = false;
                     SauvegarderLaModificationDeTags(e.Label); //on transmet le nouveau nom donné par l'evenement
-                    Mise_a_jour();
+                    MiseAJour();
                     richTextBoxInformationModif.Text = images.rechercheinfo(imageSelect);
                     richTextBox_infoImage.Text = images.rechercheinfo(imageSelect);
 
