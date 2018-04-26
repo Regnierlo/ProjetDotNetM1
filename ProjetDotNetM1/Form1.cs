@@ -234,6 +234,7 @@ namespace ProjetDotNetM1
         /// <param name="e"></param>
         private void FichierToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            bool T = false;
             string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
             Console.WriteLine(saveUrlDos);
@@ -270,19 +271,27 @@ namespace ProjetDotNetM1
                     {
                        saveUrlDos = Path.Combine(saveUrlDos, urlPart);
                     }
-                    Console.WriteLine("Dossier courant : "+courrantUrlDos + "\nDossier FHRImages : " +saveUrlDos);
+                    
                     if (saveUrlDos == courrantUrlDos)
                     {
+                        Console.WriteLine("Dossier courant : " + courrantUrlDos + "\nDossier FHRImages : " + saveUrlDos);
                         Console.WriteLine("dossier HRF = dossier courant");
-                        MessageBox.Show("Le fichier importé est déjà présent dans le dossier d'importation.");
+                        T = true;
                     }
                     else
                     {
                         imagesList.Add(img);
                     }
                 }
-                GestionListeImport image = new GestionListeImport(imagesList, this.images,this);
-                image.Importer();
+                if (T == false)
+                {
+                    GestionListeImport image = new GestionListeImport(imagesList, this.images, this);
+                    image.Importer();
+                }
+                else
+                {
+                    MessageBox.Show("Le fichier importé est déjà présent dans le dossier d'importation.");
+                }
             }
         }
 
