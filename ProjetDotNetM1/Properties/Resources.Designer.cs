@@ -71,6 +71,16 @@ namespace ProjetDotNetM1.Properties {
         }
         
         /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap delete {
+            get {
+                object obj = ResourceManager.GetObject("delete", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Icon semblable à (Icône).
         /// </summary>
         internal static System.Drawing.Icon icon {
@@ -86,6 +96,16 @@ namespace ProjetDotNetM1.Properties {
         internal static System.Drawing.Bitmap remplacement_remplacement_image {
             get {
                 object obj = ResourceManager.GetObject("remplacement_remplacement_image", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap square_edit_outline {
+            get {
+                object obj = ResourceManager.GetObject("square_edit_outline", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

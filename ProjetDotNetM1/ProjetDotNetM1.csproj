@@ -183,6 +183,8 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="iconV2.ico" />
+    <None Include="Resources\square-edit-outline.png" />
+    <None Include="Resources\delete.png" />
     <None Include="Resources\arrow-left.png" />
     <None Include="Resources\back.bmp" />
     <None Include="Resources\icon.ico" />

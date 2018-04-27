@@ -114,7 +114,7 @@
             // textBox_recherche
             // 
             this.textBox_recherche.BackColor = System.Drawing.Color.LightGray;
-            this.textBox_recherche.Location = new System.Drawing.Point(991, 3);
+            this.textBox_recherche.Location = new System.Drawing.Point(990, 3);
             this.textBox_recherche.Name = "textBox_recherche";
             this.textBox_recherche.Size = new System.Drawing.Size(210, 20);
             this.textBox_recherche.TabIndex = 7;
@@ -246,7 +246,7 @@
             this.label_info.BackColor = System.Drawing.Color.LightGray;
             this.label_info.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_info.ForeColor = System.Drawing.Color.Green;
-            this.label_info.Location = new System.Drawing.Point(219, 0);
+            this.label_info.Location = new System.Drawing.Point(218, 0);
             this.label_info.Name = "label_info";
             this.label_info.Size = new System.Drawing.Size(83, 13);
             this.label_info.TabIndex = 4;
@@ -257,7 +257,7 @@
             this.progressBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.progressBar.Location = new System.Drawing.Point(3, 3);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(210, 23);
+            this.progressBar.Size = new System.Drawing.Size(209, 23);
             this.progressBar.TabIndex = 8;
             this.progressBar.Visible = false;
             // 
@@ -273,7 +273,7 @@
             this.tableLayoutPanel_Modification.Name = "tableLayoutPanel_Modification";
             this.tableLayoutPanel_Modification.RowCount = 1;
             this.tableLayoutPanel_Modification.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_Modification.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel_Modification.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 518F));
             this.tableLayoutPanel_Modification.Size = new System.Drawing.Size(1224, 518);
             this.tableLayoutPanel_Modification.TabIndex = 2;
             // 
@@ -419,11 +419,11 @@
             // buttonSupprimerTag
             // 
             this.buttonSupprimerTag.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonSupprimerTag.Image = global::ProjetDotNetM1.Properties.Resources.delete;
             this.buttonSupprimerTag.Location = new System.Drawing.Point(824, 3);
             this.buttonSupprimerTag.Name = "buttonSupprimerTag";
             this.buttonSupprimerTag.Size = new System.Drawing.Size(194, 100);
             this.buttonSupprimerTag.TabIndex = 0;
-            this.buttonSupprimerTag.Text = "Supprimer";
             this.buttonSupprimerTag.UseVisualStyleBackColor = true;
             this.buttonSupprimerTag.Click += new System.EventHandler(this.buttonSupprimerTag_Click);
             // 
@@ -477,11 +477,11 @@
             // buttonRename
             // 
             this.buttonRename.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonRename.Image = global::ProjetDotNetM1.Properties.Resources.square_edit_outline;
             this.buttonRename.Location = new System.Drawing.Point(918, 3);
             this.buttonRename.Name = "buttonRename";
             this.buttonRename.Size = new System.Drawing.Size(94, 94);
             this.buttonRename.TabIndex = 0;
-            this.buttonRename.Text = "Renommer";
             this.buttonRename.UseVisualStyleBackColor = true;
             this.buttonRename.Click += new System.EventHandler(this.buttonRename_Click);
             // 
@@ -540,7 +540,7 @@
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.06639F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.93361F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 91F));
-            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 235F));
+            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 236F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 56F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.36034F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.63966F));
@@ -577,7 +577,7 @@
             "Tous",
             "Photos",
             "Tags"});
-            this.comboBox_Recherche.Location = new System.Drawing.Point(900, 3);
+            this.comboBox_Recherche.Location = new System.Drawing.Point(899, 3);
             this.comboBox_Recherche.Name = "comboBox_Recherche";
             this.comboBox_Recherche.Size = new System.Drawing.Size(85, 21);
             this.comboBox_Recherche.TabIndex = 9;
