@@ -17,6 +17,11 @@ namespace ProjetDotNetM1
         Boolean enCourDeModifAdd=false;
         Boolean enCourDeModifSupr = false;
         List<System.Windows.Forms.PictureBox> pictureList;
+
+        //Pour la recherche
+        List<GestionImage> imagesRecherche = new List<GestionImage>();
+        Boolean NouvelleRecherche = true;
+
         string imageSelect;
         public Form1()
         {
@@ -827,12 +832,27 @@ namespace ProjetDotNetM1
             string rechercheUtilisateur = this.textBox_recherche.Text;
             Recherche r = new Recherche();
 
+
+            if (rechercheUtilisateur.Length <= 1)
+                NouvelleRecherche = true;
+            else
+                NouvelleRecherche = false;
+
             if (secteurRecherche == this.comboBox_Recherche.Items[0].ToString())//Tous
             {
                 if (rechercheUtilisateur != "")
                 {
-                    List<GestionImage> limage = r.RechercheTous(rechercheUtilisateur, images);
-                    GestionListeImages imgRechercheTous = new GestionListeImages(limage);
+                    if (NouvelleRecherche)
+                    {
+                        imagesRecherche = r.RechercheTous(rechercheUtilisateur, images.ListeImg);
+                    }
+                    else
+                    {
+                        imagesRecherche = r.RechercheTous(rechercheUtilisateur, imagesRecherche);
+                    }
+
+                    GestionListeImages imgRechercheTous = new GestionListeImages(imagesRecherche);
+                    Console.WriteLine("Jaffiche");
                     AfficheImage(imgRechercheTous);
                 }
                 else
@@ -844,8 +864,16 @@ namespace ProjetDotNetM1
             {
                 if (rechercheUtilisateur != "")
                 {
-                    List<GestionImage> limage = r.RecherchePhotos(rechercheUtilisateur, images);
-                    GestionListeImages imagesAvecTags = new GestionListeImages(limage);
+                    if (NouvelleRecherche)
+                    {
+                        imagesRecherche = r.RecherchePhotos(rechercheUtilisateur, images.ListeImg);
+                    }
+                    else
+                    {
+                        imagesRecherche = r.RecherchePhotos(rechercheUtilisateur, imagesRecherche);
+                    }
+
+                    GestionListeImages imagesAvecTags = new GestionListeImages(imagesRecherche);
                     AfficheImage(imagesAvecTags);
                 }
                 else
@@ -857,8 +885,16 @@ namespace ProjetDotNetM1
             {
                 if (rechercheUtilisateur != "")
                 {
-                    List<GestionImage> limage = r.RechercheTags(rechercheUtilisateur, images);
-                    GestionListeImages imagesAvecTags = new GestionListeImages(limage);
+                    if (NouvelleRecherche)
+                    {
+                        imagesRecherche = r.RechercheTags(rechercheUtilisateur, images.ListeImg);
+                    }
+                    else
+                    {
+                        imagesRecherche = r.RechercheTags(rechercheUtilisateur, imagesRecherche);
+                    }
+
+                    GestionListeImages imagesAvecTags = new GestionListeImages(imagesRecherche);
                     AfficheImage(imagesAvecTags);
                 }
                 else
@@ -881,11 +917,16 @@ namespace ProjetDotNetM1
         {
             Recherche r = new Recherche();
 
-            List<GestionImage> limage = r.RechercheTags(e.Node.Text, images);//On recherche les photos avec le tag sélectionné
+            imagesRecherche = r.RechercheTags(e.Node.Text, images.ListeImg);//On recherche les photos avec le tag sélectionné
 
-            limage.AddRange(r.RechercheTagsTreeView(e.Node, images));//On fusionne les photos trouvées avant avec celle des fils
+            imagesRecherche.AddRange(r.RechercheTagsTreeView(e.Node, images.ListeImg));//On fusionne les photos trouvées avant avec celle des fils
 
-            GestionListeImages imagesAvecTags = new GestionListeImages(limage);
+            imagesRecherche = r.EnleverDoubleImageListe(imagesRecherche);
+
+            GestionListeImages imagesAvecTags = new GestionListeImages(imagesRecherche);
+
+            
+
             AfficheImage(imagesAvecTags);
         }
         #endregion
