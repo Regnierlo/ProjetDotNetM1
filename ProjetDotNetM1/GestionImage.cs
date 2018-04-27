@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 
 namespace ProjetDotNetM1
 {
@@ -33,6 +34,13 @@ namespace ProjetDotNetM1
             get;
             set;
         }
+
+        public int Poids
+        {
+            get;
+            set;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -42,8 +50,41 @@ namespace ProjetDotNetM1
             this.ImgUrl = image;
             Tag = RecupTag();
             Orientation = RecupOrientation();
-            //Largeur = RecupDimentionX();
-            //Hauteur = RecupDimentionY();
+            Largeur = RecupDimensionX();
+            Hauteur = RecupDimensionY();
+            Poids = RecupPoidsImg();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public int RecupDimensionX()
+        {
+            Image img = Image.FromFile(ImgUrl);
+            return img.Width;         
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public int RecupDimensionY()
+        {
+            Image img = Image.FromFile(ImgUrl);
+            return img.Height;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public int RecupPoidsImg()
+        {
+            FileInfo img =new FileInfo(ImgUrl);
+            int res = (int)img.Length;
+            int Kb = res/1024;
+            return Kb;
         }
 
         /// <summary>

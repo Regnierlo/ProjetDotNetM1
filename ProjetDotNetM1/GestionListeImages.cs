@@ -64,7 +64,7 @@ namespace ProjetDotNetM1
             }
         }
         /// <summary>
-        /// permet d'obtenir les information d'une image a affivher dans le bas de la fenetre principale grace a l'url de l'image
+        /// permet d'obtenir les information d'une image à afficher dans le bas de la fenetre principale grace a l'url de l'image
         /// </summary>
         /// <param name="urlEntry"></param>
         /// <returns></returns>
@@ -84,9 +84,21 @@ namespace ProjetDotNetM1
                         {
                             listInfo = listInfo + ";";
                         }
+                        
                     }
                     listInfo = listInfo + "\n";
                     listInfo = listInfo + "Hauteur : " + urlSearch.Hauteur + "\nLargeur : " + urlSearch.Largeur;
+                    listInfo = listInfo + "\n";
+                    if(urlSearch.Poids <= 1024)
+                    {
+                        listInfo = listInfo + "Poids : " + urlSearch.Poids + "Ko";
+                    }
+                    else if(urlSearch.Poids > 1024)
+                    {
+                        urlSearch.Poids = urlSearch.Poids / 1000;
+                        listInfo = listInfo + "Poids : " + urlSearch.Poids + "Mo";
+                    }
+                    
                 }
             }
             return listInfo;
