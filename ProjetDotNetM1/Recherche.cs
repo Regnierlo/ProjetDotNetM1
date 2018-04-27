@@ -65,7 +65,7 @@ namespace ProjetDotNetM1
                     m = m.NextMatch();//On passe à la suite
                 }
             }
-
+            limage = EnleverDoubleImageListe(limage);
             return limage;
         }
 
@@ -97,7 +97,7 @@ namespace ProjetDotNetM1
                     }
                 }
             }
-
+            limage = EnleverDoubleImageListe(limage);
             return limage;
         }
 
