@@ -1001,24 +1001,52 @@ namespace ProjetDotNetM1
                     if(tag == e.Label)
                     {
                         dejaPresent = true;
+                        break;
                     }
                 }
                 if (!dejaPresent)//si le tag n'est pas deja dans la liste
                 {
-                    //enCourDAjoutDeTag = false;
-                    SauvegarderLaModificationDeTags(e.Label); //on transmet le nouveau nom donné par l'evenement
-                    MiseAJour();
-                    richTextBoxInformationModif.Text = images.rechercheinfo(imageSelect);
-                    richTextBox_infoImage.Text = images.rechercheinfo(imageSelect);
 
-                    GestionnaireTags gXML = GestionnaireTags.Instance;
                     TreeView tv = treeView_TagsModification;
-                    TreeNode newNode = new TreeNode(e.Label);
-                    tv.Nodes[0].Nodes.Add(newNode);//Ajout du noeud avec comme père la sélection
-                    tv.SelectedNode = newNode;//On sélectionne notre nouveau noeud
-                    tv.ExpandAll();//On étend TOUS le treeview
-                    gXML.AjouterTag(newNode.Text, tv.SelectedNode);//On ajoute le tag dans la liste
-                    gXML.exportToXml(GetTreeViewActif(), gXML.Chemin + gXML.NomXML);//Exportation en XML
+                    List<string> tln = FindAllNodes(tv.Nodes);
+                    List<string> noeudRessemblant = new List<string>();
+                    noeudRessemblant.Add(e.Label);
+                    if (e.Label.Length <= 4)    //le le mot est court on accepte une difference
+                    {
+                        foreach (string tag in tln)
+                        {
+                            if (levenshtein(tag, e.Label) <= 1)
+                            {
+                                noeudRessemblant.Add(tag);
+                            }
+                        }
+                    }
+                    else             //si le mot est long on en accepte deux
+                    {
+                        foreach (string tag in tln) 
+                        {
+                            if (levenshtein(tag, e.Label) <= 2)
+                            {
+                                noeudRessemblant.Add(tag);
+                            }
+                        }
+                    }
+                    Form3 fenetreChoix = new Form3(noeudRessemblant);
+                    var resultatDialog = fenetreChoix.ShowDialog();
+                    string tagAEnregistrer;
+                    if (resultatDialog == DialogResult.OK)
+                    {
+                        tagAEnregistrer = fenetreChoix.Tag;
+                    }
+                    else
+                    {
+                        tagAEnregistrer = e.Label;
+                    }
+                    fenetreChoix.Dispose();
+                    e.CancelEdit = true;
+                    listViewTags.Items[e.Item].Text = tagAEnregistrer;
+                    SauvegarderLaModificationDeTags(tagAEnregistrer); //on transmet le nouveau nom donné par l'evenement
+                    FinalisationEnregistrementTagThread(tln, tagAEnregistrer);
                 }
                 else//si le tag est deja présent
                 {
@@ -1028,6 +1056,24 @@ namespace ProjetDotNetM1
                 }
             }
         }
+        private void FinalisationEnregistrementTagThread(List<string> tln,string tag)
+        {
+            TreeView tv = treeView_TagsModification;
+            richTextBoxInformationModif.Text = images.rechercheinfo(imageSelect);
+            richTextBox_infoImage.Text = images.rechercheinfo(imageSelect);
+            GestionnaireTags gXML = GestionnaireTags.Instance;
+            if (!(tln.Contains(tag))) //si le tag n'est pas deja dans le treeview
+            {
+                TreeNode newNode = new TreeNode(tag);
+                tv.Nodes[0].Nodes.Add(newNode);//Ajout du noeud avec comme père la sélection
+                tv.SelectedNode = newNode;//On sélectionne notre nouveau noeud
+                tv.ExpandAll();//On étend TOUS le treeview
+                gXML.AjouterTag(newNode.Text, tv.SelectedNode);//On ajoute le tag dans la liste
+                gXML.exportToXml(GetTreeViewActif(), gXML.Chemin + gXML.NomXML);//Exportation en XML
+            }
+            MiseAJour();//a modif ou thread
+        }
+
         private void SauvegarderLaModificationDeTags(string nouveauTag)
         {
             ArrayList listTag = new ArrayList();
@@ -1038,13 +1084,77 @@ namespace ProjetDotNetM1
             listTag.Add(nouveauTag); // mais on met le nouveau tag transmis en parametre
             images.modifieTags(imageSelect, new ArrayList(listTag)); //on modifie les tags
         }
-
+        private List<string> FindAllNodes(TreeNodeCollection nodes)
+        {
+            List<string> output = new List<string>();
+            foreach (TreeNode tn in nodes)
+            {
+                output.Add(tn.Text);
+                foreach (string tag in FindAllNodes(tn.Nodes))
+                {
+                    output.Add(tag);
+                }
+            }
+            return output;
+        }
         private void RetourBtn_Click(object sender, EventArgs e)
         {
             RafraichirTreeView(); //Affiche les tags dans le treeView
             tableLayoutPanel_Parametres.Hide();
             tableLayoutPanel_Modification.Hide();
             tableLayoutPanel_Ensemble.Show();
+        }
+        /// <summary>
+        /// https://blog.netapsys.fr/algorithme-de-levenshtein-en-c-net/*
+        /// algorithme de levenshtein
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        private Int32 levenshtein(String a, String b)
+        {
+            if (string.IsNullOrEmpty(a))
+            {
+                if (!string.IsNullOrEmpty(b))
+                {
+                    return b.Length;
+                }
+                return 0;
+            }
+            if (string.IsNullOrEmpty(b))
+            {
+                if (!string.IsNullOrEmpty(a))
+                {
+                    return a.Length;
+                }
+                return 0;
+            }
+            Int32 cost;
+            Int32[,] d = new int[a.Length + 1, b.Length + 1];
+            Int32 min1;
+            Int32 min2;
+            Int32 min3;
+            for (Int32 i = 0; i <= d.GetUpperBound(0); i += 1)
+            {
+                d[i, 0] = i;
+            }
+            for (Int32 i = 0; i <= d.GetUpperBound(1); i += 1)
+            {
+                d[0, i] = i;
+            }
+            for (Int32 i = 1; i <= d.GetUpperBound(0); i += 1)
+            {
+                for (Int32 j = 1; j <= d.GetUpperBound(1); j += 1)
+                {
+                    cost = Convert.ToInt32(!(a[i - 1] == b[j - 1]));
+
+                    min1 = d[i - 1, j] + 1;
+                    min2 = d[i, j - 1] + 1;
+                    min3 = d[i - 1, j - 1] + cost;
+                    d[i, j] = Math.Min(Math.Min(min1, min2), min3);
+                }
+            }
+            return d[d.GetUpperBound(0), d.GetUpperBound(1)];
         }
     }
 }
