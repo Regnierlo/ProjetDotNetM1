@@ -126,7 +126,7 @@ namespace ProjetDotNetM1
                 else
                 {
                     img.Dispose();
-                    ArrayList tagVide = new ArrayList { "photo" };
+                    List<string> tagVide = new List<string> { "photo" };
                     AjoutTag(tagVide);
                     return new List<string>();
                 }
@@ -197,8 +197,9 @@ namespace ProjetDotNetM1
         /// récupère une structure de métadonnées sur une image qui en contient et la modifie pour l'appliquer a la nouvelle image
         /// </summary>
         /// <param name="entry"></param>
-        public void AjoutTag(ArrayList entry)
+        public void AjoutTag(List<string> entry)
         {
+            Tag = entry;
             Image img = Image.FromFile(ImgUrl);
             try
             {
@@ -209,6 +210,7 @@ namespace ProjetDotNetM1
                 int cmp = 0;
                 foreach (string cmptag in entry)
                 {
+
                     cmp++;
                     tags = tags + cmptag;
                     if (cmp < entry.Count)

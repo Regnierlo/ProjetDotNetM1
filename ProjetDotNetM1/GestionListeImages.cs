@@ -87,6 +87,7 @@ namespace ProjetDotNetM1
                     }
                     listInfo = listInfo + "\n";
                     listInfo = listInfo + "Hauteur : " + urlSearch.Hauteur + "\nLargeur : " + urlSearch.Largeur;
+                    break;
                 }
             }
             return listInfo;
@@ -105,6 +106,7 @@ namespace ProjetDotNetM1
                 if (urlSearch.ImgUrl == urlEntry)
                 {
                     orientation = urlSearch.Orientation;
+                    break;
                 }
             }
             return orientation;
@@ -123,17 +125,30 @@ namespace ProjetDotNetM1
                 if (urlSearch.ImgUrl == urlEntry)
                 {
                     tags = urlSearch.Tag;
+                    break;
                 }
             }
             return tags;
         }
-        public void modifieTags(string urlEntry, ArrayList tags)
+        public void modifieTags(string urlEntry, List<string> tags)
         {
             foreach (GestionImage urlSearch in ListeImg)
             {
                 if (urlSearch.ImgUrl == urlEntry)
                 {
                     urlSearch.AjoutTag(tags);
+                    break;
+                }
+            }
+        }
+        public void modifieURL(string urlEntry, string url)
+        {
+            foreach (GestionImage urlSearch in ListeImg)
+            {
+                if (urlSearch.ImgUrl == urlEntry)
+                {
+                    urlSearch.ImgUrl = url;
+                    break;
                 }
             }
         }

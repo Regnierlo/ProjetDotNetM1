@@ -912,11 +912,13 @@ namespace ProjetDotNetM1
                     }
                 }
                 File.Move(imageSelect, newUrl);
+                images.modifieURL(imageSelect, newUrl);
                 imageSelect = newUrl;
-                MiseAJour();
+                AfficheImage(images);
                 richTextBoxRename.Enabled = false;
             }
         }
+        #region SupprimerTag
         private void buttonSupprimerTag_Click(object sender, EventArgs e)
         {
             if (listViewTags.CheckBoxes == false)//si on est dans le mode par defaut
@@ -934,7 +936,7 @@ namespace ProjetDotNetM1
                     tags.Remove(tag.Text);
                     listViewTags.Items.Remove(tag);
                 }
-                images.modifieTags(imageSelect, new ArrayList(tags));
+                images.modifieTags(imageSelect, new List<string>(tags));
                 listViewTags.CheckBoxes = false;
                 richTextBoxInformationModif.Text = images.rechercheinfo(imageSelect);
                 richTextBox_infoImage.Text = images.rechercheinfo(imageSelect);
@@ -943,7 +945,7 @@ namespace ProjetDotNetM1
                 enCourDeModifSupr = false;
             }
         }
-
+        #endregion
         /// <summary>
         /// On demande à l'utilisateur s'il veut regarder l'image via notre application ou via Windows
         /// yes = windows, no = appli
@@ -972,6 +974,7 @@ namespace ProjetDotNetM1
                 textBox_recherche.Clear();
             }
         }
+        #region ajoutTag
         private void listViewTags_MouseUp(object sender, MouseEventArgs e)
         {
             if (!enCourDeModifAdd & !enCourDeModifSupr)
@@ -1071,18 +1074,17 @@ namespace ProjetDotNetM1
                 gXML.AjouterTag(newNode.Text, tv.SelectedNode);//On ajoute le tag dans la liste
                 gXML.exportToXml(GetTreeViewActif(), gXML.Chemin + gXML.NomXML);//Exportation en XML
             }
-            MiseAJour();//a modif ou thread
         }
 
         private void SauvegarderLaModificationDeTags(string nouveauTag)
         {
-            ArrayList listTag = new ArrayList();
+            List<string> listTag = new List<string>();
             for(int i = 0; i< listViewTags.Items.Count - 1; i++) //on ne prend pas la derniere valeur qui est le nouveau_nom
             {
                 listTag.Add(listViewTags.Items[i].Text);
             }
             listTag.Add(nouveauTag); // mais on met le nouveau tag transmis en parametre
-            images.modifieTags(imageSelect, new ArrayList(listTag)); //on modifie les tags
+            images.modifieTags(imageSelect, new List<string>(listTag)); //on modifie les tags
         }
         private List<string> FindAllNodes(TreeNodeCollection nodes)
         {
@@ -1096,13 +1098,6 @@ namespace ProjetDotNetM1
                 }
             }
             return output;
-        }
-        private void RetourBtn_Click(object sender, EventArgs e)
-        {
-            RafraichirTreeView(); //Affiche les tags dans le treeView
-            tableLayoutPanel_Parametres.Hide();
-            tableLayoutPanel_Modification.Hide();
-            tableLayoutPanel_Ensemble.Show();
         }
         /// <summary>
         /// https://blog.netapsys.fr/algorithme-de-levenshtein-en-c-net/*
@@ -1156,5 +1151,15 @@ namespace ProjetDotNetM1
             }
             return d[d.GetUpperBound(0), d.GetUpperBound(1)];
         }
+
+#endregion
+        private void RetourBtn_Click(object sender, EventArgs e)
+        {
+            RafraichirTreeView(); //Affiche les tags dans le treeView
+            tableLayoutPanel_Parametres.Hide();
+            tableLayoutPanel_Modification.Hide();
+            tableLayoutPanel_Ensemble.Show();
+        }
+        
     }
 }
