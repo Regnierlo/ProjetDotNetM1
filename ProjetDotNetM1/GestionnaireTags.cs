@@ -61,7 +61,7 @@ namespace ProjetDotNetM1
             _chemin = String.Concat(_chemin, "\\");
             _cheminComplet = String.Concat(_chemin, _nomXML);
             _doc = new XmlDocument();
-            root = _doc.CreateElement("tags");
+            root = _doc.CreateElement("photo");
             _ltag = new List<Tag>();
             CheckXMLFile();
         }
@@ -93,7 +93,7 @@ namespace ProjetDotNetM1
                     xwriter.WriteStartDocument();
                     xwriter.Formatting = Formatting.Indented;
                     xwriter.WriteStartElement(string_root);
-                    xwriter.WriteStartElement("tag");
+                    xwriter.WriteStartElement("photo");
                     xwriter.WriteEndElement();
                     xwriter.WriteEndElement();
                     xwriter.WriteEndDocument();

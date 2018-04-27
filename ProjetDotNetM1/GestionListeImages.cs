@@ -86,6 +86,7 @@ namespace ProjetDotNetM1
                         }
                     }
                     listInfo = listInfo + "\n";
+                    listInfo = listInfo + "Hauteur : " + urlSearch.Hauteur + "\nLargeur : " + urlSearch.Largeur;
                 }
             }
             return listInfo;

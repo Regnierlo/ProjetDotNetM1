@@ -46,7 +46,7 @@ namespace ProjetDotNetM1
             label_info.Text = "Les informations de l'application seront affichées ici.";
         }
 
-        #region affiche les images des la zone d'accueil
+        #region affiche les images de la zone d'accueil
 
         /// <summary>
         /// Fonction permettant l'affichage des photos du dossier lors du lancement du logiciel sur la page d'accueil
@@ -92,17 +92,24 @@ namespace ProjetDotNetM1
                     default:
                         break;
                 }
-                if (img.Orientation == 6 | img.Orientation == 8)
+                if (image.Height < image.Width)
                 {
-                    haut = 200-20;
-                    double largD = (double)image.Width / (double)image.Height * 200;
-                    larg = (int)largD-20;
-                }
+                    larg = tableLayoutPanel_Photos.Controls.Container.Width / 5 - 20;
+                    double hautD = (double)image.Height / (double)image.Width * (double)tableLayoutPanel_Photos.Controls.Container.Width / 5;
+                    haut = (int)hautD - 20;                }
                 else
                 {
-                    larg = tableLayoutPanel_Photos.Controls.Container.Width / 5-20;
-                    double hautD = (double)image.Height/(double)image.Width * (double)tableLayoutPanel_Photos.Controls.Container.Width/5;
-                    haut = (int)hautD-20;
+                    if(image.Height == image.Width)
+                    {
+                        larg = tableLayoutPanel_Photos.Controls.Container.Width / 5 - 20;
+                        haut = 200 - 20;
+                    }
+                    else
+                    {
+                        haut = 200-20;
+                        double largD = (double)image.Width / (double)image.Height * 200;
+                        larg = (int)largD-20;
+                    }
                 }
                 PictureBox pic = new PictureBox() { Image = new Bitmap(image, new Size(larg, haut)) };
                 pic.Name = img.ImgUrl;
@@ -318,7 +325,6 @@ namespace ProjetDotNetM1
             botonModifier();
         }
         #endregion
-
         #region Chargement de la zone modifier
         /// <summary>
         /// fonction pour entrer dans le menu modification
@@ -380,8 +386,8 @@ namespace ProjetDotNetM1
                 }
                 else
                 {
-                    larg = pictureBoxModifAfficheImage.Width;
-                    double hautD = (double)image.Height / (double)image.Width * pictureBoxModifAfficheImage.Width;
+                    larg = pictureBoxModifAfficheImage.Height;
+                    double hautD = (double)image.Height / (double)image.Width * pictureBoxModifAfficheImage.Height;
                     haut = (int)hautD;
                 }
                 pictureBoxModifAfficheImage.Image = new Bitmap(image, new Size(larg, haut));
@@ -406,7 +412,6 @@ namespace ProjetDotNetM1
             }
         }
         #endregion
-
         /// <summary>
         /// Permet à l'utilisateur d'annuler les modifications effectuées lors de la modification de tag
         /// </summary>
@@ -446,12 +451,10 @@ namespace ProjetDotNetM1
         private TreeView GetTreeViewActif()
         {
             TreeView tv;
-
             if (tableLayoutPanel_Ensemble.Visible)//On récupère le bon treeview
                 tv = treeView_TagsAcceuil;
             else
                 tv = treeView_TagsModification;
-
             return tv;
         }
         private void LabelMessage(string message, Color couleur)
@@ -459,7 +462,6 @@ namespace ProjetDotNetM1
             label_info.Text = message;
             label_info.ForeColor = couleur;
         }
-        
         private void MiseAJour()
         {
             string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
@@ -483,6 +485,8 @@ namespace ProjetDotNetM1
             else
             {
                 LabelMessage("Mise à jour non effectuée", Color.Red);
+                tableLayoutPanel_Photos.Controls.Clear();
+                tableLayoutPanel_Photos.RowStyles.Clear();
                 //Console.WriteLine("Màj non effectuée");
             }
         }
@@ -662,7 +666,6 @@ namespace ProjetDotNetM1
             }
         }
         #endregion
-
         #region dragAndDropTreeView
         private void treeView_TagsAcceuil_DragDrop(object sender, DragEventArgs e)
         {
@@ -744,7 +747,6 @@ namespace ProjetDotNetM1
             ItemDragPerso(e);
         }
         #endregion
-
         #region FichierXML_ImportationExportation
 
         /// <summary>
@@ -813,7 +815,6 @@ namespace ProjetDotNetM1
             }
         }
         #endregion
-
         #region Recherche
         /// <summary>
         /// Fais une recherche dès que le texte change
@@ -888,7 +889,6 @@ namespace ProjetDotNetM1
             AfficheImage(imagesAvecTags);
         }
         #endregion
-
         private void buttonRename_Click(object sender, EventArgs e)
         {
             if (richTextBoxRename.Enabled == false)//si on veut entrer dans e mode edition
@@ -917,7 +917,6 @@ namespace ProjetDotNetM1
                 richTextBoxRename.Enabled = false;
             }
         }
-
         private void buttonSupprimerTag_Click(object sender, EventArgs e)
         {
             if (listViewTags.CheckBoxes == false)//si on est dans le mode par defaut
@@ -973,7 +972,6 @@ namespace ProjetDotNetM1
                 textBox_recherche.Clear();
             }
         }
-
         private void listViewTags_MouseUp(object sender, MouseEventArgs e)
         {
             if (!enCourDeModifAdd & !enCourDeModifSupr)
@@ -989,20 +987,45 @@ namespace ProjetDotNetM1
         }
         private void listViewTags_AfterLabelEdit(object sender, LabelEditEventArgs e)
         {
-            
             if (e.Label == null)
             {
-
                 LabelMessage("vous n'avez pas changer le nom par default du tag, il n'a pas été sauvegardé", Color.Red);
+                e.CancelEdit = true;
                 listViewTags.Items.RemoveAt(listViewTags.Items.Count - 1);
             }
             else
             {
-                //enCourDAjoutDeTag = false;
-                SauvegarderLaModificationDeTags(e.Label); //on transmet le nouveau nom donné par l'evenement
-                MiseAJour();
-                richTextBoxInformationModif.Text = images.rechercheinfo(imageSelect);
-                richTextBox_infoImage.Text = images.rechercheinfo(imageSelect);
+                Boolean dejaPresent = false;
+                foreach(string tag in images.rechercheTags(imageSelect))
+                {
+                    if(tag == e.Label)
+                    {
+                        dejaPresent = true;
+                    }
+                }
+                if (!dejaPresent)//si le tag n'est pas deja dans la liste
+                {
+                    //enCourDAjoutDeTag = false;
+                    SauvegarderLaModificationDeTags(e.Label); //on transmet le nouveau nom donné par l'evenement
+                    MiseAJour();
+                    richTextBoxInformationModif.Text = images.rechercheinfo(imageSelect);
+                    richTextBox_infoImage.Text = images.rechercheinfo(imageSelect);
+
+                    GestionnaireTags gXML = GestionnaireTags.Instance;
+                    TreeView tv = treeView_TagsModification;
+                    TreeNode newNode = new TreeNode(e.Label);
+                    tv.Nodes[0].Nodes.Add(newNode);//Ajout du noeud avec comme père la sélection
+                    tv.SelectedNode = newNode;//On sélectionne notre nouveau noeud
+                    tv.ExpandAll();//On étend TOUS le treeview
+                    gXML.AjouterTag(newNode.Text, tv.SelectedNode);//On ajoute le tag dans la liste
+                    gXML.exportToXml(GetTreeViewActif(), gXML.Chemin + gXML.NomXML);//Exportation en XML
+                }
+                else//si le tag est deja présent
+                {
+                    LabelMessage("ce tag Existe déjà, le tag n'a pas été sauvegardé", Color.Red);
+                    e.CancelEdit = true;
+                    listViewTags.Items.RemoveAt(listViewTags.Items.Count - 1);
+                }
             }
         }
         private void SauvegarderLaModificationDeTags(string nouveauTag)
