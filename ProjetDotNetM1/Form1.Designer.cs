@@ -114,7 +114,7 @@
             // textBox_recherche
             // 
             this.textBox_recherche.BackColor = System.Drawing.Color.LightGray;
-            this.textBox_recherche.Location = new System.Drawing.Point(994, 3);
+            this.textBox_recherche.Location = new System.Drawing.Point(993, 3);
             this.textBox_recherche.Name = "textBox_recherche";
             this.textBox_recherche.Size = new System.Drawing.Size(210, 20);
             this.textBox_recherche.TabIndex = 7;
@@ -532,7 +532,7 @@
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.06639F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.93361F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 91F));
-            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 232F));
+            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 233F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 56F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.36034F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.63966F));
@@ -569,7 +569,7 @@
             "Tous",
             "Photos",
             "Tags"});
-            this.comboBox_Recherche.Location = new System.Drawing.Point(903, 3);
+            this.comboBox_Recherche.Location = new System.Drawing.Point(902, 3);
             this.comboBox_Recherche.Name = "comboBox_Recherche";
             this.comboBox_Recherche.Size = new System.Drawing.Size(85, 21);
             this.comboBox_Recherche.TabIndex = 9;
@@ -663,7 +663,7 @@
             this.Dossier_ToolStripMenuItem,
             this.Fichier_ToolStripMenuItem1});
             this.Ouvrir_ToolStripMenuItem.Name = "Ouvrir_ToolStripMenuItem";
-            this.Ouvrir_ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.Ouvrir_ToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.Ouvrir_ToolStripMenuItem.Text = "Importer";
             // 
             // Dossier_ToolStripMenuItem
@@ -683,7 +683,7 @@
             // Paramètres_ToolStripMenuItem
             // 
             this.Paramètres_ToolStripMenuItem.Name = "Paramètres_ToolStripMenuItem";
-            this.Paramètres_ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.Paramètres_ToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.Paramètres_ToolStripMenuItem.Text = "Paramètres";
             this.Paramètres_ToolStripMenuItem.Click += new System.EventHandler(this.ParamètresToolStripMenuItem_Click);
             // 
@@ -693,7 +693,7 @@
             this.importerUneListeToolStripMenuItem,
             this.exporterUneListeToolStripMenuItem});
             this.listeDesTagsToolStripMenuItem.Name = "listeDesTagsToolStripMenuItem";
-            this.listeDesTagsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.listeDesTagsToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.listeDesTagsToolStripMenuItem.Text = "Liste des tags";
             // 
             // importerUneListeToolStripMenuItem
@@ -722,13 +722,13 @@
             // ModeDiaporama_ToolStripMenuItem
             // 
             this.ModeDiaporama_ToolStripMenuItem.Name = "ModeDiaporama_ToolStripMenuItem";
-            this.ModeDiaporama_ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ModeDiaporama_ToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.ModeDiaporama_ToolStripMenuItem.Text = "Mode diaporama";
             // 
             // VersionDuLogiciel_ToolStripMenuItem
             // 
             this.VersionDuLogiciel_ToolStripMenuItem.Name = "VersionDuLogiciel_ToolStripMenuItem";
-            this.VersionDuLogiciel_ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.VersionDuLogiciel_ToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.VersionDuLogiciel_ToolStripMenuItem.Text = "A propos";
             this.VersionDuLogiciel_ToolStripMenuItem.Click += new System.EventHandler(this.VersionDuLogicielToolStripMenuItem_Click);
             // 
@@ -743,7 +743,7 @@
             // Modifier_ToolStripMenuItem
             // 
             this.Modifier_ToolStripMenuItem.Name = "Modifier_ToolStripMenuItem";
-            this.Modifier_ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.Modifier_ToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.Modifier_ToolStripMenuItem.Text = "Modifier";
             this.Modifier_ToolStripMenuItem.Click += new System.EventHandler(this.ModifierToolStripMenuItem_Click);
             // 
