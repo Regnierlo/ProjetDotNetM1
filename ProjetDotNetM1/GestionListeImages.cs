@@ -15,11 +15,15 @@ namespace ProjetDotNetM1
             set;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="list"></param>
         public GestionListeImages(List<GestionImage> list)
         {
             ListeImg = list;
         }
+
         /// <summary>
         /// creer une liste de gestionImage a partir du dossier d'importation
         /// </summary>
@@ -52,7 +56,6 @@ namespace ProjetDotNetM1
                         ListeImg.Add(new GestionImage(img));
                         bar.PerformStep();
                     }
-
                 }
                 bar.Value = 0;
                 bar.Visible = false;
@@ -83,8 +86,7 @@ namespace ProjetDotNetM1
                         if(urlSearch.Tag[urlSearch.Tag.Count-1] != tag)
                         {
                             listInfo = listInfo + ";";
-                        }
-                        
+                        }  
                     }
                     listInfo = listInfo + "\n";
                     listInfo = listInfo + "Hauteur : " + urlSearch.Hauteur + "\nLargeur : " + urlSearch.Largeur;
@@ -97,12 +99,12 @@ namespace ProjetDotNetM1
                     {
                         urlSearch.Poids = urlSearch.Poids / 1000;
                         listInfo = listInfo + "Poids : " + urlSearch.Poids + "Mo";
-                    }
-                    
+                    }       
                 }
             }
             return listInfo;
         }
+
         /// <summary>
         /// permet d'avoir l'orientation d'une image grace a l'url
         /// 

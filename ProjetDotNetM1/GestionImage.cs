@@ -56,7 +56,7 @@ namespace ProjetDotNetM1
         }
 
         /// <summary>
-        /// 
+        /// On récupère la longueur de l'image en X
         /// </summary>
         /// <returns></returns>
         public int RecupDimensionX()
@@ -66,7 +66,7 @@ namespace ProjetDotNetM1
         }
 
         /// <summary>
-        /// 
+        ///  On récupère la hauteur de l'image en Y
         /// </summary>
         /// <returns></returns>
         public int RecupDimensionY()
@@ -76,15 +76,16 @@ namespace ProjetDotNetM1
         }
 
         /// <summary>
-        /// 
+        /// On récupère la taille d'une image que l'on converti en Ko
+        /// L'affichage ko/Mo se fait dans GestionListeImages
         /// </summary>
         /// <returns></returns>
         public int RecupPoidsImg()
         {
             FileInfo img =new FileInfo(ImgUrl);
             int res = (int)img.Length;
-            int Kb = res/1024;
-            return Kb;
+            res = res/1024;
+            return res;
         }
 
         /// <summary>
