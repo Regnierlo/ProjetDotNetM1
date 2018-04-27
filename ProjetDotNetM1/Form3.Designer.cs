@@ -46,15 +46,15 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(234, 51);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // button1
             // 
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Location = new System.Drawing.Point(603, 3);
+            this.button1.Location = new System.Drawing.Point(178, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(194, 444);
+            this.button1.Size = new System.Drawing.Size(53, 44);
             this.button1.TabIndex = 0;
             this.button1.Text = "Valider";
             this.button1.UseVisualStyleBackColor = true;
@@ -66,14 +66,14 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(3, 3);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(594, 21);
+            this.comboBox1.Size = new System.Drawing.Size(169, 21);
             this.comboBox1.TabIndex = 1;
             // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(234, 51);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Form3";
             this.Text = "Selectionnez le tag a ajouter";
