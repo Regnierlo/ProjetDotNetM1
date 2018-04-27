@@ -20,7 +20,6 @@ namespace ProjetDotNetM1
 
         //Pour la recherche
         List<GestionImage> imagesRecherche = new List<GestionImage>();
-        Boolean NouvelleRecherche = true;
 
         string imageSelect;
         public Form1()
@@ -832,27 +831,13 @@ namespace ProjetDotNetM1
             string rechercheUtilisateur = this.textBox_recherche.Text;
             Recherche r = new Recherche();
 
-
-            if (rechercheUtilisateur.Length <= 1)
-                NouvelleRecherche = true;
-            else
-                NouvelleRecherche = false;
-
             if (secteurRecherche == this.comboBox_Recherche.Items[0].ToString())//Tous
             {
                 if (rechercheUtilisateur != "")
                 {
-                    if (NouvelleRecherche)
-                    {
-                        imagesRecherche = r.RechercheTous(rechercheUtilisateur, images.ListeImg);
-                    }
-                    else
-                    {
-                        imagesRecherche = r.RechercheTous(rechercheUtilisateur, imagesRecherche);
-                    }
+                    imagesRecherche = r.RechercheTous(rechercheUtilisateur, images.ListeImg);
 
                     GestionListeImages imgRechercheTous = new GestionListeImages(imagesRecherche);
-                    Console.WriteLine("Jaffiche");
                     AfficheImage(imgRechercheTous);
                 }
                 else
@@ -864,14 +849,7 @@ namespace ProjetDotNetM1
             {
                 if (rechercheUtilisateur != "")
                 {
-                    if (NouvelleRecherche)
-                    {
-                        imagesRecherche = r.RecherchePhotos(rechercheUtilisateur, images.ListeImg);
-                    }
-                    else
-                    {
-                        imagesRecherche = r.RecherchePhotos(rechercheUtilisateur, imagesRecherche);
-                    }
+                    imagesRecherche = r.RecherchePhotos(rechercheUtilisateur, images.ListeImg);
 
                     GestionListeImages imagesAvecTags = new GestionListeImages(imagesRecherche);
                     AfficheImage(imagesAvecTags);
@@ -885,14 +863,7 @@ namespace ProjetDotNetM1
             {
                 if (rechercheUtilisateur != "")
                 {
-                    if (NouvelleRecherche)
-                    {
-                        imagesRecherche = r.RechercheTags(rechercheUtilisateur, images.ListeImg);
-                    }
-                    else
-                    {
-                        imagesRecherche = r.RechercheTags(rechercheUtilisateur, imagesRecherche);
-                    }
+                    imagesRecherche = r.RechercheTags(rechercheUtilisateur, images.ListeImg);
 
                     GestionListeImages imagesAvecTags = new GestionListeImages(imagesRecherche);
                     AfficheImage(imagesAvecTags);
@@ -924,9 +895,7 @@ namespace ProjetDotNetM1
             imagesRecherche = r.EnleverDoubleImageListe(imagesRecherche);
 
             GestionListeImages imagesAvecTags = new GestionListeImages(imagesRecherche);
-
             
-
             AfficheImage(imagesAvecTags);
         }
         #endregion
