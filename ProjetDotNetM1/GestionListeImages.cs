@@ -74,32 +74,32 @@ namespace ProjetDotNetM1
         public string rechercheinfo(string urlEntry)
         {
             string  listInfo = "";
+            
             foreach(GestionImage urlSearch in ListeImg)
             {
-                if(urlSearch.ImgUrl == urlEntry)
+                if (urlSearch.ImgUrl == urlEntry)
                 {
-                    listInfo = "Nom : "+urlSearch.ImgUrl+"\n";
+                    listInfo = "Nom : " + urlSearch.ImgUrl + "\n";
                     listInfo = listInfo + "Tags : ";
-                    foreach(string tag in urlSearch.Tag)
+                    foreach (string tag in urlSearch.Tag)
                     {
                         listInfo = listInfo + tag;
-                        if(urlSearch.Tag[urlSearch.Tag.Count-1] != tag)
+                        if (urlSearch.Tag[urlSearch.Tag.Count - 1] != tag)
                         {
                             listInfo = listInfo + ";";
-                        }  
+                        }
                     }
                     listInfo = listInfo + "\n";
                     listInfo = listInfo + "Hauteur : " + urlSearch.Hauteur + "\nLargeur : " + urlSearch.Largeur;
                     listInfo = listInfo + "\n";
-                    if(urlSearch.Poids <= 1024)
+                    if (urlSearch.PoidsMo == 1)
+                    {
+                        listInfo = listInfo + "Poids : " + urlSearch.Poids + "Mo";
+                    }
+                    else
                     {
                         listInfo = listInfo + "Poids : " + urlSearch.Poids + "Ko";
                     }
-                    else if(urlSearch.Poids > 1024)
-                    {
-                        urlSearch.Poids = urlSearch.Poids / 1000;
-                        listInfo = listInfo + "Poids : " + urlSearch.Poids + "Mo";
-                    }       
                 }
             }
             return listInfo;

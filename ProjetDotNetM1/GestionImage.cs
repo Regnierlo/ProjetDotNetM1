@@ -41,6 +41,12 @@ namespace ProjetDotNetM1
             set;
         }
 
+        public int PoidsMo
+        {
+            get;
+            set;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -53,6 +59,7 @@ namespace ProjetDotNetM1
             Largeur = RecupDimensionX();
             Hauteur = RecupDimensionY();
             Poids = RecupPoidsImg();
+  
         }
 
         /// <summary>
@@ -76,7 +83,7 @@ namespace ProjetDotNetM1
         }
 
         /// <summary>
-        /// On récupère la taille d'une image que l'on converti en Ko
+        /// On récupère la taille d'une image que l'on converti en Ko/Mo selon sa taille
         /// L'affichage ko/Mo se fait dans GestionListeImages
         /// </summary>
         /// <returns></returns>
@@ -84,7 +91,25 @@ namespace ProjetDotNetM1
         {
             FileInfo img =new FileInfo(ImgUrl);
             int res = (int)img.Length;
-            res = res/1024;
+            if(res >= 1000000)
+            {
+                res = res / 1024000;
+                PoidsMo = RecupPoidsImgMo();
+            }
+            else if(res <= 999999)
+            {
+                res = res / 1024;
+            }
+            return res;
+        }
+
+        /// <summary>
+        /// On renvoit un int pour signifier que l'image est en Mo et non en Ko
+        /// </summary>
+        /// <returns></returns>
+        public int RecupPoidsImgMo()
+        {
+            int res = 1;
             return res;
         }
 
