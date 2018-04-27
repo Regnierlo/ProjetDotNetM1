@@ -833,6 +833,7 @@ namespace ProjetDotNetM1
                 {
                     List<GestionImage> limage = r.RechercheTous(rechercheUtilisateur, images);
                     GestionListeImages imgRechercheTous = new GestionListeImages(limage);
+                    Console.WriteLine("Je go afficher");
                     AfficheImage(imgRechercheTous);
                 }
                 else

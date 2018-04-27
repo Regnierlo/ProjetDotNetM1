@@ -8,6 +8,7 @@ namespace ProjetDotNetM1
 {
     class GestionImage
     {
+        #region accesseurs
         public List<string> Tag
         {
             get;
@@ -46,9 +47,10 @@ namespace ProjetDotNetM1
             get;
             set;
         }
+        #endregion
 
         /// <summary>
-        /// 
+        /// Constructeur
         /// </summary>
         /// <param name="image"></param>
         public GestionImage(string image)
@@ -59,9 +61,10 @@ namespace ProjetDotNetM1
             Largeur = RecupDimensionX();
             Hauteur = RecupDimensionY();
             Poids = RecupPoidsImg();
-  
         }
 
+        #region dimension
+    
         /// <summary>
         /// On récupère la longueur de l'image en X
         /// </summary>
@@ -82,6 +85,8 @@ namespace ProjetDotNetM1
             return img.Height;
         }
 
+        #endregion
+        #region récupérationPoids
         /// <summary>
         /// On récupère la taille d'une image que l'on converti en Ko/Mo selon sa taille
         /// L'affichage ko/Mo se fait dans GestionListeImages
@@ -112,6 +117,7 @@ namespace ProjetDotNetM1
             int res = 1;
             return res;
         }
+        #endregion
 
         /// <summary>
         /// prend une chaine de caractere en parametre et la transforme en tableau de byte pret a etre inserer dans les metadonnees  

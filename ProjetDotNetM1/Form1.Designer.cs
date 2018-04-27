@@ -114,7 +114,7 @@
             // textBox_recherche
             // 
             this.textBox_recherche.BackColor = System.Drawing.Color.LightGray;
-            this.textBox_recherche.Location = new System.Drawing.Point(993, 3);
+            this.textBox_recherche.Location = new System.Drawing.Point(991, 3);
             this.textBox_recherche.Name = "textBox_recherche";
             this.textBox_recherche.Size = new System.Drawing.Size(210, 20);
             this.textBox_recherche.TabIndex = 7;
@@ -273,6 +273,7 @@
             this.tableLayoutPanel_Modification.Name = "tableLayoutPanel_Modification";
             this.tableLayoutPanel_Modification.RowCount = 1;
             this.tableLayoutPanel_Modification.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel_Modification.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel_Modification.Size = new System.Drawing.Size(1224, 518);
             this.tableLayoutPanel_Modification.TabIndex = 2;
             // 
@@ -309,14 +310,21 @@
             // 
             // retourBtn
             // 
-            this.retourBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.retourBtn.Location = new System.Drawing.Point(170, 20);
-            this.retourBtn.Margin = new System.Windows.Forms.Padding(170, 20, 170, 20);
+            this.retourBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.retourBtn.AutoSize = true;
+            this.retourBtn.BackColor = System.Drawing.Color.Gainsboro;
+            this.retourBtn.Image = global::ProjetDotNetM1.Properties.Resources.arrow_left;
+            this.retourBtn.Location = new System.Drawing.Point(480, 15);
+            this.retourBtn.Margin = new System.Windows.Forms.Padding(480, 15, 480, 15);
+            this.retourBtn.MaximumSize = new System.Drawing.Size(70, 36);
+            this.retourBtn.MinimumSize = new System.Drawing.Size(70, 36);
             this.retourBtn.Name = "retourBtn";
-            this.retourBtn.Size = new System.Drawing.Size(689, 26);
+            this.retourBtn.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.retourBtn.Size = new System.Drawing.Size(70, 36);
             this.retourBtn.TabIndex = 0;
-            this.retourBtn.Text = "Retour";
-            this.retourBtn.UseVisualStyleBackColor = true;
+            this.retourBtn.UseVisualStyleBackColor = false;
             this.retourBtn.Click += new System.EventHandler(this.RetourBtn_Click);
             // 
             // tableLayoutPanel1
@@ -532,7 +540,7 @@
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.06639F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.93361F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 91F));
-            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 233F));
+            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 235F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 56F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.36034F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.63966F));
@@ -569,7 +577,7 @@
             "Tous",
             "Photos",
             "Tags"});
-            this.comboBox_Recherche.Location = new System.Drawing.Point(902, 3);
+            this.comboBox_Recherche.Location = new System.Drawing.Point(900, 3);
             this.comboBox_Recherche.Name = "comboBox_Recherche";
             this.comboBox_Recherche.Size = new System.Drawing.Size(85, 21);
             this.comboBox_Recherche.TabIndex = 9;
@@ -590,6 +598,7 @@
             this.tableLayoutPanel_Parametres.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.72727F));
             this.tableLayoutPanel_Parametres.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.72727F));
             this.tableLayoutPanel_Parametres.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
+            this.tableLayoutPanel_Parametres.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel_Parametres.Size = new System.Drawing.Size(1224, 547);
             this.tableLayoutPanel_Parametres.TabIndex = 2;
             // 
@@ -737,7 +746,7 @@
             this.Tag_ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Modifier_ToolStripMenuItem});
             this.Tag_ToolStripMenuItem.Name = "Tag_ToolStripMenuItem";
-            this.Tag_ToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
+            this.Tag_ToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.Tag_ToolStripMenuItem.Text = "Tag";
             // 
             // Modifier_ToolStripMenuItem
@@ -786,6 +795,7 @@
             this.tableLayoutPanel_Modification.ResumeLayout(false);
             this.tableLayoutPanel_Photo.ResumeLayout(false);
             this.tableLayoutPanel_Buttons.ResumeLayout(false);
+            this.tableLayoutPanel_Buttons.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxModifAfficheImage)).EndInit();
             this.tabInformations.ResumeLayout(false);
