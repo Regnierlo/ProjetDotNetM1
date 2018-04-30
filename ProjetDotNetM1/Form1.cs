@@ -612,7 +612,7 @@ namespace ProjetDotNetM1
             else
             {
                 node.EndEdit(true);//On annule l'édition
-                label_info.Text = "Nom de tag incorrect";//Informaiton pour l'utilisateur
+                label_info.Text = "Nom de tag incorrect";//Information pour l'utilisateur
                 label_info.ForeColor = Color.Red;//Rouge car c'est pas cool
                 e.Node.BeginEdit();//On reommence l'édition
             }
@@ -936,7 +936,7 @@ namespace ProjetDotNetM1
                 enCourDeModifSupr = true;
                 listViewTags.CheckBoxes = true;
                 label_info.ForeColor = Color.Green;
-                label_info.Text = "cochez le ou les tags a supprimer puis appuyez de nouveau sur le bouton";
+                label_info.Text = "Cochez le ou les tags à supprimer puis appuyez de nouveau sur le bouton";
             }
             else//si on est deja dans le mode de suppression
             {
@@ -950,7 +950,7 @@ namespace ProjetDotNetM1
                 listViewTags.CheckBoxes = false;
                 richTextBoxInformationModif.Text = images.rechercheinfo(imageSelect);
                 richTextBox_infoImage.Text = images.rechercheinfo(imageSelect);
-                label_info.Text = "le(s) tag(s) on été supprimé(s)";
+                label_info.Text = "Le(s) tag(s) ont été supprimé(s)";
                 label_info.ForeColor = Color.Green;
                 enCourDeModifSupr = false;
             }
