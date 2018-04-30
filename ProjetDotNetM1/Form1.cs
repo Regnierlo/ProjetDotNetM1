@@ -1083,6 +1083,10 @@ namespace ProjetDotNetM1
                 tv.ExpandAll();//On étend TOUS le treeview
                 gXML.AjouterTag(newNode.Text, tv.SelectedNode);//On ajoute le tag dans la liste
                 gXML.exportToXml(GetTreeViewActif(), gXML.Chemin + gXML.NomXML);//Exportation en XML
+                GestionnaireTags gestionnaire = GestionnaireTags.Instance;
+
+                //On demande un affichage
+                gestionnaire.AfficheTreeView(treeView_TagsAcceuil);
             }
         }
 
