@@ -14,7 +14,7 @@ namespace ProjetDotNetM1
         /// <param name="rechercheUtilisateur">Chaine entrée par l'utilisateur pour la recherche</param>
         /// <param name="images">Liste des images où on va chercher</param>
         /// <returns>Liste d'image à afficher</returns>
-        public List<GestionImage> RechercheTous(string rechercheUtilisateur, GestionListeImages images)
+        public List<GestionImage> RechercheTous(string rechercheUtilisateur, List<GestionImage> images)
         {
             List<GestionImage> limage = new List<GestionImage>();
 
@@ -27,10 +27,11 @@ namespace ProjetDotNetM1
 
             //Tags photos
             tmp = RechercheTags(rechercheUtilisateur, images);//on effectue une recherche sur les tags d'une photos
+            
             limage.AddRange(tmp);//On fusionne les deux listes (noms photos + tags photos)
 
             limage = EnleverDoubleImageListe(limage);//On enlève les doublons
-
+            
             return limage;
         }
 
@@ -40,7 +41,7 @@ namespace ProjetDotNetM1
         /// <param name="rechercheUtilisateur"></param>
         /// <param name="images"></param>
         /// <returns></returns>
-        public List<GestionImage> RecherchePhotos(string rechercheUtilisateur, GestionListeImages images)
+        public List<GestionImage> RecherchePhotos(string rechercheUtilisateur, List<GestionImage> images)
         {
             List<GestionImage> limage = new List<GestionImage>();
             
@@ -51,7 +52,7 @@ namespace ProjetDotNetM1
             string[] decompositionNom;
             string[] tnom;
 
-            foreach (GestionImage img in images.ListeImg)//Pour toutes les images
+            foreach (GestionImage img in images)//Pour toutes les images
             {
                 //On récupère le nom
                 decompositionNom = img.ImgUrl.Split('\\');
@@ -65,11 +66,13 @@ namespace ProjetDotNetM1
                     m = m.NextMatch();//On passe à la suite
                 }
             }
+
             limage = EnleverDoubleImageListe(limage);
+
             return limage;
         }
 
-        public List<GestionImage> RechercheTags(string rechercheUtilisateur, GestionListeImages images)
+        public List<GestionImage> RechercheTags(string rechercheUtilisateur, List<GestionImage> images)
         {
             List<GestionImage> limage = new List<GestionImage>();
 
@@ -79,7 +82,7 @@ namespace ProjetDotNetM1
 
             Boolean tagPresent;//Pour vérifier si le tag est présent dans la photo
 
-            foreach (GestionImage img in images.ListeImg)
+            foreach (GestionImage img in images)
             {
                 tagPresent = false;//On suppose que le tag n'est pas présent
                 foreach (string tag in img.Tag)
@@ -94,10 +97,13 @@ namespace ProjetDotNetM1
                     if (tagPresent)//Si le tag est présent
                     {
                         limage.Add(img);//On ajoute l'image à la liste
+                        break;
                     }
                 }
             }
+
             limage = EnleverDoubleImageListe(limage);
+
             return limage;
         }
 
@@ -107,7 +113,7 @@ namespace ProjetDotNetM1
         /// <param name="selectedNode"></param>
         /// <param name="images"></param>
         /// <returns></returns>
-        public List<GestionImage> RechercheTagsTreeView(TreeNode selectedNode, GestionListeImages images)
+        public List<GestionImage> RechercheTagsTreeView(TreeNode selectedNode, List<GestionImage> images)
         {
             List<GestionImage> limage = new List<GestionImage>();
 
@@ -117,9 +123,9 @@ namespace ProjetDotNetM1
                 if (childNode.Nodes != null)//Si le fils à des fils lui aussi
                     limage.AddRange(RechercheTagsTreeView(childNode, images));//On fait une recherche sur le fils du coup
             }
-
+            Console.WriteLine("J'affiche 1");
             limage = EnleverDoubleImageListe(limage);//On enlève les doublons
-
+            Console.WriteLine("J'affiche 2");
             return limage;
         }
 
@@ -128,12 +134,21 @@ namespace ProjetDotNetM1
         /// </summary>
         /// <param name="limage">La liste où on va enlever les doublons</param>
         /// <returns>On retourne la liste sans les doublons</returns>
-        private List<GestionImage> EnleverDoubleImageListe(List<GestionImage> limage)
+        public List<GestionImage> EnleverDoubleImageListe(List<GestionImage> limage)
         {
+            foreach (GestionImage img in limage)
+            {
+                Console.WriteLine(img.ImgUrl);
+            }
+
+
             Boolean imagePresente;//Pour savoir si l'image est présente
             List<string> imagesAEnlever = new List<string>();//Liste des images à enlever
             for (int i = 0; i < limage.Count - 1; i++)
             {
+                if (i == 11)
+                    Console.WriteLine();
+
                 imagePresente = false;//On suppose qu'elle n'existe pas déjà
                 for (int j = i + 1; j < limage.Count; j++)
                 {
@@ -141,10 +156,13 @@ namespace ProjetDotNetM1
                     {
                         imagePresente = true;//On l'indique
                     }
-                }
 
-                if (imagePresente)//Si elle est présente
-                    imagesAEnlever.Add(limage[i].ImgUrl);//On indique l'url à supprimer
+                    if (imagePresente)//Si elle est présente
+                    {
+                        imagesAEnlever.Add(limage[i].ImgUrl);//On indique l'url à supprimer
+                        break;
+                    }
+                }
             }
 
             Boolean enlever;//Savoir si c'est enlevé
@@ -160,6 +178,8 @@ namespace ProjetDotNetM1
                         limage.RemoveAt(k);//Si c'est les mêmes, on supprime
                         enlever = true;//On indique que c'est enlevé
                     }
+
+                    k++;
                 }
             }
 
