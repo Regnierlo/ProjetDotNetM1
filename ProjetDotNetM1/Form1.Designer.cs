@@ -75,7 +75,6 @@
             this.listeDesTagsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importerUneListeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exporterUneListeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Paramètres_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Edition_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ModeDiaporama_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.VersionDuLogiciel_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -578,8 +577,7 @@
             // 
             this.Fichier_ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Ouvrir_ToolStripMenuItem,
-            this.listeDesTagsToolStripMenuItem,
-            this.Paramètres_ToolStripMenuItem});
+            this.listeDesTagsToolStripMenuItem});
             this.Fichier_ToolStripMenuItem.Name = "Fichier_ToolStripMenuItem";
             this.Fichier_ToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.Fichier_ToolStripMenuItem.Text = "Fichier";
@@ -597,14 +595,14 @@
             // Dossier_ToolStripMenuItem
             // 
             this.Dossier_ToolStripMenuItem.Name = "Dossier_ToolStripMenuItem";
-            this.Dossier_ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.Dossier_ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.Dossier_ToolStripMenuItem.Text = "Dossier";
             this.Dossier_ToolStripMenuItem.Click += new System.EventHandler(this.DossierToolStripMenuItem_Click);
             // 
             // Fichier_ToolStripMenuItem1
             // 
             this.Fichier_ToolStripMenuItem1.Name = "Fichier_ToolStripMenuItem1";
-            this.Fichier_ToolStripMenuItem1.Size = new System.Drawing.Size(112, 22);
+            this.Fichier_ToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.Fichier_ToolStripMenuItem1.Text = "Fichier";
             this.Fichier_ToolStripMenuItem1.Click += new System.EventHandler(this.FichierToolStripMenuItem1_Click);
             // 
@@ -630,13 +628,6 @@
             this.exporterUneListeToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.exporterUneListeToolStripMenuItem.Text = "Exporter une liste...";
             this.exporterUneListeToolStripMenuItem.Click += new System.EventHandler(this.exporterUneListeToolStripMenuItem_Click);
-            // 
-            // Paramètres_ToolStripMenuItem
-            // 
-            this.Paramètres_ToolStripMenuItem.Name = "Paramètres_ToolStripMenuItem";
-            this.Paramètres_ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.Paramètres_ToolStripMenuItem.Text = "Paramètres";
-            this.Paramètres_ToolStripMenuItem.Click += new System.EventHandler(this.ParamètresToolStripMenuItem_Click);
             // 
             // Edition_ToolStripMenuItem
             // 
@@ -754,7 +745,6 @@
         private System.Windows.Forms.ToolStripMenuItem Ouvrir_ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Dossier_ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Fichier_ToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem Paramètres_ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Edition_ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ModeDiaporama_ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem VersionDuLogiciel_ToolStripMenuItem;

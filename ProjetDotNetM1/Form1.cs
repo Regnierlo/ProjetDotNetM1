@@ -316,7 +316,6 @@ namespace ProjetDotNetM1
         {
             tableLayoutPanel_Ensemble.Hide();
             tableLayoutPanel_Modification.Hide();
-            tableLayoutPanel_Parametres.Show();
         }
 
         /// <summary>
@@ -343,7 +342,6 @@ namespace ProjetDotNetM1
 
 
                 tableLayoutPanel_Ensemble.Hide();
-                tableLayoutPanel_Parametres.Hide();
                 tableLayoutPanel_Modification.Show();
                 FileStream fs = new FileStream(imageSelect, FileMode.Open);
                 Image image = Image.FromStream(fs);
@@ -428,7 +426,6 @@ namespace ProjetDotNetM1
             if (res == DialogResult.Abort)
             {
                 tableLayoutPanel_Modification.Hide();
-                tableLayoutPanel_Parametres.Hide();
                 tableLayoutPanel_Ensemble.Show();
             }
             RafraichirTreeView();//Affiche les tags dans le treeView
@@ -442,7 +439,6 @@ namespace ProjetDotNetM1
         /// <param name="e"></param>
         private void AnnulerBtn_Click(object sender, EventArgs e)
         {
-            tableLayoutPanel_Parametres.Hide();
             tableLayoutPanel_Modification.Hide();
             tableLayoutPanel_Ensemble.Show();
         }
@@ -1170,7 +1166,6 @@ namespace ProjetDotNetM1
         private void RetourBtn_Click(object sender, EventArgs e)
         {
             RafraichirTreeView(); //Affiche les tags dans le treeView
-            tableLayoutPanel_Parametres.Hide();
             tableLayoutPanel_Modification.Hide();
             tableLayoutPanel_Ensemble.Show();
         }
