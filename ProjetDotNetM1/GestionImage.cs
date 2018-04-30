@@ -72,7 +72,9 @@ namespace ProjetDotNetM1
         public int RecupDimensionX()
         {
             Image img = Image.FromFile(ImgUrl);
-            return img.Width;         
+            int x = img.Width;
+            img.Dispose();
+            return x;
         }
 
         /// <summary>
@@ -82,7 +84,9 @@ namespace ProjetDotNetM1
         public int RecupDimensionY()
         {
             Image img = Image.FromFile(ImgUrl);
-            return img.Height;
+            int y = img.Height;
+            img.Dispose();
+            return y;
         }
 
         #endregion
