@@ -650,7 +650,7 @@
             this.Tag_ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Modifier_ToolStripMenuItem});
             this.Tag_ToolStripMenuItem.Name = "Tag_ToolStripMenuItem";
-            this.Tag_ToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.Tag_ToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
             this.Tag_ToolStripMenuItem.Text = "Tag";
             // 
             // Modifier_ToolStripMenuItem
