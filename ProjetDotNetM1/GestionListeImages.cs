@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Collections;
 using System.IO;
 using System.Windows.Forms;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace ProjetDotNetM1
 {
@@ -14,7 +17,13 @@ namespace ProjetDotNetM1
             get;
             set;
         }
-
+        public Boolean ActiveBar
+        {
+            get;
+            set;
+        }
+        private int cont;
+        private Form1 form;
         /// <summary>
         /// 
         /// </summary>
@@ -29,9 +38,12 @@ namespace ProjetDotNetM1
         /// </summary>
         /// <param name="bar"></param>
         /// <param name="grid"></param>
-        public GestionListeImages(ProgressBar bar)
+        public GestionListeImages(ProgressBar bar,Form1 f)
         {
+            ActiveBar = false;
+            form = f;
             bar.Visible = true;
+            int cont = 0;
             ListeImg = new List<GestionImage>();
             string url = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             url = Path.Combine(url, "FHRImages");
@@ -39,24 +51,26 @@ namespace ProjetDotNetM1
             {
                 System.Collections.IEnumerable files = Directory.EnumerateFiles(url);
                 int nb = 0;
+                List<string> fichiers = new List<string>();
                 foreach (string img in files)
                 {
                     nb++;
+                    fichiers.Add(img);
                 }
                 bar.Maximum = nb;// - 1;
                 bar.Minimum = 0;
                 bar.Step = 1;
                 nb = 0;
-                foreach (string img in files)
+                 /*foreach (string img in files)
+                 {
+                    threadGestImage(img, bar);
+                }*/
+                
+                Parallel.ForEach(fichiers, new ParallelOptions { MaxDegreeOfParallelism = 10 }, img =>
                 {
-                    Char delim = '\\';
-                    string[] name = img.Split(delim);
-                    if (name[name.Count() - 1] != "Thumbs.db")
-                    {
-                        ListeImg.Add(new GestionImage(img));
-                        bar.PerformStep();
-                    }
-                }
+                    threadGestImage(img, bar);
+                    
+                });
                 bar.Value = 0;
                 bar.Visible = false;
             }
@@ -64,6 +78,22 @@ namespace ProjetDotNetM1
             {
                 System.IO.Directory.CreateDirectory(url);
                 bar.Visible = false;
+            }
+        }
+        
+        private void threadGestImage(string img, ProgressBar bar)
+        {
+            Char delim = '\\';
+            string[] name = img.Split(delim);
+            Regex rgx = new Regex(@".*as485d7s5s.jpg");
+            if (name[name.Count() - 1] != "Thumbs.db" && !rgx.IsMatch(name[name.Count() - 1]))
+            {
+                ListeImg.Add(new GestionImage(img));
+                if (ActiveBar)
+                {
+                    form.Invoke(form.monDelegueBar);
+                }
+                //bar.PerformStep();
             }
         }
         /// <summary>

@@ -13,6 +13,7 @@ namespace ProjetDotNetM1
     {
         public delegate void MiseAJourDelegate();
         public MiseAJourDelegate monDelegue;
+        public MiseAJourDelegate monDelegueBar;
         GestionListeImages images;
         Boolean enCourDeModifAdd=false;
         Boolean enCourDeModifSupr = false;
@@ -28,8 +29,10 @@ namespace ProjetDotNetM1
             pictureList = new List<System.Windows.Forms.PictureBox>();
             textBox_recherche.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             monDelegue = new MiseAJourDelegate(MiseAJour);
+            monDelegueBar = new MiseAJourDelegate(FairePas);
             InitialisationPerso();
             MiseAJour();
+            images.ActiveBar = true;
         }
 
         /// <summary>
@@ -51,6 +54,11 @@ namespace ProjetDotNetM1
         }
 
         #region affiche les images de la zone d'accueil
+
+        private void FairePas()
+        {
+            progressBar.PerformStep();
+        }
 
         /// <summary>
         /// Fonction permettant l'affichage des photos du dossier lors du lancement du logiciel sur la page d'accueil
@@ -471,15 +479,16 @@ namespace ProjetDotNetM1
             string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
 
-            int nbFichiersJPG = Directory.GetFiles(saveUrlDos, "*.jpg", SearchOption.AllDirectories).Length;
+            
 
             if (!Directory.Exists(saveUrlDos))
             {
                 Directory.CreateDirectory(saveUrlDos);
             }
+            int nbFichiersJPG = Directory.GetFiles(saveUrlDos, "*.jpg", SearchOption.AllDirectories).Length;
             if (nbFichiersJPG > 0)
             {
-                images = new GestionListeImages(progressBar);
+                images = new GestionListeImages(progressBar,this);
                 //Console.WriteLine("Màj effectuée");
                 LabelMessage("Mise à jour effectuée", Color.Green);
                 GC.Collect();
@@ -488,6 +497,7 @@ namespace ProjetDotNetM1
             }
             else
             {
+                images = new GestionListeImages(progressBar, this);
                 LabelMessage("Mise à jour non effectuée", Color.Red);
                 tableLayoutPanel_Photos.Controls.Clear();
                 tableLayoutPanel_Photos.RowStyles.Clear();

@@ -65,6 +65,7 @@ namespace ProjetDotNetM1
         /// </summary>
         private void Importation()
         {
+            System.Console.WriteLine("debut");
             string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
             Char delim = '\\';
@@ -116,6 +117,7 @@ namespace ProjetDotNetM1
             }
             //appeler le invoke
             form.Invoke(form.monDelegue);
+            System.Console.WriteLine("fin");
         }
         private void Importation_deja_present(string img,string saveUrl,string name,string saveUrlDos)
         {
