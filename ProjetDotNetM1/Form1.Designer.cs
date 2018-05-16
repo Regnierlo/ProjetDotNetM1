@@ -76,12 +76,12 @@
             this.importerUneListeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exporterUneListeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Edition_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ModeDiaporama_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.VersionDuLogiciel_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Tag_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Modifier_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MiseAJour_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_barreAccueil = new System.Windows.Forms.MenuStrip();
+            this.aideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel_Ensemble.SuspendLayout();
             this.tableLayoutPanel_Accueil.SuspendLayout();
             this.contextMenuStrip_Tags.SuspendLayout();
@@ -105,7 +105,7 @@
             // textBox_recherche
             // 
             this.textBox_recherche.BackColor = System.Drawing.Color.LightGray;
-            this.textBox_recherche.Location = new System.Drawing.Point(1113, 3);
+            this.textBox_recherche.Location = new System.Drawing.Point(1112, 3);
             this.textBox_recherche.Name = "textBox_recherche";
             this.textBox_recherche.Size = new System.Drawing.Size(210, 20);
             this.textBox_recherche.TabIndex = 7;
@@ -531,7 +531,7 @@
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.06639F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.93361F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 91F));
-            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 239F));
+            this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 240F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 56F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.36034F));
             this.tableLayoutPanel_InformationsLogiciel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.63966F));
@@ -568,7 +568,7 @@
             "Tous",
             "Photos",
             "Tags"});
-            this.comboBox_Recherche.Location = new System.Drawing.Point(1022, 3);
+            this.comboBox_Recherche.Location = new System.Drawing.Point(1021, 3);
             this.comboBox_Recherche.Name = "comboBox_Recherche";
             this.comboBox_Recherche.Size = new System.Drawing.Size(85, 21);
             this.comboBox_Recherche.TabIndex = 9;
@@ -577,7 +577,8 @@
             // 
             this.Fichier_ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Ouvrir_ToolStripMenuItem,
-            this.listeDesTagsToolStripMenuItem});
+            this.listeDesTagsToolStripMenuItem,
+            this.aideToolStripMenuItem});
             this.Fichier_ToolStripMenuItem.Name = "Fichier_ToolStripMenuItem";
             this.Fichier_ToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.Fichier_ToolStripMenuItem.Text = "Fichier";
@@ -595,14 +596,14 @@
             // Dossier_ToolStripMenuItem
             // 
             this.Dossier_ToolStripMenuItem.Name = "Dossier_ToolStripMenuItem";
-            this.Dossier_ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.Dossier_ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.Dossier_ToolStripMenuItem.Text = "Dossier";
             this.Dossier_ToolStripMenuItem.Click += new System.EventHandler(this.DossierToolStripMenuItem_Click);
             // 
             // Fichier_ToolStripMenuItem1
             // 
             this.Fichier_ToolStripMenuItem1.Name = "Fichier_ToolStripMenuItem1";
-            this.Fichier_ToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.Fichier_ToolStripMenuItem1.Size = new System.Drawing.Size(112, 22);
             this.Fichier_ToolStripMenuItem1.Text = "Fichier";
             this.Fichier_ToolStripMenuItem1.Click += new System.EventHandler(this.FichierToolStripMenuItem1_Click);
             // 
@@ -632,22 +633,15 @@
             // Edition_ToolStripMenuItem
             // 
             this.Edition_ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ModeDiaporama_ToolStripMenuItem,
             this.VersionDuLogiciel_ToolStripMenuItem});
             this.Edition_ToolStripMenuItem.Name = "Edition_ToolStripMenuItem";
             this.Edition_ToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.Edition_ToolStripMenuItem.Text = "Edition";
             // 
-            // ModeDiaporama_ToolStripMenuItem
-            // 
-            this.ModeDiaporama_ToolStripMenuItem.Name = "ModeDiaporama_ToolStripMenuItem";
-            this.ModeDiaporama_ToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.ModeDiaporama_ToolStripMenuItem.Text = "Mode diaporama";
-            // 
             // VersionDuLogiciel_ToolStripMenuItem
             // 
             this.VersionDuLogiciel_ToolStripMenuItem.Name = "VersionDuLogiciel_ToolStripMenuItem";
-            this.VersionDuLogiciel_ToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.VersionDuLogiciel_ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.VersionDuLogiciel_ToolStripMenuItem.Text = "A propos";
             this.VersionDuLogiciel_ToolStripMenuItem.Click += new System.EventHandler(this.VersionDuLogicielToolStripMenuItem_Click);
             // 
@@ -662,7 +656,7 @@
             // Modifier_ToolStripMenuItem
             // 
             this.Modifier_ToolStripMenuItem.Name = "Modifier_ToolStripMenuItem";
-            this.Modifier_ToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.Modifier_ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.Modifier_ToolStripMenuItem.Text = "Modifier";
             this.Modifier_ToolStripMenuItem.Click += new System.EventHandler(this.ModifierToolStripMenuItem_Click);
             // 
@@ -686,6 +680,13 @@
             this.menuStrip_barreAccueil.Size = new System.Drawing.Size(1350, 24);
             this.menuStrip_barreAccueil.TabIndex = 1;
             this.menuStrip_barreAccueil.Text = "menuStrip1";
+            // 
+            // aideToolStripMenuItem
+            // 
+            this.aideToolStripMenuItem.Name = "aideToolStripMenuItem";
+            this.aideToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aideToolStripMenuItem.Text = "Aide";
+            this.aideToolStripMenuItem.Click += new System.EventHandler(this.aideToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -746,7 +747,6 @@
         private System.Windows.Forms.ToolStripMenuItem Dossier_ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Fichier_ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem Edition_ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ModeDiaporama_ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem VersionDuLogiciel_ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Tag_ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Modifier_ToolStripMenuItem;
@@ -776,6 +776,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Button buttonRename;
         private System.Windows.Forms.RichTextBox richTextBoxRename;
+        private System.Windows.Forms.ToolStripMenuItem aideToolStripMenuItem;
     }
 }
 

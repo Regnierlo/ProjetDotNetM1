@@ -70,6 +70,12 @@
     <Compile Include="AboutBox1.Designer.cs">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Aide.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Aide.Designer.cs">
+      <DependentUpon>Aide.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChoixZoom.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +119,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AboutBox1.resx">
       <DependentUpon>AboutBox1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Aide.resx">
+      <DependentUpon>Aide.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChoixZoom.resx">
       <DependentUpon>ChoixZoom.cs</DependentUpon>

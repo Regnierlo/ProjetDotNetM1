@@ -159,7 +159,7 @@ namespace ProjetDotNetM1
         /// <param name="e"></param>
         private void Pic_Double_Click(object sender, EventArgs e)
         {
-            botonModifier();
+            boutonModifier();
             RafraichirTreeView();
         }
         #endregion
@@ -325,14 +325,14 @@ namespace ProjetDotNetM1
         /// <param name="e"></param>
         private void ModifierToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            botonModifier();
+            boutonModifier();
         }
         #endregion
         #region Chargement de la zone modifier
         /// <summary>
         /// fonction pour entrer dans le menu modification
         /// </summary>
-        private void botonModifier()
+        private void boutonModifier()
         {
             if (imageSelect != null)
             {
@@ -467,12 +467,16 @@ namespace ProjetDotNetM1
             string saveUrlDos = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             saveUrlDos = Path.Combine(saveUrlDos, "FHRImages");
 
-            int nbFichiersJPG = Directory.GetFiles(saveUrlDos, "*.jpg", SearchOption.AllDirectories).Length;
-
             if (!Directory.Exists(saveUrlDos))
             {
                 Directory.CreateDirectory(saveUrlDos);
+                Aide c = new Aide();
+                c.Show();
+                c.TopMost = true;
             }
+
+            int nbFichiersJPG = Directory.GetFiles(saveUrlDos, "*.jpg", SearchOption.AllDirectories).Length;
+
             if (nbFichiersJPG > 0)
             {
                 images = new GestionListeImages(progressBar);
@@ -484,10 +488,9 @@ namespace ProjetDotNetM1
             }
             else
             {
-                LabelMessage("Mise à jour non effectuée", Color.Red);
+                LabelMessage("A jour", Color.Green);
                 tableLayoutPanel_Photos.Controls.Clear();
                 tableLayoutPanel_Photos.RowStyles.Clear();
-                //Console.WriteLine("Màj non effectuée");
             }
         }
 
@@ -496,7 +499,6 @@ namespace ProjetDotNetM1
         {
             Console.WriteLine("Notification received for: {0}", name);
         }
-
 
         #region ActionsCliqueDroitTreeView
         /// <summary>
@@ -1169,6 +1171,11 @@ namespace ProjetDotNetM1
             tableLayoutPanel_Modification.Hide();
             tableLayoutPanel_Ensemble.Show();
         }
-        
+
+        private void aideToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Aide c = new Aide();
+            c.Show();
+        }
     }
 }
