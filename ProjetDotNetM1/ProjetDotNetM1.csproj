@@ -106,7 +106,6 @@
     <Compile Include="FormImageExistante.Designer.cs">
       <DependentUpon>FormImageExistante.cs</DependentUpon>
     </Compile>
-    <Compile Include="GestImgInfo.cs" />
     <Compile Include="GestionImage.cs" />
     <Compile Include="GestionListeImages.cs" />
     <Compile Include="GestionListeImport.cs" />

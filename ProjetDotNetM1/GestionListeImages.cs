@@ -22,7 +22,6 @@ namespace ProjetDotNetM1
             get;
             set;
         }
-        private int cont;
         private Form1 form;
         /// <summary>
         /// 
@@ -80,7 +79,11 @@ namespace ProjetDotNetM1
                 bar.Visible = false;
             }
         }
-        
+        /// <summary>
+        /// Fonction qui permet le multithreading, elle sera appelé pour chaque image
+        /// </summary>
+        /// <param name="img">l'url de l'image</param>
+        /// <param name="bar">la progressBar a faire avancer</param>
         private void threadGestImage(string img, ProgressBar bar)
         {
             Char delim = '\\';
@@ -175,6 +178,11 @@ namespace ProjetDotNetM1
             }
             return tags;
         }
+        /// <summary>
+        /// Permet de modifier les tags d'une image
+        /// </summary>
+        /// <param name="urlEntry">l'url de l'image que l'on souhaite modifier</param>
+        /// <param name="tags">la liste des tags a mettre a la place</param>
         public void modifieTags(string urlEntry, List<string> tags)
         {
             foreach (GestionImage urlSearch in ListeImg)
@@ -186,6 +194,11 @@ namespace ProjetDotNetM1
                 }
             }
         }
+        /// <summary>
+        /// change l'url d'une imae
+        /// </summary>
+        /// <param name="urlEntry">l'url de l'image a modifier</param>
+        /// <param name="url">la nouvelle url</param>
         public void modifieURL(string urlEntry, string url)
         {
             foreach (GestionImage urlSearch in ListeImg)
